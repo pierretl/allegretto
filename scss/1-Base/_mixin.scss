@@ -1,0 +1,23 @@
+@mixin font {
+    font-family: Valera, Arial, sans-serif;
+}
+
+@mixin form {
+    @include font;
+    width: 100%;
+    min-height: 3rem;
+    border-radius: 1rem;
+    font-size: 1rem;;
+    border: 2px solid transparent;
+    padding: 0 1rem;
+}
+
+@mixin breakpoint($nom) {
+    @if $nom == 'mediumLogin' {
+
+        @media screen and (min-width: 40.875rem) {
+          @content
+        }
+    
+      }
+}

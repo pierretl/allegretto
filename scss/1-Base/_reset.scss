@@ -1,0 +1,64 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+::selection {
+    background: var(--couleur3);
+    color: var(--couleur1);
+}
+
+@font-face{
+    font-family:Valera;
+    font-style:normal;
+    font-weight:400;
+    src:url(../font/valera-round.woff2) format("woff2");
+    font-display:swap;
+}
+
+*:focus {
+    outline: 2px solid var(--couleur1);
+    outline-offset: .2rem;
+}
+
+body {
+    @include font;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin:0;
+    background-color: var(--couleur1);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--couleur3);
+}
+
+label {
+    display: block;
+}
+
+input {
+    @include form;
+    border-color: var(--couleur5);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--couleur1);
+}
+
+button {
+    @include form;
+}
+button:hover {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    border-radius: 9999rem;
+    padding: 0 1rem;
+}
+a:hover {
+    text-decoration: underline;
+}

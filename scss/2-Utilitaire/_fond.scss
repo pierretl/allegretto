@@ -1,0 +1,25 @@
+.bg-1 {
+    background-color: var(--couleur1);
+    color: var(--couleur3);
+}
+
+//////////////////////////////////////////////////////
+
+.bg-3 {
+    background-color: var(--couleur3);
+    color: var(--couleur4);
+}
+
+.bg-3 a {
+    color: var(--couleur1);
+}
+
+.bg-3 button {
+    background-color: var(--couleur1);
+    color: var(--couleur3);
+}
+
+.bg-3 *::selection {
+    background: var(--couleur1);
+    color: var(--couleur3);
+}
