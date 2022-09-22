@@ -5,9 +5,7 @@ error_reporting (E_ALL ^ E_NOTICE);
 
 function debug($data) {
 
-    var_dump($data);
-    echo "<hr>";
-
+    echo "<pre>".print_r($data,TRUE)."</pre><hr>";
 }
 
 ?>

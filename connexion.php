@@ -6,41 +6,48 @@
 
 	///////////////////////////////////////////////
 
-	session_start(); /* Starts the session */
+	//commence la session
+	session_start();
+
+	//récupérationde la liste des utilisateurs
+	$jsonString = file_get_contents("data/utilisateur.json");
+	$dataUtilisateur = json_decode($jsonString, true);
 	
-	/* Check Login form submitted */	
+	
+	//Vérification du forumaire saisi
 	if(isset($_POST['Submit'])){
-		/* Define username and associated password array */
-		$logins = array(
-			'Alex' => '123456',
-			'username1' => 'password1',
-			'username2' => 'password2',
-			'admin' => 'admin'
-		);
 		
-		/* Check and assign submitted Username and Password to new variable */
-		$Username = isset($_POST['Username']) ? $_POST['Username'] : '';
-		$Password = isset($_POST['Password']) ? $_POST['Password'] : '';
+		// Stock les nom d'utilisateur et mot de passe associé
+		$logins= [];
+		for ($i=0; $i < count($dataUtilisateur); $i++) {
+			$logins += [ $dataUtilisateur[$i]['idendifiant'] => array("idendifiant" => $dataUtilisateur[$i]['idendifiant'],"motDePasse" => $dataUtilisateur[$i]['motDePasse']) ];
+		}
+		debug($logins);
 		
-		/* Check Username and Password existence in defined array */		
-		if (isset($logins[$Username]) && $logins[$Username] == $Password){
-			/* Success: Set session variables and redirect to Protected page  */
-			$_SESSION['UserData']['Username']=$logins[$Username];
+		// Stock les infos saisi dans des varaibles.
+		$Identifiant = isset($_POST['Identifiant']) ? $_POST['Identifiant'] : '';
+		$MotDePasse = isset($_POST['MotDePasse']) ? $_POST['MotDePasse'] : '';
+
+		if ( 
+			$Identifiant !== '' && // champs identifiant saisi
+			$MotDePasse !== '' && // champs Mot de passe saisi
+			array_search($Identifiant, array_column($logins, 'idendifiant')) !== false && // le login saisi correspond à un utilisateur en data
+			$MotDePasse && password_verify($MotDePasse, $logins[$Identifiant]['motDePasse'])  // le mot de passe correspond à l'utilisateur
+		) {
+
+			// Succès : ajoute l'identifiant à la session et redirige sur l'index
+			$_SESSION['Utilisateur']['Identifiant'] = $logins[$Identifiant]['idendifiant'];
 			header("location:index.php");
 			exit;
+			
 		} else {
-			/* Erreur */
-			$messageErreur="<p class='text-6 mb-1'>Nom d'utilisateur ou mot de passe incorrect. </p>";
 
-			if (isset($Username)) {
-				$cssUsernameVide = " v_erreur";
-			}
-
-			if (isset($Password)) {
-				$cssPassworVide = " v_erreur";
-			}
-
+			// Erreur	
+			$erreurMessage="<p class='text-6 mb-1'>Nom d'utilisateur ou mot de passe incorrect. </p>";
+			$erreurClassCss = " v_erreur";
+			
 		}
+
 	}
 ?>
 
@@ -52,12 +59,12 @@
 	</div>
 
 	<form action="" method="post" name="Login_Form">
-		<?php echo $messageErreur;?>
+		<?php echo $erreurMessage;?>
 		<label for="identifiant">Identifiant</label>
-		<input name="Username" type="text" id="identifiant" class="mb-1<?php echo $cssUsernameVide; ?>" value="<?php echo $Username; ?>">
+		<input name="Identifiant" type="text" id="identifiant" class="mb-1<?php echo $erreurClassCss; ?>" value="<?php echo $Identifiant; ?>">
 
 		<label for="motdepasse">Mot de passe</label>
-		<input name="Password" type="password" id="motdepasse" class="mb-1<?php echo $cssPassworVide; ?>" value="">
+		<input name="MotDePasse" type="password" id="motdepasse" class="mb-1<?php echo $erreurClassCss; ?>" value="">
 
 		<button name="Submit" type="submit" name="">Connexion</button>
 	</form>

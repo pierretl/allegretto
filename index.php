@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <div class="page">
-    <p><a href="deconnexion.php">Déconnexion</a></p>
+    <p><a href="deconnexion.php">Déconnexion</a>(<?php echo $_SESSION['Utilisateur']['Identifiant']; ?>)</p>
 
     <hr>
 
