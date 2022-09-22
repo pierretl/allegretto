@@ -22,7 +22,6 @@
 		for ($i=0; $i < count($dataUtilisateur); $i++) {
 			$logins += [ $dataUtilisateur[$i]['idendifiant'] => array("idendifiant" => $dataUtilisateur[$i]['idendifiant'],"motDePasse" => $dataUtilisateur[$i]['motDePasse']) ];
 		}
-		debug($logins);
 		
 		// Stock les infos saisi dans des varaibles.
 		$Identifiant = isset($_POST['Identifiant']) ? $_POST['Identifiant'] : '';
