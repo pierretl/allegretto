@@ -1,0 +1,27 @@
+
+body .fc {
+    width: 100%;
+
+    @include breakpoint($page-largeur-max) {
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+}
+
+body .fc-header-toolbar.fc-toolbar {
+    @include breakpoint('smallOnly') {
+        flex-direction: column;
+    }
+}
+
+
+body .fc .fc-toolbar-title {
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.fc-toolbar button {
+    width: auto;
+    min-height: 0;
+}
+

@@ -8,6 +8,7 @@
 
 <link href="css/fullcalendar-5.11.3.min.css" rel="stylesheet">
 <script src='js-lib/fullcalendar-5.11.3.min.js'></script>
+<script src='js-lib/fullcalendar-locales-all.min.js'></script>
 <script>
     let aujourdhui = new Date().toISOString().split("T")[0];
 
@@ -30,7 +31,7 @@
                 initialView: "dayGridMonth",
                 initialDate: aujourdhui,
                 weekNumbers: true,
-                //locale: "fr",
+                locale: "fr",
                 events: json
             });
             calendar.render();
@@ -45,7 +46,7 @@
 
 
 
-<div class="page" style="width:100%">
+<div class="page df fg-1" style="width:100%">
     <table border="0" align="center" cellpadding="5" cellspacing="1" class="Table" style="display:none">
 
     <caption>Data : <a target="_blank" href="<?php echo $data_json; ?>">json</a></caption>

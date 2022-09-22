@@ -27,7 +27,7 @@ if ( $title !== "Connexion") {
 
 <?php if ( $vague === true) { ?>
 
-    <body class="vague">
+    <body class="vague df fd-c">
 
         <div class="vague__forme">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -36,7 +36,7 @@ if ( $title !== "Connexion") {
         </div>
 
         <div class="text-center">
-            <img src="design/logo.svg" alt="" loading="lazy" width="300px">
+            <img src="design/logo.svg" alt="" loading="lazy" class="logo">
 		    <h1 class="mt-0"><?php echo $title ?></h1>
         </div>
 

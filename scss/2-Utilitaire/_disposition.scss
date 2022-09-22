@@ -1,3 +1,13 @@
 .text-center {
     text-align:center;
 }
+
+.df {
+    display: flex;
+}
+.fd-c {
+    flex-direction: column;
+}
+.fg-1 {
+    flex-grow: 1;
+}

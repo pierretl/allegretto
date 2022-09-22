@@ -14,10 +14,21 @@
 
 @mixin breakpoint($nom) {
     @if $nom == 'mediumLogin' {
-
-        @media screen and (min-width: 40.875rem) {
-          @content
-        }
-    
+      @media screen and (min-width: 40.875rem) {
+        @content
       }
+    }
+
+    @else if $nom == 'smallOnly' {
+      @media screen and (max-width: 25rem) {
+        @content
+      }
+  
+    }
+
+    @else {
+      @media screen and (max-width: $nom) {
+        @content
+      }
+    }
 }
