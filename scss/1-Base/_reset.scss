@@ -22,15 +22,18 @@
 
 body {
     @include font;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     margin:0;
     background-color: var(--couleur1);
     font-size: 1rem;
     font-weight: 400;
     color: var(--couleur3);
+}
+
+body.v_centre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button {

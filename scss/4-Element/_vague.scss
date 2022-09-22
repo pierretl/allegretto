@@ -1,0 +1,27 @@
+$taille-vague: 69px;
+
+.vague {
+    position:relative;
+    padding-top: $taille-vague;
+}
+
+.vague__forme {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.vague__forme svg {
+    position: relative;
+    display: block;
+    width: calc(129% + 1.3px);
+    height: $taille-vague;
+}
+
+.vague__fill {
+    fill: var(--couleur2);
+}

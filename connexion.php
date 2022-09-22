@@ -51,7 +51,7 @@
 	}
 ?>
 
-<div class="login bg-3">
+<div class="cadre1 bg-3">
 	
 	<div class="text-center">
 		<img src="design/logo.svg" alt="" loading="lazy" width="300px">

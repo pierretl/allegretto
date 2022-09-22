@@ -1,11 +1,13 @@
-.login {
+$cadre-padding: 3rem;
+
+.cadre1 {
     position: relative;
     border-radius: 50% / 10%;
-    padding: 3rem;
+    padding: $cadre-padding;
 }
 
 @include breakpoint('mediumLogin') {
-    .login:after {
+    .cadre1:after {
         content: '';
         position: absolute;
         top: 9%;
@@ -16,4 +18,9 @@
         background: inherit;
         z-index: -1;
     }
+}
+
+.cadre2 {
+    padding: $cadre-padding;
+    border-radius: $form-radius;
 }
