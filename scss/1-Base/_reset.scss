@@ -33,20 +33,6 @@ body {
     color: var(--couleur3);
 }
 
-label {
-    display: block;
-}
-
-input {
-    @include form;
-    border-color: var(--couleur5);
-}
-
-input:focus {
-    outline: none;
-    border-color: var(--couleur1);
-}
-
 button {
     @include form;
 }

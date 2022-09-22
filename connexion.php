@@ -29,8 +29,17 @@
 			header("location:index.php");
 			exit;
 		} else {
-			/*Unsuccessful attempt: Set error message */
-			$msg="<span style='color:red'>Invalid Login Details</span>";
+			/* Erreur */
+			$messageErreur="<p class='text-6 mb-1'>Nom d'utilisateur ou mot de passe incorrect. </p>";
+
+			if (isset($Username)) {
+				$cssUsernameVide = " v_erreur";
+			}
+
+			if (isset($Password)) {
+				$cssPassworVide = " v_erreur";
+			}
+
 		}
 	}
 ?>
@@ -43,12 +52,12 @@
 	</div>
 
 	<form action="" method="post" name="Login_Form">
-		<?php echo $msg;?>
+		<?php echo $messageErreur;?>
 		<label for="identifiant">Identifiant</label>
-		<input name="Username" type="text" id="identifiant" class="mb-1">
+		<input name="Username" type="text" id="identifiant" class="mb-1<?php echo $cssUsernameVide; ?>" value="<?php echo $Username; ?>">
 
 		<label for="motdepasse">Mot de passe</label>
-		<input name="Password" type="password" id="motdepasse" class="mb-1">
+		<input name="Password" type="password" id="motdepasse" class="mb-1<?php echo $cssPassworVide; ?>" value="">
 
 		<button name="Submit" type="submit" name="">Connexion</button>
 	</form>
