@@ -1,7 +1,11 @@
-.logo {
+.logo-login {
     max-width: 50%;
     
     @include breakpoint('mediumLogin') {
-        max-width: 300px;
+        max-width: 240px;
     }
+}
+
+.logo {
+    max-width: 100px;
 }

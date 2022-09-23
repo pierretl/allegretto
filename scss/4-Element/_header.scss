@@ -1,0 +1,13 @@
+.header {
+    z-index: 1;
+
+    @include breakpoint('smallOnly'){
+        align-items: flex-end;
+        margin-top: -1rem;
+    }
+
+    @include breakpoint('mediumOnly'){
+        margin-top: -1.1rem;
+    }
+
+}

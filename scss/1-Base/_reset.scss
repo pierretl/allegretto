@@ -24,16 +24,17 @@ body {
     @include font;
     min-height: 100vh;
     margin:0;
-    background-color: var(--couleur1);
+    background-color: var(--couleur3);
     font-size: 1rem;
     font-weight: 400;
-    color: var(--couleur3);
+    color: var(--couleur4);
 }
 
 body.v_centre {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--couleur1);
 }
 
 button {
@@ -44,9 +45,9 @@ button:hover {
 }
 
 a {
-    text-decoration: none;
-    border-radius: 9999rem;
     padding: 0 1rem;
+    border-radius: 9999rem;
+    text-decoration: none;
 }
 a:hover {
     text-decoration: underline;

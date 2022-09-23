@@ -27,18 +27,20 @@ if ( $title !== "Connexion") {
 
 <?php if ( $vague === true) { ?>
 
-    <body class="vague df fd-c">
+    <body class="bg-3 vague df fd-c">
 
         <div class="vague__forme">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="vague__fill"></path>
+                <path d="M1200,25.8V1.6L0,1.6l0,92.7c102.5-38.9,213.6-48.9,321.4-29.1c58,10.8,114.2,30.1,172,41.9c82.4,16.7,168.2,17.7,250.5,0.4c79.9-16.8,162.8-57.8,241.8-78.6C1055.7,10.3,1132.2,2.7,1200,25.8z" class="vague__fill"></path>
             </svg>
         </div>
 
-        <div class="text-center">
-            <img src="design/logo.svg" alt="" loading="lazy" class="logo">
-		    <h1 class="mt-0"><?php echo $title ?></h1>
-        </div>
+        <div class="page df fd-c fg-1">
+
+            <div class="df fd-c--medium ai-c mb-1 header">
+                <img src="design/logo.svg" alt="" loading="lazy" class="logo">
+                <h1 class="m-0"><?php echo $title ?></h1>
+            </div>
 
 <?php } else { ?>
 

@@ -1,8 +1,13 @@
 $taille-vague: 69px;
+$taille-vague--smallOnly: 30px;
 
 .vague {
     position:relative;
     padding-top: $taille-vague;
+    
+    @include breakpoint('smallOnly'){
+        padding-top: $taille-vague--smallOnly;
+    }
 }
 
 .vague__forme {
@@ -12,7 +17,6 @@ $taille-vague: 69px;
     width: 100%;
     overflow: hidden;
     line-height: 0;
-    transform: rotate(180deg);
 }
 
 .vague__forme svg {
@@ -20,8 +24,12 @@ $taille-vague: 69px;
     display: block;
     width: calc(129% + 1.3px);
     height: $taille-vague;
+    
+    @include breakpoint('smallOnly'){
+        height: $taille-vague--smallOnly;
+    }
 }
 
 .vague__fill {
-    fill: var(--couleur2);
+    fill: var(--couleur1);
 }

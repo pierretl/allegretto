@@ -53,7 +53,7 @@
 <div class="cadre1 bg-3">
 	
 	<div class="text-center">
-		<img src="design/logo.svg" alt="" loading="lazy" class="logo">
+		<img src="design/logo.svg" alt="" loading="lazy" class="logo-login">
 		<h1 class="mt-0">Connectez-vous à votre compte</h1>
 	</div>
 

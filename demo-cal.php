@@ -46,49 +46,49 @@
 
 
 
-<div class="page df fg-1" style="width:100%">
-    <table border="0" align="center" cellpadding="5" cellspacing="1" class="Table" style="display:none">
 
-    <caption>Data : <a target="_blank" href="<?php echo $data_json; ?>">json</a></caption>
+<table border="0" align="center" cellpadding="5" cellspacing="1" class="Table" style="display:none">
 
-    <thead>
-            <tr>
-            <td>Info</td>
-            <td>Arrivée</td>
-            <td>Départ</td>
-            <td>Couleur</td>
-            <td>Edition</td>
-            </tr>
-    </thead>
-    <tbody>
-                
-        
+<caption>Data : <a target="_blank" href="<?php echo $data_json; ?>">json</a></caption>
 
-        <?php 
+<thead>
+        <tr>
+        <td>Info</td>
+        <td>Arrivée</td>
+        <td>Départ</td>
+        <td>Couleur</td>
+        <td>Edition</td>
+        </tr>
+</thead>
+<tbody>
+            
+    
 
-        // decode json
-        $jsonString = file_get_contents($data_json);
-        $data = json_decode($jsonString, true);
+    <?php 
 
-
-        foreach ($data as $key => $entry) {
-                echo "<tr>";
-
-                echo "<td>" . $data[$key]['title'] . "</td>";
-                echo "<td>" . $data[$key]['start'] . "</td>";
-                echo "<td>" . $data[$key]['end'] . "</td>";
-                echo "<td>" . $data[$key]['backgroundColor'] . "</td>";
-                echo '<td><a href="?sejour='.$key.'">Edition</buton></td>';
+    // decode json
+    $jsonString = file_get_contents($data_json);
+    $data = json_decode($jsonString, true);
 
 
-                echo "</tr>";
-        }
+    foreach ($data as $key => $entry) {
+            echo "<tr>";
 
-        ?>
-    </tbody>
-    </table>
+            echo "<td>" . $data[$key]['title'] . "</td>";
+            echo "<td>" . $data[$key]['start'] . "</td>";
+            echo "<td>" . $data[$key]['end'] . "</td>";
+            echo "<td>" . $data[$key]['backgroundColor'] . "</td>";
+            echo '<td><a href="?sejour='.$key.'">Edition</buton></td>';
 
-    <div id="calendar"></div>
-</div>
+
+            echo "</tr>";
+    }
+
+    ?>
+</tbody>
+</table>
+
+<div id="calendar"></div>
+
 
 <?php include 'include/footer.php';?>

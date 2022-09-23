@@ -13,17 +13,29 @@
 }
 
 @mixin breakpoint($nom) {
-    @if $nom == 'mediumLogin' {
-      @media screen and (min-width: 40.875rem) {
+
+    @if $nom == 'smallOnly' {
+      @media screen and (max-width: 25rem) {
         @content
       }
     }
 
-    @else if $nom == 'smallOnly' {
-      @media screen and (max-width: 25rem) {
+    @else if $nom == 'mediumOnly' {
+      @media screen and (min-width: 25rem) and (max-width: $page-largeur-max) {
         @content
       }
-  
+    }
+
+    @else if $nom == 'medium' {
+      @media screen and (min-width: $page-largeur-max) {
+        @content
+      }
+    }
+
+    @else if $nom == 'mediumLogin' {
+      @media screen and (min-width: 40.875rem) {
+        @content
+      }
     }
 
     @else {
