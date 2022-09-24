@@ -17,7 +17,7 @@
         <div class="df fd-c--medium ai-c mb-1 header">
 
             <img src="style/img/logo.svg" alt="" loading="lazy" class="logo">
-            
+        
             <h1 class="m-0">
                 {% if block("title") is defined %}
                     {{ block('title') }}
@@ -26,21 +26,21 @@
                 {% endif %}
             </h1>
 
-            {% if session.Utilisateur.Identifiant %}
-                <ul class="reset df">
-
-                    {% if session.Utilisateur.Groupe == 'admin' %}
-                        {{ macro.itemMenu('admin',pageActive('admin'), 'Administration') }}
-                    {% endif %}
-
-                    {{ macro.itemMenu('calendrier',pageActive('calendrier'), 'Calendrier') }}
-                    {{ macro.itemMenu('sejour',pageActive('sejour'), 'Proposer un séjour (a faire)') }}
-                    {{ macro.itemMenu('deconnexion', '', 'Déconnexion') }}
-                    
-                </ul>
-            {% endif %}
-
         </div>
+
+        {% if session.Utilisateur.Identifiant %}
+            <ul class="reset df">
+
+                {% if session.Utilisateur.Groupe == 'admin' %}
+                    {{ macro.itemMenu('admin',pageActive('admin'), 'Administration') }}
+                {% endif %}
+
+                {{ macro.itemMenu('calendrier',pageActive('calendrier'), 'Calendrier') }}
+                {{ macro.itemMenu('sejour',pageActive('sejour'), 'Proposer un séjour (a faire)') }}
+                {{ macro.itemMenu('deconnexion', '', 'Déconnexion') }}
+                
+            </ul>
+        {% endif %}
 
         {% block content %}{% endblock %}
         
