@@ -1,0 +1,34 @@
+# Demo
+{% macro input(id, label, valeur = null, options) %}
+    <div{% if options.class %} class="{{options.class}}"{% endif %}>
+        <label for="{{ id }}">{{ label }}</label>
+        <input type="text" name="{{ id }}" id="{{ id }}" value="{{ valeur }}">
+    </div>
+{% endmacro %}
+
+
+# item du menu
+{% macro itemMenu(pageUrl, pageActive, pageLabel) %}
+    <li>
+        {% if pageActive %}
+        <span class="px-1">
+            {{ pageLabel }}
+        </span>
+        {% else %}
+            {% if pageUrl == 'deconnexion' %}
+                <a href="action/deconnexion.php">{{ pageLabel }}</a>
+            {% else %}
+                <a href="index.php?p={{ pageUrl }}">{{ pageLabel }}</a>
+            {% endif %}
+        {% endif %}
+    </li>
+{% endmacro %}
+
+
+
+# Message d'erreur
+{% macro messageErreurInput(id, label) %}
+    <label for="{{ id }}" class="text-6">
+        {{ label }}
+    </label>
+{% endmacro %}

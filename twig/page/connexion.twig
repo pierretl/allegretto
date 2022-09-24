@@ -1,0 +1,28 @@
+{% extends 'template/boite.twig' %}
+
+{% block title %}Connexion{% endblock %}
+{% block titleH1 %}Connectez-vous à votre compte{% endblock %}
+
+{% block content %}
+
+    <form action="action/connexion.php" method="post">
+
+        {% if get.erreur %}
+            <p class="text-6 mb-1">Nom d'utilisateur ou mot de passe incorrect.</p>
+            {% set erreurClassCss = ' v_erreur' %}
+        {% endif %}
+
+        <label for="identifiant">Identifiant</label>
+        <input name="Identifiant" type="text" id="identifiant" class="{{ erreurClassCss }}" value="{{ get.Identifiant }}">
+
+        <label for="motdepasse" class="mt-1">Mot de passe</label>
+        <input name="MotDePasse" type="password" id="motdepasse" class="{{ erreurClassCss }}" value="">
+
+        <button name="Submit" type="submit" class="mt-1">Connexion</button>
+    </form>
+
+    <p class="text-center">
+        <a href="index.php?p=calendrier">Démo calendrier</a>
+    </div>
+   
+{% endblock %}

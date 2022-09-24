@@ -1,5 +1,0 @@
-Options -Indexes
-ErrorDocument 403 http://www.pierre.tl/
-ErrorDocument 404 http://www.pierre.tl/404.php
-
-RewriteEngine off

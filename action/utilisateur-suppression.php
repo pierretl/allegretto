@@ -1,10 +1,16 @@
 <?php
 
+include 'function/dev.php';
+include 'function/json-manipulation.php';
+
+$jsonUtilisateur = "../data/utilisateur.json";
+
 //recupère la key de l'utilisateur a supprimer
-$utilisateurKey = $_GET['key'];
+$utilisateurKey = $_GET['key'] - 1; // -1 car la loop de twig commence à 1
 
 //liste des utilisateurs
 $data = decodeJason($jsonUtilisateur);
+//debug($data);
 
 // on supprime que les utilisateur non admin
 if ($data[$utilisateurKey]['groupe'] != "admin") {
@@ -18,10 +24,9 @@ if ($data[$utilisateurKey]['groupe'] != "admin") {
     //met a jour le json
     updateJason($jsonUtilisateur, $dataReIndex);
 
-    //redirige sur la page pour retire les parametres url
-    header("Location: index.php");
+    //redirige sur la page admin
+    header("location:../index.php?p=admin");
 
 }
 
-
-?>
+exit;

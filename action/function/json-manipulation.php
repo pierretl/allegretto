@@ -11,4 +11,8 @@ function updateJason($urlJason, $data) {
     file_put_contents($urlJason, $newJsonString);
 }
 
+function toto(){
+    echo "test";
+}
+
 ?>

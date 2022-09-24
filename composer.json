@@ -1,0 +1,12 @@
+{
+    "name": "ptl/allegretto",
+    "authors": [
+        {
+            "name": "PierreTL",
+            "email": "pierre.tampon@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "3.0"
+    }
+}

@@ -63,7 +63,7 @@ function build(){
     // Minifier
         .pipe(minify())
     // Emplacement du fichier .css généré
-        .pipe(gulp.dest('./css/'));
+        .pipe(gulp.dest('./style/'));
 }
 
 

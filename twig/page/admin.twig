@@ -1,0 +1,77 @@
+{% extends 'template/page.twig' %}
+
+{% import 'macro.twig' as macro %}
+
+{% block title %}Administration{% endblock %}
+
+{% block content %}
+
+{# affiche un json en mode debug lisible
+
+    {% if utilisateurs is defined %}
+        <pre>{{ utilisateurs|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
+    {% endif %}
+#}
+    
+
+    <h2>Ajouter un utilisateurs</h2>
+
+    <form action="action/utilisateur-ajout.php" method="post">
+
+        {% if get.erreur1 %}
+            {% set erreurIdendifiantInput = ' v_erreur' %}
+            {% set erreurIdendifiantMessage = macro.messageErreurInput('idendifiant','Le champ est vide') %}
+        {% endif %}
+
+        {% if get.erreur2 %}
+            {% set erreurMotDePasseInput = ' v_erreur' %}
+            {% set erreurMotDePasseMessage = macro.messageErreurInput('motdepasse','Le champ est vide') %}
+        {% endif %}
+
+        <label for="idendifiant">Idendifiant</label>
+        <input type="text" name="idendifiant" id="idendifiant" class="{{ erreurIdendifiantInput }}" value="{{ get.idendifiant }}">
+        {{ erreurIdendifiantMessage }}
+
+        <label for="motdepasse" class="mt-1">Mot de passe</label>
+        <input type="text" name="motdepasse" id="motdepasse" class="{{ erreurMotDePasseInput }}" value="{{ get.motdepasse }}">
+        {{ erreurMotDePasseMessage }}
+
+        <button type="submit" class="mt-1">Ajouter</button>
+
+    </form>
+
+    <h2>Liste exhaustive ({{ utilisateurs|length}})</h2>
+
+    <div class="scroll">
+        <table border="1" cellpadding="5" cellspacing="1">
+            <caption>Liste des utilisateurs</caption>
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Utilisateur</td>
+                    <td>Groupe</td>
+                    <td>Mot de passe</td>
+                    <td>Supprimer</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in utilisateurs %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ item.idendifiant }}</td>
+                        <td>{{ item.groupe }}</td>
+                        <td>{{ item.motDePasse }}</td>
+                        <td>
+                            {% if item.groupe != 'admin' %}
+                                <form action="action/utilisateur-suppression.php?key={{ loop.index }}" method="post">
+                                    <button type="submit">Supprimer</button>
+                                </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

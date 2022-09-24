@@ -11,7 +11,7 @@
     font-family:Valera;
     font-style:normal;
     font-weight:400;
-    src:url(../font/valera-round.woff2) format("woff2");
+    src:url(font/valera-round.woff2) format("woff2");
     font-display:swap;
 }
 
@@ -51,4 +51,11 @@ a {
 }
 a:hover {
     text-decoration: underline;
+}
+
+ul.reset {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }

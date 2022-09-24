@@ -1,113 +1,98 @@
 <?php
 
-$securite = true;
-include 'include/header.php';
+require 'vendor/autoload.php';
+require 'twig/ExtentionPerso.php';
 
-///////////////////////////////////////////////
+// Commence la session
+session_start();
 
-include 'include/function-json.php';
-
-$jsonUtilisateur = "data/utilisateur.json";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $form = $_GET['form'];
-
-    switch ($form) {
-        case 'addUser':
-            include 'formulaire/utilisateur-ajout.php';
-            break;
-        case 'deleteUser':
-            include 'formulaire/utilisateur-delete.php';
-            break;
-    }
+// Routing
+$page = 'connexion'; // page par défaut
+if (isset($_GET['p'])) {
+    $page = $_GET['p'];
 }
 
+// Récupèration des datas
+function getDataJson ($jsonUrl) {
+    $jsonString = file_get_contents($jsonUrl);
+    $data = json_decode($jsonString, true);
+    return $data;
+}
+
+//securite
+function securite($pageGroupe = null) {
+
+    // Si pas d'info de session alors redirection pas de connexion
+    if(!isset($_SESSION['Utilisateur']['Identifiant'])){
+        header("location:index.php?p=connexion");
+        exit;
+    }
+
+    //si la page demande un groupe d'utilisateur
+    if (isset($pageGroupe)) {
+
+        // et que le groupe en session ne correspond pas au groupe demandé
+        if ( $_SESSION['Utilisateur']['Groupe'] != $pageGroupe ){
+            header("location:index.php?p=calendrier");
+            exit;
+        }
+    }
+
+}
+
+// Rendu du template
+$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/twig');
+$twig = new \Twig\Environment($loader, [
+    'cache' => __DIR__ . '/tmp' // mise en cache, dossier tmp a supprimer pour mettre a jour -> pour la production
+    //'cache' => false
+]);
+
+// Ajout des functions et filtres personnalisé
+$twig->addExtension(new ExtentionPerso());
+
+// Ajout d'une variable global
+$twig->addGlobal('current_page', $page);
+
+
+switch ($page) {
+
+    case 'connexion':
+        echo $twig->render('page/connexion.twig', [
+            'post' => $_POST,
+            'get' => $_GET
+        ]);
+        break;
+
+    case 'admin':
+        securite('admin');
+        echo $twig->render('page/admin.twig', [
+            'session' => $_SESSION,
+            'post' => $_POST,
+            'get' => $_GET,
+            'utilisateurs' => getDataJson('data/utilisateur.json')
+            
+        ]);
+        break;
+
+    case 'sejour':
+        securite();
+        echo $twig->render('page/sejour.twig' , [
+            'session' => $_SESSION
+        ]);
+        break;
+
+    case 'calendrier':
+        echo $twig->render('page/calendrier.twig', [
+            'session' => $_SESSION,
+            'urlDAta' => 'data/sejour.json'
+        ]);
+        break;
+
+    default:
+        header('HTTP/1.0 404 Not Found');
+        echo $twig->render('page/404.twig');
+        break;
+
+}
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-<p><a href="deconnexion.php">Déconnexion</a>(<?php echo $_SESSION['Utilisateur']['Identifiant']; ?>)</p>
-
-<hr>
-
-<h2>Ajouter un Utilisateur</h2>
-
-<form method="post" action="index.php?form=addUser">
-    <label for="idendifiant">Idendifiant</label>
-    <input type="text" name="idendifiant" id="idendifiant">
-    <?php 
-        if ($erreurIdendifiant) {
-            echo "Le champ est vide";
-        }
-    ?>
-    <br>
-    <label for="motdepasse">Mot de passe</label>
-    <input type="text" name="motDePasse" id="motdepasse">
-    <?php 
-        if ($erreurMotDePasse) {
-            echo "Le champ est vide";
-        }
-    ?>
-    <br>
-    <button type="submit">Ajouter</button>
-</form>
-
-<hr>
-
-<div class="scroll">
-    <table border="1" cellpadding="5" cellspacing="1">
-        <caption>Liste des utilisateurs</caption>
-        <thead>
-            <tr>
-                <td>Utilisateur</td>
-                <td>Groupe</td>
-                <td>Mot de passe</td>
-                <td>Supprimer</td>
-            </tr>
-        </thead>
-        <tbody>
-
-            <?php
-
-                $utilisateur = decodeJason($jsonUtilisateur);
-
-                foreach ($utilisateur as $key => $value) {
-                    echo "<tr>";
-                        echo "<td>" . $utilisateur[$key]["idendifiant"] . "</td>";
-                        echo "<td>" . $utilisateur[$key]["groupe"] . "</td>";
-                        echo "<td>" . $utilisateur[$key]["motDePasse"] . "</td>";
-                        echo "<td>";
-                            if ($utilisateur[$key]["groupe"] != "admin") {
-                                echo '
-                                <form method="post" action="index.php?form=deleteUser&key='.$key.'">
-                                    <button>Supprimer</button>
-                                </form>';
-                            }
-                        echo "</td>";
-                    echo "</tr>";
-                }
-
-            ?>
-        </tbody>
-    </table>
-</div>
-
-
-
-
-    
-
-
-    
-
-<?php include 'include/footer.php';?>
