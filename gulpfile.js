@@ -25,7 +25,7 @@ function styles(){
     // Source map
         .pipe(mode.development( sourcemaps.write() ))
     // Emplacement du fichier .css généré
-        .pipe(gulp.dest('./css/'))
+        .pipe(gulp.dest('./style/'))
     // changements de flux pour tous les navigateurs
         .pipe(mode.development( browserSync.stream() ));
 }
