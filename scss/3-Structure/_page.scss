@@ -2,9 +2,9 @@
     margin-right: 1rem;
     margin-left: 1rem;
     width: calc(100% - 2rem);
-    max-width: $page-largeur-max;
+    max-width: $page-large;
 
-    @include breakpoint('medium'){
+    @include breakpoint('large'){
         margin-right: auto;
         margin-left: auto;
     }

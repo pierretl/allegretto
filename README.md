@@ -21,7 +21,8 @@ npm install
 
 
 ```bash
-# Cette commande rebuild le js et sass automatiquement. (le navigateur s'ouvre automatiquement sur http://localhost:3000)
+# Cette commande rebuild le js et sass automatiquement. 
+# le navigateur s'ouvre automatiquement sur http://localhost:3000
 gulp watch
 ```
 

@@ -6,7 +6,7 @@ $cadre-padding: 3rem;
     padding: $cadre-padding;
 }
 
-@include breakpoint('mediumLogin') {
+@include breakpoint('cadre1') {
     .cadre1:after {
         content: '';
         position: absolute;
