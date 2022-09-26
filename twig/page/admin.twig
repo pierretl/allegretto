@@ -18,25 +18,29 @@
 
     <form action="action/utilisateur-ajout.php" method="post">
 
+
         {% if get.erreur1 %}
-            {% set erreurIdendifiantInput = ' v_erreur' %}
-            {% set erreurIdendifiantMessage = macro.messageErreurInput('idendifiant','Le champ est vide') %}
+            {% set erreurPrenom = 'Le champ est vide' %}
         {% endif %}
 
         {% if get.erreur2 %}
-            {% set erreurMotDePasseInput = ' v_erreur' %}
-            {% set erreurMotDePasseMessage = macro.messageErreurInput('motdepasse','Le champ est vide') %}
+            {% set erreurMail = 'Le champ est vide' %}
         {% endif %}
 
-        <label for="idendifiant">Idendifiant</label>
-        <input type="text" name="idendifiant" id="idendifiant" class="{{ erreurIdendifiantInput }}" value="{{ get.idendifiant }}">
-        {{ erreurIdendifiantMessage }}
+        {% if get.erreur3 %}
+            {% set erreurMotDePasse = 'Le champ est vide' %}
+        {% endif %}
 
-        <label for="motdepasse" class="mt-1">Mot de passe</label>
-        <input type="text" name="motdepasse" id="motdepasse" class="{{ erreurMotDePasseInput }}" value="{{ get.motdepasse }}">
-        {{ erreurMotDePasseMessage }}
 
-        <button type="submit" class="mt-1">Ajouter</button>
+        {{ macro.input('prenom', 'Prénom', get.prenom, erreurPrenom ) }}
+
+        {{ macro.input('mail', 'Adresse mail', get.mail, erreurMail) }}
+
+        {{ macro.input('motdepasse', 'Mot de passe', get.motdepasse, erreurMotDePasse) }}
+
+
+        <button type="submit">Ajouter</button>
+
 
     </form>
 
@@ -48,9 +52,9 @@
             <thead>
                 <tr>
                     <td>#</td>
-                    <td>Utilisateur</td>
-                    <td>Groupe</td>
-                    <td>Mot de passe</td>
+                    <td>Prénom</td>
+                    <td>Famille</td>
+                    <td>Mail</td>
                     <td>Supprimer</td>
                 </tr>
             </thead>
@@ -58,14 +62,16 @@
                 {% for item in utilisateurs %}
                     <tr>
                         <td>{{ loop.index }}</td>
-                        <td>{{ item.idendifiant }}</td>
-                        <td>{{ item.groupe }}</td>
-                        <td>{{ item.motDePasse }}</td>
-                        <td>
+                        <td>{{ item.prenom }}</td>
+                        <td>{{ item.famille }}</td>
+                        <td>{{ item.mail }}</td>
+                        <td class="text-center">
                             {% if item.groupe != 'admin' %}
                                 <form action="action/utilisateur-suppression.php?key={{ loop.index }}" method="post">
-                                    <button type="submit">Supprimer</button>
+                                    <button type="submit" class="btn-s">Supprimer</button>
                                 </form>
+                            {% else %}
+                                [{{ item.groupe }}]
                             {% endif %}
                         </td>
                     </tr>

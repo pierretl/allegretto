@@ -22,8 +22,8 @@ function getDataJson ($jsonUrl) {
 //securite
 function securite($pageGroupe = null) {
 
-    // Si pas d'info de session alors redirection pas de connexion
-    if(!isset($_SESSION['Utilisateur']['Identifiant'])){
+    // Si pas d'info de session alors redirection page de connexion
+    if(!isset($_SESSION['utilisateur']['mail'])){
         header("location:index.php?p=connexion");
         exit;
     }
@@ -32,7 +32,7 @@ function securite($pageGroupe = null) {
     if (isset($pageGroupe)) {
 
         // et que le groupe en session ne correspond pas au groupe demandé
-        if ( $_SESSION['Utilisateur']['Groupe'] != $pageGroupe ){
+        if ( $_SESSION['utilisateur']['groupe'] != $pageGroupe ){
             header("location:index.php?p=calendrier");
             exit;
         }

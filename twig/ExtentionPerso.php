@@ -13,7 +13,8 @@ class ExtentionPerso extends \Twig\Extension\AbstractExtension {
     public function getFunctions(){
         return [
             new \Twig\TwigFunction('functionDemo', [$this, 'functionDemoParse']), // démo
-            new \Twig\TwigFunction('pageActive', [$this, 'pageActive'], ['needs_context' => true]) //page en cours
+            new \Twig\TwigFunction('pageActive', [$this, 'pageActive'], ['needs_context' => true]), //page en cours
+            new \Twig\TwigFunction('decrypteMail', [$this, 'decrypteMail']) //Decrypte mail
         ];
     }
 
@@ -33,6 +34,13 @@ class ExtentionPerso extends \Twig\Extension\AbstractExtension {
         if ( isset($context['current_page']) && $context['current_page'] === $page) {
             return 'active';
         }
+    }
+
+    public function decrypteMail($mail)
+    {
+        include 'action/function/cle-de-cryptage.php';
+        include 'action/function/encryption.php';
+        return encrypt_decrypt($mail, 'decrypt',$encrypt_method,$secret_key,$secret_iv,$hash);
     }
 
 }

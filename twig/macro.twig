@@ -1,8 +1,18 @@
-# Demo
-{% macro input(id, label, valeur = null, options) %}
-    <div{% if options.class %} class="{{options.class}}"{% endif %}>
+# input text
+{% macro input(id, label, valeur = null, erreur = null, inputErreur = null) %}
+    <div class="mb-1">
         <label for="{{ id }}">{{ label }}</label>
-        <input type="text" name="{{ id }}" id="{{ id }}" value="{{ valeur }}">
+        <input type="text" 
+               name="{{ id }}" 
+               id="{{ id }}"
+               {% if erreur %} class="v_erreur"{% endif %}
+               {% if inputErreur %} class="v_erreur"{% endif %}
+               value="{{ valeur }}">
+        {% if erreur %}
+            <label for="{{ id }}" class="text-6">
+                {{ erreur }}
+            </label>
+        {% endif %}
     </div>
 {% endmacro %}
 
@@ -22,13 +32,4 @@
             {% endif %}
         {% endif %}
     </li>
-{% endmacro %}
-
-
-
-# Message d'erreur
-{% macro messageErreurInput(id, label) %}
-    <label for="{{ id }}" class="text-6">
-        {{ label }}
-    </label>
 {% endmacro %}

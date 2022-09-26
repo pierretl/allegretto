@@ -28,10 +28,10 @@
 
         </div>
 
-        {% if session.Utilisateur.Identifiant %}
+        {% if session.utilisateur.mail %}
             <ul class="reset df fw-w mb-1">
 
-                {% if session.Utilisateur.Groupe == 'admin' %}
+                {% if session.utilisateur.groupe == 'admin' %}
                     {{ macro.itemMenu('admin',pageActive('admin'), 'Administration') }}
                 {% endif %}
 

@@ -1,5 +1,7 @@
 {% extends 'template/boite.twig' %}
 
+{% import 'macro.twig' as macro %}
+
 {% block title %}Connexion{% endblock %}
 {% block titleH1 %}Connectez-vous à votre compte{% endblock %}
 
@@ -9,20 +11,18 @@
 
         {% if get.erreur %}
             <p class="text-6 mb-1">Nom d'utilisateur ou mot de passe incorrect.</p>
-            {% set erreurClassCss = ' v_erreur' %}
+            {% set inputErreur = true %}
         {% endif %}
 
-        <label for="identifiant">Identifiant</label>
-        <input name="Identifiant" type="text" id="identifiant" class="{{ erreurClassCss }}" value="{{ get.Identifiant }}">
+        {{ macro.input('mail', 'Adresse mail', get.mail, '', inputErreur) }}
 
-        <label for="motdepasse" class="mt-1">Mot de passe</label>
-        <input name="MotDePasse" type="password" id="motdepasse" class="{{ erreurClassCss }}" value="">
+        {{ macro.input('motdepasse', 'Mot de passe', '', '', inputErreur) }}
 
         <button name="Submit" type="submit" class="mt-1">Connexion</button>
     </form>
 
     <p class="text-center">
-        <a href="index.php?p=calendrier">Démo calendrier</a>
+        <a href="index.php?p=calendrier">Voir le calendrier</a>
     </div>
    
 {% endblock %}

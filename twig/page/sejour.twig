@@ -4,6 +4,12 @@
 
 {% block content %}
 
-    Formulaire d'ajout de séjour
+    <p>Formulaire d'ajout de séjour</p>
+
+    <ul>
+        <li>Prenom : {{ session.utilisateur.prenom }}</li>
+        <li>Mail : {{ decrypteMail(session.utilisateur.mail) }}</li>
+        <li>Groupe : {{ session.utilisateur.groupe }}</li>
+    </ul>
 
 {% endblock %}

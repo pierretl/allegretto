@@ -1,5 +1,9 @@
 <?php
 
+include 'function/dev.php';
+include 'function/encryption.php';
+include 'function/cle-de-cryptage.php';
+
 //commence la session
 session_start();
 
@@ -12,8 +16,9 @@ $dataUtilisateur = json_decode($jsonString, true);
 $logins= [];
 for ($i=0; $i < count($dataUtilisateur); $i++) {
     $logins += [ 
-        $dataUtilisateur[$i]['idendifiant'] => array(
-            "idendifiant" => $dataUtilisateur[$i]['idendifiant'],
+        $dataUtilisateur[$i]['mail'] => array(
+            "prenom" => $dataUtilisateur[$i]['prenom'],
+            "mail" => $dataUtilisateur[$i]['mail'],
             "motDePasse" => $dataUtilisateur[$i]['motDePasse'],
             "groupe" => $dataUtilisateur[$i]['groupe']
         ) 
@@ -21,24 +26,28 @@ for ($i=0; $i < count($dataUtilisateur); $i++) {
 }
 
 // Stock les infos saisi dans des varaibles.
-$Identifiant = isset($_POST['Identifiant']) ? $_POST['Identifiant'] : '';
-$MotDePasse = isset($_POST['MotDePasse']) ? $_POST['MotDePasse'] : '';
+$mail = isset($_POST['mail']) ? $_POST['mail'] : '';
+$motdepasse = isset($_POST['motdepasse']) ? $_POST['motdepasse'] : '';
 
-if ( 
-    $Identifiant !== '' && // champs identifiant saisi
-    $MotDePasse !== '' && // champs Mot de passe saisi
-    array_search($Identifiant, array_column($logins, 'idendifiant')) !== false && // le login saisi correspond à un utilisateur en data
-    $MotDePasse && password_verify($MotDePasse, $logins[$Identifiant]['motDePasse'])  // le mot de passe correspond à l'utilisateur
+//crypte l'email 
+$mailCrypte = encrypt_decrypt($mail, 'encrypt',$encrypt_method,$secret_key,$secret_iv,$hash);
+
+if (
+    $mail !== '' && // champs mail saisi
+    $motdepasse !== '' && // champs mot de passe saisi
+    array_search($mailCrypte, array_column($logins, 'mail')) !== false && // le login saisi correspond à un utilisateur en data
+    $motdepasse && password_verify($motdepasse, $logins[$mailCrypte]['motDePasse'])  // le mot de passe correspond à l'utilisateur
 ) {
 
     // Succès :
 
     // Ajouter les données de l'utilisateur en session
-    $_SESSION['Utilisateur']['Identifiant'] = $logins[$Identifiant]['idendifiant'];
-    $_SESSION['Utilisateur']['Groupe'] = $logins[$Identifiant]['groupe'];
+    $_SESSION['utilisateur']['prenom'] = $logins[$mailCrypte]['prenom'];
+    $_SESSION['utilisateur']['mail'] = $logins[$mailCrypte]['mail'];
+    $_SESSION['utilisateur']['groupe'] = $logins[$mailCrypte]['groupe'];
 
     // redirige sur la page adéquate
-    if ( $logins[$Identifiant]['groupe'] == 'admin' ) {
+    if ( $logins[$mailCrypte]['groupe'] == 'admin' ) {
         header("location:../index.php?p=admin");
     } else {
         header("location:../index.php?p=calendrier");
@@ -49,7 +58,7 @@ if (
 } else {
 
     // Erreur :
-    header("location:../index.php?p=connexion&erreur=true&Identifiant=".$Identifiant);
+    header("location:../index.php?p=connexion&erreur=true&mail=".$mail);
     exit;
     
 }
