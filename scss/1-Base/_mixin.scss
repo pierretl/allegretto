@@ -14,33 +14,33 @@
 
 @mixin breakpoint($nom) {
 
-  @if $nom == 'smallOnly' {
-    @media screen and (max-width: $page-small) {
-      @content
+    @if $nom == 'smallOnly' {
+        @media screen and (max-width: $page-small) {
+            @content
+        }
     }
-  }
 
-  @else if $nom == 'mediumOnly' {
-    @media screen and (min-width: $page-small) and (max-width: $page-medium) { 
-      @content
+    @else if $nom == 'mediumOnly' {
+        @media screen and (min-width: $page-small) and (max-width: $page-medium) { 
+            @content
+        }
     }
-  }
 
-  @else if $nom == 'medium' {
-    @media screen and (min-width: $page-small) {
-      @content
+    @else if $nom == 'medium' {
+        @media screen and (min-width: $page-small) {
+            @content
+        }
     }
-  }
 
-  @else if $nom == 'large' {
-    @media screen and (min-width: $page-large) {
-      @content
+    @else if $nom == 'large' {
+        @media screen and (min-width: $page-large) {
+            @content
+        }
     }
-  }
 
-  @else if $nom == 'cadre1' {
-    @media screen and (min-width: $page-cadre1) {
-      @content
+    @else if $nom == 'cadre1' {
+        @media screen and (min-width: $page-cadre1) {
+            @content
+        }
     }
-  }
 }
