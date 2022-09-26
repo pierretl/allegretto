@@ -1,8 +1,8 @@
 # input text
-{% macro input(id, label, valeur = null, erreur = null, inputErreur = null) %}
+{% macro input(id, label, valeur = null, erreur = null, inputErreur = null, type = "text") %}
     <div class="mb-1">
         <label for="{{ id }}">{{ label }}</label>
-        <input type="text" 
+        <input type="{{ type }}" 
                name="{{ id }}" 
                id="{{ id }}"
                {% if erreur %} class="v_erreur"{% endif %}

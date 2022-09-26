@@ -14,9 +14,9 @@
             {% set inputErreur = true %}
         {% endif %}
 
-        {{ macro.input('mail', 'Adresse mail', get.mail, '', inputErreur) }}
+        {{ macro.input('mail', 'Adresse mail', get.mail, '', inputErreur, 'email') }}
 
-        {{ macro.input('motdepasse', 'Mot de passe', '', '', inputErreur) }}
+        {{ macro.input('motdepasse', 'Mot de passe', '', '', inputErreur, 'password') }}
 
         <button name="Submit" type="submit" class="mt-1">Connexion</button>
     </form>
