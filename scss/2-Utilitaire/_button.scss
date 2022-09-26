@@ -1,0 +1,11 @@
+button {
+    @include form;
+}
+button:hover {
+    cursor: pointer;
+}
+
+.btn-s {
+    min-height: auto;
+    padding: 0.2rem 0.4rem;
+}

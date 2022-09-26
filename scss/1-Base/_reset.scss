@@ -37,13 +37,6 @@ body.v_centre {
     background-color: var(--couleur1);
 }
 
-button {
-    @include form;
-}
-button:hover {
-    cursor: pointer;
-}
-
 a {
     padding: 0 1rem;
     border-radius: 9999rem;
