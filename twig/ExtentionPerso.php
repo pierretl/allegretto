@@ -1,5 +1,8 @@
 <?php
 
+
+include 'action/function/cryptage.php';
+
 class ExtentionPerso extends \Twig\Extension\AbstractExtension {
 
     // Ajout de filtre personnalisé
@@ -14,7 +17,7 @@ class ExtentionPerso extends \Twig\Extension\AbstractExtension {
         return [
             new \Twig\TwigFunction('functionDemo', [$this, 'functionDemoParse']), // démo
             new \Twig\TwigFunction('pageActive', [$this, 'pageActive'], ['needs_context' => true]), //page en cours
-            new \Twig\TwigFunction('decrypteMail', [$this, 'decrypteMail']) //Decrypte mail
+            new \Twig\TwigFunction('decrypt', [$this, 'decrypt']) // Décryptage
         ];
     }
 
@@ -36,11 +39,9 @@ class ExtentionPerso extends \Twig\Extension\AbstractExtension {
         }
     }
 
-    public function decrypteMail($mail)
+    public function decrypt($valeur)
     {
-        include 'action/function/cle-de-cryptage.php';
-        include 'action/function/encryption.php';
-        return encrypt_decrypt($mail, 'decrypt',$encrypt_method,$secret_key,$secret_iv,$hash);
+        return cryptage($valeur, 'decrypt');
     }
 
 }

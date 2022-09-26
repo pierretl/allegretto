@@ -3,4 +3,4 @@ package-lock.json
 /vendor/
 composer.lock
 tmp
-action/function/cle-de-cryptage.php
+action/function/cryptage.php

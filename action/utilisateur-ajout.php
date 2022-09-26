@@ -2,8 +2,7 @@
 
 include 'function/dev.php';
 include 'function/json-manipulation.php';
-include 'function/encryption.php';
-include 'function/cle-de-cryptage.php';
+include 'function/cryptage.php';
 
 function securite_saisi($data) {
     return str_replace('"', '', $data); // pour pas casser le json
@@ -48,7 +47,7 @@ if ( empty($prenom) || empty($mail) || empty($motDePasse) ) {
     //debug($data);
 
     //crypte l'email  
-    $mailCrypte = encrypt_decrypt($mail, 'encrypt',$encrypt_method,$secret_key,$secret_iv,$hash);
+    $mailCrypte = cryptage($mail, 'encrypt');
     
 
     //ajoute le nouveau utilisateur

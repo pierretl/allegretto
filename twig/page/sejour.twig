@@ -8,7 +8,7 @@
 
     <ul>
         <li>Prenom : {{ session.utilisateur.prenom }}</li>
-        <li>Mail : {{ decrypteMail(session.utilisateur.mail) }}</li>
+        <li>Mail : {{ decrypt(session.utilisateur.mail) }}</li>
         <li>Groupe : {{ session.utilisateur.groupe }}</li>
     </ul>
 

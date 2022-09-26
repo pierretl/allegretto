@@ -1,8 +1,7 @@
 <?php
 
 include 'function/dev.php';
-include 'function/encryption.php';
-include 'function/cle-de-cryptage.php';
+include 'function/cryptage.php';
 
 //commence la session
 session_start();
@@ -30,7 +29,7 @@ $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
 $motdepasse = isset($_POST['motdepasse']) ? $_POST['motdepasse'] : '';
 
 //crypte l'email 
-$mailCrypte = encrypt_decrypt($mail, 'encrypt',$encrypt_method,$secret_key,$secret_iv,$hash);
+$mailCrypte = cryptage($mail, 'encrypt');
 
 if (
     $mail !== '' && // champs mail saisi
