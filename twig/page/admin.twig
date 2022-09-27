@@ -12,72 +12,90 @@
         <pre>{{ utilisateurs|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
     {% endif %}
 #}
-    
+<div class="page">
 
-    <h2>Ajouter un utilisateurs</h2>
+    <div class="df fd--dashboard mb-2">
 
-    <form action="action/utilisateur-ajout.php" method="post">
+        <div class="w-50">
+            <h2>Utilisateurs</h2>
+
+            <div class="table-conteneur scroll mb-2">
+                <table>
+                    <caption>
+                        <h3 class="mt-0 text-left">Liste exhaustive ({{ utilisateurs|length}})</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Prénom</td>
+                            <td>Famille</td>
+                            <td>Mail</td>
+                            <td>Supprimer</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in utilisateurs %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ item.prenom }}</td>
+                                <td>{{ item.famille }}</td>
+                                <td>{{ decrypt(item.mail) }}</td>
+                                <td class="text-center">
+                                    {% if item.groupe != 'admin' %}
+                                        <form action="action/utilisateur-suppression.php?key={{ loop.index }}" method="post">
+                                            <button type="submit" class="btn-s">Supprimer</button>
+                                        </form>
+                                    {% else %}
+                                        [{{ item.groupe }}]
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <form action="action/utilisateur-ajout.php" method="post">
+                <fieldset>
+                    <legend>
+                        <h3 class="mt-0">Ajouter un utilisateur</h3>
+                    </legend>
+
+                    {% if get.erreur1 %}
+                        {% set erreurPrenom = 'Le champ est vide' %}
+                    {% endif %}
+
+                    {% if get.erreur2 %}
+                        {% set erreurMail = 'Le champ est vide' %}
+                    {% endif %}
+
+                    {% if get.erreur3 %}
+                        {% set erreurMotDePasse = 'Le champ est vide' %}
+                    {% endif %}
 
 
-        {% if get.erreur1 %}
-            {% set erreurPrenom = 'Le champ est vide' %}
-        {% endif %}
+                    {{ macro.input('prenom', 'Prénom', get.prenom, erreurPrenom ) }}
 
-        {% if get.erreur2 %}
-            {% set erreurMail = 'Le champ est vide' %}
-        {% endif %}
+                    {{ macro.input('mail', 'Adresse mail', get.mail, erreurMail) }}
 
-        {% if get.erreur3 %}
-            {% set erreurMotDePasse = 'Le champ est vide' %}
-        {% endif %}
+                    {{ macro.input('motdepasse', 'Mot de passe', get.motdepasse, erreurMotDePasse) }}
 
 
-        {{ macro.input('prenom', 'Prénom', get.prenom, erreurPrenom ) }}
+                    <button type="submit">Ajouter</button>
 
-        {{ macro.input('mail', 'Adresse mail', get.mail, erreurMail) }}
+                </fieldset>
 
-        {{ macro.input('motdepasse', 'Mot de passe', get.motdepasse, erreurMotDePasse) }}
+            </form>
 
+        </div>
 
-        <button type="submit">Ajouter</button>
+        <div class="w-50">
+            <h2 class="text-center">Familles</h2>
+            a faire
+        </div>
 
-
-    </form>
-
-    <h2>Liste exhaustive ({{ utilisateurs|length}})</h2>
-
-    <div class="scroll">
-        <table border="1" cellpadding="5" cellspacing="1">
-            <caption>Liste des utilisateurs</caption>
-            <thead>
-                <tr>
-                    <td>#</td>
-                    <td>Prénom</td>
-                    <td>Famille</td>
-                    <td>Mail</td>
-                    <td>Supprimer</td>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in utilisateurs %}
-                    <tr>
-                        <td>{{ loop.index }}</td>
-                        <td>{{ item.prenom }}</td>
-                        <td>{{ item.famille }}</td>
-                        <td>{{ decrypt(item.mail) }}</td>
-                        <td class="text-center">
-                            {% if item.groupe != 'admin' %}
-                                <form action="action/utilisateur-suppression.php?key={{ loop.index }}" method="post">
-                                    <button type="submit" class="btn-s">Supprimer</button>
-                                </form>
-                            {% else %}
-                                [{{ item.groupe }}]
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
     </div>
+
+</div>
 
 {% endblock %}

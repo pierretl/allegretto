@@ -1,0 +1,48 @@
+.table-conteneur {
+    padding: $padding-cadre;
+    box-shadow: $ombre;
+    border-radius: $form-radius;
+    background-color: var(--couleur3);
+}
+
+.table-conteneur table {
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table-conteneur td {
+    padding: 0.5rem;
+    line-height: $form-min-height--small;
+}
+
+.table-conteneur thead td {
+    border-top-width: 0;
+    background-color: var(--couleur5);
+}
+.table-conteneur thead td:first-child {
+    border-top-left-radius: $form-radius;
+}
+.table-conteneur thead td:last-child {
+    border-top-right-radius: $form-radius;
+}
+
+
+.table-conteneur tbody tr td {
+    border-bottom: 2px solid var(--couleur5);
+}
+.table-conteneur tbody tr td:last-child {
+    border-right: 2px solid var(--couleur5);
+}
+.table-conteneur tbody tr td:first-child {
+    border-left: 2px solid var(--couleur5);
+}
+.table-conteneur tbody tr:last-child td:first-child {
+    border-bottom-left-radius: $form-radius;
+}
+.table-conteneur tbody tr:last-child td:last-child {
+    border-bottom-right-radius: $form-radius;
+}
+.table-conteneur tbody tr:hover {
+    background-color: var(--couleur5);
+}

@@ -1,7 +1,3 @@
-.text-center {
-    text-align:center;
-}
-
 .df {
     display: flex;
     gap: 1rem;
@@ -14,6 +10,14 @@
         flex-direction: column;
     }
 }
+
+.fd--dashboard {
+    flex-direction: column;
+    @include breakpoint('dashboard'){
+        flex-direction: row;
+    }
+}
+
 .ai-c {
     align-items: center;
 }
@@ -22,6 +26,18 @@
 }
 .fw-w {
     flex-wrap: wrap;
+}
+
+.w-50 {
+    flex: 0 0 100%;
+    @include breakpoint('dashboard'){
+        flex: 0 0 50%;
+    }
+}
+@include breakpoint('dashboard'){
+    .w-50 + .w-50 {
+        margin-left: 1rem;
+    }
 }
 
 .scroll {

@@ -5,9 +5,9 @@
 @mixin form {
     @include font;
     width: 100%;
-    min-height: 3rem;
+    min-height: $form-min-height;
     border-radius: $form-radius;
-    font-size: 1rem;;
+    font-size: 1rem;
     border: 2px solid transparent;
     padding: 0 1rem;
 }
@@ -28,6 +28,12 @@
 
     @else if $nom == 'medium' {
         @media screen and (min-width: $page-small) {
+            @content
+        }
+    }
+
+    @else if $nom == 'dashboard' {
+        @media screen and (min-width: $page-dashboard) {
             @content
         }
     }

@@ -6,6 +6,6 @@ button:hover {
 }
 
 .btn-s {
-    min-height: auto;
+    min-height: $form-min-height--small;
     padding: 0.2rem 0.4rem;
 }

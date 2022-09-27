@@ -1,21 +1,94 @@
+.fc-surcharge {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 
-body .fc {
+.fc-surcharge .fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 1rem;
+}
+
+.fc-surcharge .fc {
     flex-grow: 1;
 }
 
-body .fc-header-toolbar.fc-toolbar {
+.fc-surcharge .fc-header-toolbar.fc-toolbar {
     @include breakpoint('smallOnly') {
         flex-direction: column;
     }
 }
 
-body .fc .fc-toolbar-title {
+.fc-surcharge .fc .fc-toolbar-title {
     font-size: 1.3rem;
     font-weight: 400;
 }
 
-.fc-toolbar button {
+.fc-surcharge .fc-toolbar button {
     width: auto;
     min-height: 0;
 }
 
+.fc-surcharge .fc-daygrid {
+    background-color: var(--couleur3);
+}
+
+.fc-surcharge .fc .fc-daygrid-week-number {
+    background-color: var(--couleur5);
+    color: var(--couleur4);
+}
+
+.fc-surcharge .fc .fc-button-primary {
+    border:0 none;
+}
+
+.fc-surcharge .fc .fc-button-primary:hover {
+    background-color: var(--couleur1);
+}
+
+.fc-surcharge .fc .fc-button-primary:focus,
+.fc-surcharge .fc .fc-button-primary:focus-visible {
+    box-shadow: unset; 
+    border: 0 none;
+}
+
+.fc-surcharge .fc .fc-button-primary + .fc-button-primary {
+    border-left:2px solid var(--couleur2)
+}
+
+.fc-surcharge .fc .fc-button-primary:disabled {
+    background-color: var(--couleur3);
+    color: var(--couleur1);
+    border: 1px solid var(--couleur1);
+    opacity: 1;
+}
+
+.fc-surcharge .fc-daygrid {
+    padding: $padding-cadre;
+    box-shadow: $ombre;
+    border-radius: $form-radius;
+    background-color: var(--couleur3);
+}
+
+.fc-surcharge .fc-theme-standard .fc-scrollgrid {
+    border-width: 0;
+}
+
+.fc-surcharge .fc-theme-standard td,
+.fc-surcharge .fc-theme-standard th {
+    border-color: var(--couleur5);
+    border-width: 2px;
+}
+
+.fc-surcharge .fc-scrollgrid-section-header th {
+    border-bottom: 0 none;
+}
+.fc-surcharge .fc-scrollgrid-section-header th:first-child {
+    border-top-right-radius: $form-radius;
+    border-top-left-radius: $form-radius;
+}
+
+.fc-surcharge table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: $form-radius;
+}
+.fc-surcharge table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: $form-radius;
+}

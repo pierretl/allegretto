@@ -3,6 +3,10 @@
     color: var(--couleur3);
 }
 
+.bg-2 {
+    background-color: var(--couleur2);
+}
+
 //////////////////////////////////////////////////////
 
 .bg-3 {
@@ -14,7 +18,8 @@
     color: var(--couleur1);
 }
 
-.bg-3 button {
+.bg-3 button,
+.bg-3 .fc .fc-button-primary {
     background-color: var(--couleur1);
     color: var(--couleur3);
 }

@@ -4,12 +4,14 @@
 
 {% block content %}
 
-    <p>Formulaire d'ajout de séjour</p>
+    <div class="page">
+        <p>Formulaire d'ajout de séjour</p>
 
-    <ul>
-        <li>Prenom : {{ session.utilisateur.prenom }}</li>
-        <li>Mail : {{ decrypt(session.utilisateur.mail) }}</li>
-        <li>Groupe : {{ session.utilisateur.groupe }}</li>
-    </ul>
+        <ul>
+            <li>Prenom : {{ session.utilisateur.prenom }}</li>
+            <li>Mail : {{ decrypt(session.utilisateur.mail) }}</li>
+            <li>Groupe : {{ session.utilisateur.groupe }}</li>
+        </ul>
+    </div>
 
 {% endblock %}
