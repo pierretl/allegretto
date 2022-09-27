@@ -2,7 +2,6 @@ $taille-vague: 69px;
 $taille-vague--smallOnly: 30px;
 
 .vague {
-    position:relative;
     padding-top: $taille-vague;
     
     @include breakpoint('smallOnly'){
@@ -19,17 +18,24 @@ $taille-vague--smallOnly: 30px;
     line-height: 0;
 }
 
-.vague__forme svg {
+.vague__haut,
+.vague__bas {
     position: relative;
     display: block;
+}
+
+.vague__haut {
     width: calc(129% + 1.3px);
     height: $taille-vague;
+    fill: var(--couleur1);
     
     @include breakpoint('smallOnly'){
         height: $taille-vague--smallOnly;
     }
 }
 
-.vague__fill {
-    fill: var(--couleur1);
+.vague__bas {
+    width: calc(109% + 1.3px);
+    height: 30px;
+    fill: var(--couleur3);
 }

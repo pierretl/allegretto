@@ -4,17 +4,17 @@
 
 {% block body %}
 
-<body class="bg-3 vague df fd-c">
+<body class="bg-3 vague pr df fd-c">
 
 
     <div class="vague__forme">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 118.46" preserveAspectRatio="none">
-            <path d="M1200,24.2V0H0V92.7A600.05,600.05,0,0,1,321.4,63.6c58,10.8,114.2,30.1,172,41.9,82.4,16.7,168.2,17.7,250.5.4,79.9-16.8,162.8-57.8,241.8-78.6C1055.7,8.7,1132.2,1.1,1200,24.2Z" class="vague__fill"></path>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 118.46" preserveAspectRatio="none" class="vague__haut">
+            <path d="M1200,24.2V0H0V92.7A600.05,600.05,0,0,1,321.4,63.6c58,10.8,114.2,30.1,172,41.9,82.4,16.7,168.2,17.7,250.5.4,79.9-16.8,162.8-57.8,241.8-78.6C1055.7,8.7,1132.2,1.1,1200,24.2Z"></path>
         </svg>
     </div>
 
 
-    <div class="df fd-c--medium ai-c mb-1 header">
+    <div class="df fd-c--medium ai-c header">
         <img src="style/img/logo.svg" alt="" loading="lazy" class="logo">
         <h1 class="m-0">
             {% if block("title") is defined %}
@@ -27,8 +27,8 @@
 
 
     {% if session.utilisateur.mail %}
-        <div class="page">
-            <ul class="reset df fw-w mb-1">
+        <div class="page mt-05 mb-1">
+            <ul class="reset df jc-c fw-w">
                 {% if session.utilisateur.groupe == 'admin' %}
                     {{ macro.itemMenu('admin',pageActive('admin'), 'Administration') }}
                 {% endif %}
@@ -40,7 +40,17 @@
     {% endif %}
 
 
-    <div class="bg-2 df fg-1">
+    
+
+
+    <div class="bg-2 df fg-1 pr">
+
+        <div class="vague__forme">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="vague__bas">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+            </svg>
+        </div>
+
         {% block content %}{% endblock %}
     </div>
 
