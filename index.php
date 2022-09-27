@@ -3,6 +3,9 @@
 require 'vendor/autoload.php';
 require 'twig/ExtentionPerso.php';
 
+require 'action/function/securite.php';
+require 'action/function/json-manipulation.php';
+
 // Commence la session
 session_start();
 
@@ -10,34 +13,6 @@ session_start();
 $page = 'connexion'; // page par défaut
 if (isset($_GET['p'])) {
     $page = $_GET['p'];
-}
-
-// Récupèration des datas
-function getDataJson ($jsonUrl) {
-    $jsonString = file_get_contents($jsonUrl);
-    $data = json_decode($jsonString, true);
-    return $data;
-}
-
-//securite
-function securite($pageGroupe = null) {
-
-    // Si pas d'info de session alors redirection page de connexion
-    if(!isset($_SESSION['utilisateur']['mail'])){
-        header("location:index.php?p=connexion");
-        exit;
-    }
-
-    //si la page demande un groupe d'utilisateur
-    if (isset($pageGroupe)) {
-
-        // et que le groupe en session ne correspond pas au groupe demandé
-        if ( $_SESSION['utilisateur']['groupe'] != $pageGroupe ){
-            header("location:index.php?p=calendrier");
-            exit;
-        }
-    }
-
 }
 
 // Rendu du template
@@ -69,8 +44,9 @@ switch ($page) {
             'session' => $_SESSION,
             'post' => $_POST,
             'get' => $_GET,
-            'utilisateurs' => getDataJson('data/utilisateur.json')
-            
+            'utilisateurs' => getDataJson('data/utilisateur.json'),
+            'familles' => getDataJson('data/famille.json'),
+            'selectOptionFamille' => selectOptionFamille()
         ]);
         break;
 

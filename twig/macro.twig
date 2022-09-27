@@ -1,13 +1,31 @@
 # input text
-{% macro input(id, label, valeur = null, erreur = null, inputErreur = null, type = "text") %}
+{% macro input(id, label, valeur = null, erreur = null, inputErreur = null, type = "text", autre) %}
     <div class="mb-1">
+
         <label for="{{ id }}">{{ label }}</label>
-        <input type="{{ type }}" 
+
+        {% if type == 'select' %}
+
+            <select name="{{ id }}" id="{{ id }}"{% if erreur %} class="v_erreur"{% endif %}>
+                <option value="">Sélectionnez</option>
+                {% for key, item in autre.selectOptions %}
+                    <option value="{{ key }}"{% if valeur == key %} selected{% endif %}>
+                        {{ item }} ({{ key }})
+                    </option>
+                {% endfor %}
+            </select>
+
+        {% else %}
+
+            <input type="{{ type }}" 
                name="{{ id }}" 
                id="{{ id }}"
                {% if erreur %} class="v_erreur"{% endif %}
                {% if inputErreur %} class="v_erreur"{% endif %}
                value="{{ valeur }}">
+
+        {% endif %}
+        
         {% if erreur %}
             <label for="{{ id }}" class="text-6">
                 {{ erreur }}

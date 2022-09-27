@@ -12,8 +12,9 @@ function securite_saisi($data) {
 $prenom = $_POST['prenom'];
 $mail = $_POST['mail'];
 $motDePasse = $_POST['motdepasse'];
+$famille = $_POST['famille'];
 
-if ( empty($prenom) || empty($mail) || empty($motDePasse) ) {
+if ( empty($prenom) || empty($mail) || empty($motDePasse) || $famille == '' ) {
 
     // Erreur :
 
@@ -34,8 +35,14 @@ if ( empty($prenom) || empty($mail) || empty($motDePasse) ) {
     } else {
         $input3 = "&motdepasse=".securite_saisi($motDePasse);
     }
+    
+    if ($famille == '') {
+        $input4 = "&erreur4=1";
+    } else {
+        $input4 = "&famille=".securite_saisi($famille);
+    }
 
-    header("location:../index.php?p=admin".$input1."".$input2."".$input3);
+    header("location:../index.php?p=admin".$input1."".$input2."".$input3."".$input4);
 
 } else {
 
@@ -43,7 +50,7 @@ if ( empty($prenom) || empty($mail) || empty($motDePasse) ) {
     $jsonUtilisateur = "../data/utilisateur.json";
 
     //liste des utilisateurs
-    $data = decodeJason($jsonUtilisateur);
+    $data = getDataJson($jsonUtilisateur);
     //debug($data);
 
     //crypte l'email  
@@ -53,6 +60,7 @@ if ( empty($prenom) || empty($mail) || empty($motDePasse) ) {
     //ajoute le nouveau utilisateur
     $lengthData = count($data); // compte a partir de 1
     $data[$lengthData]["prenom"] = securite_saisi($prenom);
+    $data[$lengthData]["famille"] = securite_saisi($famille);
     $data[$lengthData]["mail"] = securite_saisi($mailCrypte);
     $data[$lengthData]["motDePasse"] = securite_saisi(password_hash($motDePasse, PASSWORD_DEFAULT));
 

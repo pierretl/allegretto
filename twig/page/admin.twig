@@ -22,7 +22,7 @@
             <div class="cadre2 scroll mb-2">
                 <table class="tableau">
                     <caption>
-                        <h3 class="mt-0 text-left">Liste exhaustive ({{ utilisateurs|length}})</h3>
+                        <h3 class="mt-0 text-left">Liste exhaustive des utilisateurs ({{ utilisateurs|length}})</h3>
                     </caption>
                     <thead>
                         <tr>
@@ -73,6 +73,10 @@
                         {% set erreurMotDePasse = 'Le champ est vide' %}
                     {% endif %}
 
+                    {% if get.erreur4 %}
+                        {% set erreurCodeFamille = 'La sélection est obligatoire' %}
+                    {% endif %}
+
 
                     {{ macro.input('prenom', 'Prénom', get.prenom, erreurPrenom ) }}
 
@@ -80,48 +84,49 @@
 
                     {{ macro.input('motdepasse', 'Mot de passe', get.motdepasse, erreurMotDePasse) }}
 
+                    {{ macro.input('famille', 'Code Famille', get.famille, erreurCodeFamille, '', 'select', {selectOptions: selectOptionFamille}) }}
 
                     <button type="submit">Ajouter</button>
 
                 </fieldset>
+
+                
 
             </form>
 
         </div>
 
         <div class="col col-dashboard">
-            <h2 class="text-center">Familles</h2>
+            <h2>Familles</h2>
 
 
             <div class="cadre2 scroll mb-2">
                 <table class="tableau">
                     <caption>
-                        <h3 class="mt-0 text-left">Liste exhaustive ({{ utilisateurs|length}})</h3>
+                        <h3 class="mt-0 text-left">Liste exhaustive des familles ({{ familles|length}})</h3>
                     </caption>
                     <thead>
                         <tr>
                             <td>#</td>
-                            <td>Prénom</td>
-                            <td>Famille</td>
-                            <td>Mail</td>
-                            <td>Supprimer</td>
+                            <td>Code</td>
+                            <td>Nom</td>
+                            <td>Membres</td>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for item in utilisateurs %}
+                        {% for item in familles %}
                             <tr>
                                 <td>{{ loop.index }}</td>
-                                <td>{{ item.prenom }}</td>
-                                <td>{{ item.famille }}</td>
-                                <td>{{ decrypt(item.mail) }}</td>
-                                <td class="text-center">
-                                    {% if item.groupe != 'admin' %}
-                                        <form action="action/utilisateur-suppression.php?key={{ loop.index }}" method="post">
-                                            <button type="submit" class="btn-s">Supprimer</button>
-                                        </form>
-                                    {% else %}
-                                        [{{ item.groupe }}]
-                                    {% endif %}
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.nom }}</td>
+                                <td>
+                                    <ul class="reset">
+                                        {% for membre in item.membre %}
+                                            <li>
+                                                {{ membre }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
                                 </td>
                             </tr>
                         {% endfor %}

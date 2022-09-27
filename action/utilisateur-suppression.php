@@ -9,7 +9,7 @@ $jsonUtilisateur = "../data/utilisateur.json";
 $utilisateurKey = $_GET['key'] - 1; // -1 car la loop de twig commence à 1
 
 //liste des utilisateurs
-$data = decodeJason($jsonUtilisateur);
+$data = getDataJson($jsonUtilisateur);
 //debug($data);
 
 // on supprime que les utilisateur non admin

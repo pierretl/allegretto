@@ -24,11 +24,25 @@ input {
     border-color: var(--couleur5);
 }
 
-input:focus {
+select {
+    @include form;
+    border-color: var(--couleur5);
+    background-color: var(--couleur3);
+    padding: 0.7rem $form-padding;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%2855, 70, 73%29'></polygon></svg>");
+    background-position: center right 20px,top right 50px;
+    background-repeat: no-repeat,repeat-y;
+    background-size: 12px 8px,1px 1px;
+}
+
+input:focus,
+select:focus {
     outline: none;
     border-color: var(--couleur1);
 }
 
-input.v_erreur {
+input.v_erreur,
+select.v_erreur {
     border-color: var(--couleur6);
 }
