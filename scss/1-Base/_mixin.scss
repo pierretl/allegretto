@@ -33,7 +33,7 @@
     }
 
     @else if $nom == 'dashboard' {
-        @media screen and (min-width: $page-dashboard) {
+        @media screen and (max-width: $page-dashboard) {
             @content
         }
     }

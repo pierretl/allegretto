@@ -14,13 +14,13 @@
 #}
 <div class="page">
 
-    <div class="df fd--dashboard mb-2">
+    <div class="row df fw-w mb-2">
 
-        <div class="w-50">
+        <div class="col col-dashboard">
             <h2>Utilisateurs</h2>
 
-            <div class="table-conteneur scroll mb-2">
-                <table>
+            <div class="cadre2 scroll mb-2">
+                <table class="tableau">
                     <caption>
                         <h3 class="mt-0 text-left">Liste exhaustive ({{ utilisateurs|length}})</h3>
                     </caption>
@@ -89,9 +89,47 @@
 
         </div>
 
-        <div class="w-50">
+        <div class="col col-dashboard">
             <h2 class="text-center">Familles</h2>
-            a faire
+
+
+            <div class="cadre2 scroll mb-2">
+                <table class="tableau">
+                    <caption>
+                        <h3 class="mt-0 text-left">Liste exhaustive ({{ utilisateurs|length}})</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Prénom</td>
+                            <td>Famille</td>
+                            <td>Mail</td>
+                            <td>Supprimer</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in utilisateurs %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ item.prenom }}</td>
+                                <td>{{ item.famille }}</td>
+                                <td>{{ decrypt(item.mail) }}</td>
+                                <td class="text-center">
+                                    {% if item.groupe != 'admin' %}
+                                        <form action="action/utilisateur-suppression.php?key={{ loop.index }}" method="post">
+                                            <button type="submit" class="btn-s">Supprimer</button>
+                                        </form>
+                                    {% else %}
+                                        [{{ item.groupe }}]
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
         </div>
 
     </div>

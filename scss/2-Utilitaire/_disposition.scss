@@ -1,6 +1,5 @@
 .df {
     display: flex;
-    gap: 1rem;
 }
 .fd-c {
     flex-direction: column;
@@ -8,13 +7,6 @@
 @include breakpoint('medium'){
     .fd-c--medium {
         flex-direction: column;
-    }
-}
-
-.fd--dashboard {
-    flex-direction: column;
-    @include breakpoint('dashboard'){
-        flex-direction: row;
     }
 }
 
@@ -28,15 +20,23 @@
     flex-wrap: wrap;
 }
 
-.w-50 {
-    flex: 0 0 100%;
-    @include breakpoint('dashboard'){
-        flex: 0 0 50%;
-    }
+.row {
+    margin-right: -$padding-cadre;
+    margin-left: -$padding-cadre;
 }
-@include breakpoint('dashboard'){
-    .w-50 + .w-50 {
-        margin-left: 1rem;
+
+.col {
+    padding-right: $padding-cadre;
+    padding-left: $padding-cadre;
+}
+
+.col-dashboard {
+    flex: 0 0 auto;
+    width: 50%;
+
+    @include breakpoint('dashboard'){
+        flex: 0 0 auto;
+        width: 100%;
     }
 }
 

@@ -21,6 +21,8 @@ $cadre-padding: 3rem;
 }
 
 .cadre2 {
-    padding: $cadre-padding;
+    padding: $padding-cadre;
+    box-shadow: $ombre;
     border-radius: $form-radius;
+    background-color: var(--couleur3);
 }
