@@ -53,14 +53,17 @@ switch ($page) {
     case 'sejour':
         securite();
         echo $twig->render('page/sejour.twig' , [
-            'session' => $_SESSION
+            'session' => $_SESSION,
+            'dataCalendrier' => 'data/sejour.json',
+            'familles' => getDataJson('data/famille.json'),
+            'sejours' => getDataJson('data/sejour.json')
         ]);
         break;
 
     case 'calendrier':
         echo $twig->render('page/calendrier.twig', [
             'session' => $_SESSION,
-            'urlDAta' => 'data/sejour.json'
+            'dataCalendrier' => 'data/sejour.json'
         ]);
         break;
 

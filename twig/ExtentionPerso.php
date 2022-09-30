@@ -17,7 +17,8 @@ class ExtentionPerso extends \Twig\Extension\AbstractExtension {
         return [
             new \Twig\TwigFunction('functionDemo', [$this, 'functionDemoParse']), // démo
             new \Twig\TwigFunction('pageActive', [$this, 'pageActive'], ['needs_context' => true]), //page en cours
-            new \Twig\TwigFunction('decrypt', [$this, 'decrypt']) // Décryptage
+            new \Twig\TwigFunction('decrypt', [$this, 'decrypt']), // Décryptage
+            new \Twig\TwigFunction('getLabelFamille', [$this, 'getLabelFamille']) // récupération des label d'une famille a partir de son id
         ];
     }
 
@@ -42,6 +43,20 @@ class ExtentionPerso extends \Twig\Extension\AbstractExtension {
     public function decrypt($valeur)
     {
         return cryptage($valeur, 'decrypt');
+    }
+
+    public function getLabelFamille($id)
+    {
+        $data = getDataJson('data/famille.json');
+
+        $allFamille= [];
+        for ($i=0; $i < count($data); $i++){
+            $allFamille += [
+                $data[$i]['nom'] => $data[$i]['id']
+            ];
+        }
+
+        return array_search($id, $allFamille);
     }
 
 }

@@ -11,7 +11,7 @@ $jsonString = file_get_contents("../data/utilisateur.json");
 $dataUtilisateur = json_decode($jsonString, true);
 
     
-// Stock les nom d'utilisateur et mot de passe associé
+// Stock les données de l'utilisateur
 $logins= [];
 for ($i=0; $i < count($dataUtilisateur); $i++) {
     $logins += [ 
@@ -19,6 +19,7 @@ for ($i=0; $i < count($dataUtilisateur); $i++) {
             "prenom" => $dataUtilisateur[$i]['prenom'],
             "mail" => $dataUtilisateur[$i]['mail'],
             "motDePasse" => $dataUtilisateur[$i]['motDePasse'],
+            "famille" => $dataUtilisateur[$i]['famille'],
             "groupe" => $dataUtilisateur[$i]['groupe']
         ) 
     ];
@@ -43,6 +44,7 @@ if (
     // Ajouter les données de l'utilisateur en session
     $_SESSION['utilisateur']['prenom'] = $logins[$mailCrypte]['prenom'];
     $_SESSION['utilisateur']['mail'] = $logins[$mailCrypte]['mail'];
+    $_SESSION['utilisateur']['famille'] = $logins[$mailCrypte]['famille'];
     $_SESSION['utilisateur']['groupe'] = $logins[$mailCrypte]['groupe'];
 
     // redirige sur la page adéquate

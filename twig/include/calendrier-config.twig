@@ -1,0 +1,38 @@
+<link href="style/fullcalendar-5.11.3.min.css" rel="stylesheet">
+    <script src='js/fullcalendar-5.11.3.min.js'></script>
+    <script src='js/fullcalendar-locales-all.min.js'></script>
+    <script>
+        let aujourdhui = new Date().toISOString().split("T")[0];
+
+        document.addEventListener("DOMContentLoaded", function () {
+        var calendarEl = document.getElementById("calendar");
+
+        fetch("{{ dataCalendrier }}")
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("HTTP error " + response.status);
+            }
+            return response.json();
+        })
+        .then((json) => {
+        
+            console.log('json',json);
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: "dayGridMonth",
+                initialDate: aujourdhui,
+                weekNumbers: true,
+                locale: "fr",
+                events: json
+            });
+            calendar.render();
+        
+        })
+        .catch(function () {
+            this.dataError = true;
+        });
+
+        console.log('test');
+    
+    });     
+</script>

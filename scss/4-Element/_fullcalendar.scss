@@ -1,3 +1,7 @@
+:root {
+    --fc-event-text-color: var(--couleur4); 
+    --fc-event-border-color: transparent;
+}
 .fc-surcharge {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -32,8 +36,8 @@
 }
 
 .fc-surcharge .fc .fc-daygrid-week-number {
-    background-color: var(--couleur5);
-    color: var(--couleur4);
+    background-color: var(--couleur7);
+    color: var(--couleur3);
 }
 
 .fc-surcharge .fc .fc-button-primary {

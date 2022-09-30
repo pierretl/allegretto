@@ -1,17 +1,118 @@
 {% extends 'template/page.twig' %}
 
+{% import 'macro.twig' as macro %}
+
 {% block title %}Proposer un séjour{% endblock %}
+
+{% block head %}
+    {{ include('include/calendrier-config.twig') }}
+{% endblock %}
 
 {% block content %}
 
     <div class="page">
+
+        <div class="cadre2 scroll mt-2 mb-2">
+            <table class="tableau">
+                <caption>
+                    <h2 class="mt-0 text-left">Liste des séjours ({{ sejours|length}})</h2>
+                </caption>
+                <thead>
+                    <tr>
+                        <td>Ajouté par</td>
+                        <td>Arrivée</td>
+                        <td>Départ</td>                       
+                        {% for famille in sejours.0.validation %}
+                            <td>
+                                {{ getLabelFamille(famille.id) }}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in sejours %}
+                        {% set sejourKey = loop.index %}
+                        <tr>
+                            <td>{{ item.title }}</td>
+                            <td>{{ item.start }}</td>
+                            <td>{{ item.end }}</td>
+                            {% for famille in item.validation %}
+                                <td>
+                                    {% if famille.accord %}
+                                        <div class="df ai-c">
+                                            <svg width="24px" height="24px">
+                                                <use xlink:href="#check"></use>
+                                            </svg>
+                                            <span class="text-1">Validé</span>
+                                        </div>
+                                    {% else %}
+                                        {% if famille.id == session.utilisateur.famille %}
+                                            <form action="action/sejour-validation.php?key={{ sejourKey }}" method="post">
+                                                <button type="submit" class="btn-s">Je valide !</button>
+                                            </form>
+                                        {% else %}
+                                            <span class="text-7">En attente...</span>
+                                        {% endif %}
+                                            
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row df fw-w mb-2">
+
+            <div class="col col-dashboard">
+
+                <form action="action/????.php" method="post">
+                    <fieldset>
+                        <legend>
+                            <h2 class="mt-0">Ajouté un séjour (a faire)</h2>
+                        </legend>
+
+                        {{ macro.input('arrivee', 'Arrivée', get.arrivee, erreurArrivee ) }}
+
+                        {{ macro.input('depart', 'Départ', get.depart, erreurDepart ) }}
+
+                        {{ macro.input('commentaire', 'Commentaire', get.Commentaire, erreurCommentaire ) }}
+
+                        <button type="submit">Ajouter le séjour</button>
+
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="col col-dashboard">
+
+                <div class="cadre2 mb-2">
+                    <h2 class="mt-0">Calendrier</h2>
+                    <div class="fc-surcharge">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
         <p>Formulaire d'ajout de séjour</p>
 
         <ul>
             <li>Prenom : {{ session.utilisateur.prenom }}</li>
             <li>Mail : {{ decrypt(session.utilisateur.mail) }}</li>
             <li>Groupe : {{ session.utilisateur.groupe }}</li>
+            <li>Famille : {{ session.utilisateur.famille }}</li>
         </ul>
     </div>
 
+{% endblock %}
+
+{% block footer %}
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
+        <symbol id="check" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10,18c-0.5,0-1-0.2-1.4-0.6l-4-4c-0.8-0.8-0.8-2,0-2.8c0.8-0.8,2.1-0.8,2.8,0l2.6,2.6l6.6-6.6   c0.8-0.8,2-0.8,2.8,0c0.8,0.8,0.8,2,0,2.8l-8,8C11,17.8,10.5,18,10,18z"/>
+        </symbol>
+    </svg>
 {% endblock %}

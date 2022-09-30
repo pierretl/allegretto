@@ -110,7 +110,6 @@
                             <td>#</td>
                             <td>Code</td>
                             <td>Nom</td>
-                            <td>Membres</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -119,15 +118,6 @@
                                 <td>{{ loop.index }}</td>
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.nom }}</td>
-                                <td>
-                                    <ul class="reset">
-                                        {% for membre in item.membre %}
-                                            <li>
-                                                {{ membre }}
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
