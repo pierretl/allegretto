@@ -66,3 +66,7 @@ h3 { font-size: 1rem}
 svg {
     fill: var(--couleur1);
 }
+
+[title]:hover {
+    cursor: help;
+}

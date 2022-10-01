@@ -22,7 +22,7 @@
                     <tr>
                         <td>Ajouté par</td>
                         <td>Arrivée</td>
-                        <td>Départ</td>                       
+                        <td>Départ</td>
                         {% for famille in sejours.0.validation %}
                             <td>
                                 {{ getLabelFamille(famille.id) }}
@@ -35,16 +35,18 @@
                         {% set sejourKey = loop.index %}
                         <tr>
                             <td>{{ item.title }}</td>
-                            <td>{{ item.start }}</td>
-                            <td>{{ item.end }}</td>
+                            <td>{{ item.start | date("m/d/Y") }}</td>
+                            <td>{{ item.end | date("m/d/Y") }}</td>
                             {% for famille in item.validation %}
                                 <td>
                                     {% if famille.accord %}
                                         <div class="df ai-c">
-                                            <svg width="24px" height="24px">
+                                            <svg width="24px" height="24px" class="fill-8">
                                                 <use xlink:href="#check"></use>
                                             </svg>
-                                            <span class="text-1">Validé</span>
+                                            <span class="text-8" title="le {{ famille.accord | date("m/d/Y \\à H\\hi", "Europe/Paris") }}">
+                                                Validé
+                                            </span>
                                         </div>
                                     {% else %}
                                         {% if famille.id == session.utilisateur.famille %}
