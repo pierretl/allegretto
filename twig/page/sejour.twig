@@ -49,10 +49,10 @@
                                     {% else %}
                                         {% if famille.id == session.utilisateur.famille %}
                                             <form action="action/sejour-validation.php?key={{ sejourKey }}" method="post">
-                                                <button type="submit" class="btn-s">Je valide !</button>
+                                                <button type="submit" class="btn-s">Je&nbsp;valide&nbsp;!</button>
                                             </form>
                                         {% else %}
-                                            <span class="text-7">En attente...</span>
+                                            <span class="text-7">En&nbsp;attente...</span>
                                         {% endif %}
                                             
                                     {% endif %}
@@ -108,12 +108,4 @@
         </ul>
     </div>
 
-{% endblock %}
-
-{% block footer %}
-    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
-        <symbol id="check" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M10,18c-0.5,0-1-0.2-1.4-0.6l-4-4c-0.8-0.8-0.8-2,0-2.8c0.8-0.8,2.1-0.8,2.8,0l2.6,2.6l6.6-6.6   c0.8-0.8,2-0.8,2.8,0c0.8,0.8,0.8,2,0,2.8l-8,8C11,17.8,10.5,18,10,18z"/>
-        </symbol>
-    </svg>
 {% endblock %}

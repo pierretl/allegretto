@@ -1,13 +1,60 @@
+$page-menu: 51.25rem;   // 820px
+
 .header {
-    z-index: 1;
+    margin-bottom: 1rem;
 
-    @include breakpoint('smallOnly'){
-        align-items: flex-end;
-        margin-top: -1rem;
+    @include breakpoint('menu') {
+        margin: -.8rem 0 .8rem;
+    }
+}
+
+.header h1 {
+    font-size: 1rem;
+
+    @include breakpoint('menu') {
+        display: none;
+    }
+}
+
+.header ul {
+    width: 100%;
+    justify-content: flex-start;
+    padding-bottom: .1rem;
+
+    @include breakpoint('menu') {
+        justify-content: space-around;
     }
 
-    @include breakpoint('mediumOnly'){
-        margin-top: -1.1rem;
-    }
+}
 
+.header li {
+    margin: 0 2rem;
+    @include breakpoint('menu') {
+        margin: 0;
+    }
+}
+
+.header a {
+    padding: 0; //reset des style de base
+}
+
+.header a span {
+    @include breakpoint('menu') {
+        display: none;
+    }
+}
+
+.header svg {
+    margin-right: .4rem;
+    fill: var(--couleur4);
+
+    @include breakpoint('menu') {
+        margin-right: 0;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.header a svg {
+    fill: var(--couleur1)
 }

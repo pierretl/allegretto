@@ -26,6 +26,12 @@
         }
     }
 
+    @else if $nom == 'menu' {
+        @media screen and (max-width: $page-menu) {
+            @content
+        }
+    }
+
     @else if $nom == 'medium' {
         @media screen and (min-width: $page-small) {
             @content

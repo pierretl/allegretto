@@ -8,8 +8,5 @@
 
 .logo {
     max-width: 90px;
-    
-    @include breakpoint('smallOnly') {
-        margin-right: 1rem;
-    }
+    margin-right: 1rem;
 }

@@ -1,27 +1,13 @@
-.df {
-    display: flex;
-}
-.fd-c {
-    flex-direction: column;
-}
-@include breakpoint('medium'){
-    .fd-c--medium {
-        flex-direction: column;
-    }
-}
+.df {   display: flex }
+.fd-c { flex-direction: column}
 
-.ai-c {
-    align-items: center;
-}
-.jc-c {
-    justify-content: center;
-}
-.fg-1 {
-    flex-grow: 1;
-}
-.fw-w {
-    flex-wrap: wrap;
-}
+.ai-c { align-items: center}
+.ai-e { align-items: end}
+
+.jc-c { justify-content: center}
+
+.fg-1 { flex-grow: 1}
+.fw-w { flex-wrap: wrap}
 
 .row {
     margin-right: -$padding-cadre;
