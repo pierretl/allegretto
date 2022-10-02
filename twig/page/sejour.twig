@@ -70,17 +70,26 @@
 
             <div class="col col-dashboard">
 
-                <form action="action/????.php" method="post" class="mb-2">
+                <form action="action/sejour-ajout.php" method="post" class="mb-2">
                     <fieldset>
                         <legend>
                             <h2 class="mt-0">Ajouté un séjour (a faire)</h2>
                         </legend>
+                        <p class="text-7">* : champ obligatoire</p>
 
-                        {{ macro.input('arrivee', 'Arrivée', get.arrivee, erreurArrivee ) }}
+                        {% if get.erreur1 %}
+                            {% set erreurArrivee = 'Le champ est vide' %}
+                        {% endif %}
 
-                        {{ macro.input('depart', 'Départ', get.depart, erreurDepart ) }}
+                        {% if get.erreur2 %}
+                            {% set erreurDepart = 'Le champ est vide' %}
+                        {% endif %}
 
-                        {{ macro.input('commentaire', 'Commentaire', get.Commentaire, erreurCommentaire ) }}
+                        {{ macro.input('arrivee', 'Arrivée*', get.arrivee, erreurArrivee, '', 'date' ) }}
+
+                        {{ macro.input('depart', 'Départ*', get.depart, erreurDepart, '', 'date' ) }}
+
+                        {{ macro.input('commentaire', 'Commentaire', get.commentaire) }}
 
                         <button type="submit">Ajouter le séjour</button>
 

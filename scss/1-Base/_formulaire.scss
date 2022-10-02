@@ -24,6 +24,11 @@ input {
     border-color: var(--couleur5);
 }
 
+::-webkit-input-placeholder,
+::placeholder {
+    color: var(--couleur7)
+}
+
 select {
     @include form;
     border-color: var(--couleur5);

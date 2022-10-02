@@ -54,6 +54,8 @@ switch ($page) {
         securite();
         echo $twig->render('page/sejour.twig' , [
             'session' => $_SESSION,
+            'post' => $_POST,
+            'get' => $_GET,
             'dataCalendrier' => 'data/sejour.json',
             'familles' => getDataJson('data/famille.json'),
             'sejours' => getDataJson('data/sejour.json')

@@ -3,10 +3,7 @@
 include 'function/dev.php';
 include 'function/json-manipulation.php';
 include 'function/cryptage.php';
-
-function securite_saisi($data) {
-    return str_replace('"', '', $data); // pour pas casser le json
-}
+include 'function/securite-saisie.php';
 
 //recupère les valeur saisi
 $prenom = $_POST['prenom'];
