@@ -107,7 +107,7 @@
                         <tr>
                             <td>#</td>
                             <td>Code</td>
-                            <td>Nom</td>
+                            <td>Label</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -115,12 +115,43 @@
                             <tr>
                                 <td>{{ loop.index }}</td>
                                 <td>{{ item.id }}</td>
-                                <td>{{ item.nom }}</td>
+                                <td>{{ item.label }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+
+            <form action="action/famille-ajout.php" method="post" class="mb-2">
+                <fieldset>
+                    <legend>
+                        <h2 class="mt-0">Ajouter une famille</h2>
+                    </legend>
+
+                    {% if get.erreurFam1 %}
+                        {% set erreurId = 'Le champ est vide' %}
+                    {% endif %}
+
+                    {% if get.erreurFam2 %}
+                        {% set erreurLabel = 'Le champ est vide' %}
+                    {% endif %}
+
+                    {% if get.erreurId %}
+                        {% set erreurId = 'Déjà utilisé, saisissez autre chose' %}
+                    {% endif %}
+
+
+                    {{ macro.input('id', 'ID unique', get.id, erreurId ) }}
+
+                    {{ macro.input('label', 'Label', get.label, erreurLabel) }}
+
+                    <button type="submit">Ajouter</button>
+
+                </fieldset>
+
+                
+
+            </form>
 
 
         </div>

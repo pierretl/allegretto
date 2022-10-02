@@ -52,7 +52,7 @@ class ExtentionPerso extends \Twig\Extension\AbstractExtension {
         $allFamille= [];
         for ($i=0; $i < count($data); $i++){
             $allFamille += [
-                $data[$i]['nom'] => $data[$i]['id']
+                $data[$i]['label'] => $data[$i]['id']
             ];
         }
 

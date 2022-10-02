@@ -14,7 +14,7 @@ function updateJason($urlJason, $data) {
 function selectOptionFamille() {
     $data = getDataJson('data/famille.json');
     foreach ($data as $key => $value) {
-        $newData[$value['id']] = $value['nom'];
+        $newData[$value['id']] = $value['label'];
     }
     return $newData;
 }
