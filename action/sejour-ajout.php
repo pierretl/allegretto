@@ -12,6 +12,7 @@ $jsonFamille = "../data/famille.json";
 $jsonSejour = "../data/sejour.json";
 
 //recupère les valeurs saisis
+$label = $_POST['label'];
 $arrivee = $_POST['arrivee'];
 $depart = $_POST['depart'];
 $commentaire = $_POST['commentaire'];
@@ -26,25 +27,31 @@ $listeFamille = getDataJson($jsonFamille);
 $data = getDataJson($jsonSejour);
 
 
-if ( empty($arrivee) || empty($depart) ) {
+if ( empty($label) || empty($arrivee) || empty($depart) ) {
 
     // Erreur :
 
-    if (empty($arrivee)) {
+    if (empty($label)) {
         $input1 = "&erreur1=1";
     } else {
-        $input1 = "&arrivee=".securite_saisi($arrivee);
+        $input1 = "&label=".securite_saisi($label);
+    }
+
+    if (empty($arrivee)) {
+        $input2 = "&erreur2=1";
+    } else {
+        $input2 = "&arrivee=".securite_saisi($arrivee);
     }
 
     if (empty($depart)) {
-        $input2 = "&erreur2=1";
+        $input3 = "&erreur3=1";
     } else {
-        $input2 = "&depart=".securite_saisi($depart);
+        $input3 = "&depart=".securite_saisi($depart);
     }
 
-    $input3 = "&commentaire=".securite_saisi($commentaire);
+    $input4 = "&commentaire=".securite_saisi($commentaire);
 
-    header("location:../index.php?p=sejour".$input1."".$input2."".$input3);
+    header("location:../index.php?p=sejour".$input1."".$input2."".$input3."".$input4);
 
 } else {
 
@@ -71,7 +78,7 @@ if ( empty($arrivee) || empty($depart) ) {
 
     //Remplis les donnée du nouveau sejour
     $lengthData = count($data); // compte a partir de 1
-    $data[$lengthData]["title"] = $utilisateur;
+    $data[$lengthData]["title"] = $label;
     $data[$lengthData]["dataAjout"] = date("Y-m-d H:i:s");
     $data[$lengthData]["start"] = securite_saisi($arrivee);
     $data[$lengthData]["end"] = securite_saisi($depart);

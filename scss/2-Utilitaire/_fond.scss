@@ -18,7 +18,7 @@
     color: var(--couleur1);
 }
 
-.bg-3 button,
+.bg-3 button:not(.btn-texte),
 .bg-3 .fc .fc-button-primary {
     background-color: var(--couleur1);
     color: var(--couleur3);

@@ -20,7 +20,7 @@
                 </caption>
                 <thead>
                     <tr>
-                        <td>Ajouté par</td>
+                        <td>Label</td>
                         <td>Arrivée</td>
                         <td>Départ</td>
                         {% for famille in sejours.0.validation %}
@@ -40,13 +40,19 @@
                         {% set sejourKey = loop.index %}
                         <tr>
                             <td>
-                                {% if item.commentaire %}
-                                    <span title="{{ item.commentaire }}">
-                                        {{ item.title }}
-                                    </span>
-                                    <svg width="20px" height="20px" class="fill-7">
-                                        <use xlink:href="#bulle"></use>
-                                    </svg>
+                                {% if (strLength(item.title) > 20) or (item.commentaire) %}
+                                    <button type="button" onclick="" class="btn-texte">
+                                        {{ subString(item.title, 0, 20) }}
+                                        <p style="display:none">
+                                            {{ subString(item.title, 30) }}
+                                            {% if item.commentaire %}
+                                                <em>{{ item.commentaire }}</em>
+                                            {% endif %}
+                                        </p>
+                                        <svg width="20px" height="20px" class="fill-7" style="margin-left:.2rem">
+                                            <use xlink:href="#bulle"></use>
+                                        </svg>
+                                    </button>
                                 {% else %}
                                     {{ item.title }}
                                 {% endif %}
@@ -91,7 +97,8 @@
                                     <form action="action/sejour-suppression.php?key={{ loop.index }}" method="post">
                                         <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
                                         <p class="mt-05 cadre3">
-                                            Séjour du <strong>{{ item.start | date("m/d/Y") }}</strong> au <strong>{{ item.end | date("m/d/Y") }}</strong>
+                                            Séjour : {{ item.title }}<br>
+                                            du <strong>{{ item.start | date("m/d/Y") }}</strong> au <strong>{{ item.end | date("m/d/Y") }}</strong>
                                             {% if item.commentaire %}
                                             <br> {{ item.commentaire }}
                                             {% endif %}
@@ -121,17 +128,30 @@
                 <form action="action/sejour-ajout.php" method="post" class="mb-2">
                     <fieldset>
                         <legend>
-                            <h2 class="mt-0">Ajouté un séjour</h2>
+                            <h2 class="mt-0">Ajouter un séjour</h2>
                         </legend>
                         <p class="text-7">* : champ obligatoire</p>
 
                         {% if get.erreur1 %}
-                            {% set erreurArrivee = 'Le champ est vide' %}
+                            {% set erreurLabel = 'Le champ ne peut pas être vide' %}
                         {% endif %}
 
                         {% if get.erreur2 %}
+                            {% set erreurArrivee = 'Le champ est vide' %}
+                        {% endif %}
+
+                        {% if get.erreur3 %}
                             {% set erreurDepart = 'Le champ est vide' %}
                         {% endif %}
+
+                        {% if get.label %}
+                            {% set valueLabel = get.label %}
+                        {% else %}
+                            {% set valueLabel = session.utilisateur.prenom %}
+                        {% endif %}
+
+
+                        {{ macro.input('label', 'Label*', valueLabel, erreurLabel ) }}
 
                         {{ macro.input('arrivee', 'Arrivée*', get.arrivee, erreurArrivee, '', 'date' ) }}
 

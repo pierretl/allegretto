@@ -1,4 +1,4 @@
-button {
+button:not(.btn-texte) {
     @include form;
 }
 button:hover {
@@ -9,4 +9,13 @@ button:hover {
     min-height: $form-min-height--small;
     padding: 0.2rem 0.5rem;
     width: auto;
+}
+
+.btn-texte {
+    @include font;
+    background: transparent;
+    border: 0 none;
+    color: var(--couleur4);
+    font-size: 1rem;
+
 }
