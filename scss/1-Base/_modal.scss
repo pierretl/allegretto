@@ -1,0 +1,10 @@
+.modal {
+    max-width: 50ch;
+    border: 0;
+    border-radius: $form-radius;
+}
+
+.modal::backdrop {
+    background-color: #121722;
+    opacity: .8;
+}

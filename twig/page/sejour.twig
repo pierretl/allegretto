@@ -28,31 +28,55 @@
                                 {{ getLabelFamille(famille.id) }}
                             </td>
                         {% endfor %}
+                        {% if session.utilisateur.groupe == 'admin' %}
+                            <td>
+                                Supprimer
+                            </td>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
                     {% for item in sejours %}
                         {% set sejourKey = loop.index %}
                         <tr>
-                            <td>{{ item.title }}</td>
+                            <td>
+                                {% if item.commentaire %}
+                                    <span title="{{ item.commentaire }}">
+                                        {{ item.title }}
+                                    </span>
+                                    <svg width="20px" height="20px" class="fill-7">
+                                        <use xlink:href="#bulle"></use>
+                                    </svg>
+                                {% else %}
+                                    {{ item.title }}
+                                {% endif %}
+                            </td>
                             <td>{{ item.start | date("m/d/Y") }}</td>
                             <td>{{ item.end | date("m/d/Y") }}</td>
                             {% for famille in item.validation %}
                                 <td>
                                     {% if famille.accord %}
-                                        <div class="df ai-c">
-                                            <svg width="24px" height="24px" class="fill-8">
-                                                <use xlink:href="#check"></use>
-                                            </svg>
-                                            <span class="text-8" title="le {{ famille.accord | date("m/d/Y \\à H\\hi", "Europe/Paris") }}">
-                                                Validé
+
+                                        {% if item.dataAjout == famille.accord %}
+                                            <span class="text-7" title="Demande du {{ famille.accord | date("m/d/Y \\à H\\hi", "Europe/Paris") }}">
+                                                Demandeur
                                             </span>
-                                        </div>
+                                        {% else %}
+                                            <div class="df ai-c">
+                                                <svg width="24px" height="24px" class="fill-8">
+                                                    <use xlink:href="#check"></use>
+                                                </svg>
+                                                <span class="text-8" title="le {{ famille.accord | date("m/d/Y \\à H\\hi", "Europe/Paris") }}">
+                                                    Validé
+                                                </span>
+                                            </div>
+                                        {% endif %}
+                                        
                                     {% else %}
                                         {% if famille.id == session.utilisateur.famille %}
                                             <form action="action/sejour-validation.php?key={{ sejourKey }}" method="post">
                                                 <button type="submit" class="btn-s">Je&nbsp;valide&nbsp;!</button>
-                                            </form>
+                                            </form>  
                                         {% else %}
                                             <span class="text-7">En&nbsp;attente...</span>
                                         {% endif %}
@@ -60,6 +84,30 @@
                                     {% endif %}
                                 </td>
                             {% endfor %}
+                        {% if session.utilisateur.groupe == 'admin' %}
+                            <td>
+                                <button type="button" class="btn-s" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
+                                <dialog id="suppressionSejour-{{ sejourKey }}" class="modal">
+                                    <form action="action/sejour-suppression.php?key={{ loop.index }}" method="post">
+                                        <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
+                                        <p class="mt-05 cadre3">
+                                            Séjour du <strong>{{ item.start | date("m/d/Y") }}</strong> au <strong>{{ item.end | date("m/d/Y") }}</strong>
+                                            {% if item.commentaire %}
+                                            <br> {{ item.commentaire }}
+                                            {% endif %}
+                                        </p>
+                                        <div class="df row">
+                                            <div class="col">
+                                                <button type="button" onclick="fermeModal({{ sejourKey }})">Annuler</button>
+                                            </div>
+                                            <div class="col">
+                                                <button class="col" type="submit">Supprimer ce séjour</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </dialog>
+                            </td>
+                        {% endif %}
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -118,5 +166,14 @@
             <li>Famille : {{ session.utilisateur.famille }}</li>
         </ul>
     </div>
+
+    <script>
+        function suppressionSejour(key) {
+            document.getElementById('suppressionSejour-'+key).showModal();
+        }
+        function fermeModal(key) {
+            document.getElementById('suppressionSejour-'+key).close();
+        }
+    </script>
 
 {% endblock %}

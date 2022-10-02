@@ -26,3 +26,9 @@ $cadre-padding: 3rem;
     border-radius: $form-radius;
     background-color: var(--couleur3);
 }
+
+.cadre3 {
+    padding: $padding-cadre;
+    border-radius: 1rem $form-radius;
+    background-color: var(--couleur5);
+}

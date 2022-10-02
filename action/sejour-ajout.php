@@ -17,7 +17,7 @@ $commentaire = $_POST['commentaire'];
 
 //et les infos de l'utilisateur
 $utilisateur = $_SESSION['utilisateur']['prenom'];
-$famille = $_SESSION['utilisateur']['famille'];
+$familleUtilisateur = $_SESSION['utilisateur']['famille'];
 
 //récupére la liste des familles
 $listeFamille = getDataJson($jsonFamille);
@@ -48,19 +48,42 @@ if ( empty($arrivee) || empty($depart) ) {
 } else {
 
     // Succès :
-    echo "ajout du séjour a faire";
 
-    exit;
+    $validations = [];
+    $accord = [];
+    for ($i=0; $i < count($listeFamille); $i++){
 
-    //header("location:../index.php?p=sejour");
+        // donne l'accord à sa propre demande
+        $accord[$i] = "";
+        if ($listeFamille[$i]['id'] == $familleUtilisateur){ 
+            $accord[$i] = date("Y-m-d H:i:s");
+        }
+
+        // génére le tableau des validations
+        $validations+= [
+            $i => array(
+                "id" => $listeFamille[$i]['id'],
+                "accord" => $accord[$i]
+            )
+        ];
+    }
+
+    //Remplis les donnée du nouveau sejour
+    $lengthData = count($data); // compte a partir de 1
+    $data[$lengthData]["title"] = $utilisateur;
+    $data[$lengthData]["dataAjout"] = date("Y-m-d H:i:s");
+    $data[$lengthData]["start"] = securite_saisi($arrivee);
+    $data[$lengthData]["end"] = securite_saisi($depart);
+    $data[$lengthData]["commentaire"] = securite_saisi($commentaire);
+    $data[$lengthData]["backgroundColor"] = $couleurEnAttenteValidation;
+    $data[$lengthData]["validation"] = $validations;
+
+    //met a jour le json
+    updateJason($jsonSejour, $data);
+
+    //retourne sur la page
+    header("location:../index.php?p=sejour");
 
 }
 
-
-//ajouter commentaire et date de la demande
-//si date de la demande corespojnda a la validation faire un afficahge différent dans sejour.php
-
-
-
 exit;
-

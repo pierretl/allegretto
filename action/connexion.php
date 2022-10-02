@@ -49,7 +49,7 @@ if (
 
     // redirige sur la page adéquate
     if ( $logins[$mailCrypte]['groupe'] == 'admin' ) {
-        header("location:../index.php?p=admin");
+        header("location:../index.php?p=sejour");
     } else {
         header("location:../index.php?p=calendrier");
     }

@@ -13,6 +13,11 @@ session_start();
 $page = 'connexion'; // page par défaut
 if (isset($_GET['p'])) {
     $page = $_GET['p'];
+} else {
+    //si on est deja connecter
+    if ( isset( $_SESSION['utilisateur']['prenom']) ) {
+        header("location:index.php?p=sejour");
+    }
 }
 
 // Rendu du template
