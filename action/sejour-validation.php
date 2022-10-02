@@ -1,9 +1,11 @@
 <?php
 
+session_start();
+
+include 'function/securite-action.php';
 include 'function/dev.php';
 include 'function/json-manipulation.php';
 
-session_start();
 
 $jsonSejour = "../data/sejour.json";
 

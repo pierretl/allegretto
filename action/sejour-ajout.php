@@ -1,10 +1,11 @@
 <?php
 
+session_start();
+
+include 'function/securite-action.php';
 include 'function/dev.php';
 include 'function/json-manipulation.php';
 include 'function/securite-saisie.php';
-
-session_start();
 
 $couleurEnAttenteValidation = "var(--couleur7)";
 $jsonFamille = "../data/famille.json";

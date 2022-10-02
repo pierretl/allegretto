@@ -2,36 +2,29 @@
 
 session_start();
 
+include 'function/securite-action-admin.php';
 include 'function/json-manipulation.php';
 include 'function/dev.php';
 
-if ( $_SESSION['utilisateur']['groupe'] != "admin" ){
+$jsonSejour = "../data/sejour.json";
 
-    header("location:../index.php?p=calendrier");
+//recupère la key du séjour a supprimer
+$sejourKey = $_GET['key'] - 1; // -1 car la loop de twig commence à 1
 
-} else {
+//liste des utilisateurs
+$data = getDataJson($jsonSejour);
 
-    $jsonSejour = "../data/sejour.json";
+// supprime le séjour
+unset($data[$sejourKey]);
 
-    //recupère la key du séjour a supprimer
-    $sejourKey = $_GET['key'] - 1; // -1 car la loop de twig commence à 1
+// re-index le json
+$dataReIndex = array_values($data);
 
-    //liste des utilisateurs
-    $data = getDataJson($jsonSejour);
+//met a jour le json
+updateJason($jsonSejour, $dataReIndex);
 
-    // supprime le séjour
-    unset($data[$sejourKey]);
-
-    // re-index le json
-    $dataReIndex = array_values($data);
-
-    //met a jour le json
-    updateJason($jsonSejour, $dataReIndex);
-
-    //redirige sur la page
-    header("location:../index.php?p=sejour");
-
-}
+//redirige sur la page
+header("location:../index.php?p=sejour");
 
 
 exit();

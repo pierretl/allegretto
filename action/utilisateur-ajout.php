@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+include 'function/securite-action.php';
 include 'function/dev.php';
 include 'function/json-manipulation.php';
 include 'function/cryptage.php';
