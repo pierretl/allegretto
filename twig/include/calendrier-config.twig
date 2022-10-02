@@ -7,7 +7,7 @@
         document.addEventListener("DOMContentLoaded", function () {
         var calendarEl = document.getElementById("calendar");
 
-        fetch("{{ dataCalendrier }}")
+        fetch("{{ dataCalendrier }}", {cache: "no-cache"})
         .then((response) => {
             if (!response.ok) {
                 throw new Error("HTTP error " + response.status);
@@ -15,8 +15,6 @@
             return response.json();
         })
         .then((json) => {
-        
-            console.log('json',json);
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: "dayGridMonth",
@@ -31,8 +29,6 @@
         .catch(function () {
             this.dataError = true;
         });
-
-        console.log('test');
     
     });     
 </script>
