@@ -26,10 +26,16 @@ if (isset($_GET['p'])) {
 
 // Rendu du template
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/twig');
-$twig = new \Twig\Environment($loader, [
-    'cache' => __DIR__ . '/tmp' // mise en cache, dossier tmp a supprimer pour mettre a jour -> pour la production
-    //'cache' => false
-]);
+if (getenv('APP_ENV') === 'prod') {
+    $twig = new \Twig\Environment($loader, [
+        'cache' => __DIR__ . '/tmp'
+        // la mise en cache, nécessite de supprimer le dossier "tmp" pour mettre a jour le site
+    ]);
+} else {
+    $twig = new \Twig\Environment($loader, [
+        'cache' => false
+    ]);
+}
 
 // Ajout des functions et filtres personnalisé
 $twig->addExtension(new ExtentionPerso());
@@ -43,8 +49,7 @@ switch ($page) {
     case 'connexion':
         echo $twig->render('page/connexion.twig', [
             'post' => $_POST,
-            'get' => $_GET,
-            'app_url' => getenv('APP_URL')
+            'get' => $_GET
         ]);
         break;
 
