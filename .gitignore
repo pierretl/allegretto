@@ -5,3 +5,4 @@ composer.lock
 tmp
 action/function/cryptage.php
 .env
+.env.prod
