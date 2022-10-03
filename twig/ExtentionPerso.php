@@ -20,7 +20,8 @@ class ExtentionPerso extends \Twig\Extension\AbstractExtension {
             new \Twig\TwigFunction('decrypt', [$this, 'decrypt']), // Décryptage
             new \Twig\TwigFunction('getLabelFamille', [$this, 'getLabelFamille']), // récupération des label d'une famille a partir de son id
             new \Twig\TwigFunction('strLength', [$this, 'strLength']), // Calcule la taille d'une chaîne
-            new \Twig\TwigFunction('subString', [$this, 'subString']) // Retourne un segment de chaîne
+            new \Twig\TwigFunction('subString', [$this, 'subString']), // Retourne un segment de chaîne
+            new \Twig\TwigFunction('getenv', [$this, 'getenv']) // Retourne les variable d'environnement
         ];
     }
 
@@ -67,6 +68,10 @@ class ExtentionPerso extends \Twig\Extension\AbstractExtension {
 
     public function subString ($string, $offset, $length=null) {
         return substr($string, $offset, $length);
+    }
+
+    public function getenv ($key) {
+        return getenv($key);
     }
 
 }

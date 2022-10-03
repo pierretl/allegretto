@@ -1,4 +1,3 @@
-{% set urlFavicon = 'http://pierretl.fr/allegretto/style/favicon/' %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         {% if block("title") is defined %}
-            {{ block('title') }} - Allegretto
+            {{ block('title') }} - {{ getenv('APP_NAME') }}
         {% else %}
-            Allegretto
+            {{ getenv('APP_NAME') }}
         {% endif %}
     </title>
-    <link rel="stylesheet" href="style/style.css" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ urlFavicon }}apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ urlFavicon }}favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ urlFavicon }}favicon-16x16.png">
-    <link rel="manifest" href="{{ urlFavicon }}site.webmanifest">
-    <link rel="mask-icon" href="{{ urlFavicon }}safari-pinned-tab.svg" color="#035dfc">
+    <link rel="stylesheet" href="{{ getenv('APP_URL') }}style/style.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ getenv('APP_URL') }}style/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ getenv('APP_URL') }}style/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ getenv('APP_URL') }}style/favicon/favicon-16x16.png">
+    <link rel="manifest" href="{{ getenv('APP_URL') }}style/favicon/site.webmanifest">
+    <link rel="mask-icon" href="{{ getenv('APP_URL') }}style/favicon/safari-pinned-tab.svg" color="#035dfc">
     <meta name="msapplication-TileColor" content="#035dfc">
     <meta name="theme-color" content="#035dfc">
     {% block head %}{% endblock %}
