@@ -1,6 +1,6 @@
-<link href="style/fullcalendar-5.11.3.min.css" rel="stylesheet">
-    <script src='js/fullcalendar-5.11.3.min.js'></script>
-    <script src='js/fullcalendar-locales-all.min.js'></script>
+<link href="{{ getenv('APP_URL') }}style/fullcalendar-5.11.3.min.css" rel="stylesheet">
+    <script src='{{ getenv('APP_URL') }}js/fullcalendar-5.11.3.min.js'></script>
+    <script src='{{ getenv('APP_URL') }}js/fullcalendar-locales-all.min.js'></script>
     <script>
         let aujourdhui = new Date().toISOString().split("T")[0];
 

@@ -13,7 +13,7 @@
 
 
     <div class="df ai-e page header">
-        <img src="style/img/logo.svg" alt="Allegretto" loading="lazy" class="logo">
+        <img src="style/img/logo.svg" alt="{{ getenv('APP_NAME') }}" loading="lazy" class="logo">
         {% if session.utilisateur.mail %}
             <ul class="reset df jc-c fw-w">
                 {% if session.utilisateur.groupe == 'admin' %}
