@@ -4,3 +4,4 @@ package-lock.json
 composer.lock
 tmp
 action/function/cryptage.php
+.env

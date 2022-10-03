@@ -3,11 +3,15 @@
 require 'vendor/autoload.php';
 require 'twig/ExtentionPerso.php';
 
+require 'action/function/DotEnv.php';
 require 'action/function/securite.php';
 require 'action/function/json-manipulation.php';
 
 // Commence la session
 session_start();
+
+// Charge les variables d'environnement
+(new DotEnv(__DIR__ . '/.env'))->load();
 
 // Routing
 $page = 'connexion'; // page par défaut
@@ -39,7 +43,8 @@ switch ($page) {
     case 'connexion':
         echo $twig->render('page/connexion.twig', [
             'post' => $_POST,
-            'get' => $_GET
+            'get' => $_GET,
+            'app_url' => getenv('APP_URL')
         ]);
         break;
 
