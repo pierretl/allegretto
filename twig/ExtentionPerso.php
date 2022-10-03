@@ -1,7 +1,7 @@
 <?php
 
 
-include 'action/function/cryptage.php';
+include 'action/function/chiffrage.php';
 
 class ExtentionPerso extends \Twig\Extension\AbstractExtension {
 
@@ -17,7 +17,7 @@ class ExtentionPerso extends \Twig\Extension\AbstractExtension {
         return [
             new \Twig\TwigFunction('functionDemo', [$this, 'functionDemoParse']), // démo
             new \Twig\TwigFunction('pageActive', [$this, 'pageActive'], ['needs_context' => true]), //page en cours
-            new \Twig\TwigFunction('decrypt', [$this, 'decrypt']), // Décryptage
+            new \Twig\TwigFunction('dechiffre', [$this, 'dechiffre']), // Déchiffre une donnée
             new \Twig\TwigFunction('getLabelFamille', [$this, 'getLabelFamille']), // récupération des label d'une famille a partir de son id
             new \Twig\TwigFunction('strLength', [$this, 'strLength']), // Calcule la taille d'une chaîne
             new \Twig\TwigFunction('subString', [$this, 'subString']), // Retourne un segment de chaîne
@@ -43,9 +43,9 @@ class ExtentionPerso extends \Twig\Extension\AbstractExtension {
         }
     }
 
-    public function decrypt($valeur)
+    public function dechiffre($valeur)
     {
-        return cryptage($valeur, 'decrypt');
+        return dechiffre($valeur);
     }
 
     public function getLabelFamille($id)

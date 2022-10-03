@@ -3,10 +3,14 @@
 session_start();
 
 include 'function/securite-action.php';
+require 'function/DotEnv.php';
 include 'function/dev.php';
 include 'function/json-manipulation.php';
-include 'function/cryptage.php';
+include 'function/chiffrage.php';
 include 'function/securite-saisie.php';
+
+// Charge les variables d'environnement
+(new DotEnv(__DIR__ . '../../.env'))->load();
 
 //recupère les valeur saisi
 $prenom = $_POST['prenom'];
@@ -53,16 +57,17 @@ if ( empty($prenom) || empty($mail) || empty($motDePasse) || $famille == '' ) {
     $data = getDataJson($jsonUtilisateur);
     //debug($data);
 
-    //crypte l'email  
-    $mailCrypte = cryptage($mail, 'encrypt');
+    //chiffre l'email  
+    $mailChiffre = chiffre($mail);
     
 
     //ajoute le nouveau utilisateur
     $lengthData = count($data); // compte a partir de 1
     $data[$lengthData]["prenom"] = securite_saisi($prenom);
     $data[$lengthData]["famille"] = securite_saisi($famille);
-    $data[$lengthData]["mail"] = securite_saisi($mailCrypte);
+    $data[$lengthData]["mail"] = securite_saisi($mailChiffre);
     $data[$lengthData]["motDePasse"] = securite_saisi(password_hash($motDePasse, PASSWORD_DEFAULT));
+    $data[$lengthData]["groupe"] = "";
 
     //met a jour le json
     updateJason($jsonUtilisateur, $data);

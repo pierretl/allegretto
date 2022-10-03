@@ -3,6 +3,5 @@ package-lock.json
 /vendor/
 composer.lock
 tmp
-action/function/cryptage.php
 .env
 .env.prod

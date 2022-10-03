@@ -1,7 +1,11 @@
 <?php
 
+require 'function/DotEnv.php';
 include 'function/dev.php';
-include 'function/cryptage.php';
+include 'function/chiffrage.php';
+
+// Charge les variables d'environnement
+(new DotEnv(__DIR__ . '../../.env'))->load();
 
 //commence la session
 session_start();
@@ -29,26 +33,26 @@ for ($i=0; $i < count($dataUtilisateur); $i++) {
 $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
 $motdepasse = isset($_POST['motdepasse']) ? $_POST['motdepasse'] : '';
 
-//crypte l'email 
-$mailCrypte = cryptage($mail, 'encrypt');
+//chiffre l'email 
+$mailChiffre = chiffre($mail);
 
 if (
     $mail !== '' && // champs mail saisi
     $motdepasse !== '' && // champs mot de passe saisi
-    array_search($mailCrypte, array_column($logins, 'mail')) !== false && // le login saisi correspond à un utilisateur en data
-    $motdepasse && password_verify($motdepasse, $logins[$mailCrypte]['motDePasse'])  // le mot de passe correspond à l'utilisateur
+    array_search($mailChiffre, array_column($logins, 'mail')) !== false && // le login saisi correspond à un utilisateur en data
+    $motdepasse && password_verify($motdepasse, $logins[$mailChiffre]['motDePasse'])  // le mot de passe correspond à l'utilisateur
 ) {
 
     // Succès :
 
     // Ajouter les données de l'utilisateur en session
-    $_SESSION['utilisateur']['prenom'] = $logins[$mailCrypte]['prenom'];
-    $_SESSION['utilisateur']['mail'] = $logins[$mailCrypte]['mail'];
-    $_SESSION['utilisateur']['famille'] = $logins[$mailCrypte]['famille'];
-    $_SESSION['utilisateur']['groupe'] = $logins[$mailCrypte]['groupe'];
+    $_SESSION['utilisateur']['prenom'] = $logins[$mailChiffre]['prenom'];
+    $_SESSION['utilisateur']['mail'] = $logins[$mailChiffre]['mail'];
+    $_SESSION['utilisateur']['famille'] = $logins[$mailChiffre]['famille'];
+    $_SESSION['utilisateur']['groupe'] = $logins[$mailChiffre]['groupe'];
 
     // redirige sur la page adéquate
-    if ( $logins[$mailCrypte]['groupe'] == 'admin' ) {
+    if ( $logins[$mailChiffre]['groupe'] == 'admin' ) {
         header("location:../index.php?p=sejour");
     } else {
         header("location:../index.php?p=calendrier");
