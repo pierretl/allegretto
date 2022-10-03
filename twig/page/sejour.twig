@@ -41,16 +41,19 @@
                         <tr>
                             <td>
                                 {% if (strLength(item.title) > 20) or (item.commentaire) %}
-                                    <button type="button" onclick="" class="btn-texte">
-                                        {{ subString(item.title, 0, 20) }}
-                                        <p style="display:none">
+                                    <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3">
+                                        {{ subString(item.title, 0, 20) }}{% if (strLength(item.title) > 20) %}<span class="expanded-reverse">...</span>{% endif %}
+                                        <span class="expanded mt-0 mb-0">
                                             {{ subString(item.title, 30) }}
                                             {% if item.commentaire %}
-                                                <em>{{ item.commentaire }}</em>
+                                                <br><em>{{ item.commentaire }}</em>
                                             {% endif %}
-                                        </p>
-                                        <svg width="20px" height="20px" class="fill-7" style="margin-left:.2rem">
-                                            <use xlink:href="#bulle"></use>
+                                        </span>
+                                        <svg width="15px" height="15px" class="fill-3 expanded" style="margin-left:.2rem">
+                                            <use xlink:href="#fermer"></use>
+                                        </svg>
+                                        <svg width="15px" height="15px" class="fill-7 expanded-reverse" style="margin-left:.2rem">
+                                            <use xlink:href="#bulle" class=""></use>
                                         </svg>
                                     </button>
                                 {% else %}
@@ -92,7 +95,7 @@
                             {% endfor %}
                         {% if session.utilisateur.groupe == 'admin' %}
                             <td>
-                                <button type="button" class="btn-s" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
+                                <button type="button" class="btn-2 btn-s" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
                                 <dialog id="suppressionSejour-{{ sejourKey }}" class="modal">
                                     <form action="action/sejour-suppression.php?key={{ loop.index }}" method="post">
                                         <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
@@ -105,10 +108,10 @@
                                         </p>
                                         <div class="df row">
                                             <div class="col">
-                                                <button type="button" onclick="fermeModal({{ sejourKey }})">Annuler</button>
+                                                <button class="btn-1 btn-s" type="button" onclick="fermeModal({{ sejourKey }})">Annuler</button>
                                             </div>
                                             <div class="col">
-                                                <button class="col" type="submit">Supprimer ce séjour</button>
+                                                <button class="btn-1 btn-s" type="submit">Supprimer ce séjour</button>
                                             </div>
                                         </div>
                                     </form>
@@ -159,7 +162,7 @@
 
                         {{ macro.input('commentaire', 'Commentaire', get.commentaire) }}
 
-                        <button type="submit">Ajouter le séjour</button>
+                        <button type="submit" class="btn-1">Ajouter le séjour</button>
 
                     </fieldset>
                 </form>
@@ -185,6 +188,13 @@
         }
         function fermeModal(key) {
             document.getElementById('suppressionSejour-'+key).close();
+        }
+        function afficheLaSuite(e) {
+            if (e.getAttribute("aria-expanded") === "false") {
+                e.setAttribute("aria-expanded", "true");
+            } else {
+                e.setAttribute("aria-expanded", "false");
+            }
         }
     </script>
 

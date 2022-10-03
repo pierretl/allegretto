@@ -1,21 +1,27 @@
-button:not(.btn-texte) {
-    @include form;
-}
 button:hover {
     cursor: pointer;
+}
+
+.btn-1:focus,
+.btn-2:focus {
+    outline: 2px solid var(--couleur1);
+    outline-offset: .2rem;
+}
+
+.btn-1,
+.btn-2,
+.btn-3 {
+    @include form;
+}
+
+.btn-3 {
+    background: transparent;
+    text-align: left;
+    padding: 0;
 }
 
 .btn-s {
     min-height: $form-min-height--small;
     padding: 0.2rem 0.5rem;
     width: auto;
-}
-
-.btn-texte {
-    @include font;
-    background: transparent;
-    border: 0 none;
-    color: var(--couleur4);
-    font-size: 1rem;
-
 }

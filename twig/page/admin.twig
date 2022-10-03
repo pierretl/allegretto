@@ -42,7 +42,7 @@
                                 <td class="text-center">
                                     {% if item.groupe != 'admin' %}
                                         <form action="action/utilisateur-suppression.php?key={{ loop.index }}" method="post">
-                                            <button type="submit" class="btn-s">Supprimer</button>
+                                            <button type="submit" class="btn-2 btn-s">Supprimer</button>
                                         </form>
                                     {% else %}
                                         [{{ item.groupe }}]
@@ -85,7 +85,7 @@
 
                     {{ macro.input('famille', 'Code Famille', get.famille, erreurCodeFamille, '', 'select', {selectOptions: selectOptionFamille}) }}
 
-                    <button type="submit">Ajouter</button>
+                    <button type="submit" class="btn-1">Ajouter</button>
 
                 </fieldset>
 
@@ -145,7 +145,7 @@
 
                     {{ macro.input('label', 'Label', get.label, erreurLabel) }}
 
-                    <button type="submit">Ajouter</button>
+                    <button type="submit" class="btn-1">Ajouter</button>
 
                 </fieldset>
 

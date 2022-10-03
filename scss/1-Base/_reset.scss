@@ -15,11 +15,6 @@
     font-display:swap;
 }
 
-*:not(summary):focus {
-    outline: 2px solid var(--couleur1);
-    outline-offset: .2rem;
-}
-
 body {
     @include font;
     min-height: 100vh;
@@ -69,22 +64,4 @@ svg {
 
 [title]:hover {
     cursor: help;
-}
-
-details {
-    line-height: 1.4;
-}
-details:hover {
-    cursor: pointer;
-}
-details,
-summary,
-summary + p {
-    display: inline;
-}
-summary + p {
-    margin: 0;
-}
-details[open] svg {
-    display: none;
 }

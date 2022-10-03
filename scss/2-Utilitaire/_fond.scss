@@ -18,10 +18,16 @@
     color: var(--couleur1);
 }
 
-.bg-3 button:not(.btn-texte),
+.bg-3 .btn-1,
 .bg-3 .fc .fc-button-primary {
     background-color: var(--couleur1);
     color: var(--couleur3);
+}
+
+.bg-3 .btn-2 {
+    background-color: var(--couleur3);
+    color: var(--couleur1);
+    border-color: var(--couleur1);
 }
 
 .bg-3 *::selection {
