@@ -1,5 +1,10 @@
 Options -Indexes
-ErrorDocument 403 http://www.pierre.tl/
-ErrorDocument 404 http://www.pierre.tl/404.php
+#ErrorDocument 403 https://www.pierretl.fr/allegretto/
+#ErrorDocument 404 https://www.pierretl.fr/allegretto/index.php?p=404
+
+<Files ~ ".env">
+  Order Allow,Deny
+  Deny from all
+</Files>
 
 RewriteEngine off
