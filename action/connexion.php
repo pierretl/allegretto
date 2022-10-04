@@ -1,11 +1,11 @@
 <?php
 
-require 'function/DotEnv.php';
+include 'function/DotEnv.php';
 include 'function/dev.php';
 include 'function/chiffrage.php';
 
 // Charge les variables d'environnement
-(new DotEnv(__DIR__ . '../../.env'))->load();
+(new DotEnv('../.env'))->load();
 
 //commence la session
 session_start();
@@ -61,6 +61,8 @@ if (
     
     
 } else {
+
+    echo "erreur";
 
     // Erreur :
     header("location:../index.php?p=connexion&erreur=true&mail=".$mail);
