@@ -3,14 +3,14 @@
 session_start();
 
 include 'function/securite-action.php';
-require 'function/DotEnv.php';
+include 'function/DotEnv.php';
 include 'function/dev.php';
 include 'function/json-manipulation.php';
 include 'function/chiffrage.php';
 include 'function/securite-saisie.php';
 
 // Charge les variables d'environnement
-(new DotEnv(__DIR__ . '../../.env'))->load();
+(new DotEnv('../.env'))->load();
 
 //recupère les valeur saisi
 $prenom = $_POST['prenom'];
