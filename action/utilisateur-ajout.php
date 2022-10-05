@@ -51,7 +51,7 @@ if ( empty($prenom) || empty($mail) || empty($motDePasse) || $famille == '' ) {
 } else {
 
     // Succès :
-    $jsonUtilisateur = "../data/utilisateur.json";
+    $jsonUtilisateur = "../".getenv('DATA_UTILISATEUR');
 
     //liste des utilisateurs
     $data = getDataJson($jsonUtilisateur);

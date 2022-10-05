@@ -3,12 +3,16 @@
 session_start();
 
 include 'function/securite-action-admin.php';
+include 'function/DotEnv.php';
 include 'function/dev.php';
 include 'function/json-manipulation.php';
 include 'function/securite-saisie.php';
 
-$jsonFamille = "../data/famille.json";
-$jsonSejour = "../data/sejour.json";
+// Charge les variables d'environnement
+(new DotEnv('../.env'))->load();
+
+$jsonFamille = "../".getenv('DATA_FAMILLE');
+$jsonSejour = "../".getenv('DATA_SEJOUR');
 
 //recupère les valeur saisi
 $id = $_POST['id'];

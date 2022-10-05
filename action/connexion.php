@@ -11,7 +11,7 @@ include 'function/chiffrage.php';
 session_start();
 
 //récupérationde la liste des utilisateurs
-$jsonString = file_get_contents("../data/utilisateur.json");
+$jsonString = file_get_contents("../".getenv('DATA_UTILISATEUR'));
 $dataUtilisateur = json_decode($jsonString, true);
 
     

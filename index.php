@@ -59,8 +59,8 @@ switch ($page) {
             'session' => $_SESSION,
             'post' => $_POST,
             'get' => $_GET,
-            'utilisateurs' => getDataJson('data/utilisateur.json'),
-            'familles' => getDataJson('data/famille.json'),
+            'utilisateurs' => getDataJson(getenv('DATA_UTILISATEUR')),
+            'familles' => getDataJson(getenv('DATA_FAMILLE')),
             'selectOptionFamille' => selectOptionFamille()
         ]);
         break;
@@ -71,16 +71,16 @@ switch ($page) {
             'session' => $_SESSION,
             'post' => $_POST,
             'get' => $_GET,
-            'dataCalendrier' => 'data/sejour.json',
-            'familles' => getDataJson('data/famille.json'),
-            'sejours' => getDataJson('data/sejour.json')
+            'dataCalendrier' => getenv('DATA_SEJOUR'),
+            'familles' => getDataJson(getenv('DATA_FAMILLE')),
+            'sejours' => getDataJson(getenv('DATA_SEJOUR'))
         ]);
         break;
 
     case 'calendrier':
         echo $twig->render('page/calendrier.twig', [
             'session' => $_SESSION,
-            'dataCalendrier' => 'data/sejour.json'
+            'dataCalendrier' => getenv('DATA_SEJOUR')
         ]);
         break;
 

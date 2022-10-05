@@ -3,13 +3,17 @@
 session_start();
 
 include 'function/securite-action.php';
+include 'function/DotEnv.php';
 include 'function/dev.php';
 include 'function/json-manipulation.php';
 include 'function/securite-saisie.php';
 
+// Charge les variables d'environnement
+(new DotEnv('../.env'))->load();
+
 $couleurEnAttenteValidation = "var(--couleur7)";
-$jsonFamille = "../data/famille.json";
-$jsonSejour = "../data/sejour.json";
+$jsonFamille = "../".getenv('DATA_FAMILLE');
+$jsonSejour = "../".getenv('DATA_SEJOUR');
 
 //recupère les valeurs saisis
 $label = $_POST['label'];

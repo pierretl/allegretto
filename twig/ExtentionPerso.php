@@ -50,7 +50,7 @@ class ExtentionPerso extends \Twig\Extension\AbstractExtension {
 
     public function getLabelFamille($id)
     {
-        $data = getDataJson('data/famille.json');
+        $data = getDataJson(getenv('DATA_FAMILLE'));
 
         $allFamille= [];
         for ($i=0; $i < count($data); $i++){

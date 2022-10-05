@@ -12,7 +12,7 @@ function updateJason($urlJason, $data) {
 }
 
 function selectOptionFamille() {
-    $data = getDataJson('data/famille.json');
+    $data = getDataJson(getenv('DATA_FAMILLE'));
     foreach ($data as $key => $value) {
         $newData[$value['id']] = $value['label'];
     }

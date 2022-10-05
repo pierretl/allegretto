@@ -3,10 +3,14 @@
 session_start();
 
 include 'function/securite-action-admin.php';
+include 'function/DotEnv.php';
 include 'function/dev.php';
 include 'function/json-manipulation.php';
 
-$jsonUtilisateur = "../data/utilisateur.json";
+// Charge les variables d'environnement
+(new DotEnv('../.env'))->load();
+
+$jsonUtilisateur = "../".getenv('DATA_UTILISATEUR');
 
 //recupère la key de l'utilisateur a supprimer
 $utilisateurKey = $_GET['key'] - 1; // -1 car la loop de twig commence à 1

@@ -3,11 +3,15 @@
 session_start();
 
 include 'function/securite-action.php';
+include 'function/DotEnv.php';
 include 'function/dev.php';
 include 'function/json-manipulation.php';
 
+// Charge les variables d'environnement
+(new DotEnv('../.env'))->load();
 
-$jsonSejour = "../data/sejour.json";
+
+$jsonSejour = "../".getenv('DATA_SEJOUR');
 
 //recupère les valeurs nécessaire
 $key = $_GET['key'] - 1; // -1 car la loop de twig commence à 1

@@ -3,10 +3,14 @@
 session_start();
 
 include 'function/securite-action-admin.php';
+include 'function/DotEnv.php';
 include 'function/json-manipulation.php';
 include 'function/dev.php';
 
-$jsonSejour = "../data/sejour.json";
+// Charge les variables d'environnement
+(new DotEnv('../.env'))->load();
+
+$jsonSejour = "../".getenv('DATA_SEJOUR');
 
 //recupère la key du séjour a supprimer
 $sejourKey = $_GET['key'] - 1; // -1 car la loop de twig commence à 1
