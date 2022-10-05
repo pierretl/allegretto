@@ -17,12 +17,33 @@
 
         {% else %}
 
-            <input type="{{ type }}" 
-               name="{{ id }}" 
-               id="{{ id }}"
-               {% if erreur %} class="v_erreur"{% endif %}
-               {% if inputErreur %} class="v_erreur"{% endif %}
-               value="{{ valeur }}">
+            
+
+            {% if autre.voirMotDePasse == true %}
+
+                <div class="df input-group">
+                    <input type="{{ type }}" 
+                        name="{{ id }}" 
+                        id="{{ id }}"
+                        {% if erreur %} class="v_erreur"{% endif %}
+                        {% if inputErreur %} class="v_erreur"{% endif %}
+                        value="{{ valeur }}">
+                    <button type="button" class="btn-4 df ai-c" onclick="voirMotDePasse(this)" aria-label="Voir" password-visible="false">
+                        <svg width="24px" height="24px">
+                            <use xlink:href="#oeil"></use>
+                        </svg>
+                    </button>
+                </div>
+            {% else %}
+
+                <input type="{{ type }}" 
+                    name="{{ id }}" 
+                    id="{{ id }}"
+                    {% if erreur %} class="v_erreur"{% endif %}
+                    {% if inputErreur %} class="v_erreur"{% endif %}
+                    value="{{ valeur }}">
+
+            {% endif %}
 
         {% endif %}
         

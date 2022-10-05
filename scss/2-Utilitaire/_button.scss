@@ -10,7 +10,9 @@ button:hover {
 
 .btn-1,
 .btn-2,
-.btn-3 {
+.btn-3,
+.btn-4
+ {
     @include form;
 }
 
@@ -20,8 +22,36 @@ button:hover {
     padding: 0;
 }
 
+.btn-4 {
+    border-color: var(--couleur5);
+    border-left-width: 0;
+    background-color: var(--couleur3);
+    width: auto;
+}
+.btn-4 svg {
+    fill: var(--couleur7);
+}
+
 .btn-s {
     min-height: $form-min-height--small;
     padding: 0.2rem 0.5rem;
     width: auto;
+}
+
+.input-group input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group .btn-4 {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.input-group .btn-4:focus {
+    outline: 0 none;
+}
+.input-group .btn-4:focus svg,
+.btn-4[password-visible="true"] svg {
+    fill: var(--couleur1);
 }

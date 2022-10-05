@@ -16,7 +16,20 @@
 
         {{ macro.input('mail', 'Adresse mail', get.mail, '', inputErreur, 'email') }}
 
-        {{ macro.input('motdepasse', 'Mot de passe', '', '', inputErreur, 'password') }}
+        {{ macro.input('motdepasse', 'Mot de passe', '', '', inputErreur, 'password', {voirMotDePasse: true}) }}
+
+        <script>
+            function voirMotDePasse(e) {
+                const input = e.parentNode.querySelector('input');
+                if (e.getAttribute("password-visible") === "false") {
+                    input.setAttribute("type", "text");
+                    e.setAttribute("password-visible", "true");
+                } else {
+                    input.setAttribute("type", "password");
+                    e.setAttribute("password-visible", "false");
+                }
+            }
+        </script>
 
         <button name="Submit" type="submit" class="btn-1 mt-1">Connexion</button>
     </form>
