@@ -154,13 +154,13 @@
                         {% endif %}
 
 
-                        {{ macro.input('label', 'Label*', valueLabel, erreurLabel ) }}
+                        {{ macro.input('label', 'Label*<br><em>Visible sur le calendrier</em>', valueLabel, erreurLabel ) }}
 
                         {{ macro.input('arrivee', 'Arrivée*', get.arrivee, erreurArrivee, '', 'date' ) }}
 
                         {{ macro.input('depart', 'Départ*', get.depart, erreurDepart, '', 'date' ) }}
 
-                        {{ macro.input('commentaire', 'Commentaire', get.commentaire) }}
+                        {{ macro.input('commentaire', 'Commentaire<br><em>Visible sur la liste de séjour à validée</em>', get.commentaire) }}
 
                         <button type="submit" class="btn-1">Ajouter le séjour</button>
 

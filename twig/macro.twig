@@ -2,7 +2,7 @@
 {% macro input(id, label, valeur = null, erreur = null, inputErreur = null, type = "text", autre) %}
     <div class="mb-1">
 
-        <label for="{{ id }}">{{ label }}</label>
+        <label for="{{ id }}">{{ label | raw }}</label>
 
         {% if type == 'select' %}
 
