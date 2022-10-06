@@ -35,7 +35,7 @@ for ($i=0; $i < count($data[$key]['validation']); $i++) {
 }
 if ($all_accord === true) {
     //passe la couleur du séjour en validé
-    $data[$key]['backgroundColor'] = 'var(--couleur8)';
+    $data[$key]['backgroundColor'] = getenv('CALENDRIER_COLOR-VALIDE');
 } 
 
 //met a jour le json

@@ -82,13 +82,24 @@
                                         {% endif %}
                                         
                                     {% else %}
-                                        {% if famille.id == session.utilisateur.famille %}
-                                            <form action="action/sejour-validation.php?key={{ sejourKey }}" method="post">
-                                                <button type="submit" class="btn-1 btn-s">Je&nbsp;valide&nbsp;!</button>
-                                            </form>  
+
+                                        {% if item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE') %}
+
+                                            <p>Séjour validé avant l'ajout de la famille</p>
+                                             
                                         {% else %}
-                                            <span class="text-7">En&nbsp;attente...</span>
+
+                                            {% if famille.id == session.utilisateur.famille %}
+                                                <form action="action/sejour-validation.php?key={{ sejourKey }}" method="post">
+                                                    <button type="submit" class="btn-1 btn-s">Je&nbsp;valide&nbsp;!</button>
+                                                </form>  
+                                            {% else %}
+                                                <span class="text-7">En&nbsp;attente...</span>
+                                            {% endif %}
+                                            
                                         {% endif %}
+
+                                        
                                             
                                     {% endif %}
                                 </td>

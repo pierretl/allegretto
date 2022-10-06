@@ -11,7 +11,7 @@ include 'function/securite-saisie.php';
 // Charge les variables d'environnement
 (new DotEnv('../.env'))->load();
 
-$couleurEnAttenteValidation = "var(--couleur7)";
+$couleurEnAttenteValidation = getenv('CALENDRIER_COLOR-ATTENTE');
 $jsonFamille = "../".getenv('DATA_FAMILLE');
 $jsonSejour = "../".getenv('DATA_SEJOUR');
 
