@@ -60,14 +60,14 @@
                                     {{ item.title }}
                                 {% endif %}
                             </td>
-                            <td>{{ item.start | date("m/d/Y") }}</td>
-                            <td>{{ item.end | date("m/d/Y") }}</td>
+                            <td>{{ item.start | date("d/m/Y") }}</td>
+                            <td>{{ item.end | date("d/m/Y") }}</td>
                             {% for famille in item.validation %}
                                 <td>
                                     {% if famille.accord %}
 
                                         {% if item.dataAjout == famille.accord %}
-                                            <span class="text-7" title="Demande du {{ famille.accord | date("m/d/Y \\à H\\hi", "Europe/Paris") }}">
+                                            <span class="text-7" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
                                                 Demandeur
                                             </span>
                                         {% else %}
@@ -75,7 +75,7 @@
                                                 <svg width="24px" height="24px" class="fill-8">
                                                     <use xlink:href="#check"></use>
                                                 </svg>
-                                                <span class="text-8" title="le {{ famille.accord | date("m/d/Y \\à H\\hi", "Europe/Paris") }}">
+                                                <span class="text-8" title="le {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
                                                     Validé
                                                 </span>
                                             </div>
@@ -101,7 +101,7 @@
                                         <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
                                         <p class="mt-05 cadre3">
                                             Séjour : {{ item.title }}<br>
-                                            du <strong>{{ item.start | date("m/d/Y") }}</strong> au <strong>{{ item.end | date("m/d/Y") }}</strong>
+                                            du <strong>{{ item.start | date("d/m/Y") }}</strong> au <strong>{{ item.end | date("d/m/Y") }}</strong>
                                             {% if item.commentaire %}
                                             <br> {{ item.commentaire }}
                                             {% endif %}
