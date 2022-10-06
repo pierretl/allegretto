@@ -10,6 +10,13 @@
             {{ getenv('APP_NAME') }}
         {% endif %}
     </title>
+    <meta name="copyright" content="Pierre Tampon-Lajarriette">
+    <meta name="author" content="Pierre Tampon-Lajarriette">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="{{ getenv('APP_NAME') }}">
+    <meta property="og:url" content="{{ getenv('APP_URL') }}">
+    <meta property="og:image" content="{{ getenv('APP_URL') }}style/favicon/og-image.png">
+    <meta property="og:description" content="Projet de calendrier décentralisé pour la gestion d'une résidence familiale">
     <link rel="stylesheet" href="{{ getenv('APP_URL') }}style/style.css" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ getenv('APP_URL') }}style/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ getenv('APP_URL') }}style/favicon/favicon-32x32.png">
