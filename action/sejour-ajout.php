@@ -31,7 +31,12 @@ $listeFamille = getDataJson($jsonFamille);
 $data = getDataJson($jsonSejour);
 
 
-if ( empty($label) || empty($arrivee) || empty($depart) ) {
+if ( 
+    empty($label) || 
+    empty($arrivee) || 
+    empty($depart) ||
+    strtotime($depart) < strtotime($arrivee)
+) {
 
     // Erreur :
 
@@ -53,9 +58,13 @@ if ( empty($label) || empty($arrivee) || empty($depart) ) {
         $input3 = "&depart=".securite_saisi($depart);
     }
 
+    if (strtotime($depart) < strtotime($arrivee)) {
+        $dateInverse = "&dateInverse=1";
+    }
+
     $input4 = "&commentaire=".securite_saisi($commentaire);
 
-    header("location:../index.php?p=sejour".$input1."".$input2."".$input3."".$input4);
+    header("location:../index.php?p=sejour".$input1."".$input2."".$input3."".$input4."".$dateInverse);
 
 } else {
 

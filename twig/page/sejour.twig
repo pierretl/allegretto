@@ -153,6 +153,10 @@
                             {% set valueLabel = session.utilisateur.prenom %}
                         {% endif %}
 
+                        {% if get.dateInverse %}
+                            {% set erreurDepart = "La date est antérieure à celle de l'arrivée" %}
+                        {% endif %}
+
 
                         {{ macro.input('label', 'Label*<br><em>Visible sur le calendrier</em>', valueLabel, erreurLabel ) }}
 
