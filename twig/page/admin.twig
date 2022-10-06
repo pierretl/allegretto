@@ -108,6 +108,7 @@
                             <td>#</td>
                             <td>Code</td>
                             <td>Label</td>
+                            <td>Supprimer</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -116,6 +117,11 @@
                                 <td>{{ loop.index }}</td>
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.label }}</td>
+                                <td class="text-center">
+                                    <form action="action/famille-suppression.php?key={{ loop.index }}" method="post">
+                                        <button type="submit" class="btn-2 btn-s">Supprimer</button>
+                                    </form>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
