@@ -20,6 +20,12 @@ $famille = $_SESSION['utilisateur']['famille'];
 //liste des séjours
 $data = getDataJson($jsonSejour);
 
+// Vérifie si la key existe dans les datas
+if (!isset($data[$key])) {
+    header("location:../index.php?p=sejour");
+    exit;
+} 
+
 // récupére la key coorespondent à la famille dans le tableau validation
 $keyFamilleInValidation = array_search($famille,array_column($data[$key]['validation'], 'id'));
 
