@@ -2,18 +2,42 @@
 
 session_start();
 
+//pour le template du mail
+require '../vendor/autoload.php';
+require '../twig/ExtentionPerso.php';
+
+// quelques utilitaires
 include 'function/securite-action.php';
 include 'function/DotEnv.php';
 include 'function/dev.php';
 include 'function/json-manipulation.php';
 include 'function/securite-saisie.php';
+include 'function/chiffrage.php';
 
 // Charge les variables d'environnement
 (new DotEnv('../.env'))->load();
 
+// Rendu du template twig
+$loader = new \Twig\Loader\FilesystemLoader('../twig');
+if (getenv('APP_ENV') === 'prod') {
+    $twig = new \Twig\Environment($loader, [
+        'cache' =>'../tmp'
+        // la mise en cache, nécessite de supprimer le dossier "tmp" pour mettre a jour le site
+    ]);
+} else {
+    $twig = new \Twig\Environment($loader, [
+        'cache' => false
+    ]);
+}
+
+// Ajout des functions et filtres personnalisé
+$twig->addExtension(new ExtentionPerso());
+
+//datas
 $couleurEnAttenteValidation = getenv('CALENDRIER_COLOR-ATTENTE');
 $jsonFamille = "../".getenv('DATA_FAMILLE');
 $jsonSejour = "../".getenv('DATA_SEJOUR');
+$jsonUtilisateur = "../".getenv('DATA_UTILISATEUR');
 
 //recupère les valeurs saisis
 $label = $_POST['label'];
@@ -23,7 +47,9 @@ $commentaire = $_POST['commentaire'];
 
 //et les infos de l'utilisateur
 $utilisateur = $_SESSION['utilisateur']['prenom'];
+$mailUtilisateur = $_SESSION['utilisateur']['mail'];
 $familleUtilisateur = $_SESSION['utilisateur']['famille'];
+$groupeUtilisateur = $_SESSION['utilisateur']['groupe'];
 
 //récupére la liste des familles
 $listeFamille = getDataJson($jsonFamille);
@@ -99,11 +125,67 @@ if (
     $data[$lengthData]["backgroundColor"] = $couleurEnAttenteValidation;
     $data[$lengthData]["validation"] = $validations;
 
+    // Email : ----------------------------------------------------------------------------------------------
+
+    //récupére la liste des utilisateurs
+    $listeUtilisateur = getDataJson($jsonUtilisateur);
+    $listeDeDiffusion = [];
+    $index = 0;
+    for ($i=0; $i < count($listeUtilisateur); $i++){
+        // on ne prend pas en compte l'auteur de la demande dans la liste de diffusion
+        if ( $listeUtilisateur[$i]['mail'] != $mailUtilisateur) {
+            $listeDeDiffusion[$index] = dechiffre($listeUtilisateur[$i]['mail']);
+            $index ++;
+        }
+    }
+
+    $destinataire = implode(",", $listeDeDiffusion);
+    $sujet = getenv('APP_NAME')." - ". $utilisateur ." a soumis un séjour";
+
+    // corp de l'email
+    $bodyEmail = $twig->render('email/ajout-sejour.twig', [
+        'titre' => "Un séjour attend votre validation",
+        'prenom' => $utilisateur,
+        'arrivee' => $arrivee,
+        'depart' => $depart,
+        'commentaire' => $commentaire
+    ]);
+
+    //retire les commentaires HTML
+    $bodyEmail = preg_replace('/<!--(.|\s)*?-->/', '', $bodyEmail);
+
+    //retire les commentaires CSS
+    $bodyEmail = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!' , '' , $bodyEmail);
+
+    //test de l'email
+    //echo $bodyEmail; exit;
+
+    // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+    $enTete[] = 'MIME-Version: 1.0';
+    $enTete[] = 'Content-type: text/html; charset=iso-8859-1';
+
+    // En-têtes additionnels
+    $enTete[] = 'From: '.getenv('APP_NAME').' <'. getenv('APP_MAIL') .'>';
+
+    //envoie du mail
+    if ($groupeUtilisateur == "admin"){  //////////////////////////////////////////////////// le temps de temps en prod
+
+        $destinataire = getenv('APP_TEST-MAIL');
+
+        if( !mail($destinataire, $sujet, $bodyEmail, implode("\r\n", $enTete)) ) {
+            
+            //erreur envoie du mail
+            $erreurMail = "&erreurMail=1";
+
+        }
+    }
+    // Email - fin : ----------------------------------------------------------------------------------------------
+
     //met a jour le json
     updateJason($jsonSejour, $data);
 
     //retourne sur la page
-    header("location:../index.php?p=sejour");
+    header("location:../index.php?p=sejour".$erreurMail);
 
 }
 

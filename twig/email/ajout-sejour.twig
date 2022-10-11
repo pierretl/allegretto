@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{{ sujet }}</title>
+
+<style type="text/css">
+	
+    /* reset */
+    #outlook a {padding:0;} /* Force Outlook to provide a "view in browser" menu link. */ 
+    .ExternalClass {width:100%;} /* Force Hotmail to display emails at full width */
+    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Forces Hotmail to display normal line spacing.*/ 
+    p {margin: 0; padding: 0; font-size: 0px; line-height: 0px;} /* squash Exact Target injected paragraphs */
+    table td {border-collapse: collapse;} /* Outlook 07, 10 padding issue fix */
+    table {border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; } /* remove spacing around Outlook 07, 10 tables */
+    
+    /* bring inline */
+    img {display: block; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;}
+    a img {border: none;} 
+    a {text-decoration: none; color: #000001;} /* text link */
+    a.phone {text-decoration: none; color: #000001 !important; pointer-events: auto; cursor: default;} /* phone link, use as wrapper on phone numbers */
+    span {font-size: 13px; line-height: 17px; font-family: monospace; color: #000001;}
+
+</style>
+<!--[if gte mso 9]>
+    <style>
+    /* Target Outlook 2007 and 2010 */
+    </style>
+<![endif]-->
+</head>
+<body style="width:100%;margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+
+<!-- body wrapper -->
+<table cellpadding="0" cellspacing="0" border="0" style="margin:0;padding:0;width:100%;line-height:100%!important;">
+    <tr>
+        <td valign="top">
+            <!-- edge wrapper -->
+            <table cellpadding="0" cellspacing="0" border="0" align="center" width="600">
+                <tr>
+                    <td valign="top">
+                        <!-- content wrapper -->
+                        <table cellpadding="0" cellspacing="0" border="0" align="center" width="560" style="background:#ffffff;">
+                            <tr>
+                                <td valign="top" style="vertical-align: top;">
+<!-- ///////////////////////////////////////////////////// -->
+
+<table cellpadding="0" cellspacing="0" border="0" align="center" style="background:#1d63ff;width:100%;height:20px">
+    <tr>
+        <td valign="bottom" style="vertical-align: bottom;">
+            <img src="{{ getenv('APP_URL') }}style/email/head-haut.png" alt="" width="560" height="22" style="width:560px;height:23px;" />
+        </td>
+    </tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" align="center">
+    <tr>
+        <td valign="top" style="vertical-align: top;">
+            <img src="{{ getenv('APP_URL') }}style/email/logo-allegretto.png" alt="{{ getenv('APP_NAME') }}" width="90" height="54" style="width:90px;height:54px;" />
+        </td>
+    </tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" align="center">
+    <tr>
+        <td valign="top" style="vertical-align: top;">
+            <img src="{{ getenv('APP_URL') }}style/email/head-bas.png" alt="" width="560" height="14" style="width:560px;height:14px;" />
+        </td>
+    </tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" align="center"style="background:#ffce32; width:100%">
+    <tr>
+        <td valign="top" style="vertical-align: top;">
+
+
+            <table cellpadding="0" cellspacing="0" border="0" align="center"style="background:#ffce32;width:100%;height:20px">
+                <tr>
+                    <td valign="top" style="vertical-align: top;"></td>
+                </tr>
+            </table>
+
+
+            <table cellpadding="0" cellspacing="0" border="0" align="center" width="500" style="background:#ffffff;border-radius:16px">
+                <tr>
+                    <td valign="top" style="text-align:center;vertical-align:top;font-family:sans-serif;font-size:16px;line-height:24px;font-weight:bold;padding:10px;">
+                        {{ titre }}
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" style="text-align:center;vertical-align:top;font-family:sans-serif;font-size:16px;line-height:24px;padding:0 10px;">
+                        {{ prenom }} désire un séjour en Corse :
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" style="text-align:center;vertical-align:top;font-family:sans-serif;font-size:16px;line-height:24px;padding:0 10px;">
+                        du <strong>{{ arrivee | date("d/m/Y") }}</strong> au <strong>{{ depart | date("d/m/Y") }}</strong>
+                    </td>
+                </tr>
+                {% if commentaire %}
+                    <tr>
+                        <td valign="top" style="text-align:center;vertical-align:top;font-family:sans-serif;font-size:16px;font-style:italic;line-height:24px;padding:10px;">
+                            {{ commentaire }}
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td valign="top" style="vertical-align:top;font-family:sans-serif;font-size:16px;line-height:24px;padding:10px;text-align:center;">
+                        <a href="{{ getenv('APP_URL') }}index.php?p=sejour" style="font-family:sans-serif;font-size:16px;background:#1d63ff;color:white;padding:3px 8px;border-radius:16px;text-decoration: none;">Je valide !</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" style="vertical-align:top;font-family:sans-serif;font-size:16px;line-height:24px;padding:10px;text-align:center;">
+                        <a href="{{ getenv('APP_URL') }}index.php?p=sejour" style="font-family:sans-serif;font-size:16px;color:#1d63ff;padding:3px 8px;border-radius:16px;text-decoration:underline;">Voir la liste des séjours soumis</a>
+                    </td>
+                </tr>
+            </table>
+
+
+        </td>
+    </tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" align="center"style="background:#ffce32; width:100%; height:20px">
+    <tr>
+        <td valign="top" style="vertical-align: top;"></td>
+    </tr>
+</table>
+
+<!-- //////////// -->
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- / content wrapper -->
+                    </td>
+                </tr>
+            </table>
+            <!-- / edge wrapper -->
+        </td>
+    </tr>
+</table>    
+<!-- / page wrapper -->
+</body>
+</html>

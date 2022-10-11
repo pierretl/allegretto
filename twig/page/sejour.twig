@@ -146,6 +146,12 @@
                         </legend>
                         <p class="text-7">* : champ obligatoire</p>
 
+                        {% if get.erreurMail %}
+                            <p class="text-6">
+                                L'envoi de l'email d'ajout du séjour n'a pas abouti, mais la demande est enregistrée
+                            </p>
+                        {% endif %}
+
                         {% if get.erreur1 %}
                             {% set erreurLabel = 'Le champ ne peut pas être vide' %}
                         {% endif %}
