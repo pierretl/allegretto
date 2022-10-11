@@ -7,9 +7,13 @@ require 'action/function/DotEnv.php';
 require 'action/function/securite.php';
 require 'action/function/chiffrage.php';
 require 'action/function/json-manipulation.php';
+require 'action/function/validation-sejour-via-email.php';
 
 // Commence la session
 session_start();
+
+// validation via lien email
+validation_sejour_via_email();
 
 // Charge les variables d'environnement
 (new DotEnv(__DIR__ . '/.env'))->load();

@@ -148,7 +148,8 @@ if (
         'prenom' => $utilisateur,
         'arrivee' => $arrivee,
         'depart' => $depart,
-        'commentaire' => $commentaire
+        'commentaire' => $commentaire,
+        'keySejour' => $lengthData
     ]);
 
     //retire les commentaires HTML
