@@ -5,6 +5,7 @@ require 'twig/ExtentionPerso.php';
 
 require 'action/function/DotEnv.php';
 require 'action/function/securite.php';
+require 'action/function/chiffrage.php';
 require 'action/function/json-manipulation.php';
 
 // Commence la session

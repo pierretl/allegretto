@@ -1,8 +1,6 @@
 <?php
 
 
-include 'action/function/chiffrage.php';
-
 class ExtentionPerso extends \Twig\Extension\AbstractExtension {
 
     // Ajout de filtre personnalisé
