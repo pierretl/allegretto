@@ -48,9 +48,6 @@ button:hover {
     border-bottom-left-radius: 0;
 }
 
-.input-group .btn-4:focus {
-    outline: 0 none;
-}
 .input-group .btn-4:focus svg,
 .btn-4[password-visible="true"] svg {
     fill: var(--couleur1);
