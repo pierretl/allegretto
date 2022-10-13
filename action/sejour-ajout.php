@@ -133,14 +133,18 @@ if (
     $index = 0;
     for ($i=0; $i < count($listeUtilisateur); $i++){
         // on ne prend pas en compte l'auteur de la demande dans la liste de diffusion
-        if ( $listeUtilisateur[$i]['mail'] != $mailUtilisateur) {
+        // et les membres de sa famille
+        if ( 
+            $listeUtilisateur[$i]['mail'] != $mailUtilisateur &&
+            $listeUtilisateur[$i]['famille'] != $familleUtilisateur
+        ) {
             $listeDeDiffusion[$index] = dechiffre($listeUtilisateur[$i]['mail']);
             $index ++;
         }
     }
 
     $destinataire = implode(",", $listeDeDiffusion);
-    $sujet = getenv('APP_NAME')." - ". $utilisateur ." a soumis un séjour";
+    $sujet = $utilisateur ." a soumis un séjour";
 
     // corp de l'email
     $bodyEmail = $twig->render('email/ajout-sejour.twig', [
@@ -171,7 +175,7 @@ if (
     //envoie du mail
     if ($groupeUtilisateur == "admin"){  //////////////////////////////////////////////////// le temps de temps en prod
 
-        $destinataire = getenv('APP_TEST-MAIL');
+        //$destinataire = getenv('APP_TEST-MAIL');
 
         if( !mail($destinataire, $sujet, $bodyEmail, implode("\r\n", $enTete)) ) {
             
