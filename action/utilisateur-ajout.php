@@ -68,6 +68,7 @@ if ( empty($prenom) || empty($mail) || empty($motDePasse) || $famille == '' ) {
     $data[$lengthData]["mail"] = securite_saisi($mailChiffre);
     $data[$lengthData]["motDePasse"] = securite_saisi(password_hash($motDePasse, PASSWORD_DEFAULT));
     $data[$lengthData]["groupe"] = "";
+    $data[$lengthData]["authToken"] = "";
 
     //met a jour le json
     updateJason($jsonUtilisateur, $data);

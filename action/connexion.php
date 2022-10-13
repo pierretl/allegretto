@@ -3,6 +3,7 @@
 include 'function/DotEnv.php';
 include 'function/dev.php';
 include 'function/chiffrage.php';
+include 'function/json-manipulation.php';
 
 // Charge les variables d'environnement
 (new DotEnv('../.env'))->load();
@@ -10,9 +11,9 @@ include 'function/chiffrage.php';
 //commence la session
 session_start();
 
-//récupérationde la liste des utilisateurs
-$jsonString = file_get_contents("../".getenv('DATA_UTILISATEUR'));
-$dataUtilisateur = json_decode($jsonString, true);
+//récupération de la liste des utilisateurs
+$jsonUtilisateur = "../".getenv('DATA_UTILISATEUR');
+$dataUtilisateur = getDataJson($jsonUtilisateur);
 
     
 // Stock les données de l'utilisateur
@@ -24,7 +25,8 @@ for ($i=0; $i < count($dataUtilisateur); $i++) {
             "mail" => $dataUtilisateur[$i]['mail'],
             "motDePasse" => $dataUtilisateur[$i]['motDePasse'],
             "famille" => $dataUtilisateur[$i]['famille'],
-            "groupe" => $dataUtilisateur[$i]['groupe']
+            "groupe" => $dataUtilisateur[$i]['groupe'],
+            "authToken" => $dataUtilisateur[$i]['authToken']
         ) 
     ];
 }
@@ -45,11 +47,21 @@ if (
 
     // Succès :
 
+    // Token d'authentification
+    $token = hash('sha256',$logins[$mailChiffre]['mail'] . time()); // création du Token 
+    setcookie('authToken', $token, time()+60*60*24*365, '/'); // création du coookie, expire dans 365 jours
+    $keyUtilisateur = array_search($mailChiffre, array_column($logins, 'mail')); // récupére la key de l'utilisateur
+    $dataUtilisateur[$keyUtilisateur]['authToken'] = $token; // Assigne la valeur au champ adéquate
+    updateJason($jsonUtilisateur, $dataUtilisateur); // met a jour le json
+
+
     // Ajouter les données de l'utilisateur en session
     $_SESSION['utilisateur']['prenom'] = $logins[$mailChiffre]['prenom'];
     $_SESSION['utilisateur']['mail'] = $logins[$mailChiffre]['mail'];
     $_SESSION['utilisateur']['famille'] = $logins[$mailChiffre]['famille'];
     $_SESSION['utilisateur']['groupe'] = $logins[$mailChiffre]['groupe'];
+    $_SESSION['utilisateur']['key'] = $keyUtilisateur;
+
 
     // redirige sur la page adéquate
     if ( $logins[$mailChiffre]['groupe'] == 'admin' ) {

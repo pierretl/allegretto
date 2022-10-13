@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 require 'twig/ExtentionPerso.php';
 
 require 'action/function/DotEnv.php';
-require 'action/function/securite.php';
+require 'action/function/authentifier.php';
 require 'action/function/chiffrage.php';
 require 'action/function/json-manipulation.php';
 require 'action/function/validation-sejour-via-email.php';
@@ -52,6 +52,7 @@ $twig->addGlobal('current_page', $page);
 switch ($page) {
 
     case 'connexion':
+        authentifier();
         echo $twig->render('page/connexion.twig', [
             'post' => $_POST,
             'get' => $_GET
@@ -59,7 +60,7 @@ switch ($page) {
         break;
 
     case 'admin':
-        securite('admin');
+        authentifier('admin');
         echo $twig->render('page/admin.twig', [
             'session' => $_SESSION,
             'post' => $_POST,
@@ -71,7 +72,7 @@ switch ($page) {
         break;
 
     case 'sejour':
-        securite();
+        authentifier();
         echo $twig->render('page/sejour.twig' , [
             'session' => $_SESSION,
             'post' => $_POST,
