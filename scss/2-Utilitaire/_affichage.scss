@@ -1,4 +1,5 @@
 [aria-expanded='false'] .expanded,
+[aria-expanded='false'] + .expanded-sibling,
 [aria-expanded='true'] .expanded-reverse {
     display: none;
 }

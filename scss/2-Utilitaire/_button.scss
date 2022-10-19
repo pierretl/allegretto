@@ -10,16 +10,16 @@ button:hover {
 
 .btn-1,
 .btn-2,
-.btn-3,
 .btn-4
  {
     @include form;
 }
 
 .btn-3 {
-    background: transparent;
+    @include font;
+    border: 0 none;
     text-align: left;
-    padding: 0;
+    font-size: 1rem;
 }
 
 .btn-4 {
@@ -30,6 +30,11 @@ button:hover {
 }
 .btn-4 svg {
     fill: var(--couleur7);
+}
+
+.btn-5 {
+    background-color: transparent;
+    border: 0 none;
 }
 
 .btn-s {

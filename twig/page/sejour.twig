@@ -20,9 +20,7 @@
                 </caption>
                 <thead>
                     <tr>
-                        <td>Label</td>
-                        <td>Arrivée</td>
-                        <td>Départ</td>
+                        <td>Séjour</td>
                         {% for famille in sejours.0.validation %}
                             <td>
                                 {{ getLabelFamille(famille.id) }}
@@ -40,28 +38,37 @@
                         {% set sejourKey = loop.index %}
                         <tr>
                             <td>
-                                {% if (strLength(item.title) > 20) or (item.commentaire) %}
-                                    <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3">
-                                        {{ subString(item.title, 0, 20) }}{% if (strLength(item.title) > 20) %}<span class="expanded-reverse">...</span>{% endif %}
+                                {% if (strLength(item.title) > 20) %}
+                                    <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3 badge bg-7">
+                                        {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
                                         <span class="expanded mt-0 mb-0">
                                             {{ subString(item.title, 30) }}
-                                            {% if item.commentaire %}
-                                                <br><em>{{ item.commentaire }}</em>
-                                            {% endif %}
                                         </span>
-                                        <svg width="15px" height="15px" class="fill-3 expanded" style="margin-left:.2rem">
-                                            <use xlink:href="#fermer"></use>
-                                        </svg>
-                                        <svg width="15px" height="15px" class="fill-7 expanded-reverse" style="margin-left:.2rem">
-                                            <use xlink:href="#bulle" class=""></use>
-                                        </svg>
                                     </button>
                                 {% else %}
-                                    {{ item.title }}
+                                    <span class="badge bg-7">
+                                        {{ item.title }}
+                                    </span>
                                 {% endif %}
+
+                                {% if (item.commentaire) %}
+                                    <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-5">
+                                        <svg width="20px" height="20px" class="fill-3 expanded" style="margin-left:.2rem">
+                                            <use xlink:href="#fermer"></use>
+                                        </svg>
+                                        <svg width="20px" height="20px" class="fill-3 expanded-reverse" style="margin-left:.2rem">
+                                            <use xlink:href="#bulle"></use>
+                                        </svg>
+                                    </button>
+                                    <span class="expanded-sibling mt-0 mb-0">
+                                        <br>{{ item.commentaire }}
+                                    </span>
+                                {% endif %}
+
+                                <span class="text-7">
+                                    <br>{{ item.start | date("d/m/Y") }} &#10140; {{ item.start | date("d/m/Y") }}
+                                </span>
                             </td>
-                            <td>{{ item.start | date("d/m/Y") }}</td>
-                            <td>{{ item.end | date("d/m/Y") }}</td>
                             {% for famille in item.validation %}
                                 <td>
                                     {% if famille.accord %}
