@@ -33,8 +33,10 @@ button:hover {
 }
 
 .btn-5 {
+    @include font;
     background-color: transparent;
     border: 0 none;
+    font-size: 1rem;
 }
 
 .btn-s {

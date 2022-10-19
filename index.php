@@ -4,6 +4,7 @@ require 'vendor/autoload.php';
 require 'twig/ExtentionPerso.php';
 
 require 'action/function/DotEnv.php';
+require 'action/function/filtre-data.php';
 require 'action/function/authentifier.php';
 require 'action/function/chiffrage.php';
 require 'action/function/json-manipulation.php';
@@ -79,7 +80,8 @@ switch ($page) {
             'get' => $_GET,
             'dataCalendrier' => getenv('DATA_SEJOUR'),
             'familles' => getDataJson(getenv('DATA_FAMILLE')),
-            'sejours' => getDataJson(getenv('DATA_SEJOUR'))
+            'sejours' => getDataJson(getenv('DATA_SEJOUR')),
+            'sejoursValide' => sejoursValide(getDataJson(getenv('DATA_SEJOUR')))
         ]);
         break;
 

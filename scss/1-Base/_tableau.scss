@@ -6,12 +6,12 @@
 
 .tableau td {
     padding: 0.5rem;
-    line-height: $form-min-height--small;
 }
 
 .tableau thead td {
     border-top-width: 0;
     background-color: var(--couleur5);
+    line-height: $form-min-height--small;
 }
 .tableau thead td:first-child {
     border-top-left-radius: $form-radius;
