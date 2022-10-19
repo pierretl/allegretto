@@ -38,15 +38,21 @@
                         {% set sejourKey = loop.index %}
                         <tr>
                             <td>
+                                {% if item.backgroundColor == 'var(--couleur8)' %}
+                                    {% set couleurBadge = 'bg-8' %}
+                                {% else %}
+                                    {% set couleurBadge = 'bg-7' %}
+                                {% endif %}
+
                                 {% if (strLength(item.title) > 20) %}
-                                    <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3 badge bg-7">
+                                    <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3 badge {{ couleurBadge }}">
                                         {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
                                         <span class="expanded mt-0 mb-0">
                                             {{ subString(item.title, 30) }}
                                         </span>
                                     </button>
                                 {% else %}
-                                    <span class="badge bg-7">
+                                    <span class="badge {{ couleurBadge }}">
                                         {{ item.title }}
                                     </span>
                                 {% endif %}
@@ -92,7 +98,7 @@
 
                                         {% if item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE') %}
 
-                                            <p>Séjour validé avant l'ajout de la famille</p>
+                                            <p class="mw-100">Séjour validé avant l'ajout de la famille</p>
                                              
                                         {% else %}
 
