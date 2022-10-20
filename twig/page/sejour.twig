@@ -72,7 +72,11 @@
                                 {% endif %}
 
                                 <span class="text-7">
-                                    <br>{{ item.start | date("d/m/Y") }} &#10140; {{ item.end | date("d/m/Y") }}
+                                    {% if (item.start == item.departReel) %}
+                                        <br>La journée du {{ item.start | date("d/m/Y") }}
+                                    {% else %}
+                                        <br>{{ item.start | date("d/m/Y") }}&nbsp;&#10140;&nbsp;{{ item.departReel | date("d/m/Y") }}
+                                    {% endif %}
                                 </span>
                             </td>
                             {% for famille in item.validation %}
@@ -125,7 +129,7 @@
                                         <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
                                         <p class="mt-05 cadre3">
                                             Séjour : {{ item.title }}<br>
-                                            du <strong>{{ item.start | date("d/m/Y") }}</strong> au <strong>{{ item.end | date("d/m/Y") }}</strong>
+                                            du <strong>{{ item.start | date("d/m/Y") }}</strong> au <strong>{{ item.departReel | date("d/m/Y") }}</strong>
                                             {% if item.commentaire %}
                                             <br> {{ item.commentaire }}
                                             {% endif %}
@@ -263,7 +267,7 @@
                                 {% endif %}
                             </td>
                             <td>{{ item.start | date("d/m/Y") }}</td>
-                            <td>{{ item.end | date("d/m/Y") }}</td>
+                            <td>{{ item.departReel | date("d/m/Y") }}</td>
                             <td>
                                 {% for famille in item.validation %}
                                     {% if (famille.accord == '') and (item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE')) %}
@@ -281,7 +285,7 @@
                                         <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
                                         <p class="mt-05 cadre3">
                                             Séjour : {{ item.title }}<br>
-                                            du <strong>{{ item.start | date("d/m/Y") }}</strong> au <strong>{{ item.end | date("d/m/Y") }}</strong>
+                                            du <strong>{{ item.start | date("d/m/Y") }}</strong> au <strong>{{ item.departReel | date("d/m/Y") }}</strong>
                                             {% if item.commentaire %}
                                             <br> {{ item.commentaire }}
                                             {% endif %}

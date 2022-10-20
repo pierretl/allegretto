@@ -115,12 +115,17 @@ if (
         ];
     }
 
+    //fullcalednbar n'affiche pas le jour "end" sur le calendrier, donc on rajoute 1 jour a la date saisie
+    $endDate = str_replace("-", "/", $depart);
+    $endDate = date("Y-m-d", strtotime($depart. "+1 days"));
+
     //Remplis les donnée du nouveau sejour
     $lengthData = count($data); // compte a partir de 1
     $data[$lengthData]["title"] = $label;
     $data[$lengthData]["dataAjout"] = date("Y-m-d H:i:s");
     $data[$lengthData]["start"] = securite_saisi($arrivee);
-    $data[$lengthData]["end"] = securite_saisi($depart);
+    $data[$lengthData]["end"] = securite_saisi($endDate);
+    $data[$lengthData]["departReel"] = securite_saisi($depart);
     $data[$lengthData]["commentaire"] = securite_saisi($commentaire);
     $data[$lengthData]["backgroundColor"] = $couleurEnAttenteValidation;
     $data[$lengthData]["validation"] = $validations;
