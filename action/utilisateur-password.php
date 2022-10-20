@@ -42,25 +42,28 @@ if (
     $mail !== '' && // champs mail saisi
     $motdepasse !== '' && // champs mot de passe saisi
     array_search($mailChiffre, array_column($logins, 'mail')) !== false && // le login saisi correspond à un utilisateur en data
-    $motdepasse && password_verify($motdepasse, $logins[$mailChiffre]['motDePasse'])  // le mot de passe correspond à l'utilisateur
+    password_verify($mail, $logins[$mailChiffre]['motDePasse'])  // le mot de passe par défaut correspond à l'utilisateur
 ) {
 
     // Succès :
 
-    
-    // Si le mot de passe est celui par défaut, on demande le changement
-    if ( password_verify($_POST['mail'], $logins[$mailChiffre]['motDePasse']) == 1 ){
-        session_destroy();
-        header("location:../index.php?p=reset-password&l=".$logins[$mailChiffre]['mail']);
-        exit;
-    }
+    // recupéré les datas de l'utilisateur
+    $jsonUtilisateur = "../".getenv('DATA_UTILISATEUR');
+    $data = getDataJson($jsonUtilisateur);
+    $keyUtilisateur = array_search($mailChiffre, array_column($logins, 'mail')); // récupére la key de l'utilisateur
+    debug($keyUtilisateur);
+    debug($data);
+
+    // modification du mot de passe
+    $dataUtilisateur[$keyUtilisateur]['motDePasse'] = password_hash($motdepasse, PASSWORD_DEFAULT); // Assigne la valeur au champ adéquate
 
     // Token d'authentification
     $token = hash('sha256',$logins[$mailChiffre]['mail'] . time()); // création du Token 
     setcookie('authToken', $token, time()+60*60*24*365, '/'); // création du coookie, expire dans 365 jours
-    $keyUtilisateur = array_search($mailChiffre, array_column($logins, 'mail')); // récupére la key de l'utilisateur
     $dataUtilisateur[$keyUtilisateur]['authToken'] = $token; // Assigne la valeur au champ adéquate
-    updateJason($jsonUtilisateur, $dataUtilisateur); // met a jour le json
+
+    // met a jour le json
+    updateJason($jsonUtilisateur, $dataUtilisateur);
 
 
     // Ajouter les données de l'utilisateur en session
@@ -78,14 +81,23 @@ if (
         header("location:../index.php?p=calendrier");
     }
     exit;
-    
-    
+
+
+
 } else {
 
-    echo "erreur";
-
     // Erreur :
-    header("location:../index.php?p=connexion&erreur=true&mail=".$mail);
+
+    if ( $motdepasse === '' ){
+        $erreur1 = " &erreur1=1";
+    }
+
+    if ( $mail === '' ){
+        header("location:../index.php");
+        exit;
+    }
+
+    header("location:../index.php?p=reset-password&l=".$mailChiffre.$erreur1);
     exit;
     
 }

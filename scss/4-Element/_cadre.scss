@@ -4,6 +4,7 @@ $cadre-padding: 3rem;
     position: relative;
     border-radius: 50% / 10%;
     padding: $cadre-padding;
+    max-width: 600px;
 }
 
 @include breakpoint('cadre1') {

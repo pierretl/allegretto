@@ -92,6 +92,13 @@ switch ($page) {
         ]);
         break;
 
+    case 'reset-password':
+        echo $twig->render('page/reset-password.twig', [
+            'post' => $_POST,
+            'get' => $_GET
+        ]);
+        break;
+
     default:
         header('HTTP/1.0 404 Not Found');
         echo $twig->render('page/404.twig');
