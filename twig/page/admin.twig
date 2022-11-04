@@ -18,40 +18,41 @@
 
         <div class="col col-dashboard">
 
-            <div class="cadre2 scroll mb-2">
-                <table class="tableau">
-                    <caption>
-                        <h2 class="mt-0 text-left">Les utilisateurs ({{ utilisateurs|length}})</h2>
-                    </caption>
-                    <thead>
-                        <tr>
-                            <td>#</td>
-                            <td>Prénom</td>
-                            <td>Famille</td>
-                            <td>Mail</td>
-                            <td>Supprimer</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in utilisateurs %}
+            <div class="cadre2 mb-2">
+                <h2 class="mt-0 text-left">Les utilisateurs ({{ utilisateurs|length}})</h2>
+                <div class="scroll">
+                    <table class="tableau">
+                        <caption></caption>
+                        <thead>
                             <tr>
-                                <td>{{ loop.index }}</td>
-                                <td>{{ item.prenom }}</td>
-                                <td>{{ item.famille }}</td>
-                                <td>{{ dechiffre(item.mail) }}</td>
-                                <td class="text-center">
-                                    {% if item.groupe != 'admin' %}
-                                        <form action="action/utilisateur-suppression.php?key={{ loop.index }}" method="post">
-                                            <button type="submit" class="btn-2 btn-s">Supprimer</button>
-                                        </form>
-                                    {% else %}
-                                        [{{ item.groupe }}]
-                                    {% endif %}
-                                </td>
+                                <td>#</td>
+                                <td>Prénom</td>
+                                <td>Famille</td>
+                                <td>Mail</td>
+                                <td>Supprimer</td>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {% for item in utilisateurs %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ item.prenom }}</td>
+                                    <td>{{ item.famille }}</td>
+                                    <td>{{ dechiffre(item.mail) }}</td>
+                                    <td class="text-center">
+                                        {% if item.groupe != 'admin' %}
+                                            <form action="action/utilisateur-suppression.php?key={{ loop.index }}" method="post">
+                                                <button type="submit" class="btn-2 btn-s">Supprimer</button>
+                                            </form>
+                                        {% else %}
+                                            [{{ item.groupe }}]
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <form action="action/utilisateur-ajout.php" method="post" class="mb-2">

@@ -13,143 +13,144 @@
 
     <div class="page">
 
-        <div class="cadre2 scroll mb-2">
-            <table class="tableau">
-                <caption>
-                    <h2 class="mt-0 text-left">Les séjours ({{ sejours|length}})</h2>
-                </caption>
-                <thead>
-                    <tr>
-                        <td>Séjour</td>
-                        {% for famille in sejours.0.validation %}
-                            <td>
-                                {{ getLabelFamille(famille.id) }}
-                            </td>
-                        {% endfor %}
-                        {% if session.utilisateur.groupe == 'admin' %}
-                            <td>
-                                Supprimer
-                            </td>
-                        {% endif %}
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in sejours %}
-                        {% set sejourKey = loop.index %}
+        <div class="cadre2 mb-2">
+            <h2 class="mt-0 text-left">Les séjours ({{ sejours|length}})</h2>
+            <div class="scroll">
+                <table class="tableau">
+                    <caption></caption>
+                    <thead>
                         <tr>
-                            <td>
-                                {% if item.backgroundColor == 'var(--couleur8)' %}
-                                    {% set couleurBadge = 'bg-8' %}
-                                {% else %}
-                                    {% set couleurBadge = 'bg-7' %}
-                                {% endif %}
-
-                                {% if (strLength(item.title) > 20) %}
-                                    <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3 badge {{ couleurBadge }}">
-                                        {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
-                                        <span class="expanded mt-0 mb-0">
-                                            {{ subString(item.title, 20) }}
-                                        </span>
-                                    </button>
-                                {% else %}
-                                    <span class="badge {{ couleurBadge }}">
-                                        {{ item.title }}
-                                    </span>
-                                {% endif %}
-
-                                {% if (item.commentaire) %}
-                                    <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-5">
-                                        <svg width="20px" height="20px" class="fill-3 expanded" style="margin-left:.2rem">
-                                            <use xlink:href="#fermer"></use>
-                                        </svg>
-                                        <svg width="20px" height="20px" class="fill-3 expanded-reverse" style="margin-left:.2rem">
-                                            <use xlink:href="#bulle"></use>
-                                        </svg>
-                                    </button>
-                                    <span class="expanded-sibling mt-0 mb-0">
-                                        <br>{{ item.commentaire }}
-                                    </span>
-                                {% endif %}
-
-                                <span class="text-7">
-                                    {% if (item.start == item.departReel) %}
-                                        <br>La journée du {{ item.start | date("d/m/Y") }}
-                                    {% else %}
-                                        <br>{{ item.start | date("d/m/Y") }}&nbsp;&#10140;&nbsp;{{ item.departReel | date("d/m/Y") }}
-                                    {% endif %}
-                                </span>
-                            </td>
-                            {% for famille in item.validation %}
+                            <td>Séjour</td>
+                            {% for famille in sejours.0.validation %}
                                 <td>
-                                    {% if famille.accord %}
-
-                                        {% if item.dataAjout == famille.accord %}
-                                            <span class="text-7" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
-                                                Demandeur
-                                            </span>
-                                        {% else %}
-                                            <div class="df ai-c">
-                                                <svg width="24px" height="24px" class="fill-8">
-                                                    <use xlink:href="#check"></use>
-                                                </svg>
-                                                <span class="text-8" title="le {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
-                                                    Validé
-                                                </span>
-                                            </div>
-                                        {% endif %}
-                                        
-                                    {% else %}
-
-                                        {% if item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE') %}
-
-                                            <p class="mw-100">Séjour validé avant l'ajout de la famille</p>
-                                             
-                                        {% else %}
-
-                                            {% if famille.id == session.utilisateur.famille %}
-                                                <form action="action/sejour-validation.php?key={{ sejourKey }}" method="post">
-                                                    <button type="submit" class="btn-1 btn-s">Je&nbsp;valide&nbsp;!</button>
-                                                </form>  
-                                            {% else %}
-                                                <span class="text-7">En&nbsp;attente...</span>
-                                            {% endif %}
-                                            
-                                        {% endif %}
-
-                                        
-                                            
-                                    {% endif %}
+                                    {{ getLabelFamille(famille.id) }}
                                 </td>
                             {% endfor %}
-                        {% if session.utilisateur.groupe == 'admin' %}
-                            <td>
-                                <button type="button" class="btn-2 btn-s" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
-                                <dialog id="suppressionSejour-{{ sejourKey }}" class="modal">
-                                    <form action="action/sejour-suppression.php?key={{ loop.index }}" method="post">
-                                        <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
-                                        <p class="mt-05 cadre3">
-                                            Séjour : {{ item.title }}<br>
-                                            du <strong>{{ item.start | date("d/m/Y") }}</strong> au <strong>{{ item.departReel | date("d/m/Y") }}</strong>
-                                            {% if item.commentaire %}
-                                            <br> {{ item.commentaire }}
-                                            {% endif %}
-                                        </p>
-                                        <div class="df row">
-                                            <div class="col">
-                                                <button class="btn-1 btn-s" type="button" onclick="fermeModal({{ sejourKey }})">Annuler</button>
-                                            </div>
-                                            <div class="col">
-                                                <button class="btn-1 btn-s" type="submit">Supprimer ce séjour</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </dialog>
-                            </td>
-                        {% endif %}
+                            {% if session.utilisateur.groupe == 'admin' %}
+                                <td>
+                                    Supprimer
+                                </td>
+                            {% endif %}
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for item in sejours %}
+                            {% set sejourKey = loop.index %}
+                            <tr>
+                                <td>
+                                    {% if item.backgroundColor == 'var(--couleur8)' %}
+                                        {% set couleurBadge = 'bg-8' %}
+                                    {% else %}
+                                        {% set couleurBadge = 'bg-7' %}
+                                    {% endif %}
+
+                                    {% if (strLength(item.title) > 20) %}
+                                        <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3 badge {{ couleurBadge }}">
+                                            {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
+                                            <span class="expanded mt-0 mb-0">
+                                                {{ subString(item.title, 20) }}
+                                            </span>
+                                        </button>
+                                    {% else %}
+                                        <span class="badge {{ couleurBadge }}">
+                                            {{ item.title }}
+                                        </span>
+                                    {% endif %}
+
+                                    {% if (item.commentaire) %}
+                                        <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-5">
+                                            <svg width="20px" height="20px" class="fill-3 expanded" style="margin-left:.2rem">
+                                                <use xlink:href="#fermer"></use>
+                                            </svg>
+                                            <svg width="20px" height="20px" class="fill-3 expanded-reverse" style="margin-left:.2rem">
+                                                <use xlink:href="#bulle"></use>
+                                            </svg>
+                                        </button>
+                                        <span class="expanded-sibling mt-0 mb-0">
+                                            <br>{{ item.commentaire }}
+                                        </span>
+                                    {% endif %}
+
+                                    <span class="text-7">
+                                        {% if (item.start == item.departReel) %}
+                                            <br>La journée du {{ item.start | date("d/m/Y") }}
+                                        {% else %}
+                                            <br>{{ item.start | date("d/m/Y") }}&nbsp;&#10140;&nbsp;{{ item.departReel | date("d/m/Y") }}
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                {% for famille in item.validation %}
+                                    <td>
+                                        {% if famille.accord %}
+
+                                            {% if item.dataAjout == famille.accord %}
+                                                <span class="text-7" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
+                                                    Demandeur
+                                                </span>
+                                            {% else %}
+                                                <div class="df ai-c">
+                                                    <svg width="24px" height="24px" class="fill-8">
+                                                        <use xlink:href="#check"></use>
+                                                    </svg>
+                                                    <span class="text-8" title="le {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
+                                                        Validé
+                                                    </span>
+                                                </div>
+                                            {% endif %}
+                                            
+                                        {% else %}
+
+                                            {% if item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE') %}
+
+                                                <p class="mw-100">Séjour validé avant l'ajout de la famille</p>
+                                                
+                                            {% else %}
+
+                                                {% if famille.id == session.utilisateur.famille %}
+                                                    <form action="action/sejour-validation.php?key={{ sejourKey }}" method="post">
+                                                        <button type="submit" class="btn-1 btn-s">Je&nbsp;valide&nbsp;!</button>
+                                                    </form>  
+                                                {% else %}
+                                                    <span class="text-7">En&nbsp;attente...</span>
+                                                {% endif %}
+                                                
+                                            {% endif %}
+
+                                            
+                                                
+                                        {% endif %}
+                                    </td>
+                                {% endfor %}
+                            {% if session.utilisateur.groupe == 'admin' %}
+                                <td>
+                                    <button type="button" class="btn-2 btn-s" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
+                                    <dialog id="suppressionSejour-{{ sejourKey }}" class="modal">
+                                        <form action="action/sejour-suppression.php?key={{ loop.index }}" method="post">
+                                            <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
+                                            <p class="mt-05 cadre3">
+                                                Séjour : {{ item.title }}<br>
+                                                du <strong>{{ item.start | date("d/m/Y") }}</strong> au <strong>{{ item.departReel | date("d/m/Y") }}</strong>
+                                                {% if item.commentaire %}
+                                                <br> {{ item.commentaire }}
+                                                {% endif %}
+                                            </p>
+                                            <div class="df row">
+                                                <div class="col">
+                                                    <button class="btn-1 btn-s" type="button" onclick="fermeModal({{ sejourKey }})">Annuler</button>
+                                                </div>
+                                                <div class="col">
+                                                    <button class="btn-1 btn-s" type="submit">Supprimer ce séjour</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </dialog>
+                                </td>
+                            {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="row df fw-w">
@@ -218,94 +219,97 @@
 
         </div>
 
-        <div class="cadre2 scroll mb-2">
-            <table class="tableau">
-                <caption>
-                    <h2 class="mt-0 text-left">Les séjours <span class="badge bg-8">validés</span> ({{ sejoursValide|length}})</h2>
-                </caption>
-                <thead>
-                    <tr>
-                        <td>Label & commentaire</td>
-                        <td>Arrivée</td>
-                        <td>Départ</td>
-                        <td class="lh-1">Séjour validé<br>avant l'ajout de</td>
-                        {% if session.utilisateur.groupe == 'admin' %}
-                            <td>
-                                Supprimer
-                            </td>
-                        {% endif %}
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in sejoursValide %}
-                        {% set sejourKey = loop.index %}
+        <div class="cadre2 mb-2">
+            <h2 class="mt-0 text-left">Les séjours <span class="badge bg-8">validés</span> ({{ sejoursValide|length}})</h2>
+            <div class="scroll">
+                <table class="tableau">
+                    <caption></caption>
+                    <thead>
                         <tr>
-                            <td>
-                                {% if (strLength(item.title) > 20) %}
-                                    <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-5">
-                                        {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
-                                        <span class="expanded mt-0 mb-0">
-                                            {{ subString(item.title, 20) }}
-                                        </span>
-                                    </button>
-                                {% else %}
-                                    {{ item.title }}
-                                {% endif %}
-
-                                {% if (item.commentaire) %}
-                                    <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-5">
-                                        <svg width="20px" height="20px" class="fill-3 expanded" style="margin-left:.2rem">
-                                            <use xlink:href="#fermer"></use>
-                                        </svg>
-                                        <svg width="20px" height="20px" class="fill-3 expanded-reverse" style="margin-left:.2rem">
-                                            <use xlink:href="#bulle"></use>
-                                        </svg>
-                                    </button>
-                                    <span class="expanded-sibling mt-0 mb-0">
-                                        <br>{{ item.commentaire }}
-                                    </span>
-                                {% endif %}
-                            </td>
-                            <td>{{ item.start | date("d/m/Y") }}</td>
-                            <td>{{ item.departReel | date("d/m/Y") }}</td>
-                            <td>
-                                {% for famille in item.validation %}
-                                    {% if (famille.accord == '') and (item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE')) %}
-                                    {{famille.accord}}
-                                        {{getLabelFamille(famille.id)}}
-                                    {% endif %}
-                                {% endfor %}
-                            </td>
-                            
-                        {% if session.utilisateur.groupe == 'admin' %}
-                            <td>
-                                <button type="button" class="btn-2 btn-s" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
-                                <dialog id="suppressionSejour-{{ sejourKey }}" class="modal">
-                                    <form action="action/sejour-suppression.php?key={{ loop.index }}" method="post">
-                                        <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
-                                        <p class="mt-05 cadre3">
-                                            Séjour : {{ item.title }}<br>
-                                            du <strong>{{ item.start | date("d/m/Y") }}</strong> au <strong>{{ item.departReel | date("d/m/Y") }}</strong>
-                                            {% if item.commentaire %}
-                                            <br> {{ item.commentaire }}
-                                            {% endif %}
-                                        </p>
-                                        <div class="df row">
-                                            <div class="col">
-                                                <button class="btn-1 btn-s" type="button" onclick="fermeModal({{ sejourKey }})">Annuler</button>
-                                            </div>
-                                            <div class="col">
-                                                <button class="btn-1 btn-s" type="submit">Supprimer ce séjour</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </dialog>
-                            </td>
-                        {% endif %}
+                            <td>Label & commentaire</td>
+                            <td>Arrivée</td>
+                            <td>Départ</td>
+                            <td class="lh-1">Séjour validé<br>avant l'ajout de</td>
+                            {% if session.utilisateur.groupe == 'admin' %}
+                                <td>
+                                    Supprimer
+                                </td>
+                            {% endif %}
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for item in sejoursValide %}
+                            {% set sejourKey = loop.index %}
+                            <tr>
+                                <td>
+                                    {% if (strLength(item.title) > 20) %}
+                                        <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-5">
+                                            {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
+                                            <span class="expanded mt-0 mb-0">
+                                                {{ subString(item.title, 20) }}
+                                            </span>
+                                        </button>
+                                    {% else %}
+                                        {{ item.title }}
+                                    {% endif %}
+
+                                    {% if (item.commentaire) %}
+                                        <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-5">
+                                            <svg width="20px" height="20px" class="fill-3 expanded" style="margin-left:.2rem">
+                                                <use xlink:href="#fermer"></use>
+                                            </svg>
+                                            <svg width="20px" height="20px" class="fill-3 expanded-reverse" style="margin-left:.2rem">
+                                                <use xlink:href="#bulle"></use>
+                                            </svg>
+                                        </button>
+                                        <span class="expanded-sibling mt-0 mb-0">
+                                            <br>{{ item.commentaire }}
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ item.start | date("d/m/Y") }}</td>
+                                <td>{{ item.departReel | date("d/m/Y") }}</td>
+                                <td>
+                                    {% for famille in item.validation %}
+                                        {% if (famille.accord == '') and (item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE')) %}
+                                        {{famille.accord}}
+                                            {{getLabelFamille(famille.id)}}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                
+                            {% if session.utilisateur.groupe == 'admin' %}
+                                <td>
+                                    <button type="button" class="btn-2 btn-s" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
+                                    <dialog id="suppressionSejour-{{ sejourKey }}" class="modal">
+                                        <form action="action/sejour-suppression.php?key={{ loop.index }}" method="post">
+                                            <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
+                                            <p class="mt-05 cadre3">
+                                                Séjour : {{ item.title }}<br>
+                                                du <strong>{{ item.start | date("d/m/Y") }}</strong> au <strong>{{ item.departReel | date("d/m/Y") }}</strong>
+                                                {% if item.commentaire %}
+                                                <br> {{ item.commentaire }}
+                                                {% endif %}
+                                            </p>
+                                            <div class="df row">
+                                                <div class="col">
+                                                    <button class="btn-1 btn-s" type="button" onclick="fermeModal({{ sejourKey }})">Annuler</button>
+                                                </div>
+                                                <div class="col">
+                                                    <button class="btn-1 btn-s" type="submit">Supprimer ce séjour</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </dialog>
+                                </td>
+                            {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+             
+
         </div>
 
     </div>
