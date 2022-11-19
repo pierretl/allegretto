@@ -2,7 +2,7 @@
 
 session_start();
 
-include 'function/securite-action-admin.php';
+include 'function/securite-action.php';
 include 'function/DotEnv.php';
 include 'function/json-manipulation.php';
 include 'function/dev.php';

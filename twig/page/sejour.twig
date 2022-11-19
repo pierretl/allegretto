@@ -28,7 +28,7 @@
                             {% endfor %}
                             {% if session.utilisateur.groupe == 'admin' %}
                                 <td>
-                                    Supprimer
+                                    Admin
                                 </td>
                             {% endif %}
                         </tr>
@@ -84,9 +84,20 @@
                                         {% if famille.accord %}
 
                                             {% if item.dataAjout == famille.accord %}
-                                                <span class="text-7" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
-                                                    Demandeur
-                                                </span>
+                                                {% if famille.id == session.utilisateur.famille %}
+
+                                                    {% if "now" | date('U') < item.start | date('U') %}
+                                                        {% include 'include/supprimer-sejour.twig' %}
+                                                    {% else %}
+                                                        <span class="text-7" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
+                                                            Demandeur
+                                                        </span>
+                                                    {% endif %}
+                                                {% else %}
+                                                    <span class="text-7" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
+                                                        Demandeur
+                                                    </span>
+                                                {% endif %}
                                             {% else %}
                                                 <div class="df ai-c">
                                                     <svg width="24px" height="24px" class="fill-8">
@@ -123,27 +134,7 @@
                                 {% endfor %}
                             {% if session.utilisateur.groupe == 'admin' %}
                                 <td>
-                                    <button type="button" class="btn-2 btn-s" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
-                                    <dialog id="suppressionSejour-{{ sejourKey }}" class="modal">
-                                        <form action="action/sejour-suppression.php?key={{ loop.index }}" method="post">
-                                            <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
-                                            <p class="mt-05 cadre3">
-                                                Séjour : {{ item.title }}<br>
-                                                du <strong>{{ item.start | date("d/m/Y") }}</strong> au <strong>{{ item.departReel | date("d/m/Y") }}</strong>
-                                                {% if item.commentaire %}
-                                                <br> {{ item.commentaire }}
-                                                {% endif %}
-                                            </p>
-                                            <div class="df row">
-                                                <div class="col">
-                                                    <button class="btn-1 btn-s" type="button" onclick="fermeModal({{ sejourKey }})">Annuler</button>
-                                                </div>
-                                                <div class="col">
-                                                    <button class="btn-1 btn-s" type="submit">Supprimer ce séjour</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </dialog>
+                                    {% include 'include/supprimer-sejour.twig' %}
                                 </td>
                             {% endif %}
                             </tr>
