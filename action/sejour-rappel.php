@@ -52,21 +52,16 @@ $listeSejourAttente = sejoursAttente(getDataJson($jsonSejour));
 
 //Email - début ---------------------------------------------------------------
 
-//récupére la liste des utilisateurs
+//Liste de tous les utilisateurs
 $listeUtilisateur = getDataJson($jsonUtilisateur);
+
 $listeDeDiffusion = [];
 $index = 0;
 for ($i=0; $i < count($listeUtilisateur); $i++){
-    // on ne prend pas en compte l'auteur de la demande dans la liste de diffusion
-    // et les membres de sa famille
-    if ( 
-        $listeUtilisateur[$i]['mail'] != $mailUtilisateur &&
-        $listeUtilisateur[$i]['famille'] != $familleUtilisateur
-    ) {
-        $listeDeDiffusion[$index] = dechiffre($listeUtilisateur[$i]['mail']);
-        $index ++;
-    }
+    $listeDeDiffusion[$index] = dechiffre($listeUtilisateur[$i]['mail']);
+    $index ++;
 }
+
 $destinataire = implode(",", $listeDeDiffusion);
 
 //sujet
@@ -96,11 +91,17 @@ $enTete[] = 'From: '.getenv('APP_NAME').' <'. getenv('APP_MAIL') .'>';
 //Email - fin -------------------------------------------------------------------
 
 //envoie du mail
-$destinataire = getenv('APP_TEST-MAIL'); // envoie du mail a moi uniquement
+//$destinataire = getenv('APP_TEST-MAIL'); // pour test : envoie du mail a moi uniquement
 if( !mail($destinataire, $sujet, $bodyEmail, implode("\r\n", $enTete)) ) {
     //erreur envoie du mail
-    $erreurMail = "&erreurMail=1";
+    $rappelReturn = "ko";
+
+    //Redirige sur la page
+    header("location:../index.php?p=sejour&rappel=".$rappelReturn);
+    exit;
 }
+
+$rappelReturn = "ok";
 
 //Met a jour le json
 $data = getDataJson($jsonDernierRappel);
@@ -108,4 +109,4 @@ $data[0]["date"] = $dateLast;
 updateJason($jsonDernierRappel, $data);
 
 //Redirige sur la page
-header("location:../index.php");
+header("location:../index.php?p=sejour&rappel=".$rappelReturn);
