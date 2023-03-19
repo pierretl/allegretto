@@ -178,18 +178,11 @@ if (
     $enTete[] = 'From: '.getenv('APP_NAME').' <'. getenv('APP_MAIL') .'>';
 
     //envoie du mail
-    if ($groupeUtilisateur == "admin"){  //////////////////////////////////////////////////// le temps de temps en prod
-
-        //$destinataire = getenv('APP_TEST-MAIL');
-
-        if( !mail($destinataire, $sujet, $bodyEmail, implode("\r\n", $enTete)) ) {
-            
-            //erreur envoie du mail
-            $erreurMail = "&erreurMail=1";
-
-        }
+    //$destinataire = getenv('APP_TEST-MAIL'); // envoie du mail a moi uniquement
+    if( !mail($destinataire, $sujet, $bodyEmail, implode("\r\n", $enTete)) ) {
+        //erreur envoie du mail
+        $erreurMail = "&erreurMail=1";
     }
-    // Email - fin : ----------------------------------------------------------------------------------------------
 
     //met a jour le json
     updateJason($jsonSejour, $data);
