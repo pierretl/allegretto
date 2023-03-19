@@ -13,8 +13,20 @@
 
     <div class="page">
 
-        <div class="cadre2 mb-2">
-            <h2 class="mt-0 text-left">Les séjours ({{ sejours|length}})</h2>
+        <div class="cadre2 mb-1">
+            
+            {% if session.utilisateur.groupe == 'admin' %}
+                <div class="df ai-c jc-sb mb-1">
+                    <h2 class="m-0 text-left">Les séjours <span class="badge bg-7">en attente</span> ({{ sejours|length}})</h2>
+                    <form action="action/sejour-rappel.php" method="post">
+                        <span class="text-7">Dernier rappel : {{ dernierRappel.0.date }}</span>
+                        <button class="btn-2 btn-s" type="submit">Envoyer un mail de rappel</button>
+                    </form>
+                </div>
+            {% else %}
+                <h2 class="mt-0 text-left">Les séjours <span class="badge bg-7">en attente</span> ({{ sejours|length}})</h2>
+            {% endif %}
+
             <div class="scroll">
                 <table class="tableau">
                     <caption></caption>
@@ -34,27 +46,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for item in sejours %}
+                        {% for item in sejoursAttente %}
                             {% set sejourKey = loop.index %}
                             <tr>
                                 <td>
-                                    {% if item.backgroundColor == 'var(--couleur8)' %}
-                                        {% set couleurBadge = 'bg-8' %}
-                                    {% else %}
-                                        {% set couleurBadge = 'bg-7' %}
-                                    {% endif %}
-
                                     {% if (strLength(item.title) > 20) %}
-                                        <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3 badge {{ couleurBadge }}">
+                                        <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3">
                                             {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
                                             <span class="expanded mt-0 mb-0">
                                                 {{ subString(item.title, 20) }}
                                             </span>
                                         </button>
                                     {% else %}
-                                        <span class="badge {{ couleurBadge }}">
-                                            {{ item.title }}
-                                        </span>
+                                        {{ item.title }}
                                     {% endif %}
 
                                     {% if (item.commentaire) %}

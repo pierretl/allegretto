@@ -81,7 +81,9 @@ switch ($page) {
             'dataCalendrier' => getenv('DATA_SEJOUR'),
             'familles' => getDataJson(getenv('DATA_FAMILLE')),
             'sejours' => getDataJson(getenv('DATA_SEJOUR')),
-            'sejoursValide' => sejoursValide(getDataJson(getenv('DATA_SEJOUR')))
+            'sejoursValide' => sejoursValide(getDataJson(getenv('DATA_SEJOUR'))),
+            'sejoursAttente' => sejoursAttente(getDataJson(getenv('DATA_SEJOUR'))),
+            'dernierRappel' => getDataJson(getenv('DATA_RAPPEL')),
         ]);
         break;
 
