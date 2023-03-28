@@ -57,7 +57,13 @@
                     <tbody>
                         {% for item in sejours %}
                             {% set sejourKey = loop.index %}
-                            <tr>
+
+                            {% if item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE') %}
+                                {% set masque = ' style=display:none' %}
+                            {% else %}
+                                {% set masque = '' %}
+                            {% endif %}
+                            <tr{{masque}}>
                                 <td>
                                     {% if (strLength(item.title) > 20) %}
                                         <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3">
