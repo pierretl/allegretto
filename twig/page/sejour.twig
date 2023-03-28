@@ -17,7 +17,7 @@
             
             {% if session.utilisateur.groupe == 'admin' %}
                 <div class="df ai-c jc-sb mb-1">
-                    <h2 class="m-0 text-left">Les séjours <span class="badge bg-7">en attente</span> ({{ sejours|length}})</h2>
+                    <h2 class="m-0 text-left">Les séjours <span class="badge bg-7">en attente</span> ({{ sejoursAttente|length}})</h2>
                     <div>
                         <span class="text-7">Dernier rappel : {{ dernierRappel.0.date }}</span><br>
                         {% if get.rappel != "ok" %}
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             {% else %}
-                <h2 class="mt-0 text-left">Les séjours <span class="badge bg-7">en attente</span> ({{ sejours|length}})</h2>
+                <h2 class="mt-0 text-left">Les séjours <span class="badge bg-7">en attente</span> ({{ sejoursAttente|length}})</h2>               
             {% endif %}
 
             <div class="scroll">
@@ -55,7 +55,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for item in sejoursAttente %}
+                        {% for item in sejours %}
                             {% set sejourKey = loop.index %}
                             <tr>
                                 <td>
