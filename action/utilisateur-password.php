@@ -51,8 +51,8 @@ if (
     $jsonUtilisateur = "../".getenv('DATA_UTILISATEUR');
     $data = getDataJson($jsonUtilisateur);
     $keyUtilisateur = array_search($mailChiffre, array_column($logins, 'mail')); // récupére la key de l'utilisateur
-    debug($keyUtilisateur);
-    debug($data);
+    //debug($keyUtilisateur);
+    //debug($data);
 
     // modification du mot de passe
     $dataUtilisateur[$keyUtilisateur]['motDePasse'] = password_hash($motdepasse, PASSWORD_DEFAULT); // Assigne la valeur au champ adéquate
