@@ -1,0 +1,110 @@
+{% extends 'template/page.twig' %}
+
+{% block title %}Document{% endblock %}
+
+{% block head %}
+   
+{% endblock %}
+
+
+{% block content %}
+    <div class="page">
+        <div class="cadre2 mb-1">
+            <details open>
+                <summary><h2 class="dib">Zéphirette</h2> <em class="text-7">Climatisation</em></summary>
+                <div class="mt-1">   
+                    <h3 class="mb-0">Notice</h3> 
+                    <p class="mt-05">Dans le placard aux papiers et jeux</p>     
+
+                    <div>
+                        <h3 class="dib mb-0">Emplacement</h3> des boitier de commande
+                    </div>
+                    <ul class="mt-05 mb-2">
+                        <li><strong>Sejour&nbsp;:</strong> Au dessus des interrupteurs</li>
+                        <li><strong>Dortoir&nbsp;:</strong> Entre les deux portes du placard-penderie</li>
+                    </ul>
+
+                    <h3 class="mb-0">Utilisation</h3>
+                    <div class="df fw-w mt-05 mb-1">
+                        <div class="bg-9 bl-6 p-1">
+                            <p class="mt-0 mb-0 lh-15">
+                                <strong class="text-6">Attention au dortoir</strong>
+                                <br>
+                                Ouvrir et bloquer en position ouverte les portes du coffre jardin<br>
+                                dans lequel se trouve le moteur et la prise d’air
+                            </p>
+                            <p>En attendant qu’on mette un grillage à la place des portes !</p>
+                        </div>
+                        <img src="style/img/coffre-jardin.jpg" alt="">
+                    </div>
+
+
+                    <div class="row df fw-w">
+                        <div class="col col-dashboard">
+                            <div class="df ai-c mb-1">
+                                <svg width="150px" height="150px" style="--consigne:red">
+                                    <use xlink:href="#boitier"></use>
+                                </svg>
+                                <p class="p-1">Température de  consigne</p>
+                            </div>
+                        </div>
+                        <div class="col col-dashboard">
+                            <div class="df ai-c mb-1">
+                                <svg width="150px" height="150px" style="--temperature:red">
+                                    <use xlink:href="#boitier"></use>
+                                </svg>
+                                <p class="p-1">Changement de température</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row df fw-w">
+                        <div class="col col-dashboard">
+                            <div class="df ai-c mb-1">
+                                <svg width="150px" height="150px" style="--interupteur:red">
+                                    <use xlink:href="#boitier"></use>
+                                </svg>
+                                <p class="p-1">Intérupteur marche/arrêt</p>
+                            </div>
+                        </div>
+                        <div class="col col-dashboard">
+                            <div class="df ai-c">
+                                <svg width="150px" height="150px" style="--fonction:red">
+                                    <use xlink:href="#boitier"></use>
+                                </svg>
+                                <div class="p-1">
+                                    <p class="mt-0 mb-0">Selecteur de fonction&nbsp;</p>
+                                    <ul class="mt-05 mb-0">
+                                        <li>Chauffage</li>
+                                        <li>Climatisation</li>
+                                        <li>Ventilation</li>
+                                        <li>Déshumidifier l’air</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </details>
+
+
+        </div>
+    </div>
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none" aria-hidden="true">
+        <symbol id="boitier" viewBox="0 0 212.97 220.86">
+            <rect fill="var(--boitier, #AEADAD)" y="5.89" width="212.97" height="214.97" rx="6.59" ry="6.59"/>
+            <circle fill="var(--ecran, #000000)" cx="107.01" cy="114.1" r="96.96"/>
+            <rect fill="var(--cadran, #023799)" x="57.12" y="80.13" width="99.08" height="66.17" rx="2.5" ry="2.5"/>
+            <path fill="var(--consigne, #FFF)" d="M105.91,133.24v3.68h-17.64c-.02-.92,.1-1.81,.38-2.66,.45-1.4,1.17-2.79,2.16-4.15s2.42-2.94,4.29-4.73c2.9-2.78,4.86-4.98,5.88-6.61s1.53-3.16,1.53-4.61c0-1.52-.46-2.8-1.39-3.84s-2.14-1.56-3.63-1.56c-1.58,0-2.84,.55-3.79,1.66s-1.43,2.64-1.44,4.6l-3.37-.4c.23-2.94,1.1-5.18,2.6-6.72s3.53-2.31,6.06-2.31,4.59,.83,6.08,2.49,2.24,3.72,2.24,6.17c0,1.25-.22,2.48-.66,3.68s-1.16,2.48-2.18,3.81-2.7,3.16-5.05,5.49c-1.97,1.93-3.23,3.24-3.79,3.93s-1.02,1.38-1.38,2.08h13.09Z"/>
+            <path fill="var(--consigne, #FFF)" d="M109.42,121.54c0-3.69,.32-6.66,.97-8.91s1.61-3.98,2.9-5.2,2.89-1.83,4.83-1.83c1.43,0,2.69,.34,3.77,1.01s1.97,1.65,2.68,2.92,1.26,2.82,1.66,4.64,.6,4.28,.6,7.38c0,3.66-.32,6.62-.97,8.87s-1.61,3.99-2.89,5.21-2.9,1.84-4.85,1.84c-2.57,0-4.59-1.08-6.06-3.24-1.76-2.6-2.64-6.83-2.64-12.69Zm3.37,0c0,5.12,.51,8.53,1.54,10.23s2.29,2.54,3.8,2.54,2.77-.85,3.8-2.55,1.54-5.11,1.54-10.22-.51-8.55-1.54-10.24-2.3-2.53-3.83-2.53-2.71,.74-3.61,2.23c-1.13,1.9-1.69,5.41-1.69,10.54Z"/>
+            <path fill="var(--interupteur, #AEADAD)" d="M174.6,0h25.01c.47,0,.84,.38,.84,.84V5.34h-26.7V.84c0-.47,.38-.84,.84-.84Z"/>
+            <polygon fill="var(--temperature, #FFF)" points="73.01 176.8 69.9 176.8 66.79 176.8 66.79 180.11 69.9 180.11 73.01 180.11 76.12 180.11 76.12 176.8 73.01 176.8"/>
+            <path fill="var(--fonction, #FFF)" d="M105.65,187.89c-5.2,0-9.44-4.23-9.44-9.43s4.23-9.43,9.44-9.43,9.43,4.23,9.43,9.43-4.23,9.43-9.43,9.43Zm0-15.87c-3.55,0-6.44,2.89-6.44,6.43s2.89,6.43,6.44,6.43,6.43-2.89,6.43-6.43-2.89-6.43-6.43-6.43Z"/>
+            <path fill="var(--temperature, #FFF)" d="M134.12,176.77h4.03v-4.05h3.4v4.05h4.05v3.4h-4.05v4.03h-3.4v-4.03h-4.03v-3.4Z"/>
+        </symbol>
+    </svg>
+{% endblock %}

@@ -101,6 +101,12 @@ switch ($page) {
         ]);
         break;
 
+    case 'document':
+        echo $twig->render('page/document.twig', [
+            'session' => $_SESSION
+        ]);
+        break;
+
     default:
         header('HTTP/1.0 404 Not Found');
         echo $twig->render('page/404.twig');
