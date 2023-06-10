@@ -18,6 +18,10 @@ $keyUtilisateur = $_SESSION['utilisateur']['key']; // récupére la key de l'uti
 $dataUtilisateur[$keyUtilisateur]['authToken'] = ''; // supprime le token
 updateJason($jsonUtilisateur, $dataUtilisateur); // met a jour le json
 
+// supprime le cookie
+setcookie("authToken", "", time()-3600, '/');
+unset ($_COOKIE['authToken']);
+
 // Supprime la session
 session_destroy(); 
 

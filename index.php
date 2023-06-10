@@ -88,6 +88,7 @@ switch ($page) {
         break;
 
     case 'calendrier':
+        authentifier();
         echo $twig->render('page/calendrier.twig', [
             'session' => $_SESSION,
             'dataCalendrier' => getenv('DATA_SEJOUR')
@@ -102,6 +103,7 @@ switch ($page) {
         break;
 
     case 'document':
+        authentifier();
         echo $twig->render('page/document.twig', [
             'session' => $_SESSION
         ]);
