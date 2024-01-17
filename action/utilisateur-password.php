@@ -38,9 +38,16 @@ $motdepasse = isset($_POST['motdepasse']) ? $_POST['motdepasse'] : '';
 //chiffre l'email 
 $mailChiffre = chiffre($mail);
 
+// Erreur mot de passe identique à l'email
+$erreurMotDePasseIdentiqueEmail = false;
+if ($mail == $motdepasse) {
+    $erreurMotDePasseIdentiqueEmail = true;
+}
+
 if (
     $mail !== '' && // champs mail saisi
     $motdepasse !== '' && // champs mot de passe saisi
+    $erreurMotDePasseIdentiqueEmail === false && // Erreur mot de passe identique à l'email
     array_search($mailChiffre, array_column($logins, 'mail')) !== false && // le login saisi correspond à un utilisateur en data
     password_verify($mail, $logins[$mailChiffre]['motDePasse'])  // le mot de passe par défaut correspond à l'utilisateur
 ) {
@@ -89,7 +96,11 @@ if (
     // Erreur :
 
     if ( $motdepasse === '' ){
-        $erreur1 = " &erreur1=1";
+        $erreur1 = "&erreur1=1";
+    }
+
+    if ($erreurMotDePasseIdentiqueEmail === true) {
+        $erreur2 = "&erreur2=1";
     }
 
     if ( $mail === '' ){
@@ -97,7 +108,7 @@ if (
         exit;
     }
 
-    header("location:../index.php?p=reset-password&l=".$mailChiffre.$erreur1);
+    header("location:../index.php?p=reset-password&l=".$mailChiffre.$erreur1.$erreur2);
     exit;
     
 }
