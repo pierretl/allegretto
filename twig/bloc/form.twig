@@ -11,10 +11,6 @@
         document.addEventListener("DOMContentLoaded", () => {
             showInCalendar('{{ get.ajout }}');
         });
-
-        function showInCalendar(dateDebut) {
-            calendar.gotoDate(dateDebut);
-        }
     </script>
 {% else %}
     <form action="action/sejour-ajout.php" method="post">

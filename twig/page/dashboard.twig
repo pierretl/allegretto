@@ -29,6 +29,12 @@
                 {{ include('bloc/form.twig') }}
             </div>
         </div>
-    </main>    
+    </main>
+
+    <script>
+        function showInCalendar(dateDebut) {
+            calendar.gotoDate(dateDebut);
+        }
+    </script>  
 
 {% endblock %}
