@@ -19,6 +19,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
-    "sass": "^1.47.0"
+    "sass": "^1.64.2",
+    "sass-rem": "^4.0.0"
   }
 }
