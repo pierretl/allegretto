@@ -1,0 +1,26 @@
+{% import 'macro.twig' as macro %}
+
+
+
+
+<h2 class="titre">Les séjours à venir</h2>
+
+<p>a faireeeeeeeeeeeeee : bouton de filtre "mes séjour", "leur séjour", "tous"</p>
+
+<ul class="df fd-c gap-cadre-s">
+    
+    {% for item in sejours %}
+
+            {% if item.departReel|date("U") > "now"|date("U") %}
+
+                {{ macro.sejourItemList({
+                    titre:          item.title,
+                    dateStart:      item.start,
+                    departReel:     item.departReel,
+                    commentaire:    item.commentaire
+                }) }}
+
+            {% endif %}
+
+    {% endfor %}
+</ul>

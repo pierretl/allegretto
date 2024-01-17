@@ -221,6 +221,28 @@
 {% endmacro %}
 
 
+# Séjour
+# Params : titre, dateStart, departReel, commentaire
+{% macro sejourItemList(params) %}
+    <li class="cadre-s gap-cadre-s bg-neutral-100 df ai-e jc-sb">
+        <div>
+            <h3 class="sous-titre">
+                <span class="font-400">Du</span>
+                {{ params.dateStart | date("d/m/Y") }}
+                <span class="font-400">au</span>
+                {{ params.departReel | date("d/m/Y") }}
+            </h3>
+            <p class="exergue">{{ params.titre }}</p>
+            {% if params.commentaire %}
+                <p calss="clair">
+                    {{ params.commentaire }}
+                </p>
+            {% endif %}
+        </div>
+    </li>
+{% endmacro %}
+
+
 # Boitier de commande Climatisation
 {% macro boitierCommandeClim(exergue, commentaire) %}
 <div class="test cadre-s gap-cadre-s bg-neutral-100 df ai-c">
@@ -230,6 +252,3 @@
     <div>{{commentaire}}</div>
 </div>
 {% endmacro %}
-
-
-

@@ -9,3 +9,8 @@ button:hover {
 .btn-1 svg {
     fill:  var(--btn-color);
 }
+
+.btn-2 {
+    @include bouton;
+    @include bouton--claire;
+}
