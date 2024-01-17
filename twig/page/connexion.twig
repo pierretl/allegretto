@@ -1,22 +1,35 @@
-{% extends 'template/boite.twig' %}
+{% extends 'template/modal.twig' %}
 
 {% import 'macro.twig' as macro %}
 
 {% block title %}Connexion{% endblock %}
-{% block titleH1 %}Connectez-vous à votre compte{% endblock %}
+{% block titleH1 %}Connexion{% endblock %}
+{% block sousTitre %}Accéder à Allegretto{% endblock %}
 
 {% block content %}
 
-    <form action="action/connexion.php" method="post">
+    <form action="action/connexion.php" method="post" class="df fd-c gap-form">
 
         {% if get.erreur %}
-            <p class="text-6 mb-1">Nom d'utilisateur ou mot de passe incorrect.</p>
+            <p class="label-erreur">Nom d'utilisateur ou mot de passe incorrect.</p>
             {% set inputErreur = true %}
         {% endif %}
 
-        {{ macro.input('mail', 'Adresse mail', get.mail, '', inputErreur, 'email') }}
+        {{ macro.input2({
+            id:             'mail',
+            label:          'Adresse e-mail',
+            valeur:         get.mail,
+            inputErreur:    get.erreur
+        }) }}
 
-        {{ macro.input('motdepasse', 'Mot de passe', '', '', inputErreur, 'password', {voirMotDePasse: true}) }}
+        {{ macro.input2({
+            id:             'motdepasse',
+            label:          'Mot de passe',
+            type:           'password',
+            voirMotDePasse: true,
+            valeur:         get.mail,
+            inputErreur:    get.erreur
+        }) }}
 
         <script>
             function voirMotDePasse(e) {
@@ -31,11 +44,7 @@
             }
         </script>
 
-        <button name="Submit" type="submit" class="btn-1 mt-1">Connexion</button>
+        <button name="Submit" type="submit" class="btn-1">Connexion</button>
     </form>
-
-    <p class="text-center">
-        <a href="index.php?p=calendrier">Voir le calendrier</a>
-    </div>
    
 {% endblock %}

@@ -1,14 +1,18 @@
-{% extends 'template/boite.twig' %}
+{% extends 'template/modal.twig' %}
 
 {% block title %}Page non trouvée{% endblock %}
 {% block titleH1 %}404{% endblock %}
+{% block sousTitre %}Page non trouvée{% endblock %}
 
 {% block content %}
-    <strong>Désolé</strong>
-    <p>
-        On dirait que vous êtes perdu, il n'y a rien ici...
-    </p>
-    <div class="text-center">
-        <a href="index.php?p=connexion">Connectez-vous à votre compte</a>
+    <div class="df fd-c ai-c gap-cadre-s">
+        <p>
+            <strong class="sous-titre">Désolé</strong>
+            <br>
+            On dirait que vous êtes perdu, il n'y a rien ici...
+        </p>
+        <div>
+            <a class="btn-1" href="index.php?p=connexion">Page de Connexion</a>
+        </div>
     </div>
 {% endblock %}

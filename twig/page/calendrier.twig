@@ -1,4 +1,4 @@
-{% extends 'template/page.twig' %}
+{% extends 'template/defaut.twig' %}
 
 {% block title %}Calendrier{% endblock %}
 
@@ -8,7 +8,9 @@
 
 
 {% block content %}
-    <div class="page df fg-1 fc-surcharge">
-        <div id="calendar"></div>
-    </div>
+    <main id="contenu" class="grid-main" tabindex="-1" role="main">
+        <div class="grid-main__full cadre-m bg-neutral-000 fc-surcharge df-h100--small-only">
+            <div id="calendar"></div>
+        </div>
+    </main>
 {% endblock %}

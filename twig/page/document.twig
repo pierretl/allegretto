@@ -1,88 +1,67 @@
-{% extends 'template/page.twig' %}
+{% extends 'template/defaut.twig' %}
+
+{% import 'macro.twig' as macro %}
 
 {% block title %}Document{% endblock %}
 
-{% block head %}
-   
-{% endblock %}
-
 
 {% block content %}
-    <div class="page">
-        <div class="cadre2 mb-1">
+
+    <main id="contenu" class="grid-main" tabindex="-1" role="main">
+        <div class="grid-main__full cadre-m bg-neutral-000">
+
             <details open>
-                <summary><h2 class="dib">Zéphirette</h2> <em class="text-7">Climatisation</em></summary>
-                <div class="mt-1">   
-                    <h3 class="mb-0">Notice</h3> 
-                    <p class="mt-05">Dans le placard aux papiers et jeux</p>     
+
+                <summary><h2 class="dib titre">Zéphirette</h2> <em>Climatisation</em></summary>
+
+                <div class="df fd-c gap-cadre-m">  
+                    <br><br> 
+                    <div>
+                        <h3 class="sous-titre">Notice</h3>
+                        <div  class="cadre-s bg-neutral-100">
+                            <p>Dans le placard aux papiers et jeux</p>
+                        </div>  
+                    </div>
 
                     <div>
-                        <h3 class="dib mb-0">Emplacement</h3> des boitier de commande
-                    </div>
-                    <ul class="mt-05 mb-2">
-                        <li><strong>Sejour&nbsp;:</strong> Au dessus des interrupteurs</li>
-                        <li><strong>Dortoir&nbsp;:</strong> Entre les deux portes du placard-penderie</li>
-                    </ul>
+                        <h3 class="sous-titre">Emplacement des boitier de commande</h3> 
+                        <ul class="cadre-s bg-neutral-100">
+                            <li><strong class="exergue">- Sejour&nbsp;:</strong> Au dessus des interrupteurs</li>
+                            <li><strong class="exergue">- Dortoir&nbsp;:</strong> Entre les deux portes du placard-penderie</li>
+                        </ul>
+                    </div>    
 
-                    <h3 class="mb-0">Utilisation</h3>
-                    <div class="df fw-w mt-05 mb-1">
-                        <div class="bg-9 bl-6 p-1">
-                            <p class="mt-0 mb-0 lh-15">
-                                <strong class="text-6">Attention au dortoir</strong>
-                                <br>
+                    <div>
+                        <h3 class="sous-titre">Attention au dortoir</h3>
+                        <div class="cadre-s bg-secondary df ai-c fw-w gap-cadre-s">
+                            <p class="fg-1">
+                            <span class="exergue">
                                 Ouvrir et bloquer en position ouverte les portes du coffre jardin<br>
                                 dans lequel se trouve le moteur et la prise d’air
+                            </span><br><br>
+                                En attendant qu’on mette un grillage à la place des portes !
                             </p>
-                            <p>En attendant qu’on mette un grillage à la place des portes !</p>
-                        </div>
-                        <img src="style/img/coffre-jardin.jpg" alt="">
-                    </div>
-
-
-                    <div class="row df fw-w">
-                        <div class="col col-dashboard">
-                            <div class="df ai-c mb-1">
-                                <svg width="150px" height="150px" style="--consigne:red">
-                                    <use xlink:href="#boitier"></use>
-                                </svg>
-                                <p class="p-1">Température de  consigne</p>
-                            </div>
-                        </div>
-                        <div class="col col-dashboard">
-                            <div class="df ai-c mb-1">
-                                <svg width="150px" height="150px" style="--temperature:red">
-                                    <use xlink:href="#boitier"></use>
-                                </svg>
-                                <p class="p-1">Changement de température</p>
-                            </div>
+                            <img src="style/img/coffre-jardin.jpg" alt="">
                         </div>
                     </div>
 
+                    <div>
+                        <h3 class="sous-titre">Boitier de commande</h3>
+                        <div class="df fw-w gap-cadre-s">   
+                            {{ macro.boitierCommandeClim('--consigne:red', 'Température de  consigne') }}
+                            {{ macro.boitierCommandeClim('--temperature:red', 'Changement de température') }}
+                            {{ macro.boitierCommandeClim('--interupteur:red', 'Intérupteur marche/arrêt') }}
 
-                    <div class="row df fw-w">
-                        <div class="col col-dashboard">
-                            <div class="df ai-c mb-1">
-                                <svg width="150px" height="150px" style="--interupteur:red">
-                                    <use xlink:href="#boitier"></use>
-                                </svg>
-                                <p class="p-1">Intérupteur marche/arrêt</p>
-                            </div>
-                        </div>
-                        <div class="col col-dashboard">
-                            <div class="df ai-c">
-                                <svg width="150px" height="150px" style="--fonction:red">
-                                    <use xlink:href="#boitier"></use>
-                                </svg>
-                                <div class="p-1">
-                                    <p class="mt-0 mb-0">Selecteur de fonction&nbsp;</p>
-                                    <ul class="mt-05 mb-0">
-                                        <li>Chauffage</li>
-                                        <li>Climatisation</li>
-                                        <li>Ventilation</li>
-                                        <li>Déshumidifier l’air</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            {% set fonctionCommentaire %}
+                                <p class="exergue">Selecteur de fonction&nbsp;:</p>
+                                <ul>
+                                    <li>- Chauffage</li>
+                                    <li>- Climatisation</li>
+                                    <li>- Ventilation</li>
+                                    <li>- Déshumidifier l’air</li>
+                                </ul>
+                            {% endset %}
+                            {{ macro.boitierCommandeClim('--fonction:red', fonctionCommentaire) }}
                         </div>
                     </div>
 
@@ -90,10 +69,9 @@
                 </div>
             </details>
 
-
         </div>
-    </div>
-    
+    </main>
+
     <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none" aria-hidden="true">
         <symbol id="boitier" viewBox="0 0 212.97 220.86">
             <rect fill="var(--boitier, #AEADAD)" y="5.89" width="212.97" height="214.97" rx="6.59" ry="6.59"/>
