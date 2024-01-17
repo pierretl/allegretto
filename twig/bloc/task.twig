@@ -25,14 +25,16 @@
             {% for item in sejours %}
                 {% for famille in item.validation %}
                     {% if famille.id == session.utilisateur.famille and famille.accord == '' %}
+                         {% if item.departReel|date("U") > "now"|date("U") %}
 
-                        {{ macro.sejourAValider2({
-                            titre:          item.title,
-                            dateStart:      item.start,
-                            departReel:     item.departReel,
-                            commentaire:    item.commentaire
-                        }) }}
+                            {{ macro.sejourAValider2({
+                                titre:          item.title,
+                                dateStart:      item.start,
+                                departReel:     item.departReel,
+                                commentaire:    item.commentaire
+                            }) }}
 
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             {% endfor %}
