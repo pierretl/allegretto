@@ -72,11 +72,7 @@ if (
 
 
     // redirige sur la page adéquate
-    if ( $logins[$mailChiffre]['groupe'] == 'admin' ) {
-        header("location:../index.php?p=sejour");
-    } else {
-        header("location:../index.php?p=calendrier");
-    }
+    header("location:../index.php?p=dashboard");
     exit;
     
     
