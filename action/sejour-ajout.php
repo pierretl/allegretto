@@ -40,6 +40,7 @@ $jsonSejour = "../".getenv('DATA_SEJOUR');
 $jsonUtilisateur = "../".getenv('DATA_UTILISATEUR');
 
 //recupère les valeurs saisis
+$pageRedirection = isset($_POST['page']) ? $_POST['page'] : 'sejour';
 $label = $_POST['label'];
 $arrivee = $_POST['arrivee'];
 $depart = $_POST['depart'];
@@ -90,7 +91,7 @@ if (
 
     $input4 = "&commentaire=".securite_saisi($commentaire);
 
-    header("location:../index.php?p=sejour".$input1."".$input2."".$input3."".$input4."".$dateInverse);
+    header("location:../index.php?p=".$pageRedirection."".$input1."".$input2."".$input3."".$input4."".$dateInverse);
 
 } else {
 
@@ -188,7 +189,7 @@ if (
     updateJason($jsonSejour, $data);
 
     //retourne sur la page
-    header("location:../index.php?p=sejour".$erreurMail);
+    header("location:../index.php?p=".$pageRedirection."".$erreurMail."&ajout=".$arrivee);
 
 }
 
