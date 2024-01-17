@@ -1,0 +1,29 @@
+{% import 'macro.twig' as macro %}
+
+{% set demandeEnAttente = true %}
+
+{% if demandeEnAttente %}
+    <h2 class="titre">En attente...</h2>
+
+    Bouton valider a faireeeeeeeeeeeeeeeeeeeeeeeeeee
+
+    <ul class="df fd-c gap-cadre-s">
+        {% for item in sejours %}
+            {% for famille in item.validation %}
+                {% if famille.id == session.utilisateur.famille and famille.accord == '' %}
+
+                    {{ macro.sejourAValider2({
+                        titre:          item.title,
+                        dateStart:      item.start,
+                        departReel:     item.departReel,
+                        commentaire:    item.commentaire
+                    }) }}
+
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <h2 class="titre">Aucune demande de congé en attente</h2>
+{% endif %}

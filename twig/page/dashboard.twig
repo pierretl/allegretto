@@ -1,0 +1,36 @@
+{% extends 'template/defaut.twig' %}
+
+{% import 'macro.twig' as macro %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block head %}
+    {{ include('include/calendrier-config.twig') }}
+{% endblock %}
+
+
+{% block content %}
+
+    <main id="contenu" class="grid-main" tabindex="-1" role="main">
+        <div class="grid-main__task df fd-c gap-cadre-m">
+            <div class="cadre-m bg-secondary df fd-c gap-cadre-m">
+                {{ include('bloc/task.twig') }}
+            </div>
+            <div class="cadre-m bg-neutral-000 df fd-c gap-cadre-m">
+                {{ include('bloc/mes-sejour.twig') }}
+            </div>
+        </div>
+        <div class="grid-main__full text-center hide-for-medium">
+            <a href="#addSejour" class="btn-2">Ajouter un séjour</a>
+        </div>
+        <div class="grid-main__calendar cadre-m bg-neutral-000">
+            {{ include('bloc/calendar.twig') }}
+        </div>
+        <div class="grid-main__form">
+            <div class="cadre-m bg-neutral-000">
+                {{ include('bloc/form.twig') }}
+            </div>
+        </div>
+    </main>    
+
+{% endblock %}
