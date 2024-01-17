@@ -14,15 +14,16 @@ include 'function/json-manipulation.php';
 $jsonSejour = "../".getenv('DATA_SEJOUR');
 
 //recupère les valeurs nécessaire
+$pageRedirection = isset($_POST['page']) ? $_POST['page'] : 'sejour';
 $key = $_GET['key'] - 1; // -1 car la loop de twig commence à 1
 $famille = $_SESSION['utilisateur']['famille'];
 
 //liste des séjours
 $data = getDataJson($jsonSejour);
 
-// Vérifie si la key existe dans les datas
+// Vérifie si la key existe pas dans les datas
 if (!isset($data[$key])) {
-    header("location:../index.php?p=sejour");
+    header("location:../index.php?p=".$pageRedirection);
     exit;
 } 
 
@@ -47,6 +48,6 @@ if ($all_accord === true) {
 //met a jour le json
 updateJason($jsonSejour, $data);
 
-header("location:../index.php?p=sejour");
+header("location:../index.php?p=".$pageRedirection);
 
 exit;

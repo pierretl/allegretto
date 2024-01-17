@@ -192,7 +192,7 @@
 
 
 # Séjour à valider
-# Params : titre, dateStart, departReel, commentaire
+# Params : titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation
 {% macro sejourAValider2(params) %}
     <li class="cadre-s gap-cadre-s bg-neutral-000 df fd-cX fw-w">
         
@@ -218,7 +218,11 @@
         </div>
         <div class="df fd-c ai-e fg-1 gap-cadre-s">
             <button class="btn-3" onclick="showInCalendar('{{ params.dateStart }}')">Voir dans le calendrier</button>
-            <button class="btn-1 v_petit">Valider le séjour</button>
+
+            <form action="action/sejour-validation.php?key={{ params.sejourKey }}" method="post">
+                <input type="hidden" name="page" value="{{ params.pageRetourValidation }}">
+                <button type="submit" class="btn-1 v_petit">Je valide&nbsp;!</button>
+            </form> 
         </div>
         
     </li>
