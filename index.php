@@ -109,6 +109,21 @@ switch ($page) {
         ]);
         break;
 
+    case 'dashboard':
+        authentifier();
+        echo $twig->render('page/dashboard.twig' , [
+            'session' => $_SESSION,
+            'post' => $_POST,
+            'get' => $_GET,
+            'dataCalendrier' => getenv('DATA_SEJOUR'),
+            'familles' => getDataJson(getenv('DATA_FAMILLE')),
+            'sejours' => getDataJson(getenv('DATA_SEJOUR')),
+            'sejoursValide' => sejoursValide(getDataJson(getenv('DATA_SEJOUR'))),
+            'sejoursAttente' => sejoursAttente(getDataJson(getenv('DATA_SEJOUR'))),
+            'dernierRappel' => getDataJson(getenv('DATA_RAPPEL')),
+        ]);
+        break;
+
     default:
         header('HTTP/1.0 404 Not Found');
         echo $twig->render('page/404.twig');
