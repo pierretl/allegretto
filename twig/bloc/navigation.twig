@@ -1,0 +1,53 @@
+{% import 'macro.twig' as macro %}
+
+<header class="nav bg-neutral-000" role="banner">
+    <nav role="navigation">
+        <ul class="grid-nav js-nav">
+
+            <li class="grid-nav__burger">
+                <button type="button" class="nav__link js-burger-btn" title="menu" aria-expanded="false">
+                    {{ macro.itemIconText('plus','Menu') }}
+                </button>
+            </li>
+
+            <li class="grid-nav__logo">
+                <a href="{{ getenv('APP_URL') }}" title="{{ getenv('APP_NAME') }} Accueil">
+                    <img src="style/img/logo.svg" alt="{{ getenv('APP_NAME') }}" class="nav__logo">
+                </a>
+            </li>
+
+            {% if session.utilisateur.mail %}
+                <li class="grid-nav__deconnexion">
+                    <a href="action/deconnexion.php" class="nav__link" title="Déconnexion">
+                        {{ macro.itemIconText('eteindre','Déconnexion') }}
+                    </a>
+                </li>
+            {% endif %}
+
+            <li class="grid-nav__menu js-burger-menu hide-for-small-only">
+                <ul class="df gap-nav">
+                    {% if session.utilisateur.mail %}
+                        <li>
+                            {{ macro.headerNav('dashboard',pageActive('dashboard'), 'Accueil - new') }}
+                        </li>
+                        <li>
+                            {{ macro.headerNav('sejour',pageActive('sejour'), 'Séjour') }}
+                        </li>
+                        <li>
+                            {{ macro.headerNav('calendrier',pageActive('calendrier'), 'Calendrier') }}
+                        </li>
+                        <li>
+                            {{ macro.headerNav('document',pageActive('document'), 'Documents') }}
+                        </li>
+                        {% if session.utilisateur.groupe == 'admin' %}
+                            <li>
+                                {{ macro.headerNav('admin',pageActive('admin'), 'Administration') }}
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </li>
+
+        </ul>
+    </nav>
+</header>
