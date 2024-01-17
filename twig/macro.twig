@@ -191,10 +191,28 @@
 {% endmacro %}
 
 
-# Séjour à valider
-# Params : titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation
-{% macro sejourAValider2(params) %}
-    <li class="cadre-s gap-cadre-s bg-neutral-000 df fd-cX fw-w">
+# Boitier de commande Climatisation
+{% macro boitierCommandeClim(exergue, commentaire) %}
+<div class="test cadre-s gap-cadre-s bg-neutral-100 df ai-c">
+    <svg width="150px" height="150px" style="{{exergue}}">
+        <use xlink:href="#boitier"></use>
+    </svg>
+    <div>{{commentaire}}</div>
+</div>
+{% endmacro %}
+
+
+# Cadre d'un séjour
+# Params : type, titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation
+{% macro cadreSejour(params) %}
+
+    {% if params.type == 'aValider' %}
+        {% set classBgColor = 'bg-neutral-000' %}
+    {% else %}
+        {% set classBgColor = 'bg-neutral-100' %}
+    {% endif %}
+
+    <li class="cadre-s gap-cadre-s ~ {{ classBgColor }} ~ df fd-cX fw-w">
         
         <div class="df fd-c gap-cadre-s">
             <p>
@@ -219,45 +237,13 @@
         <div class="df fd-c ai-e fg-1 gap-cadre-s">
             <button class="btn-3" onclick="showInCalendar('{{ params.dateStart }}')">Voir dans le calendrier</button>
 
-            <form action="action/sejour-validation.php?key={{ params.sejourKey }}" method="post">
-                <input type="hidden" name="page" value="{{ params.pageRetourValidation }}">
-                <button type="submit" class="btn-1 v_petit">Je valide&nbsp;!</button>
-            </form> 
+            {% if params.type == 'aValider' %}
+                <form action="action/sejour-validation.php?key={{ params.sejourKey }}" method="post">
+                    <input type="hidden" name="page" value="{{ params.pageRetourValidation }}">
+                    <button type="submit" class="btn-1 v_petit">Je valide&nbsp;!</button>
+                </form>
+            {% endif %}
         </div>
         
     </li>
-{% endmacro %}
-
-
-# Séjour
-# Params : titre, dateStart, departReel, commentaire
-{% macro sejourItemList(params) %}
-    <li class="cadre-s gap-cadre-s bg-neutral-100 df ai-e jc-sb">
-        <div>
-            <h3 class="sous-titre">
-                <span class="font-400">Du</span>
-                {{ params.dateStart | date("d/m/Y") }}
-                <span class="font-400">au</span>
-                {{ params.departReel | date("d/m/Y") }}
-            </h3>
-            <p class="exergue">{{ params.titre }}</p>
-            {% if params.commentaire %}
-                <p calss="clair">
-                    {{ params.commentaire }}
-                </p>
-            {% endif %}
-            <button class="btn-3" onclick="showInCalendar('{{ params.dateStart }}')">Voir dans le calendrier</button>
-        </div>
-    </li>
-{% endmacro %}
-
-
-# Boitier de commande Climatisation
-{% macro boitierCommandeClim(exergue, commentaire) %}
-<div class="test cadre-s gap-cadre-s bg-neutral-100 df ai-c">
-    <svg width="150px" height="150px" style="{{exergue}}">
-        <use xlink:href="#boitier"></use>
-    </svg>
-    <div>{{commentaire}}</div>
-</div>
 {% endmacro %}

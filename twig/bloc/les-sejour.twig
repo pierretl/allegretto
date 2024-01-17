@@ -8,7 +8,7 @@
 <div>
     <p>a faireeeeeeeeeeeeee : </p>
     <p>Lors de l'ajout du séjour ajouter au data: la famille et le mail de l'utilisateur</p>
-    <p>puis ajouter des bouton de filtre "mes séjour", "leur séjour", "tous"</p>
+    <p>puis ajouter des bouton de filtre du type "mes séjour", "leur séjour", "tous"</p>
 </div>
 
 <ul class="df fd-c gap-cadre-s">
@@ -17,11 +17,11 @@
 
             {% if item.departReel|date("U") > "now"|date("U") %}
 
-                {{ macro.sejourItemList({
-                    titre:          item.title,
-                    dateStart:      item.start,
-                    departReel:     item.departReel,
-                    commentaire:    item.commentaire
+                {{ macro.cadreSejour({
+                    titre:                  item.title,
+                    dateStart:              item.start,
+                    departReel:             item.departReel,
+                    commentaire:            item.commentaire
                 }) }}
 
             {% endif %}
