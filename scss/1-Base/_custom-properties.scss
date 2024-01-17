@@ -8,8 +8,9 @@ $breakpoint-xl:   #{rem.convert(1600px)};
     --app-main-gap: 1rem;
 
     --cadre-m-marge: 1rem;
-    --cadre-m-radius: #{rem.convert(12px)};
     --cadre-s-marge: calc(var(--cadre-m-marge) / 2);
+
+    --cadre-m-radius: #{rem.convert(12px)};
     --cadre-s-radius: calc(var(--cadre-m-radius) - (var(--cadre-m-marge) / 2));
 
     --ombre: 0 8px 16px #0000001a,0 0 1px #0000000d;
@@ -34,6 +35,10 @@ $breakpoint-xl:   #{rem.convert(1600px)};
     --btn-1-bg:     var(--neutre-000);
     --btn-1-color:  var(--neutre-900);
     --btn-1-weight: 600;
+
+    --btn-2-bg:     var(--neutre-000);
+    --btn-2-color:  var(--primary-400);
+    --btn-2-border: var(--form-input-border);
 
     --btn-min-height:       3rem;
     --btn-padding-block:    calc(var(--cadre-s-marge) / 2);

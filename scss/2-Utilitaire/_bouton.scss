@@ -14,3 +14,15 @@ button:hover {
     @include bouton;
     @include bouton--claire;
 }
+
+.btn-3 {
+    background-color: transparent;
+    border: 0 none;
+    text-decoration: underline;
+    color: var(--btn-2-color);
+
+}
+
+[class*="btn-"].v_petit {
+    --btn-min-height: auto;
+}

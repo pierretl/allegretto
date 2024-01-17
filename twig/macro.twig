@@ -194,8 +194,9 @@
 # Séjour à valider
 # Params : titre, dateStart, departReel, commentaire
 {% macro sejourAValider2(params) %}
-    <li class="cadre-s gap-cadre-s bg-neutral-000 df ai-e jc-sb">
-        <div>
+    <li class="cadre-s gap-cadre-s bg-neutral-000 df fd-cX fw-w">
+        
+        <div class="df fd-c gap-cadre-s">
             <p>
                 {% if (params.dateStart == params.departReel) %}
                     La journée du <strong class="exergue">{{ params.dateStart | date("d/m/Y") }}</strong>
@@ -206,17 +207,20 @@
                     <strong class="exergue">{{ params.departReel | date("d/m/Y") }}</strong>
                 {% endif %}
             </p>
-            <h3 class="exergue">{{ params.titre }}</h3>
-            {% if params.commentaire %}
-                <p style="color:var(--neutre-500)">
-                    {{ params.commentaire }}
-                </p>
-            {% endif %}
+            <div>
+                <h3 class="exergue">{{ params.titre }}</h3>
+                {% if params.commentaire %}
+                    <p class="clair">
+                        {{ params.commentaire }}
+                    </p>
+                {% endif %}
+            </div>
         </div>
-        <div class="df fd-c gap-cadre-s">
+        <div class="df fd-c ai-e fg-1 gap-cadre-s">
+            <button class="btn-3">Voir dans le calendrier</button>
             <button class="btn-1 v_petit">Valider le séjour</button>
-            <button class="btn-2 v_petit">Voir dans le calendrier</button>
         </div>
+        
     </li>
 {% endmacro %}
 
