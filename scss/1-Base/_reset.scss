@@ -1,75 +1,54 @@
-*, ::before, ::after {
+*, 
+::before, 
+::after {
     box-sizing: border-box;
 }
 
 ::selection {
-    background: var(--couleur3);
-    color: var(--couleur1);
+    background: var(--selection-bg);
+    color:      var(--selection-color);
 }
 
-@font-face{
-    font-family:Valera;
-    font-style:normal;
-    font-weight:400;
-    src:url(font/valera-round.woff2) format("woff2");
-    font-display:swap;
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+html {
+    hanging-punctuation: first last;
+    color-scheme: light;// dark;
 }
 
 body {
-    @include font;
-    min-height: 100vh;
-    margin:0;
-    background-color: var(--couleur3);
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--couleur4);
+    min-height: 100svh;
 }
 
-body.v_centre {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--couleur1);
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
 }
 
-a {
-    padding: 0 $padding-lien;
-    border-radius: 9999rem;
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
 }
 
 p {
-    line-height: 1;
+    max-width: 75ch;
+    text-wrap: pretty;
 }
 
-ul {
-    padding-left: 1rem;
-}
-
-ul.reset {
-    list-style: none;
-    padding-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-h1 { font-size: 1.5rem}
-h2 { font-size: 1.2rem}
-h3 { font-size: 1rem}
-
-@include breakpoint('large') {
-    h1 { font-size: 2rem}
-    h2 { font-size: 1.5rem}
-    h3 { font-size: 1.2rem}
-}
-
-svg {
-    fill: var(--couleur1);
-}
-
-[title]:hover {
-    cursor: help;
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 1rem;
+    }
 }

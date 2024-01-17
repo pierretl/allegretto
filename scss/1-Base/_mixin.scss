@@ -1,58 +1,63 @@
-@mixin font {
-    font-family: Valera, Arial, sans-serif;
-}
-
-@mixin form {
-    @include font;
-    width: 100%;
-    min-height: $form-min-height;
-    border-radius: $form-radius;
-    font-size: 1rem;
-    border: 2px solid transparent;
-    padding: 0 $form-padding;
-}
-
 @mixin breakpoint($nom) {
 
     @if $nom == 'smallOnly' {
-        @media screen and (max-width: $page-small) {
-            @content
-        }
-    }
-
-    @else if $nom == 'mediumOnly' {
-        @media screen and (min-width: $page-small) and (max-width: $page-medium) { 
-            @content
-        }
-    }
-
-    @else if $nom == 'menu' {
-        @media screen and (max-width: $page-menu) {
+        @media screen and (max-width: calc(#{$breakpoint-m} - 1px)) {
             @content
         }
     }
 
     @else if $nom == 'medium' {
-        @media screen and (min-width: $page-small) {
-            @content
-        }
-    }
-
-    @else if $nom == 'dashboard' {
-        @media screen and (max-width: $page-dashboard) {
+        @media screen and (min-width: #{$breakpoint-m}) {
             @content
         }
     }
 
     @else if $nom == 'large' {
-        @media screen and (min-width: $page-large) {
+        @media screen and (min-width: #{$breakpoint-l}) {
             @content
         }
     }
 
-    @else if $nom == 'cadre1' {
-        @media screen and (min-width: $page-cadre1) {
+    @else if $nom == 'larger' {
+        @media screen and (min-width: #{$breakpoint-xl}) {
             @content
         }
     }
+
+}
+
+
+@mixin form {
+    width: 100%;
+    min-height: var(--form-min-height);
+    border-radius: var(--form-radius);
+    font-size: 1rem;
+    border: 2px solid transparent;
+    padding: 0 var(--form-padding);
+}
+
+
+@mixin titre {
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+@mixin bouton {
+    min-height: var(--btn-min-height);
+    padding: var(--btn-padding-block) var(--btn-padding-inline);
+
+    border-radius: var(--cadre-s-radius);
+    border: 1px solid var(--btn-border);
+    text-decoration: none;
+
+    background-color: var(--btn-bg);
+    color: var(--btn-color);
+}
+
+@mixin bouton--claire {
+    --btn-padding-inline:   1rem;
+    --btn-bg:               var(--neutre-000);
+    --btn-border:           var(--form-input-border);
+    --btn-color:            var(--primary-400);
 }

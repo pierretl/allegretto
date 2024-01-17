@@ -1,0 +1,10 @@
+.app-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-modal__content {
+    width: 100%;
+    max-width: 70ch;
+}

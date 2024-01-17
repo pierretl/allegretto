@@ -1,0 +1,45 @@
+$largeur-max: 75rem;
+$largeur-marge: 1rem;
+$largeur-gouttiere: 1rem;
+$largeur-content: calc($largeur-max - (2 * $largeur-marge) - (2 * $largeur-gouttiere));
+
+$colonne-gauche: calc(25 / 100 * $largeur-content);
+$colonne-centre: calc(50 / 100 * $largeur-content);
+$colonne-droite: calc(25 / 100 * $largeur-content);
+
+
+.main-grid {
+
+    @include breakpoint('larger'){
+        display: grid;
+        grid-template-columns: 
+            minmax($largeur-marge, 1fr)
+            $colonne-gauche
+            $largeur-gouttiere
+            $colonne-centre
+            $largeur-gouttiere
+            $colonne-droite
+            minmax($largeur-marge, 1fr);
+    }
+
+    
+}
+
+
+
+
+.main-grid__header {
+    grid-column: 2/7;
+}
+
+.main-grid__task {
+    grid-column: 2/3;
+}
+
+.main-grid__calendar {
+    grid-column: 4/5;
+}
+
+.main-grid__form {
+    grid-column: 6/7;
+}

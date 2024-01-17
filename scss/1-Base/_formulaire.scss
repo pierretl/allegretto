@@ -1,10 +1,70 @@
+label {
+    margin-bottom: .4rem;
+    color: var(--neutre-900);
+    font-weight: 600;
+}
+
+.label-description {
+    color: var(--neutre-700);
+    font-weight: 400;
+}
+
+input {
+    width: 100%;
+    min-height: var(--form-min-height);
+    border-radius: var(--cadre-s-radius);
+    font-size: 1rem;
+    border: 1px solid var(--form-input-border);
+    padding: 0 var(--form-padding); 
+    color: var(--neutre-700);
+}
+
+[type="submit"] {
+    margin-top: .8rem;;
+}
+
+
+
+.input-group input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group .btn-1 {
+    @include bouton--claire;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-width: 0;
+}
+
+.input-group--erreur {
+    --form-input-border: var(--red-700);
+}
+.label-erreur {
+    color: var(--red-700);
+    font-weight: 400;
+}
+
+
 fieldset {
+    border: 0;
+}
+
+fieldset legend {
+    float: left;
+    width: 100%;
+    padding: 0;
+}
+
+/*
+fieldset:not(.unset) {
     margin: 0;
     background-color: var(--couleur3);
-    box-shadow: $ombre;
+    box-shadow: var(--ombre);
     border: 0 none;
-    border-radius: $form-radius;
-    padding: $padding-cadre;
+    border-radius: var(--form-radius);
+    //padding: $padding-cadre;
 }
 
 fieldset legend {
@@ -14,6 +74,10 @@ fieldset legend {
 }
 
 
+fieldset.unset {
+    border: 0 none;
+    padding: 0;
+}
 
 label {
     display: block;
@@ -33,7 +97,7 @@ select {
     @include form;
     border-color: var(--couleur5);
     background-color: var(--couleur3);
-    padding: 0.7rem $form-padding;
+    padding: 0.7rem var(--form-padding);
     appearance: none;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%2855, 70, 73%29'></polygon></svg>");
     background-position: center right 20px,top right 50px;
@@ -51,3 +115,4 @@ input.v_erreur,
 select.v_erreur {
     border-color: var(--couleur6);
 }
+*/

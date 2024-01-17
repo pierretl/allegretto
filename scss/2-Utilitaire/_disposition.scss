@@ -12,31 +12,13 @@
 .fg-1 { flex-grow: 1}
 .fw-w { flex-wrap: wrap}
 
-.row {
-    margin-right: -$padding-cadre;
-    margin-left: -$padding-cadre;
-}
+.h-100 { height: 100%}
+.mh-100 {min-height: 100%}
+//.pr {   position: relative}
 
-.col {
-    padding-right: $padding-cadre;
-    padding-left: $padding-cadre;
-}
-
-.col-dashboard {
-    flex: 0 0 auto;
-    width: 50%;
-
-    @include breakpoint('dashboard'){
-        flex: 0 0 auto;
-        width: 100%;
+@include breakpoint('smallOnly') {
+    .df-h100--small-only {
+        display: flex;
+        height: 100%;
     }
-}
-
-.scroll {
-    max-width: 100vw;
-    overflow: auto;
-}
-
-.pr {
-    position: relative;
 }

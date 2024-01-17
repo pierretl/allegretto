@@ -1,0 +1,11 @@
+button:hover {
+    cursor: pointer;
+}
+
+.btn-1 {
+    @include bouton;
+}
+
+.btn-1 svg {
+    fill:  var(--btn-color);
+}

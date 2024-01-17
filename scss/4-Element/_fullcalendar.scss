@@ -1,98 +1,50 @@
-:root {
-    --fc-event-text-color: var(--couleur3); 
-    --fc-event-border-color: transparent;
-}
 .fc-surcharge {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
 
-.fc-surcharge .fc .fc-toolbar.fc-header-toolbar {
-    margin-bottom: 1rem;
-}
-
-.fc-surcharge .fc {
-    flex-grow: 1;
-}
-
-.fc-surcharge .fc-header-toolbar.fc-toolbar {
-    @include breakpoint('smallOnly') {
-        flex-direction: column;
+    .fc {
+        flex-grow: 1;
     }
-}
 
-.fc-surcharge .fc .fc-toolbar-title {
-    font-size: 1.3rem;
-    font-weight: 400;
-}
+    // bouton
+    .fc .fc-button-primary {
+        @include bouton;
+        @include bouton--claire;
+    }
 
-.fc-surcharge .fc-toolbar button {
-    width: auto;
-    min-height: 0;
-}
+    // année précédente, title, année suivante
+    .fc .fc-toolbar .fc-toolbar-chunk:nth-child(2) {
+        display: flex;
+        align-items: stretch;
+    }
+    .fc .fc-toolbar .fc-toolbar-chunk:nth-child(2) > * {
+        margin:0;
+    }
+    .fc .fc-toolbar .fc-toolbar-chunk:nth-child(2) > :first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .fc .fc-toolbar .fc-toolbar-chunk:nth-child(2) .fc-toolbar-title {
+        display: flex;
+        align-items: center;
+        padding-inline: var(--btn-padding-inline);
+        border-top: 1px solid var(--form-input-border);
+        border-bottom: 1px solid var(--form-input-border);
+        font-size: 1rem;
+        color: var(--primary-400);
+    
+    }
+    .fc .fc-toolbar .fc-toolbar-chunk:nth-child(2) > :last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
 
-.fc-surcharge .fc-daygrid {
-    background-color: var(--couleur3);
-}
+    //numéro de la semaine
+    .fc .fc-daygrid-week-number {
+        background-color: var(--neutre-100);
+        color: var(--neutre-700);
+        font-size: .8rem;
 
-.fc-surcharge .fc .fc-daygrid-week-number {
-    background-color: var(--couleur2);
-    color: var(--couleur4);
-}
-
-.fc-surcharge .fc .fc-button-primary {
-    border:0 none;
-}
-
-.fc-surcharge .fc .fc-button-primary:hover {
-    background-color: var(--couleur1);
-}
-
-.fc-surcharge .fc .fc-button-primary:focus,
-.fc-surcharge .fc .fc-button-primary:focus-visible {
-    box-shadow: unset; 
-    border: 0 none;
-}
-
-.fc-surcharge .fc .fc-button-primary + .fc-button-primary {
-    border-left:2px solid var(--couleur2)
-}
-
-.fc-surcharge .fc .fc-button-primary:disabled {
-    background-color: var(--couleur3);
-    color: var(--couleur1);
-    border: 1px solid var(--couleur1);
-    opacity: 1;
-}
-
-.fc-surcharge .fc-daygrid {
-    padding: $padding-cadre;
-    box-shadow: $ombre;
-    border-radius: $form-radius;
-    background-color: var(--couleur3);
-}
-
-.fc-surcharge .fc-theme-standard .fc-scrollgrid {
-    border-width: 0;
-}
-
-.fc-surcharge .fc-theme-standard td,
-.fc-surcharge .fc-theme-standard th {
-    border-color: var(--couleur5);
-    border-width: 2px;
-}
-
-.fc-surcharge .fc-scrollgrid-section-header th {
-    border-bottom: 0 none;
-}
-.fc-surcharge .fc-scrollgrid-section-header th:first-child {
-    border-top-right-radius: $form-radius;
-    border-top-left-radius: $form-radius;
-}
-
-.fc-surcharge table tbody tr:last-child td:first-child {
-    border-bottom-left-radius: $form-radius;
-}
-.fc-surcharge table tbody tr:last-child td:last-child {
-    border-bottom-right-radius: $form-radius;
+        @include breakpoint(smallOnly) {
+            display: none;
+        }
+    }
 }

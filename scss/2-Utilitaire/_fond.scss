@@ -1,53 +1,14 @@
-.bg-1 {
-    background-color: var(--couleur1);
-    color: var(--couleur3);
+.bg-neutral-000 {
+    background-color: var(--neutre-000);
+}
+.bg-neutral-100 {
+    background-color: var(--neutre-100);
 }
 
-.bg-2 {
-    background-color: var(--couleur2);
+.bg-primary {
+    background-color: var(--primary-400);
 }
 
-//////////////////////////////////////////////////////
-
-.bg-3 {
-    background-color: var(--couleur3);
-    color: var(--couleur4);
-}
-
-.bg-3 a {
-    color: var(--couleur1);
-}
-
-.bg-3 .btn-1,
-.bg-3 .fc .fc-button-primary {
-    background-color: var(--couleur1);
-    color: var(--couleur3);
-}
-
-.bg-3 .btn-2 {
-    background-color: var(--couleur3);
-    color: var(--couleur1);
-    border-color: var(--couleur1);
-}
-
-.bg-3 *::selection {
-    background: var(--couleur1);
-    color: var(--couleur3);
-}
-
-//////////////////////////////////////////////////////
-
-.bg-7 {
-    background-color: var(--couleur7);
-    color: var(--couleur3);
-}
-
-.bg-8 {
-    background-color: var(--couleur8);
-    color: var(--couleur3);
-}
-
-.bg-9 {
-    background-color: var(--couleur9);
-    color: var(--couleur4);
+.bg-secondary {
+    background-color: var(--secondary-400);
 }

@@ -1,0 +1,40 @@
+:root {
+    @include breakpoint('larger') { 
+        --app-main-gap: 2rem;
+    }
+}
+
+.grid-main {
+    flex-grow: 1;
+    gap: var(--app-main-gap);
+
+    @include breakpoint('medium') {
+        display: grid;
+        grid-template-columns: 
+            [full-start task-start form-start]
+            3.8fr
+            [task-end calendar-start]
+            6.1fr
+            [calendar-end form-end full-end]
+        ;
+    }
+
+    @include breakpoint('larger') {
+        grid-template-columns: 
+            [full-start task-start]
+            1fr
+            [task-end calendar-start]
+            2fr
+            [calendar-end form-start]
+            1fr
+            [form-end full-end]
+        ;
+    }
+}
+
+@include breakpoint('medium') {
+    .grid-main__full {      grid-column: full}
+    .grid-main__task {      grid-column: task}
+    .grid-main__calendar {  grid-column: calendar}
+    .grid-main__form {      grid-column: form}
+}

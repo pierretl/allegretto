@@ -1,0 +1,14 @@
+.hide {
+    display: none !important;
+}
+@include breakpoint('smallOnly') {
+    .hide-for-small-only {
+        display: none;
+    }
+}
+
+@include breakpoint('medium') {
+    .hide-for-medium {
+        display: none;
+    } 
+}

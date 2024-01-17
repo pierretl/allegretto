@@ -1,25 +1,5 @@
-$form-radius:               1rem;
-$form-min-height:           3rem;
-$form-min-height--small:    1.87rem;
-$form-padding:              1rem;
-
-$ombre: 0 8px 16px #0000001a,0 0 1px #0000000d;
-
-$padding-cadre: 1rem;
-$padding-lien: 1rem;
-
-$page-large:        68.75rem;   // 1100px
-$page-dashboard:    56.25rem;   // 900px
-$page-menu:         43.75rem;   // 700px
-$page-medium:       40.875rem;  // 654px
-$page-small:        27.5rem;    // 440px
-$page-cadre1:       33.75rem;   // 540px
-
-
-
+@import 'custom-properties';
 @import 'mixin';
-@import 'couleur';
-@import 'formulaire';
+
 @import 'reset';
-@import 'modal';
-@import 'tableau';
+@import 'formulaire';

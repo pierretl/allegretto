@@ -13,6 +13,7 @@ button:hover {
 .btn-4
  {
     @include form;
+    display: inline-block;
 }
 
 .btn-3 {

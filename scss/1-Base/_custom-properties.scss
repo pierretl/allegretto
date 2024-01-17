@@ -1,0 +1,50 @@
+$breakpoint-m:   #{rem.convert(768px)};
+$breakpoint-l:    #{rem.convert(1200px)};
+$breakpoint-xl:   #{rem.convert(1600px)};
+
+:root {
+    --app-main-max: #{$breakpoint-l};
+    --app-main-marge: 1rem;
+    --app-main-gap: 1rem;
+
+    --cadre-m-marge: 1rem;
+    --cadre-m-radius: #{rem.convert(12px)};
+    --cadre-s-marge: calc(var(--cadre-m-marge) / 2);
+    --cadre-s-radius: calc(var(--cadre-m-radius) - (var(--cadre-m-marge) / 2));
+
+    --ombre: 0 8px 16px #0000001a,0 0 1px #0000000d;
+
+    --primary-400:#1d63ff;
+    --secondary-400:#ffce32;
+
+    --neutre-900: #152342;
+    --neutre-700: #475569;
+    --neutre-500: #677588;
+    --neutre-300: #d4dde9;
+    --neutre-100: #f2f5f6;
+    --neutre-000: #ffffff;
+
+    --red-700: hsl(360,89%,41%);
+
+    --selection-bg:     var(--primary-400);
+    --selection-color:  var(--neutre-000);
+
+    --outline-width: #{rem.convert(2px)};
+
+    --btn-1-bg:     var(--neutre-000);
+    --btn-1-color:  var(--neutre-900);
+    --btn-1-weight: 600;
+
+    --btn-min-height:       3rem;
+    --btn-padding-block:    calc(var(--cadre-s-marge) / 2);
+    --btn-padding-inline:   var(--cadre-s-marge);
+    --btn-bg:               var(--primary-400);
+    --btn-border:           transparent;
+    --btn-color:            var(--neutre-000);
+
+    --form-min-height:          var(--btn-min-height);
+    --form-min-height--small:   1.87rem;
+    --form-padding:             1rem;
+    --form-input-border:        var(--neutre-300); 
+
+}

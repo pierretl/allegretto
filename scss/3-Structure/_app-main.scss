@@ -1,0 +1,12 @@
+.app-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @include breakpoint('larger') {    
+        --app-main-max: #{$breakpoint-xl};
+        margin-inline:  var(--app-main-marge);
+    }
+    
+    max-width:      var(--app-main-max);
+}

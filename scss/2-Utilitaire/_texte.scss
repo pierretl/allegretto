@@ -1,13 +1,45 @@
-.text-center {  text-align:center}
-.text-left {    text-align:left}
-.text-right {   text-align:right}
+:focus-visible {
+    outline-offset: #{rem.convert(2px)};
+    outline-color: var(--primary-400);
+    outline-width: var(--outline-width);
+    border-radius: 0;
+}
 
+body {
+    font-family: system-ui, sans-serif;
+    background-color: var(--neutre-100);
+    color: var(--neutre-700);
+}
 
-.text-1 { color: var(--couleur1)}
-.text-6 { color: var(--couleur6)}
-.text-7 { color: var(--couleur7)}
-.text-8 { color: var(--couleur8)}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.exergue {
+    color: var(--neutre-900);
+}
 
-.font-400 { font-weight: 400}
+ol,
+ul {
+    list-style: none;
+}
 
-.lh-15 {line-height: 1.5;}
+.titre {
+    @include titre
+}
+
+.sous-titre {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.font-400 {
+    font-weight: 400;
+}
+
+.font-700,
+strong.exergue {
+    font-weight: 600;
+}
