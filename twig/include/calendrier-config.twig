@@ -1,19 +1,45 @@
 <link href="{{ getenv('APP_URL') }}style/fullcalendar-5.11.3.min.css" rel="stylesheet">
-    <script src='{{ getenv('APP_URL') }}js/fullcalendar-5.11.3.min.js'></script>
-    <script src='{{ getenv('APP_URL') }}js/fullcalendar-locales-all.min.js'></script>
-    <script>
-        let aujourdhui = new Date().toISOString().split("T")[0];
+<script src='{{ getenv('APP_URL') }}js/fullcalendar-6.1.10.min.js'></script>
+<script src='{{ getenv('APP_URL') }}js/fullcalendar-locales-all.min.js'></script>
+<script>
+    let calendar; //variable global pour utilisation ultérieur
+    let aujourdhui = new Date().toISOString().split("T")[0];
 
-        document.addEventListener("DOMContentLoaded", function () {
-            var calendarEl = document.getElementById("calendar");
+    document.addEventListener("DOMContentLoaded", function () {
+        var calendarEl = document.getElementById("calendar");
+        let currentYear = new Date().getFullYear();
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: "dayGridMonth",
-                initialDate: aujourdhui,
-                weekNumbers: true,
-                locale: "fr",
-                events:'action/getDataCalendrier.php'
-            });
-            calendar.render();
-        });     
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            //initialView: "dayGridMonth",
+            //initialDate: aujourdhui,
+            weekNumbers: true,
+            weekText: 'Semaine ',
+            locale: "fr",
+            events:'action/getDataCalendrier.php',
+            initialView: 'dayGridYear',
+            multiMonthMaxColumns: 1,
+            initialDate: new Date(currentYear, 5, 1),
+            //aspectRatio: 4,
+            customButtons: {
+                summerCurrentYear: {
+                    text: "Été "+currentYear,
+                    click: function () {
+                        calendar.gotoDate(new Date(currentYear, 5, 1))
+                    }
+                },
+                aujourdhui: {
+                    text: "Aujourdhui",
+                    click: function () {
+                        calendar.gotoDate(aujourdhui)
+                    }
+                }
+            },
+            headerToolbar: {
+                left: "summerCurrentYear",
+                center: "prev title next",
+                right: "aujourdhui",
+            },
+        });
+        calendar.render();
+    });     
 </script>

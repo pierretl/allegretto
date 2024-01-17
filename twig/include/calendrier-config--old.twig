@@ -1,0 +1,19 @@
+<link href="{{ getenv('APP_URL') }}style/fullcalendar-5.11.3.min.css" rel="stylesheet">
+    <script src='{{ getenv('APP_URL') }}js/fullcalendar-5.11.3.min.js'></script>
+    <script src='{{ getenv('APP_URL') }}js/fullcalendar-locales-all.min.js'></script>
+    <script>
+        let aujourdhui = new Date().toISOString().split("T")[0];
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var calendarEl = document.getElementById("calendar");
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: "dayGridMonth",
+                initialDate: aujourdhui,
+                weekNumbers: true,
+                locale: "fr",
+                events:'action/getDataCalendrier.php'
+            });
+            calendar.render();
+        });     
+</script>
