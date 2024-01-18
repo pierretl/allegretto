@@ -4,8 +4,6 @@ let navigation = document.querySelector('.js-nav');
 let contenu = document.getElementById('contenu');
 let hideClassMenu = 'hide-for-small-only';
 
-console.log(burgerBtn);
-
 burgerBtn.addEventListener('click', function() {
 
     burgerBtn.classList.toggle('v-rotation');
