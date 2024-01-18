@@ -203,7 +203,7 @@
 
 
 # Cadre d'un séjour
-# Params : type, titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation
+# Params : type, titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation, parUtilisateur, pourFamille
 {% macro cadreSejour(params) %}
 
     {% if params.type == 'aValider' %}
@@ -212,7 +212,9 @@
         {% set classBgColor = 'bg-neutral-100' %}
     {% endif %}
 
-    <li class="cadre-s gap-cadre-s ~ {{ classBgColor }} ~ df fd-cX fw-w">
+    <li class="cadre-s gap-cadre-s ~ {{ classBgColor }} ~ df fd-cX fw-w"
+        data-user="{{ params.parUtilisateur }}"
+        data-famille="{{ params.pourFamille }}">
         
         <div class="df fd-c gap-cadre-s">
             <p>
@@ -223,6 +225,9 @@
                     <strong class="exergue">{{ params.dateStart | date("d/m/Y") }}</strong>
                     au
                     <strong class="exergue">{{ params.departReel | date("d/m/Y") }}</strong>
+                {% endif %}
+                {% if params.titre != params.parUtilisateur %}
+                    <br>Par <span>{{ params.parUtilisateur }}</span>
                 {% endif %}
             </p>
             <div>
