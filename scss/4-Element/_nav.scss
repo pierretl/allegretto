@@ -36,7 +36,11 @@
     transition: transform .3s ease;
 }
 
-.nav__link:hover {
+button.nav__link {
+    border: 0 none;
+}
+
+.nav__link:not(button):hover {
     border-color: var(--neutre-300);
 }
 
