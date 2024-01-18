@@ -1,6 +1,10 @@
 .nav {
     padding-inline: var(--cadre-m-marge);
 
+    @include breakpoint('smallOnly') {
+        border-bottom: 1px solid var(--nav-border);
+    }
+
     @include breakpoint('medium') {
         padding: 0 var(--cadre-m-marge) 0 0;
         margin-bottom: var(--app-main-gap);

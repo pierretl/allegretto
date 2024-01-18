@@ -6,6 +6,12 @@
     }
 }
 
+@include breakpoint('smallOnly'){
+    .cadre-m.v_calendar {
+        padding-inline: 0;
+    }
+}
+
 .cadre-s {
     padding: var(--cadre-s-marge);
     border-radius: var(--cadre-s-radius);

@@ -37,6 +37,17 @@
         border-bottom-left-radius: 0;
     }
 
+    //toolbar mobile
+    @include breakpoint(smallOnly) {
+        .fc .fc-toolbar.fc-header-toolbar {
+            margin-inline: .2rem;
+        }
+        .fc .fc-button-primary {
+            padding: .4rem .3rem;
+            min-height: auto;
+        }
+    }
+
     //numéro de la semaine
     .fc .fc-daygrid-week-number {
         background-color: var(--neutre-100);
