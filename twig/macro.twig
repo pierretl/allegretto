@@ -226,12 +226,14 @@
                     au
                     <strong class="exergue">{{ params.departReel | date("d/m/Y") }}</strong>
                 {% endif %}
-                {% if (params.titre != params.parUtilisateur) and params.parUtilisateur %}
+                {% if params.parUtilisateur %}
                     <br>Par <span>{{ params.parUtilisateur }}</span>
                 {% endif %}
             </p>
             <div>
-                <h3 class="exergue">{{ params.titre }}</h3>
+                {% if params.titre != params.parUtilisateur %}
+                    <h3 class="exergue">{{ params.titre }}</h3>
+                {% endif %}
                 {% if params.commentaire %}
                     <p class="clair">
                         {{ params.commentaire }}
