@@ -128,6 +128,8 @@ if (
     $data[$lengthData]["end"] = securite_saisi($endDate);
     $data[$lengthData]["departReel"] = securite_saisi($depart);
     $data[$lengthData]["commentaire"] = securite_saisi($commentaire);
+    $data[$lengthData]["pourFamille"] = $familleUtilisateur;
+    $data[$lengthData]["parUtilisateur"] = $mailUtilisateur;
     $data[$lengthData]["backgroundColor"] = $couleurEnAttenteValidation;
     $data[$lengthData]["validation"] = $validations;
 
