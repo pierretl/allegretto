@@ -203,7 +203,7 @@
 
 
 # Cadre d'un séjour
-# Params : type, titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation, parUtilisateur, pourFamille
+# Params : type, titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation, parUtilisateur, pourFamille, btnSupprimer
 {% macro cadreSejour(params) %}
 
     {% if params.type == 'aValider' %}
@@ -226,7 +226,7 @@
                     au
                     <strong class="exergue">{{ params.departReel | date("d/m/Y") }}</strong>
                 {% endif %}
-                {% if params.titre != params.parUtilisateur %}
+                {% if (params.titre != params.parUtilisateur) and params.parUtilisateur %}
                     <br>Par <span>{{ params.parUtilisateur }}</span>
                 {% endif %}
             </p>
@@ -239,7 +239,7 @@
                 {% endif %}
             </div>
         </div>
-        <div class="df fd-c ai-e fg-1 gap-cadre-s">
+        <div class="df fd-c ai-e jc-sb fg-1 gap-cadre-s">
             <button class="btn-3" onclick="showInCalendar('{{ params.dateStart }}')">Voir dans le calendrier</button>
 
             {% if params.type == 'aValider' %}
@@ -247,6 +247,38 @@
                     <input type="hidden" name="page" value="{{ params.pageRetourValidation }}">
                     <button type="submit" class="btn-1 v_petit">Je valide&nbsp;!</button>
                 </form>
+            {% endif %}
+
+            {% if params.btnSupprimer %}
+                <button class="btn-2 v_petit" type="button" onclick="suppressionSejour({{ params.sejourKey }})">
+                    Supprimer
+                </button>
+                <dialog id="suppressionSejour-{{ params.sejourKey }}" class="modal">
+                    <form action="action/sejour-suppression.php?key={{ params.sejourKey }}" 
+                          method="post"
+                          class="cadre-m df fd-c gap-cadre-m">
+                        <input type="hidden" name="page" value="dashboard">
+                        <h3 class="sous-titre">Etes-vous sûr de vouloir continuer ?</h3>
+                        <p class="cadre-s bg-secondary">
+                            Du
+                            <strong class="exergue">{{ params.dateStart | date("d/m/Y") }}</strong>
+                            au
+                            <strong class="exergue">{{ params.departReel | date("d/m/Y") }}</strong>
+                            <br>{{ params.titre }}
+                            {% if params.commentaire %}
+                                <br> {{ params.commentaire }}
+                            {% endif %}
+                        </p>
+                        <div class="df jc-sb">
+                            <button class="btn-2" type="button" onclick="fermeModal({{ params.sejourKey }})">
+                                Annuler
+                            </button>
+                            <button class="btn-1" type="submit">
+                                Supprimer ce séjour
+                            </button>
+                        </div>
+                    </form>
+                </dialog>
             {% endif %}
         </div>
         

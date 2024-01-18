@@ -16,19 +16,30 @@
 <ul class="df fd-c gap-cadre-s">
     
     {% for item in sejours %}
+            {% set sejourKey = loop.index %}
 
             {% if item.departReel|date("U") > "now"|date("U") %}
 
+                {% if session.utilisateur.famille == item.pourFamille %}
+                    {% set btnSupprimer = true %}
+                {% else %}
+                    {% set btnSupprimer = false %}
+                {% endif %}
+
                 {{ macro.cadreSejour({
+                    sejourKey:              sejourKey,
                     titre:                  item.title,
                     dateStart:              item.start,
                     departReel:             item.departReel,
                     commentaire:            item.commentaire,
                     parUtilisateur:         item.parUtilisateur,
-                    pourFamille:            item.pourFamille
+                    pourFamille:            item.pourFamille,
+                    btnSupprimer:           btnSupprimer,
                 }) }}
 
             {% endif %}
 
     {% endfor %}
 </ul>
+
+{{ include('include/script-suppressionSejour.twig') }}

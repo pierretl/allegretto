@@ -12,6 +12,9 @@ include 'function/dev.php';
 
 $jsonSejour = "../".getenv('DATA_SEJOUR');
 
+//page de redirection
+$pageRedirection = isset($_POST['page']) ? $_POST['page'] : 'sejour';
+
 //recupère la key du séjour a supprimer
 $sejourKey = $_GET['key'] - 1; // -1 car la loop de twig commence à 1
 
@@ -28,7 +31,7 @@ $dataReIndex = array_values($data);
 updateJason($jsonSejour, $dataReIndex);
 
 //redirige sur la page
-header("location:../index.php?p=sejour");
+header("location:../index.php?p=".$pageRedirection);
 
 
 exit();

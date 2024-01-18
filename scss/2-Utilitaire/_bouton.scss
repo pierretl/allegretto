@@ -11,8 +11,8 @@ button:hover {
 }
 
 .btn-2 {
-    @include bouton;
     @include bouton--claire;
+    @include bouton;
 }
 
 .btn-3 {
