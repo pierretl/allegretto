@@ -1,14 +1,8 @@
-.bg-neutral-000 {
-    background-color: var(--neutre-000);
-}
-.bg-neutral-100 {
-    background-color: var(--neutre-100);
-}
+.bg-neutral-000 {   background-color: var(--neutre-000)}
+.bg-neutral-100 {   background-color: var(--neutre-100)}
 
-.bg-primary {
-    background-color: var(--primary-400);
-}
+.bg-primary {       background-color: var(--primary-400)}
+.bg-secondary {     background-color: var(--secondary-400)}
 
-.bg-secondary {
-    background-color: var(--secondary-400);
-}
+.bg-valide {        background-color: var(--couleur8); color:var(--neutre-000)}
+.bg-attente {       background-color: var(--couleur7); color:var(--neutre-000)}

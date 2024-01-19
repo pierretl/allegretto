@@ -31,15 +31,15 @@
                             {{ macro.headerNav('dashboard',pageActive('dashboard'), 'Accueil') }}
                         </li>
                         <li>
-                            {{ macro.headerNav('sejour',pageActive('sejour'), 'Séjour') }}
-                        </li>
-                        <li>
                             {{ macro.headerNav('calendrier',pageActive('calendrier'), 'Calendrier') }}
                         </li>
                         <li>
                             {{ macro.headerNav('document',pageActive('document'), 'Documents') }}
                         </li>
                         {% if session.utilisateur.groupe == 'admin' %}
+                            <li>
+                                {{ macro.headerNav('sejour',pageActive('sejour'), 'Séjour') }}
+                            </li>
                             <li>
                                 {{ macro.headerNav('admin',pageActive('admin'), 'Administration') }}
                             </li>

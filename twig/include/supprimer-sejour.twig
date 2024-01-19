@@ -1,9 +1,9 @@
-<button type="button" class="btn-2 btn-s" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
+<button type="button" class="btn-2 v_petit" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
 
 <dialog id="suppressionSejour-{{ sejourKey }}" class="modal">
     <form action="action/sejour-suppression.php?key={{ sejourKey }}" method="post">
-        <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
-        <p class="mt-05 cadre3">
+        <h3 class="sous-titre">Etes-vous sûr de vouloir continuer ?</h3>
+        <p class="">
             Séjour : {{ item.title }}<br>
 
             {% if item.start == item.departReel %}
@@ -16,12 +16,12 @@
                 <br> {{ item.commentaire }}
             {% endif %}
         </p>
-        <div class="df row">
-            <div class="col">
-                <button class="btn-2 btn-s" type="button" onclick="fermeModal({{ sejourKey }})">Annuler</button>
+        <div class="df">
+            <div>
+                <button class="btn-2 v_petit" type="button" onclick="fermeModal({{ sejourKey }})">Annuler</button>
             </div>
-            <div class="col">
-                <button class="btn-1 btn-s" type="submit">Supprimer ce séjour</button>
+            <div>
+                <button class="btn-1 v_petit" type="submit">Supprimer ce séjour</button>
             </div>
         </div>
     </form>

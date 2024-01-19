@@ -18,23 +18,23 @@
                 
                 {% if session.utilisateur.groupe == 'admin' %}
                     <div class="df ai-c jc-sb gap-m">
-                        <h2 class="titre">Les séjours <span class="badge bg-7">en attente</span> ({{ sejoursAttente|length}})</h2>
+                        <h2 class="titre">Les séjours <span class="cadre-s bg-attente">en attente</span> ({{ sejoursAttente|length}})</h2>
                         <div>
-                            <span class="text-7">Dernier rappel : {{ dernierRappel.0.date }}</span><br>
+                            <span class="exergue">Dernier rappel : {{ dernierRappel.0.date }}</span><br>
                             {% if get.rappel != "ok" %}
                                 <form action="action/sejour-rappel.php" method="post">
                                     <button class="btn-2 btn-s" type="submit">Envoyer un mail de rappel</button>
                                 </form>
                             {% endif %}
                             {% if get.rappel == "ko" %}
-                                <span class="text-6">
+                                <span class="label-erreur">
                                     L'envoi de l'email n'a pas abouti
                                 </span>
                             {% endif %}
                         </div>
                     </div>
                 {% else %}
-                    <h2 class="titre">Les séjours <span class="badge bg-7">en attente</span> ({{ sejoursAttente|length}})</h2>               
+                    <h2 class="titre">Les séjours <span class="cadre-s bg-attente">en attente</span> ({{ sejoursAttente|length}})</h2>               
                 {% endif %}
 
                 <div class="scroll">
@@ -78,15 +78,15 @@
                                         {% endif %}
 
                                         {% if (item.commentaire) %}
-                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-5">
-                                                <svg width="20px" height="20px" class="fill-3 expanded" style="margin-left:.2rem">
+                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3">
+                                                <svg width="20px" height="20px" class="expanded" style="margin-left:.2rem">
                                                     <use xlink:href="#fermer"></use>
                                                 </svg>
-                                                <svg width="20px" height="20px" class="fill-3 expanded-reverse" style="margin-left:.2rem">
+                                                <svg width="20px" height="20px" class="expanded-reverse" style="margin-left:.2rem">
                                                     <use xlink:href="#bulle"></use>
                                                 </svg>
                                             </button>
-                                            <span class="expanded-sibling mt-0 mb-0">
+                                            <span class="expanded-sibling">
                                                 <br>{{ item.commentaire }}
                                             </span>
                                         {% endif %}
@@ -109,12 +109,12 @@
                                                         {% if "now" | date('U') < item.start | date('U') %}
                                                             {% include 'include/supprimer-sejour.twig' %}
                                                         {% else %}
-                                                            <span class="text-7" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
+                                                            <span class="exergue" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
                                                                 Demandeur
                                                             </span>
                                                         {% endif %}
                                                     {% else %}
-                                                        <span class="text-7" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
+                                                        <span class="exergue" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
                                                             Demandeur
                                                         </span>
                                                     {% endif %}
@@ -123,7 +123,7 @@
                                                         <svg width="24px" height="24px" class="fill-8">
                                                             <use xlink:href="#check"></use>
                                                         </svg>
-                                                        <span class="text-8" title="le {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
+                                                        <span title="le {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
                                                             Validé
                                                         </span>
                                                     </div>
@@ -133,16 +133,16 @@
 
                                                 {% if item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE') %}
 
-                                                    <p class="mw-100">Séjour validé avant l'ajout de la famille</p>
+                                                    <p>Séjour validé avant l'ajout de la famille</p>
                                                     
                                                 {% else %}
 
                                                     {% if famille.id == session.utilisateur.famille %}
                                                         <form action="action/sejour-validation.php?key={{ sejourKey }}" method="post">
-                                                            <button type="submit" class="btn-1 btn-s">Je&nbsp;valide&nbsp;!</button>
+                                                            <button type="submit" class="btn-1 v_petit">Je&nbsp;valide&nbsp;!</button>
                                                         </form>  
                                                     {% else %}
-                                                        <span class="text-7">En&nbsp;attente...</span>
+                                                        <span>En&nbsp;attente...</span>
                                                     {% endif %}
                                                     
                                                 {% endif %}
@@ -166,71 +166,8 @@
         </div>
 
         <div class="grid-main__task">
-            <div class="cadre-m bg-neutral-000">
-                <form action="action/sejour-ajout.php" method="post">
-                    <fieldset class="df fd-c gap-m">
-                        <legend>
-                            <h2 class="titre">Ajouter un séjour</h2>
-                        </legend>
-
-                        <p>Les champs précédés d’un * sont obligatoires.</p>
-
-                        {% if get.erreurMail %}
-                            <p class="text-6">
-                                L'envoi de l'email d'ajout du séjour n'a pas abouti, mais la demande est enregistrée
-                            </p>
-                        {% endif %}
-
-                        {% if get.erreur1 %}
-                            {% set erreurLabel = 'Le champ ne peut pas être vide' %}
-                        {% endif %}
-
-                        {% if get.erreur2 %}
-                            {% set erreurArrivee = 'Le champ est vide' %}
-                        {% endif %}
-
-                        {% if get.erreur3 %}
-                            {% set erreurDepart = 'Le champ est vide' %}
-                        {% endif %}
-
-                        {% if get.label %}
-                            {% set valueLabel = get.label %}
-                        {% else %}
-                            {% set valueLabel = session.utilisateur.prenom %}
-                        {% endif %}
-
-                        {% if get.dateInverse %}
-                            {% set erreurDepart = "La date est antérieure à celle de l'arrivée" %}
-                        {% endif %}
-
-
-                        {{ macro.input('label', 'Label*', valueLabel, erreurLabel) }}
-
-                        {{ macro.input('arrivee', 'Arrivée*', get.arrivee, erreurArrivee, '', 'date' ) }}
-
-                        {{ macro.input('depart', 'Départ*', get.depart, erreurDepart, '', 'date' ) }}
-
-                        {{ macro.input('commentaire', 'Commentaire', get.commentaire) }}
-
-                        <button type="submit" class="btn-1">Ajouter le séjour</button>
-
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-
-        <div class="grid-main__calendar">
             <div class="cadre-m bg-neutral-000 df fd-c gap-m">
-                <h2 class="titre">Le calendrier</h2>
-                <div class="fc-surcharge">
-                    <div id="calendar"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid-main__full">
-            <div class="cadre-m bg-neutral-000">
-                <h2 class="mt-0 text-left">Les séjours <span class="badge bg-8">validés</span> ({{ sejoursValide|length}})</h2>
+                <h2 class="titre">Les séjours <span class="cadre-s bg-valide">validés</span> ({{ sejoursValide|length}})</h2>
                 <div class="scroll">
                     <table class="tableau">
                         <caption></caption>
@@ -239,7 +176,7 @@
                                 <td>Label & commentaire</td>
                                 <td>Arrivée</td>
                                 <td>Départ</td>
-                                <td class="lh-1">Séjour validé<br>avant l'ajout de</td>
+                                <td>Séjour validé<br>avant l'ajout de</td>
                                 {% if session.utilisateur.groupe == 'admin' %}
                                     <td>
                                         Supprimer
@@ -253,7 +190,7 @@
                                 <tr>
                                     <td>
                                         {% if (strLength(item.title) > 20) %}
-                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-5">
+                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="">
                                                 {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
                                                 <span class="expanded mt-0 mb-0">
                                                     {{ subString(item.title, 20) }}
@@ -264,7 +201,7 @@
                                         {% endif %}
 
                                         {% if (item.commentaire) %}
-                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-5">
+                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3">
                                                 <svg width="20px" height="20px" class="fill-3 expanded" style="margin-left:.2rem">
                                                     <use xlink:href="#fermer"></use>
                                                 </svg>
@@ -272,7 +209,7 @@
                                                     <use xlink:href="#bulle"></use>
                                                 </svg>
                                             </button>
-                                            <span class="expanded-sibling mt-0 mb-0">
+                                            <span class="expanded-sibling">
                                                 <br>{{ item.commentaire }}
                                             </span>
                                         {% endif %}
@@ -290,23 +227,23 @@
                                     
                                 {% if session.utilisateur.groupe == 'admin' %}
                                     <td>
-                                        <button type="button" class="btn-2 btn-s" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
+                                        <button type="button" class="btn-2 v_petit" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
                                         <dialog id="suppressionSejour-{{ sejourKey }}" class="modal">
                                             <form action="action/sejour-suppression.php?key={{ loop.index }}" method="post">
-                                                <h3 class="mt-0 mb-0">Etes-vous sûr de vouloir continuer ?</h3>
-                                                <p class="mt-05 cadre3">
+                                                <h3>Etes-vous sûr de vouloir continuer ?</h3>
+                                                <p>
                                                     Séjour : {{ item.title }}<br>
                                                     du <strong>{{ item.start | date("d/m/Y") }}</strong> au <strong>{{ item.departReel | date("d/m/Y") }}</strong>
                                                     {% if item.commentaire %}
                                                     <br> {{ item.commentaire }}
                                                     {% endif %}
                                                 </p>
-                                                <div class="df row">
-                                                    <div class="col">
-                                                        <button class="btn-1 btn-s" type="button" onclick="fermeModal({{ sejourKey }})">Annuler</button>
+                                                <div class="df">
+                                                    <div>
+                                                        <button class="btn-1 v_petit" type="button" onclick="fermeModal({{ sejourKey }})">Annuler</button>
                                                     </div>
-                                                    <div class="col">
-                                                        <button class="btn-1 btn-s" type="submit">Supprimer ce séjour</button>
+                                                    <div>
+                                                        <button class="btn-1 v_petit" type="submit">Supprimer ce séjour</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -320,6 +257,15 @@
                 </div>
                 
 
+            </div>
+        </div>
+
+        <div class="grid-main__calendar">
+            <div class="cadre-m bg-neutral-000 df fd-c gap-m">
+                <h2 class="titre">Le calendrier</h2>
+                <div class="fc-surcharge">
+                    <div id="calendar"></div>
+                </div>
             </div>
         </div>
 
