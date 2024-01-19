@@ -23,13 +23,25 @@
 
         <h2 class="titre">Les séjours à venir</h2>
 
-        <div>
-            <p>a faireeeeeeeeeeeeee : </p>
-            <p>Lors de l'ajout du séjour ajouter au data: la famille et le mail de l'utilisateur</p>
-            <p>puis ajouter des bouton de filtre du type "mes séjour", "leur séjour", "tous"</p>
-        </div>
+        <ul class="df gap-cadre-s">
+            <li>
+                <button class="btn-2 js_filtrePerso v_off" type="button" title="Afficher les séjours de ma famille" aria-pressed="false">
+                    Mes séjours
+                </button>
+            </li>
+            <li>
+                <button class="btn-2 js_filtreAutres v_off" type="button" title="Afficher les autres séjours" aria-pressed="false">
+                    Les autres
+                </button>
+            </li>
+            <li>
+                <button class="btn-2 js_filtreTous" type="button" title="Tous affiché" aria-pressed="true">
+                    Tous
+                </button>
+            </li>
+        </ul>
 
-        <ul class="df fd-c gap-cadre-s">
+        <ul class="df fd-c gap-cadre-s js_listeAFiltre" data-famille="{{ session.utilisateur.famille }}" aria-live="polite">
             
             {% for item in sejours %}
                     {% set sejourKey = loop.index %}
@@ -63,6 +75,7 @@
         </ul>
 
         {{ include('include/script-suppressionSejour.twig') }}
+        {{ include('include/script-filtreListe.twig') }}
 
     </div>
 {% endif %}
