@@ -1,0 +1,29 @@
+# Separateur et titre
+{% macro titre(titre, hr) %}
+    {% if not hr %}
+        <hr style="border-color:blue;margin-top:3rem">
+    {% endif %}
+
+    <h2 style="text-transform:uppercase;color:blue;font-size:2rem">
+        {{ titre }}
+    </h2>
+{% endmacro %}
+
+
+
+# Couleur
+{% macro palette(couleur, nom) %}
+    <li>
+        <div style="height:50px;width:100px;background:{{ couleur }}"></div>
+        {{ couleur }}
+        <br>
+        {{ nom }}
+    </li>
+{% endmacro %}
+
+
+
+# bloc
+{% macro bloc() %}
+    <div style="height:50px;width:50px;background:grey"></div>
+{% endmacro %}

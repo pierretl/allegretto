@@ -1,0 +1,105 @@
+{% extends 'template/defaut.twig' %}
+
+{% import 'macro.twig' as macro %}
+{% import 'macro-styleguide.twig' as sg %}
+
+{% block title %}Styleguide{% endblock %}
+
+
+{% block content %}
+
+    <main id="contenu" class="grid-main" tabindex="-1" role="main">
+        <div class="grid-main__full df fd-c cadre-m gap-cadre-m bg-neutral-000">
+
+
+            {{ sg.titre('Couleurs', true)}}
+
+            <ul class="df fw-w gap-cadre-m">
+                {{ sg.palette('#1d63ff','--primary-400')}}
+                {{ sg.palette('#ffce32','--secondary-400')}}
+                {{ sg.palette('hsl(360,89%,41%)','--red-700')}}
+            </ul>
+
+            <ul class="df fw-w gap-cadre-m">
+                {{ sg.palette('#ffffff','--neutre-000')}}
+                {{ sg.palette('#f2f5f6','--neutre-100')}}
+                {{ sg.palette('#d4dde9','--neutre-300')}}
+                {{ sg.palette('#677588','--neutre-500')}}
+                {{ sg.palette('#475569','--neutre-700')}}
+                {{ sg.palette('#152342','--neutre-900')}}
+            </ul>
+
+            {{ sg.titre('Texte')}}
+
+            <div class="df fw-w gap-cadre-m">
+            
+                <div>
+                    <p class="titre">Titre</p>
+                    <p class="sous-titre">Sous Titre</p>
+                    <p>Paragraphe</p>
+                    <p class="exergue">Exergue</p>
+                    <p class="clair">Texte clair</p>
+                </div>
+
+                <div>
+                    <h1>h1</h1>
+                    <h2>h2</h2>
+                    <h3>h3</h3>
+                    <h4>h4</h4>
+                    <h5>h5</h5>
+                    <h6>h6</h6>
+                    <p class="exergue">Exergue</p>
+                </div>
+
+                <div>
+                    <p class="font-400">font-400</p>
+                    <p class="font-700">font-700</p>
+                    <strong class="exergue">strong.exergue</strong>
+                </div>
+
+                
+
+            </div>
+            
+
+            {{ sg.titre('Marge')}}
+
+            <div class="df gap-nav">
+                <p>gap-nav</p>
+                {{ sg.bloc()}}
+                {{ sg.bloc()}}
+            </div>
+
+            <div class="df gap-cadre-m">
+                <p>gap-cadre-m</p>
+                {{ sg.bloc()}}
+                {{ sg.bloc()}}
+            </div>
+
+            <div class="df gap-cadre-s">
+                <p>gap-cadre-s</p>
+                {{ sg.bloc()}}
+                {{ sg.bloc()}}
+            </div>
+
+            <div class="df gap-form">
+                <p>gap-form</p>
+                {{ sg.bloc()}}
+                {{ sg.bloc()}}
+            </div>
+
+            <div class="df gap-nav">
+                <p>gap-nav</p>
+                {{ sg.bloc()}}
+                {{ sg.bloc()}}
+            </div>
+
+            {{ sg.titre('Cadre')}}
+
+            {{ sg.titre('Formulaire')}}
+
+
+        </div>
+    </main> 
+
+{% endblock %}
