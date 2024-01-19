@@ -17,7 +17,7 @@
             <div class="cadre-m bg-neutral-000">
                 
                 {% if session.utilisateur.groupe == 'admin' %}
-                    <div class="df ai-c jc-sb gap-cadre-m">
+                    <div class="df ai-c jc-sb gap-m">
                         <h2 class="titre">Les séjours <span class="badge bg-7">en attente</span> ({{ sejoursAttente|length}})</h2>
                         <div>
                             <span class="text-7">Dernier rappel : {{ dernierRappel.0.date }}</span><br>
@@ -168,7 +168,7 @@
         <div class="grid-main__task">
             <div class="cadre-m bg-neutral-000">
                 <form action="action/sejour-ajout.php" method="post">
-                    <fieldset class="df fd-c gap-form">
+                    <fieldset class="df fd-c gap-m">
                         <legend>
                             <h2 class="titre">Ajouter un séjour</h2>
                         </legend>
@@ -220,7 +220,7 @@
         </div>
 
         <div class="grid-main__calendar">
-            <div class="cadre-m bg-neutral-000 df fd-c gap-cadre-m">
+            <div class="cadre-m bg-neutral-000 df fd-c gap-m">
                 <h2 class="titre">Le calendrier</h2>
                 <div class="fc-surcharge">
                     <div id="calendar"></div>

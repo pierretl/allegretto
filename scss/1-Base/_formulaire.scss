@@ -12,7 +12,7 @@ label {
 input {
     width: 100%;
     min-height: var(--form-min-height);
-    border-radius: var(--cadre-s-radius);
+    border-radius: var(--radius-s);
     font-size: 1rem;
     border: 1px solid var(--form-input-border);
     padding: 0 var(--form-padding); 
@@ -52,6 +52,8 @@ fieldset legend {
     width: 100%;
     padding: 0;
 }
+
+
 
 /*
 fieldset:not(.unset) {

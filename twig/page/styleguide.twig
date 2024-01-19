@@ -9,18 +9,18 @@
 {% block content %}
 
     <main id="contenu" class="grid-main" tabindex="-1" role="main">
-        <div class="grid-main__full df fd-c cadre-m gap-cadre-m bg-neutral-000">
+        <div class="grid-main__full df fd-c cadre-m gap-m bg-neutral-000">
 
 
             {{ sg.titre('Couleurs', true)}}
 
-            <ul class="df fw-w gap-cadre-m">
+            <ul class="df fw-w gap-m">
                 {{ sg.palette('#1d63ff','--primary-400')}}
                 {{ sg.palette('#ffce32','--secondary-400')}}
                 {{ sg.palette('hsl(360,89%,41%)','--red-700')}}
             </ul>
 
-            <ul class="df fw-w gap-cadre-m">
+            <ul class="df fw-w gap-m">
                 {{ sg.palette('#ffffff','--neutre-000')}}
                 {{ sg.palette('#f2f5f6','--neutre-100')}}
                 {{ sg.palette('#d4dde9','--neutre-300')}}
@@ -31,7 +31,7 @@
 
             {{ sg.titre('Texte')}}
 
-            <div class="df fw-w gap-cadre-m">
+            <div class="df fw-w gap-l">
             
                 <div>
                     <p class="titre">Titre</p>
@@ -64,39 +64,79 @@
 
             {{ sg.titre('Marge')}}
 
-            <div class="df gap-nav">
-                <p>gap-nav</p>
-                {{ sg.bloc()}}
-                {{ sg.bloc()}}
+            <div class="df fw-w gap-l">
+            
+                <div class="df gap-s">
+                    <p>gap-s</p>
+                    {{ sg.bloc()}}
+                    {{ sg.bloc()}}
+                </div>
+
+                <div class="df gap-m">
+                    <p>gap-m</p>
+                    {{ sg.bloc()}}
+                    {{ sg.bloc()}}
+                </div>
+
+                <div class="df gap-l">
+                    <p>gap-l</p>
+                    {{ sg.bloc()}}
+                    {{ sg.bloc()}}
+                </div>
+            
+                <div class="df fd-c">
+                    <p>mt-m</p>
+                    {{ sg.bloc()}}
+                    <div class="mt-m">
+                        {{ sg.bloc()}}
+                    </div>
+                </div>
+            
             </div>
 
-            <div class="df gap-cadre-m">
-                <p>gap-cadre-m</p>
-                {{ sg.bloc()}}
-                {{ sg.bloc()}}
-            </div>
-
-            <div class="df gap-cadre-s">
-                <p>gap-cadre-s</p>
-                {{ sg.bloc()}}
-                {{ sg.bloc()}}
-            </div>
-
-            <div class="df gap-form">
-                <p>gap-form</p>
-                {{ sg.bloc()}}
-                {{ sg.bloc()}}
-            </div>
-
-            <div class="df gap-nav">
-                <p>gap-nav</p>
-                {{ sg.bloc()}}
-                {{ sg.bloc()}}
-            </div>
-
+            
             {{ sg.titre('Cadre')}}
 
+            <div class="df fw-w gap-l">
+                <div class="df fd-c gap-m">
+                    <div class="cadre-m bg-neutral-100">cadre-m</div>
+                    <div class="cadre-m v_calendar bg-neutral-100">cadre-m v_calendar (smallonly)</div>
+                    <div class="cadre-s bg-neutral-100">cadre-s</div>
+                </div>
+
+                <div class="df fd-c gap-m">
+                    <div class="cadre-m bg-neutral-000">bg-neutral-000</div>   
+                    <div class="cadre-m bg-neutral-100">bg-neutral-100</div>     
+                    <div class="cadre-m bg-secondary">bg-secondary</div>   
+                </div>
+            </div>
+
+            
+
             {{ sg.titre('Formulaire')}}
+
+            <form class="df fd-c gap-m">
+                {{ macro.input2({
+                    id:             'demo-input',
+                    label:          'Label input text'
+                }) }}
+
+                {{ macro.input2({
+                    id:             'demo-erreur',
+                    label:          'Label input text',
+                    inputErreur:    true,
+                    erreur:         'Label erreur'
+                }) }}
+
+                {{ macro.input2({
+                    id:             'demo-password',
+                    label:          'Label input text',
+                    type:           'password',
+                    voirMotDePasse: true,
+                }) }}
+
+                <button type="submit" class="btn-1 mt-m">Button submit</button>
+            </form>
 
 
         </div>

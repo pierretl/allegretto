@@ -1,8 +1,8 @@
 .cadre-m {
-    padding: var(--cadre-m-marge);
+    padding: var(--spacing-m);
 
     @include breakpoint('large'){
-        border-radius: var(--cadre-m-radius);
+        border-radius: var(--radius-m);
     }
 }
 
@@ -13,6 +13,6 @@
 }
 
 .cadre-s {
-    padding: var(--cadre-s-marge);
-    border-radius: var(--cadre-s-radius);
+    padding: var(--spacing-s);
+    border-radius: var(--radius-s);
 }

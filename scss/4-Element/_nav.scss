@@ -1,17 +1,17 @@
 .nav {
-    padding-inline: var(--cadre-m-marge);
+    padding-inline: var(--spacing-m);
 
     @include breakpoint('smallOnly') {
         border-bottom: 1px solid var(--nav-border);
     }
 
     @include breakpoint('medium') {
-        padding: 0 var(--cadre-m-marge) 0 0;
+        padding: 0 var(--spacing-m) 0 0;
         margin-bottom: var(--app-main-gap);
     }
 
     @include breakpoint('large') {
-        border-radius: var(--cadre-m-radius);
+        border-radius: var(--radius-m);
         margin-block: var(--app-main-gap);
     }
 }

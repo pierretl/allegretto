@@ -193,7 +193,7 @@
 
 # Boitier de commande Climatisation
 {% macro boitierCommandeClim(exergue, commentaire) %}
-<div class="test cadre-s gap-cadre-s bg-neutral-100 df ai-c">
+<div class="test cadre-s gap-s bg-neutral-100 df ai-c">
     <svg width="150px" height="150px" style="{{exergue}}">
         <use xlink:href="#boitier"></use>
     </svg>
@@ -212,11 +212,11 @@
         {% set classBgColor = 'bg-neutral-100' %}
     {% endif %}
 
-    <li class="cadre-s gap-cadre-s ~ {{ classBgColor }} ~ df fd-cX fw-w"
+    <li class="cadre-s gap-s ~ {{ classBgColor }} ~ df fd-cX fw-w"
         data-user="{{ params.parUtilisateur }}"
         data-famille="{{ params.pourFamille }}">
         
-        <div class="df fd-c gap-cadre-s">
+        <div class="df fd-c gap-s">
             <p>
                 {% if (params.dateStart == params.departReel) %}
                     La journée du <strong class="exergue">{{ params.dateStart | date("d/m/Y") }}</strong>
@@ -241,7 +241,7 @@
                 {% endif %}
             </div>
         </div>
-        <div class="df fd-c ai-e jc-sb fg-1 gap-cadre-s">
+        <div class="df fd-c ai-e jc-sb fg-1 gap-s">
             <button class="btn-3" onclick="showInCalendar('{{ params.dateStart }}')">Voir dans le calendrier</button>
 
             {% if params.type == 'aValider' %}
@@ -258,7 +258,7 @@
                 <dialog id="suppressionSejour-{{ params.sejourKey }}" class="modal">
                     <form action="action/sejour-suppression.php?key={{ params.sejourKey }}" 
                           method="post"
-                          class="cadre-m df fd-c gap-cadre-m">
+                          class="cadre-m df fd-c gap-m">
                         <input type="hidden" name="page" value="dashboard">
                         <h3 class="sous-titre">Etes-vous sûr de vouloir continuer ?</h3>
                         <p class="cadre-s bg-secondary">

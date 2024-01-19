@@ -16,14 +16,14 @@
 
 
 {% if sejourAVenir %}
-    <div class="cadre-m bg-neutral-000 df fd-c gap-cadre-m">
+    <div class="cadre-m bg-neutral-000 df fd-c gap-m">
         <div class="hide-for-medium">
             <a href="#addSejour" class="btn-2">Ajouter un séjour</a>
         </div>
 
         <h2 class="titre">Les séjours à venir</h2>
 
-        <ul class="df gap-cadre-s">
+        <ul class="df gap-s">
             <li>
                 <button class="btn-2 js_filtrePerso v_off" type="button" title="Afficher les séjours de ma famille" aria-pressed="false">
                     Mes séjours
@@ -41,7 +41,7 @@
             </li>
         </ul>
 
-        <ul class="df fd-c gap-cadre-s js_listeAFiltre" data-famille="{{ session.utilisateur.famille }}" aria-live="polite">
+        <ul class="df fd-c gap-s js_listeAFiltre" data-famille="{{ session.utilisateur.famille }}" aria-live="polite">
             
             {% for item in sejours %}
                     {% set sejourKey = loop.index %}

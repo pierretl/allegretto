@@ -1,6 +1,5 @@
-.gap-nav {      gap: 2rem}
-.gap-cadre-m {  gap: var(--cadre-m-marge)}
-.gap-cadre-s {  gap: var(--cadre-s-marge)}
-.gap-form {     gap:1rem}
+.gap-s {    gap: var(--spacing-s)}
+.gap-m {    gap: var(--spacing-m)}
+.gap-l {    gap: var(--spacing-l)}
 
-.mt-m { margin-top: 1rem; }
+.mt-m {     margin-top: var(--spacing-m)}
