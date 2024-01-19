@@ -180,7 +180,7 @@
 # Lien du menu dans le header
 {% macro headerNav(url, pageActive, label) %}
     {% if pageActive %}
-        <h1 class="nav__active"  title="{{ label }} Rubrique active">
+        <h1 class="nav__active"  title="{{ label }} Rubrique active" aria-current="Page" tabindex="0">
             {{ label }}
         </h1>
     {% else %}
