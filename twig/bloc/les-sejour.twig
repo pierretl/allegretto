@@ -1,45 +1,68 @@
 {% import 'macro.twig' as macro %}
 
 
-<div class="hide-for-medium">
-    <a href="#addSejour" class="btn-2">Ajouter un séjour</a>
-</div>
 
-<h2 class="titre">Les séjours à venir</h2>
+{% set sejourAVenir = false %}
 
-<div>
-    <p>a faireeeeeeeeeeeeee : </p>
-    <p>Lors de l'ajout du séjour ajouter au data: la famille et le mail de l'utilisateur</p>
-    <p>puis ajouter des bouton de filtre du type "mes séjour", "leur séjour", "tous"</p>
-</div>
-
-<ul class="df fd-c gap-cadre-s">
-    
-    {% for item in sejours %}
-            {% set sejourKey = loop.index %}
-
+{% for item in sejours %}
+    {% for famille in item.validation %}
+        {% if famille.id == session.utilisateur.famille and famille.accord != '' %}
             {% if item.departReel|date("U") > "now"|date("U") %}
-
-                {% if session.utilisateur.famille == item.pourFamille %}
-                    {% set btnSupprimer = true %}
-                {% else %}
-                    {% set btnSupprimer = false %}
-                {% endif %}
-
-                {{ macro.cadreSejour({
-                    sejourKey:              sejourKey,
-                    titre:                  item.title,
-                    dateStart:              item.start,
-                    departReel:             item.departReel,
-                    commentaire:            item.commentaire,
-                    parUtilisateur:         item.parUtilisateur,
-                    pourFamille:            item.pourFamille,
-                    btnSupprimer:           btnSupprimer,
-                }) }}
-
+                {% set sejourAVenir = true %}
             {% endif %}
-
+        {% endif %}
     {% endfor %}
-</ul>
+{% endfor %}
 
-{{ include('include/script-suppressionSejour.twig') }}
+
+{% if sejourAVenir %}
+    <div class="cadre-m bg-neutral-000 df fd-c gap-cadre-m">
+        <div class="hide-for-medium">
+            <a href="#addSejour" class="btn-2">Ajouter un séjour</a>
+        </div>
+
+        <h2 class="titre">Les séjours à venir</h2>
+
+        <div>
+            <p>a faireeeeeeeeeeeeee : </p>
+            <p>Lors de l'ajout du séjour ajouter au data: la famille et le mail de l'utilisateur</p>
+            <p>puis ajouter des bouton de filtre du type "mes séjour", "leur séjour", "tous"</p>
+        </div>
+
+        <ul class="df fd-c gap-cadre-s">
+            
+            {% for item in sejours %}
+                    {% set sejourKey = loop.index %}
+
+                    {% for famille in item.validation %}
+                        {% if famille.id == session.utilisateur.famille and famille.accord != '' %}
+                            {% if item.departReel|date("U") > "now"|date("U") %}
+
+                                {% if session.utilisateur.famille == item.pourFamille %}
+                                    {% set btnSupprimer = true %}
+                                {% else %}
+                                    {% set btnSupprimer = false %}
+                                {% endif %}
+
+                                {{ macro.cadreSejour({
+                                    sejourKey:              sejourKey,
+                                    titre:                  item.title,
+                                    dateStart:              item.start,
+                                    departReel:             item.departReel,
+                                    commentaire:            item.commentaire,
+                                    parUtilisateur:         item.parUtilisateur,
+                                    pourFamille:            item.pourFamille,
+                                    btnSupprimer:           btnSupprimer,
+                                }) }}
+
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+            {% endfor %}
+        </ul>
+
+        {{ include('include/script-suppressionSejour.twig') }}
+
+    </div>
+{% endif %}
