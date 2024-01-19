@@ -12,144 +12,153 @@
         <pre>{{ utilisateurs|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
     {% endif %}
 #}
-<main id="contenu" class="grid-main" tabindex="-1" role="main">
+<main id="contenu" class="df fd-c gap-l" tabindex="-1" role="main">
 
-    <div class="grid-main__task cadre-m bg-neutral-000">
-        <form action="action/utilisateur-ajout.php" method="post" class="mb-2">
-            <fieldset class="df fd-c gap-m">
-                <legend>
-                    <h2 class="titre">Ajouter un utilisateur</h2>
-                </legend>
+    <div class="grid-main">
 
-                {% if get.erreur1 %}
-                    {% set erreurPrenom = 'Le champ est vide' %}
-                {% endif %}
+        <div class="grid-main__task cadre-m bg-neutral-000">
+            <form action="action/utilisateur-ajout.php" method="post" class="mb-2">
+                <fieldset class="df fd-c gap-m">
+                    <legend>
+                        <h2 class="titre">Ajouter un utilisateur</h2>
+                    </legend>
 
-                {% if get.erreur2 %}
-                    {% set erreurMail = 'Le champ est vide' %}
-                {% endif %}
+                    {% if get.erreur1 %}
+                        {% set erreurPrenom = 'Le champ est vide' %}
+                    {% endif %}
 
-                {% if get.erreur3 %}
-                    {% set erreurMotDePasse = 'Le champ est vide' %}
-                {% endif %}
+                    {% if get.erreur2 %}
+                        {% set erreurMail = 'Le champ est vide' %}
+                    {% endif %}
 
-                {% if get.erreur4 %}
-                    {% set erreurCodeFamille = 'La sélection est obligatoire' %}
-                {% endif %}
+                    {% if get.erreur3 %}
+                        {% set erreurMotDePasse = 'Le champ est vide' %}
+                    {% endif %}
+
+                    {% if get.erreur4 %}
+                        {% set erreurCodeFamille = 'La sélection est obligatoire' %}
+                    {% endif %}
 
 
-                {{ macro.input('prenom', 'Prénom', get.prenom, erreurPrenom ) }}
+                    {{ macro.input('prenom', 'Prénom', get.prenom, erreurPrenom ) }}
 
-                {{ macro.input('mail', 'Adresse mail', get.mail, erreurMail) }}
+                    {{ macro.input('mail', 'Adresse mail', get.mail, erreurMail) }}
 
-                {{ macro.input('motdepasse', 'Mot de passe', get.motdepasse, erreurMotDePasse) }}
+                    {{ macro.input('motdepasse', 'Mot de passe', get.motdepasse, erreurMotDePasse) }}
 
-                {{ macro.input('famille', 'Code Famille', get.famille, erreurCodeFamille, '', 'select', {selectOptions: selectOptionFamille}) }}
+                    {{ macro.input('famille', 'Code Famille', get.famille, erreurCodeFamille, '', 'select', {selectOptions: selectOptionFamille}) }}
 
-                <button type="submit" class="btn-1">Ajouter</button>
+                    <button type="submit" class="btn-1">Ajouter</button>
 
-            </fieldset>
-        </form>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="grid-main__calendar cadre-m bg-neutral-100 df fd-c gap-m">
+            <h2 class="titre">Les utilisateurs ({{ utilisateurs|length}})</h2>
+            <div class="scroll">
+                <table class="tableau bg-neutral-000">
+                    <caption></caption>
+                    <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Prénom</td>
+                            <td>Famille</td>
+                            <td>Mail</td>
+                            <td>Supprimer</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in utilisateurs %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ item.prenom }}</td>
+                                <td>{{ item.famille }}</td>
+                                <td>{{ dechiffre(item.mail) }}</td>
+                                <td class="text-center">
+                                    {% if item.groupe != 'admin' %}
+                                        <form action="action/utilisateur-suppression.php?key={{ loop.index }}" method="post">
+                                            <button type="submit" class="btn-2 btn-s">Supprimer</button>
+                                        </form>
+                                    {% else %}
+                                        [{{ item.groupe }}]
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
     </div>
 
-    <div class="grid-main__calendar cadre-m bg-neutral-100 df fd-c gap-m">
-        <h2 class="titre">Les utilisateurs ({{ utilisateurs|length}})</h2>
-        <div class="scroll">
-            <table class="tableau bg-neutral-000">
-                <caption></caption>
-                <thead>
-                    <tr>
-                        <td>#</td>
-                        <td>Prénom</td>
-                        <td>Famille</td>
-                        <td>Mail</td>
-                        <td>Supprimer</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in utilisateurs %}
+
+    <div class="grid-main">
+
+        <div class="grid-main__task cadre-m bg-neutral-000">
+            <form action="action/famille-ajout.php" method="post" class="mb-2">
+                <fieldset class="df fd-c gap-m">
+                    <legend>
+                        <h2 class="titre">Ajouter une famille</h2>
+                    </legend>
+
+                    {% if get.erreurFam1 %}
+                        {% set erreurId = 'Le champ est vide' %}
+                    {% endif %}
+
+                    {% if get.erreurFam2 %}
+                        {% set erreurLabel = 'Le champ est vide' %}
+                    {% endif %}
+
+                    {% if get.erreurId %}
+                        {% set erreurId = 'Déjà utilisé, saisissez autre chose' %}
+                    {% endif %}
+
+
+                    {{ macro.input('id', 'ID unique', get.id, erreurId ) }}
+
+                    {{ macro.input('label', 'Label', get.label, erreurLabel) }}
+
+                    <button type="submit" class="btn-1">Ajouter</button>
+
+                </fieldset>
+            
+            </form>
+        </div>
+
+        <div class="grid-main__calendar cadre-m bg-neutral-100">
+            <div class="scroll">
+                <table class="tableau bg-neutral-000">
+                    <caption>
+                        <h2 class="titre">Les familles ({{ familles|length}})</h2>
+                    </caption>
+                    <thead>
                         <tr>
-                            <td>{{ loop.index }}</td>
-                            <td>{{ item.prenom }}</td>
-                            <td>{{ item.famille }}</td>
-                            <td>{{ dechiffre(item.mail) }}</td>
-                            <td class="text-center">
-                                {% if item.groupe != 'admin' %}
-                                    <form action="action/utilisateur-suppression.php?key={{ loop.index }}" method="post">
+                            <td>#</td>
+                            <td>Code</td>
+                            <td>Label</td>
+                            <td>Supprimer</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in familles %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.label }}</td>
+                                <td class="text-center">
+                                    <form action="action/famille-suppression.php?key={{ loop.index }}" method="post">
                                         <button type="submit" class="btn-2 btn-s">Supprimer</button>
                                     </form>
-                                {% else %}
-                                    [{{ item.groupe }}]
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
 
-    <div class="grid-main__task cadre-m bg-neutral-000">
-        <form action="action/famille-ajout.php" method="post" class="mb-2">
-            <fieldset class="df fd-c gap-m">
-                <legend>
-                    <h2 class="titre">Ajouter une famille</h2>
-                </legend>
-
-                {% if get.erreurFam1 %}
-                    {% set erreurId = 'Le champ est vide' %}
-                {% endif %}
-
-                {% if get.erreurFam2 %}
-                    {% set erreurLabel = 'Le champ est vide' %}
-                {% endif %}
-
-                {% if get.erreurId %}
-                    {% set erreurId = 'Déjà utilisé, saisissez autre chose' %}
-                {% endif %}
-
-
-                {{ macro.input('id', 'ID unique', get.id, erreurId ) }}
-
-                {{ macro.input('label', 'Label', get.label, erreurLabel) }}
-
-                <button type="submit" class="btn-1">Ajouter</button>
-
-            </fieldset>
-        
-        </form>
-    </div>
-
-    <div class="grid-main__calendar cadre-m bg-neutral-100">
-        <div class="scroll">
-            <table class="tableau bg-neutral-000">
-                <caption>
-                    <h2 class="titre">Les familles ({{ familles|length}})</h2>
-                </caption>
-                <thead>
-                    <tr>
-                        <td>#</td>
-                        <td>Code</td>
-                        <td>Label</td>
-                        <td>Supprimer</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in familles %}
-                        <tr>
-                            <td>{{ loop.index }}</td>
-                            <td>{{ item.id }}</td>
-                            <td>{{ item.label }}</td>
-                            <td class="text-center">
-                                <form action="action/famille-suppression.php?key={{ loop.index }}" method="post">
-                                    <button type="submit" class="btn-2 btn-s">Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
     </div>
 
 </main>

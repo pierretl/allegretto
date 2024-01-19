@@ -5,17 +5,27 @@
 }
 
 .grid-main {
-    flex-grow: 1;
     gap: var(--app-main-gap);
+    
+    @include breakpoint('smallOnly') {
+        flex-grow: 1;
+    }
 
     @include breakpoint('medium') {
         display: grid;
         grid-template-columns: 
-            [full-start task-start form-start]
+            [full-start task-start]
             3.8fr
-            [task-end calendar-start]
+            [task-end calendar-start form-start]
             6.1fr
             [calendar-end form-end full-end]
+        ;
+        grid-template-rows: 
+            [task-start calendar-start]
+            auto
+            [calendar-end]
+            auto
+            [task-end]
         ;
     }
 
@@ -29,12 +39,17 @@
             1fr
             [form-end full-end]
         ;
+        grid-template-rows: 
+            [task-start calendar-start]
+            auto
+            [calendar-end task-end]
+        ;
     }
 }
 
 @include breakpoint('medium') {
     .grid-main__full {      grid-column: full}
-    .grid-main__task {      grid-column: task}
-    .grid-main__calendar {  grid-column: calendar}
+    .grid-main__task {      grid-column: task;      grid-row: task}
+    .grid-main__calendar {  grid-column: calendar;  grid-row: calendar}
     .grid-main__form {      grid-column: form}
 }
