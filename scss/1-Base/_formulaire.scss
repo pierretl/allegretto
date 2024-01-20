@@ -9,16 +9,27 @@ label {
     font-weight: 400;
 }
 
-input {
+input,
+select {
     width: 100%;
     min-height: var(--form-min-height);
+    padding: 0 var(--form-padding);
+
+    background-color: var(--form-bg);
+    border: 1px solid var(--form-border);
     border-radius: var(--radius-s);
-    font-size: 1rem;
-    border: 1px solid var(--form-input-border);
-    padding: 0 var(--form-padding); 
+    
+    font-size: 1rem; 
     color: var(--neutre-700);
 }
 
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='24' viewBox='0 0 32 24'><polygon style='fill: rgb%2855, 70, 73%29' points='0,0 32,0 16,24'></polygon></svg>");
+    background-position: center right var(--form-padding);
+    background-repeat: no-repeat;
+    background-size: 12px 8px,1px 1px;
+}
 
 
 .input-group input {
@@ -35,14 +46,14 @@ input {
 }
 
 .input-group--erreur {
-    --form-input-border: var(--red-700);
+    --form-border: var(--red-700);
 }
 .label-erreur {
     color: var(--red-700);
     font-weight: 400;
 }
 
-
+//
 fieldset {
     border: 0;
 }
@@ -52,65 +63,3 @@ fieldset legend {
     width: 100%;
     padding: 0;
 }
-
-
-
-/*
-fieldset:not(.unset) {
-    margin: 0;
-    background-color: var(--couleur3);
-    box-shadow: var(--ombre);
-    border: 0 none;
-    border-radius: var(--form-radius);
-    //padding: $padding-cadre;
-}
-
-fieldset legend {
-    float: left;
-    width: 100%;
-    padding: 0;
-}
-
-
-fieldset.unset {
-    border: 0 none;
-    padding: 0;
-}
-
-label {
-    display: block;
-}
-
-input {
-    @include form;
-    border-color: var(--couleur5);
-}
-
-::-webkit-input-placeholder,
-::placeholder {
-    color: var(--couleur7)
-}
-
-select {
-    @include form;
-    border-color: var(--couleur5);
-    background-color: var(--couleur3);
-    padding: 0.7rem var(--form-padding);
-    appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%2855, 70, 73%29'></polygon></svg>");
-    background-position: center right 20px,top right 50px;
-    background-repeat: no-repeat,repeat-y;
-    background-size: 12px 8px,1px 1px;
-}
-
-input:focus,
-select:focus {
-    outline: none;
-    border-color: var(--couleur1);
-}
-
-input.v_erreur,
-select.v_erreur {
-    border-color: var(--couleur6);
-}
-*/

@@ -23,7 +23,7 @@ $breakpoint-xl:   #{rem.convert(1600px)};
     --neutre-900: #152342;
     --neutre-700: #475569;
     --neutre-500: #677588;
-    --neutre-300: #d4dde9;
+    --neutre-300: #;d4dde9
     --neutre-100: #f2f5f6;
     --neutre-000: #ffffff;
 
@@ -40,7 +40,7 @@ $breakpoint-xl:   #{rem.convert(1600px)};
 
     --btn-2-bg:     var(--neutre-000);
     --btn-2-color:  var(--primary-400);
-    --btn-2-border: var(--form-input-border);
+    --btn-2-border: var(--form-border);
 
     --btn-min-height:       3rem;
     --btn-padding-block:    calc(var(--spacing-s) / 2);
@@ -52,6 +52,7 @@ $breakpoint-xl:   #{rem.convert(1600px)};
     --form-min-height:          var(--btn-min-height);
     --form-min-height--small:   1.87rem;
     --form-padding:             1rem;
-    --form-input-border:        var(--neutre-300); 
+    --form-bg:                  var(--neutre-000);
+    --form-border:              var(--neutre-300); 
 
 }
