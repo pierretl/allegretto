@@ -14,11 +14,11 @@
     @include breakpoint('medium') {
         display: grid;
         grid-template-columns: 
-            [full-start task-start]
+            [full-start task-start tiers1-start]
             3.8fr
-            [task-end calendar-start form-start]
+            [tiers1-end task-end tiers2-start calendar-start form-start]
             6.1fr
-            [calendar-end form-end full-end]
+            [calendar-end tiers2-end form-end full-end]
         ;
         grid-template-rows: 
             [task-start calendar-start]
@@ -31,13 +31,15 @@
 
     @include breakpoint('larger') {
         grid-template-columns: 
-            [full-start task-start]
+            [full-start tiers1-start task-start]
             1fr
             [task-end calendar-start]
-            2fr
+            1fr
+            [tiers1-end tiers2-start]
+            1fr
             [calendar-end form-start]
             1fr
-            [form-end full-end]
+            [tiers2-end form-end full-end]
         ;
         grid-template-rows: 
             [task-start calendar-start]
@@ -52,4 +54,7 @@
     .grid-main__task {      grid-column: task;      grid-row: task}
     .grid-main__calendar {  grid-column: calendar;  grid-row: calendar}
     .grid-main__form {      grid-column: form}
+
+    .grid-main__tiers1 {    grid-column: tiers1}
+    .grid-main__tiers2 {    grid-column: tiers2}
 }
