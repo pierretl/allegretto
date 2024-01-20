@@ -13,15 +13,15 @@
 
     <main id="contenu" class="grid-main" tabindex="-1" role="main">
         <div class="grid-main__task df fd-c gap-m">
-            {{ include('bloc/task.twig') }}
-            {{ include('bloc/les-sejour.twig') }}
+            {{ include('bloc/sejours-en-attente.twig') }}
+            {{ include('bloc/sejours-tous.twig') }}
         </div>
         <div class="grid-main__calendar cadre-m v_calendar bg-neutral-000">
-            {{ include('bloc/calendar.twig') }}
+            {{ include('bloc/calendrier.twig') }}
         </div>
         <div class="grid-main__form">
             <div class="cadre-m bg-neutral-000">
-                {{ include('bloc/form.twig') }}
+                {{ include('bloc/ajout-sejour.twig') }}
             </div>
         </div>
     </main>
