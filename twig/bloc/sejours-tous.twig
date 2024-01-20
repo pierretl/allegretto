@@ -56,6 +56,20 @@
                                     {% set btnSupprimer = false %}
                                 {% endif %}
 
+                                {% set listeFamilleNonAccord %}
+                                    {% for famille in item.validation %}
+                                        {% set familleKey = loop.index - 1 %}
+                                        {% if famille.accord == '' %}
+                                            {% for toutesLesFamilles in familles %}
+                                                {% set key = loop.index - 1 %}
+                                                {% if key == familleKey %}
+                                                    <li class="exergue">- {{toutesLesFamilles.label}}<li>
+                                                {% endif %}
+                                            {% endfor %}  
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endset %}
+
                                 {{ macro.cadreSejour({
                                     sejourKey:              sejourKey,
                                     titre:                  item.title,
@@ -65,6 +79,7 @@
                                     parUtilisateur:         item.parUtilisateur,
                                     pourFamille:            item.pourFamille,
                                     btnSupprimer:           btnSupprimer,
+                                    listeFamilleNonAccord:  listeFamilleNonAccord,
                                 }) }}
 
                             {% endif %}

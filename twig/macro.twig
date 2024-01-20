@@ -143,7 +143,7 @@
 
 
 # Cadre d'un séjour
-# Params : type, titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation, parUtilisateur, pourFamille, btnSupprimer
+# Params : type, titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation, parUtilisateur, pourFamille, btnSupprimer, listeFamilleNonAccord
 {% macro cadreSejour(params) %}
 
     {% if params.type == 'aValider' %}
@@ -180,6 +180,14 @@
                     </p>
                 {% endif %}
             </div>
+            {% if params.listeFamilleNonAccord|trim != '' %}
+                <div>
+                    En attente d'accord de :
+                    <ul>
+                        {{ params.listeFamilleNonAccord }}
+                    </ul>
+                </div>
+            {% endif %} 
         </div>
         <div class="df fd-c ai-e jc-sb fg-1 gap-s">
             <button class="btn-3" onclick="showInCalendar('{{ params.dateStart }}')">Voir dans le calendrier</button>
