@@ -120,19 +120,19 @@
             {{ sg.titre('Formulaire')}}
 
             <form class="df fd-c gap-m">
-                {{ macro.input2({
+                {{ macro.formElement({
                     id:             'demo-input',
                     label:          'Label input text'
                 }) }}
 
-                {{ macro.input2({
+                {{ macro.formElement({
                     id:             'demo-erreur',
                     label:          'Label input text',
                     inputErreur:    true,
                     erreur:         'Label erreur'
                 }) }}
 
-                {{ macro.input2({
+                {{ macro.formElement({
                     id:             'demo-password',
                     label:          'Label input text',
                     type:           'password',

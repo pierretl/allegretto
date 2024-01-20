@@ -52,7 +52,7 @@
                 {% set erreurDepart = "La date est antérieure à celle de l'arrivée" %}
             {% endif %}
 
-            {{ macro.input2({
+            {{ macro.formElement({
                 id:            'label',
                 label:         'Label*',
                 description:   'Visible sur le calendrier',
@@ -61,7 +61,7 @@
                 inputErreur:    get.erreur1
             }) }}
 
-            {{ macro.input2({
+            {{ macro.formElement({
                 id:             'arrivee',
                 label:          'Arrivée*',
                 valeur:         get.arrivee,
@@ -70,7 +70,7 @@
                 type:           'date'
             }) }}
 
-            {{ macro.input2({
+            {{ macro.formElement({
                 id:             'depart',
                 label:          'Départ*',
                 valeur:         get.depart,
@@ -79,7 +79,7 @@
                 type:           'date'
             }) }}
 
-            {{ macro.input2({
+            {{ macro.formElement({
                 id:            'commentaire',
                 label:         'Commentaire',
                 description:   'Visible sur la liste de séjour à validée',

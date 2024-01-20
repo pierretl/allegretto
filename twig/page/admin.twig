@@ -38,7 +38,7 @@
                 {% endif %}
 
 
-                {{ macro.input2({
+                {{ macro.formElement({
                     id:            'prenom',
                     label:         'Prénom',
                     valeur:         get.prenom,
@@ -46,7 +46,7 @@
                     inputErreur:    erreurPrenom
                 }) }}
 
-                {{ macro.input2({
+                {{ macro.formElement({
                     id:            'mail',
                     label:         'Adresse e-mail',
                     valeur:         get.mail,
@@ -54,7 +54,7 @@
                     inputErreur:    erreurMail
                 }) }}
 
-                {{ macro.input2({
+                {{ macro.formElement({
                     id:            'motdepasse',
                     label:         'Mot de passe',
                     valeur:         get.motdepasse,
@@ -62,7 +62,7 @@
                     inputErreur:    erreurMotDePasse
                 }) }}
 
-                {{ macro.input2({
+                {{ macro.formElement({
                     id:            'famille',
                     label:         'Code Famille',
                     type:          'select',
@@ -136,7 +136,7 @@
                     {% set erreurId = 'Déjà utilisé, saisissez autre chose' %}
                 {% endif %}
 
-                {{ macro.input2({
+                {{ macro.formElement({
                     id:            'id',
                     label:         'ID unique',
                     valeur:         get.id,
@@ -144,7 +144,7 @@
                     inputErreur:    erreurId
                 }) }}
 
-                {{ macro.input2({
+                {{ macro.formElement({
                     id:            'label',
                     label:         'Label',
                     valeur:         get.label,

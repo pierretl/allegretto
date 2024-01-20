@@ -15,14 +15,14 @@
             {% set inputErreur = true %}
         {% endif %}
 
-        {{ macro.input2({
+        {{ macro.formElement({
             id:             'mail',
             label:          'Adresse e-mail',
             valeur:         get.mail,
             inputErreur:    get.erreur
         }) }}
 
-        {{ macro.input2({
+        {{ macro.formElement({
             id:             'motdepasse',
             label:          'Mot de passe',
             type:           'password',

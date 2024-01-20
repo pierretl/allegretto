@@ -1,66 +1,6 @@
-# input text
-{% macro input(id, label, valeur = null, erreur = null, inputErreur = null, type = "text", autre) %}
-    <div class="mb-1">
-
-        <label for="{{ id }}">{{ label | raw }}</label>
-
-        {% if type == 'select' %}
-
-            <select name="{{ id }}" id="{{ id }}"{% if erreur %} class="v_erreur"{% endif %}>
-                <option value="">Sélectionnez</option>
-                {% for key, item in autre.selectOptions %}
-                    <option value="{{ key }}"{% if valeur == key %} selected{% endif %}>
-                        {{ item }} ({{ key }})
-                    </option>
-                {% endfor %}
-            </select>
-
-        {% else %}
-
-            
-
-            {% if autre.voirMotDePasse == true %}
-
-                <div class="df input-group">
-                    <input type="{{ type }}" 
-                        name="{{ id }}" 
-                        id="{{ id }}"
-                        {% if erreur %} class="v_erreur"{% endif %}
-                        {% if inputErreur %} class="v_erreur"{% endif %}
-                        value="{{ valeur }}">
-                    <button type="button" class="btn-4 df ai-c" onclick="voirMotDePasse(this)" aria-label="Voir" password-visible="false">
-                        <svg width="24px" height="24px">
-                            <use xlink:href="#oeil"></use>
-                        </svg>
-                    </button>
-                </div>
-                <script>
-
-            {% else %}
-
-                <input type="{{ type }}" 
-                    name="{{ id }}" 
-                    id="{{ id }}"
-                    {% if erreur %} class="v_erreur"{% endif %}
-                    {% if inputErreur %} class="v_erreur"{% endif %}
-                    value="{{ valeur }}">
-
-            {% endif %}
-
-        {% endif %}
-        
-        {% if erreur %}
-            <label for="{{ id }}" class="text-6">
-                {{ erreur }}
-            </label>
-        {% endif %}
-    </div>
-{% endmacro %}
-
-
-# form input
+# Élément de saisie dans un formulaire
 # params : id, label, valeur, description, erreur, inputErreur, type, selectOptions, voirMotDePasse, description
-{% macro input2(params) %}
+{% macro formElement(params) %}
 
     {% if params.type %}
         {% set type = params.type %}
