@@ -122,21 +122,27 @@
             <form class="df fd-c gap-m">
                 {{ macro.formElement({
                     id:             'demo-input',
-                    label:          'Label input text'
+                    label:          'Input text'
                 }) }}
 
                 {{ macro.formElement({
                     id:             'demo-erreur',
-                    label:          'Label input text',
+                    label:          'Erreur',
                     inputErreur:    true,
                     erreur:         'Label erreur'
                 }) }}
 
                 {{ macro.formElement({
                     id:             'demo-password',
-                    label:          'Label input text',
+                    label:          'Password',
                     type:           'password',
                     voirMotDePasse: true,
+                }) }}
+
+                {{ macro.formElement({
+                    id:             'demo-select',
+                    label:          'Select',
+                    type:           'select'
                 }) }}
 
                 <button type="submit" class="btn-1 mt-m">Button submit</button>
