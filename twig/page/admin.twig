@@ -38,13 +38,39 @@
                 {% endif %}
 
 
-                {{ macro.input('prenom', 'Prénom', get.prenom, erreurPrenom ) }}
+                {{ macro.input2({
+                    id:            'prenom',
+                    label:         'Prénom',
+                    valeur:         get.prenom,
+                    erreur:         erreurPrenom,
+                    inputErreur:    erreurPrenom
+                }) }}
 
-                {{ macro.input('mail', 'Adresse mail', get.mail, erreurMail) }}
+                {{ macro.input2({
+                    id:            'mail',
+                    label:         'Adresse e-mail',
+                    valeur:         get.mail,
+                    erreur:         erreurMail,
+                    inputErreur:    erreurMail
+                }) }}
 
-                {{ macro.input('motdepasse', 'Mot de passe', get.motdepasse, erreurMotDePasse) }}
+                {{ macro.input2({
+                    id:            'motdepasse',
+                    label:         'Mot de passe',
+                    valeur:         get.motdepasse,
+                    erreur:         erreurMotDePasse,
+                    inputErreur:    erreurMotDePasse
+                }) }}
 
-                {{ macro.input('famille', 'Code Famille', get.famille, erreurCodeFamille, '', 'select', {selectOptions: selectOptionFamille}) }}
+                {{ macro.input2({
+                    id:            'famille',
+                    label:         'Code Famille',
+                    type:          'select',
+                    valeur:         get.famille,
+                    erreur:         erreurCodeFamille,
+                    inputErreur:    erreurCodeFamille,
+                    selectOptions:  selectOptionFamille
+                }) }}
 
                 <button type="submit" class="btn-1">Ajouter</button>
 
@@ -110,10 +136,21 @@
                     {% set erreurId = 'Déjà utilisé, saisissez autre chose' %}
                 {% endif %}
 
+                {{ macro.input2({
+                    id:            'id',
+                    label:         'ID unique',
+                    valeur:         get.id,
+                    erreur:         erreurId,
+                    inputErreur:    erreurId
+                }) }}
 
-                {{ macro.input('id', 'ID unique', get.id, erreurId ) }}
-
-                {{ macro.input('label', 'Label', get.label, erreurLabel) }}
+                {{ macro.input2({
+                    id:            'label',
+                    label:         'Label',
+                    valeur:         get.label,
+                    erreur:         erreurLabel,
+                    inputErreur:    erreurLabel
+                }) }}
 
                 <button type="submit" class="btn-1">Ajouter</button>
 
