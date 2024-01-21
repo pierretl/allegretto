@@ -23,9 +23,36 @@ $breakpoint-xl:   #{rem.convert(1600px)};
     --neutre-900: #152342;
     --neutre-700: #475569;
     --neutre-500: #677588;
-    --neutre-300: #;d4dde9
+    --neutre-300: #d4dde9;
     --neutre-100: #f2f5f6;
     --neutre-000: #ffffff;
+
+    --color-blanc:    #FFFFFF;//fond
+    --color-gris-100: #F4F5F6;//fond
+    --color-gris-200: #C0C5CC;//bordure ?
+    --color-gris-300: #979FAD;
+    --color-gris-400: #768191;
+    --color-gris-500: #515D72;//clair
+    --color-gris-600: #394556;
+    --color-gris-700: #273344;//body
+    --color-gris-800: #15202D;
+    --color-gris-900: #0C1423;
+
+    --color-blue-100: #EBF1FF;
+    --color-blue-200: #B9CEF9;
+    --color-blue-300: #85B1FF;
+    --color-blue-400: #4B92F9;
+    --color-blue-500: #1D63FF;//logo, lien
+    --color-blue-600: #1153C9;
+    --color-blue-700: #083D9B;//exergue ?
+    --color-blue-800: #042C66;//titre
+    --color-blue-900: #00133D;
+
+    --color-jaune:    #FFCB24;//logo
+    --color-rouge:    #C61717;//erreur
+    --color-vert:     #1D820B;//succes
+
+
 
     --nav-border: var(--neutre-300);
 
