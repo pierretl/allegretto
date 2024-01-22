@@ -2,6 +2,10 @@ button:hover {
     cursor: pointer;
 }
 
+[class*="btn-"] {
+    position: relative;
+}
+
 .btn-1 {
     @include bouton;
 }
@@ -33,4 +37,10 @@ button:hover {
 [class*="btn-"].v_off {
     --btn-bg:               var(--neutre-300);
     --btn-color:            var(--neutre-700);
+}
+
+[class*="btn-"][disabled] {
+    padding-right: calc(var(--btn-padding-inline) * 2 + var(--loader-taille));
+    background-color: grey;
+    cursor: wait;
 }
