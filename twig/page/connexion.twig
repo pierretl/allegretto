@@ -38,6 +38,7 @@
 
 
 {% block scriptFooter %}
+    {{parent()}}
     {{ include('js/voirMotDePasse.js') }}
     {{ include('js/validationFormulaire.js') }}
 {% endblock %}

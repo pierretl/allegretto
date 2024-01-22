@@ -276,6 +276,7 @@
 
 
 {% block scriptFooter %}
+    {{parent()}}
     {{ include('js/afficheLaSuite.js') }}
     {{ include('js/suppressionSejour.js') }}
     {{ include('js/validationFormulaire.js') }}
