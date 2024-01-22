@@ -3,7 +3,7 @@ button:hover {
 }
 
 [class*="btn-"] {
-    position: relative;
+    position: relative;//pour le loader
 }
 
 .btn-1 {
@@ -19,15 +19,23 @@ button:hover {
     @include bouton;
 }
 
-.btn-3 {
+.btn-3,
+.btn-4 {
     background-color: transparent;
     border: 0 none;
     text-decoration: underline;
+}
+
+.btn-3 {
     color: var(--btn-2-color);
 }
 
 .btn-3 svg {
     fill: var(--btn-2-color);
+}
+
+.btn-4 {
+    color: var(--neutre-700);
 }
 
 [class*="btn-"].v_petit {
