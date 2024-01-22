@@ -42,7 +42,7 @@
 
 
 {% if block("symbolSvg") is defined %}
-    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none" aria-hidden="true" focusable="false">
         {{ block('symbolSvg') }}
     </svg>
 {% endif %}
