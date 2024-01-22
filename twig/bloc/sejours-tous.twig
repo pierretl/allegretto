@@ -23,6 +23,15 @@
 
         <h2 class="titre">Les séjours à venir</h2>
 
+        <div class="tabs">
+            <input class="sr-only" type="radio" id="perso" name="filtreSejour" checked>
+            <label class="tabs__label" for="perso">Mes séjours</label>
+            <input class="sr-only" type="radio" id="autre" name="filtreSejour">
+            <label class="tabs__label" for="autre">Les autres</label>
+            <input class="sr-only" type="radio" id="tous" name="filtreSejour">
+            <label class="tabs__label" for="tous">Tous</label>
+        </div>
+
         <ul class="df gap-s">
             <li>
                 <button class="btn-2 js_filtrePerso v_off" type="button" title="Afficher les séjours de ma famille" aria-pressed="false">
