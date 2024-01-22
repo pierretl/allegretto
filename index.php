@@ -72,21 +72,6 @@ switch ($page) {
         ]);
         break;
 
-    case 'sejour':
-        authentifier();
-        echo $twig->render('page/sejour.twig' , [
-            'session' => $_SESSION,
-            'post' => $_POST,
-            'get' => $_GET,
-            'dataCalendrier' => getenv('DATA_SEJOUR'),
-            'familles' => getDataJson(getenv('DATA_FAMILLE')),
-            'sejours' => getDataJson(getenv('DATA_SEJOUR')),
-            'sejoursValide' => sejoursValide(getDataJson(getenv('DATA_SEJOUR'))),
-            'sejoursAttente' => sejoursAttente(getDataJson(getenv('DATA_SEJOUR'))),
-            'dernierRappel' => getDataJson(getenv('DATA_RAPPEL')),
-        ]);
-        break;
-
     case 'calendrier':
         authentifier();
         echo $twig->render('page/calendrier.twig', [
@@ -124,16 +109,33 @@ switch ($page) {
         ]);
         break;
 
-        case 'styleguide':
-            authentifier();
-            echo $twig->render('page/styleguide.twig', [
-                'session' => $_SESSION
-            ]);
-            break;
+    case 'styleguide':
+        authentifier();
+        echo $twig->render('page/styleguide.twig', [
+            'session' => $_SESSION
+        ]);
+        break;
+
+    case 'historique':
+        authentifier();
+        echo $twig->render('page/historique.twig', [
+            'session' => $_SESSION,
+            'post' => $_POST,
+            'get' => $_GET,
+            'dataCalendrier' => getenv('DATA_SEJOUR'),
+            'familles' => getDataJson(getenv('DATA_FAMILLE')),
+            'sejours' => getDataJson(getenv('DATA_SEJOUR')),
+            'sejoursValide' => sejoursValide(getDataJson(getenv('DATA_SEJOUR'))),
+            'sejoursAttente' => sejoursAttente(getDataJson(getenv('DATA_SEJOUR'))),
+            'dernierRappel' => getDataJson(getenv('DATA_RAPPEL')),
+        ]);
+        break;
 
     default:
         header('HTTP/1.0 404 Not Found');
-        echo $twig->render('page/404.twig');
+        echo $twig->render('page/404.twig',[
+            'session' => $_SESSION
+        ]);
         break;
 
 }

@@ -1,0 +1,281 @@
+{% extends 'template/defaut.twig' %}
+
+{% import 'macro.twig' as macro %}
+
+{% block title %}Historique{% endblock %}
+
+
+{% block content %}
+
+    <main id="contenu" class="grid-main" tabindex="-1" role="main">
+
+        <div class="grid-main__full">
+            <div class="cadre-m bg-neutral-000">
+                <p>
+                    <a href="{{ getenv('APP_URL') }}index.php?p=dashboard" class="btn-4">Retour au Dashboard</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="grid-main__full">
+            <div class="cadre-m bg-neutral-000">
+                {% if session.utilisateur.groupe == 'admin' %}
+                    <div class="df ai-c jc-sb gap-m">
+                        <h2 class="titre">Les séjours <span class="cadre-s bg-attente">en attente</span> ({{ sejoursAttente|length}})</h2>
+                        <div>
+                            <span class="exergue">Dernier rappel : {{ dernierRappel.0.date }}</span><br>
+                            {% if get.rappel != "ok" %}
+                                <form action="action/sejour-rappel.php" method="post">
+                                    <button class="btn-2 btn-s" type="submit">Envoyer un mail de rappel</button>
+                                </form>
+                            {% endif %}
+                            {% if get.rappel == "ko" %}
+                                <span class="label-erreur">
+                                    L'envoi de l'email n'a pas abouti
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% else %}
+                    <h2 class="titre">Les séjours <span class="cadre-s bg-attente">en attente</span> ({{ sejoursAttente|length}})</h2>               
+                {% endif %}
+
+                <div class="scroll">
+                    <table class="tableau">
+                        <caption></caption>
+                        <thead>
+                            <tr>
+                                <td>Séjour</td>
+                                {% for famille in sejours.0.validation %}
+                                    <td>
+                                        {{ getLabelFamille(famille.id) }}
+                                    </td>
+                                {% endfor %}
+                                {% if session.utilisateur.groupe == 'admin' %}
+                                    <td>
+                                        Admin
+                                    </td>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in sejours %}
+                                {% set sejourKey = loop.index %}
+
+                                {% if item.backgroundColor != getenv('CALENDRIER_COLOR-VALIDE') %}
+                                    <tr>
+                                        <td>
+                                            {% if (strLength(item.title) > 20) %}
+                                                <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3">
+                                                    {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
+                                                    <span class="expanded mt-0 mb-0">
+                                                        {{ subString(item.title, 20) }}
+                                                    </span>
+                                                </button>
+                                            {% else %}
+                                                {{ item.title }}
+                                            {% endif %}
+
+                                            {% if (item.commentaire) %}
+                                                <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3">
+                                                    <svg width="20px" height="20px" class="expanded" style="margin-left:.2rem">
+                                                        <use xlink:href="#fermer"></use>
+                                                    </svg>
+                                                    <svg width="20px" height="20px" class="expanded-reverse" style="margin-left:.2rem">
+                                                        <use xlink:href="#bulle"></use>
+                                                    </svg>
+                                                </button>
+                                                <span class="expanded-sibling">
+                                                    <br>{{ item.commentaire }}
+                                                </span>
+                                            {% endif %}
+
+                                            <span class="text-7">
+                                                {% if (item.start == item.departReel) %}
+                                                    <br>La journée du {{ item.start | date("d/m/Y") }}
+                                                {% else %}
+                                                    <br>{{ item.start | date("d/m/Y") }}&nbsp;&#10140;&nbsp;{{ item.departReel | date("d/m/Y") }}
+                                                {% endif %}
+                                            </span>
+                                        </td>
+                                        {% for famille in item.validation %}
+                                            <td>
+                                                {% if famille.accord %}
+
+                                                    {% if item.dataAjout == famille.accord %}
+                                                        {% if famille.id == session.utilisateur.famille %}
+
+                                                            {% if "now" | date('U') < item.start | date('U') %}
+                                                                {{ macro.supprimerSejour({
+                                                                    sejourKey:              sejourKey,
+                                                                    titre:                  item.title,
+                                                                    dateStart:              item.start,
+                                                                    departReel:             item.departReel,
+                                                                    commentaire:            item.commentaire,
+                                                                    parUtilisateur:         item.parUtilisateur,
+                                                                    pourFamille:            item.pourFamille,
+                                                                    pageRetourValidation:   'historique'
+                                                                }) }}
+                                                            {% else %}
+                                                                <span class="exergue" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
+                                                                    Demandeur
+                                                                </span>
+                                                            {% endif %}
+                                                        {% else %}
+                                                            <span class="exergue" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
+                                                                Demandeur
+                                                            </span>
+                                                        {% endif %}
+                                                    {% else %}
+                                                        <div class="df ai-c">
+                                                            <svg width="24px" height="24px" class="fill-8">
+                                                                <use xlink:href="#check"></use>
+                                                            </svg>
+                                                            <span title="le {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
+                                                                Validé
+                                                            </span>
+                                                        </div>
+                                                    {% endif %}
+                                                    
+                                                {% else %}
+
+                                                    {% if item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE') %}
+
+                                                        <p>Séjour validé avant l'ajout de la famille</p>
+                                                        
+                                                    {% else %}
+
+                                                        {% if famille.id == session.utilisateur.famille %}
+                                                            <form action="action/sejour-validation.php?key={{ sejourKey }}" method="post">
+                                                                <input type="hidden" name="page" value="historique">
+                                                                <button type="submit" class="btn-1 v_petit">Je valide&nbsp;!</button>
+                                                            </form>  
+                                                        {% else %}
+                                                            <span>En&nbsp;attente...</span>
+                                                        {% endif %}
+                                                        
+                                                    {% endif %}
+
+                                                    
+                                                        
+                                                {% endif %}
+                                            </td>
+                                        {% endfor %}
+                                        {% if session.utilisateur.groupe == 'admin' %}
+                                            <td>
+                                                {{ macro.supprimerSejour({
+                                                    sejourKey:              sejourKey,
+                                                    titre:                  item.title,
+                                                    dateStart:              item.start,
+                                                    departReel:             item.departReel,
+                                                    commentaire:            item.commentaire,
+                                                    parUtilisateur:         item.parUtilisateur,
+                                                    pourFamille:            item.pourFamille,
+                                                    pageRetourValidation:   'historique'
+                                                }) }}
+                                            </td>
+                                        {% endif %}
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-main__full">
+            <div class="cadre-m bg-neutral-000">
+                <h2 class="titre">Les séjours <span class="cadre-s bg-valide">validés</span> ({{ sejoursValide|length}})</h2>
+                <div class="scroll">
+                    <table class="tableau">
+                        <caption></caption>
+                        <thead>
+                            <tr>
+                                <td>Label & commentaire</td>
+                                <td>Arrivée</td>
+                                <td>Départ</td>
+                                <td>Séjour validé<br>avant l'ajout de</td>
+                                {% if session.utilisateur.groupe == 'admin' %}
+                                    <td>
+                                        Supprimer
+                                    </td>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in sejoursValide %}
+                                {% set sejourKey = loop.index %}
+                                <tr>
+                                    <td>
+                                        {% if (strLength(item.title) > 20) %}
+                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="">
+                                                {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
+                                                <span class="expanded mt-0 mb-0">
+                                                    {{ subString(item.title, 20) }}
+                                                </span>
+                                            </button>
+                                        {% else %}
+                                            {{ item.title }}
+                                        {% endif %}
+
+                                        {% if (item.commentaire) %}
+                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3">
+                                                <svg width="20px" height="20px" class="fill-3 expanded" style="margin-left:.2rem">
+                                                    <use xlink:href="#fermer"></use>
+                                                </svg>
+                                                <svg width="20px" height="20px" class="fill-3 expanded-reverse" style="margin-left:.2rem">
+                                                    <use xlink:href="#bulle"></use>
+                                                </svg>
+                                            </button>
+                                            <span class="expanded-sibling">
+                                                <br>{{ item.commentaire }}
+                                            </span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ item.start | date("d/m/Y") }}</td>
+                                    <td>{{ item.departReel | date("d/m/Y") }}</td>
+                                    <td>
+                                        {% for famille in item.validation %}
+                                            {% if (famille.accord == '') and (item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE')) %}
+                                            {{famille.accord}}
+                                                {{getLabelFamille(famille.id)}}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    
+                                {% if session.utilisateur.groupe == 'admin' %}
+                                    <td>
+                                        {{ macro.supprimerSejour({
+                                            sejourKey:              sejourKey,
+                                            titre:                  item.title,
+                                            dateStart:              item.start,
+                                            departReel:             item.departReel,
+                                            commentaire:            item.commentaire,
+                                            parUtilisateur:         item.parUtilisateur,
+                                            pourFamille:            item.pourFamille,
+                                            pageRetourValidation:   'historique'
+                                        }) }}
+                                    </td>
+                                {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+
+{% endblock %}
+
+
+
+{% block scriptFooter %}
+    {{parent()}}
+    {{ include('js/afficheLaSuite.js') }}
+    {{ include('js/suppressionSejour.js') }}
+    {{ include('js/validationFormulaire.js') }}
+{% endblock %}

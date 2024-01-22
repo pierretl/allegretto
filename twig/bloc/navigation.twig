@@ -38,9 +38,6 @@
                         </li>
                         {% if session.utilisateur.groupe == 'admin' %}
                             <li>
-                                {{ macro.headerNav('sejour',pageActive('sejour'), 'Séjour') }}
-                            </li>
-                            <li>
                                 {{ macro.headerNav('admin',pageActive('admin'), 'Administration') }}
                             </li>
                             <li>

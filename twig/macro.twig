@@ -142,6 +142,41 @@
 {% endmacro %}
 
 
+# Supprimer un séjour
+# Params : sejourKey, dateStart, departReel, titre, commentaire
+{% macro supprimerSejour(params) %}
+<button class="btn-2 v_petit" type="button" onclick="suppressionSejour({{ params.sejourKey }})">
+    Supprimer
+</button>
+<dialog id="suppressionSejour-{{ params.sejourKey }}" class="dialog">
+    <form action="action/sejour-suppression.php?key={{ params.sejourKey }}" 
+            method="post"
+            class="cadre-m df fd-c gap-m">
+        <input type="hidden" name="page" value="{{ params.pageRetourValidation }}">
+        <h3 class="sous-titre">Etes-vous sûr de vouloir continuer ?</h3>
+        <p class="cadre-s bg-secondary">
+            Du
+            <strong class="exergue">{{ params.dateStart | date("d/m/Y") }}</strong>
+            au
+            <strong class="exergue">{{ params.departReel | date("d/m/Y") }}</strong>
+            <br>{{ params.titre }}
+            {% if params.commentaire %}
+                <br> {{ params.commentaire }}
+            {% endif %}
+        </p>
+        <div class="df jc-sb">
+            <button class="btn-2" type="button" onclick="fermeModal({{ params.sejourKey }})">
+                Annuler
+            </button>
+            <button class="btn-1" type="submit">
+                Supprimer ce séjour
+            </button>
+        </div>
+    </form>
+</dialog>
+{% endmacro %}
+
+
 # Cadre d'un séjour
 # Params : type, titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation, parUtilisateur, pourFamille, btnSupprimer, listeFamilleNonAccord
 {% macro cadreSejour(params) %}
