@@ -228,7 +228,7 @@
                                 {% if session.utilisateur.groupe == 'admin' %}
                                     <td>
                                         <button type="button" class="btn-2 v_petit" onclick="suppressionSejour({{ sejourKey }})">Supprimer</button>
-                                        <dialog id="suppressionSejour-{{ sejourKey }}" class="modal">
+                                        <dialog id="suppressionSejour-{{ sejourKey }}" class="dialog">
                                             <form action="action/sejour-suppression.php?key={{ loop.index }}" method="post">
                                                 <h3>Etes-vous sûr de vouloir continuer ?</h3>
                                                 <p>

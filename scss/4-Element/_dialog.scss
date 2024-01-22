@@ -1,11 +1,12 @@
-.modal {
+.dialog {
     width: 100%;
     max-width: 50ch;
+    margin: auto;
     border: 0;
     border-radius: var(--radius-m);
 }
 
-.modal::backdrop {
+.dialog::backdrop {
     background-color: var(--neutre-900);
     opacity: .8;
 }
