@@ -5,14 +5,19 @@
 {% block sousTitre %}Page non trouvée{% endblock %}
 
 {% block content %}
-    <div class="df fd-c ai-c gap-s">
+    <div class="df fd-c ai-c gap-m">
         <p>
             <strong class="sous-titre">Désolé</strong>
             <br>
             On dirait que vous êtes perdu, il n'y a rien ici...
         </p>
-        <div>
-            <a class="btn-1" href="index.php?p=connexion">Page de Connexion</a>
-        </div>
+        <p>
+            <a class="btn-2" href="index.php?p=connexion">Page de Connexion</a>
+        </p>
+        {% if session.utilisateur.mail %}
+            <p>
+                <a class="btn-1" href="index.php?p=dashboard">Dashboard</a>
+            </p>
+        {% endif %}
     </div>
 {% endblock %}
