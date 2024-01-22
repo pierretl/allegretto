@@ -28,6 +28,25 @@
     {% block head %}{% endblock %}
 </head>
 
-{% block body %}{% endblock %}
+<body class="{{ block('classBody') }}">
+
+
+    {% block mainContent %}{% endblock %}
+
+
+{% if block("scriptFooter") is defined %}
+    <script>
+        {{ block('scriptFooter') }}
+    </script>
+{% endif %}
+
+
+{% if block("symbolSvg") is defined %}
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
+        {{ block('symbolSvg') }}
+    </svg>
+{% endif %}
+    
+</body>
 
 </html>
