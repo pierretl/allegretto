@@ -145,7 +145,7 @@
 # Supprime un séjour
 # Params : sejourKey, dateStart, departReel, titre, commentaire
 {% macro supprimerSejour(params) %}
-<button type="button" onclick="suppressionSejour({{ params.sejourKey }})">
+<button class="btn v-outline v-petit" type="button" onclick="suppressionSejour({{ params.sejourKey }})">
     Supprimer
 </button>
 <dialog id="suppressionSejour-{{ params.sejourKey }}" class="dialog">
@@ -190,27 +190,40 @@
         {% set classBgColor = 'bg-gris' %}
     {% endif %}
 
-    <li class="cadre-s gap-s ~ {{ classBgColor }} ~ df fd-cX fw-w"
+    <li class="cadre-s gap-s ~ {{ classBgColor }} ~ df fw-w"
         data-user="{{ params.parUtilisateur }}"
         data-famille="{{ params.pourFamille }}">
+
+        <div>
+            <button onclick="showInCalendar('{{ params.dateStart }}')" 
+                    title="Voir dans le calendrier">
+                <svg width="24px" height="24px">
+                    <use xlink:href="#calendrier"></use>
+                </svg>
+            </button>
+        </div>
         
         <div class="df fd-c gap-s">
-            <p>
-                {% if (params.dateStart == params.departReel) %}
-                    La journée du <strong class="exergue">{{ params.dateStart | date("d/m/Y") }}</strong>
-                {% else %}
-                    Du
-                    <strong class="exergue">{{ params.dateStart | date("d/m/Y") }}</strong>
-                    au
-                    <strong class="exergue">{{ params.departReel | date("d/m/Y") }}</strong>
-                {% endif %}
-                {% if params.parUtilisateur %}
-                    <br>Par <span>{{ params.parUtilisateur }}</span>
-                {% endif %}
-            </p>
+            {% if params.parUtilisateur %}
+                <p class="clair">
+                    Par <span>{{ params.parUtilisateur }}</span>
+                </p>
+            {% endif %}
             <div>
+                {% if (params.dateStart == params.departReel) %}
+                    <p class="exergue">
+                        La journée du <strong>{{ params.dateStart | date("d/m/Y") }}</strong>
+                    </p>
+                {% else %}
+                    <p class="exergue">
+                        Du
+                        <strong>{{ params.dateStart | date("d/m/Y") }}</strong>
+                        au
+                        <strong>{{ params.departReel | date("d/m/Y") }}</strong>
+                    </p>
+                {% endif %}
                 {% if params.titre != params.parUtilisateur %}
-                    <h3 class="exergue">{{ params.titre }}</h3>
+                    <p>{{ params.titre }}</p>
                 {% endif %}
                 {% if params.commentaire %}
                     <p class="clair">
@@ -220,21 +233,14 @@
             </div>
             {% if params.listeFamilleNonAccord|trim != '' %}
                 <div>
-                    En attente d'accord de :
+                    <p>En attente d'accord de :</p>
                     <ul>
                         {{ params.listeFamilleNonAccord }}
                     </ul>
                 </div>
             {% endif %} 
         </div>
-        <div class="df fd-c ai-e jc-sb fg-1 gap-s">
-            <button onclick="showInCalendar('{{ params.dateStart }}')"
-                    class="btn v-outline v-petit" 
-                    title="Voir dans le calendrier">
-                <svg width="24px" height="24px">
-                    <use xlink:href="#calendrier"></use>
-                </svg>
-            </button>
+        <div class="df fd-c ai-e jc-e fg-1 gap-s">
 
             {% if params.type == 'aValider' %}
                 <form action="action/sejour-validation.php?key={{ params.sejourKey }}" method="post">
