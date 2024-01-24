@@ -145,7 +145,7 @@
 # Supprime un séjour
 # Params : sejourKey, dateStart, departReel, titre, commentaire
 {% macro supprimerSejour(params) %}
-<button class="btn-2 v_petit" type="button" onclick="suppressionSejour({{ params.sejourKey }})">
+<button class="btn-2 v-petit" type="button" onclick="suppressionSejour({{ params.sejourKey }})">
     Supprimer
 </button>
 <dialog id="suppressionSejour-{{ params.sejourKey }}" class="dialog">
@@ -233,7 +233,7 @@
             {% if params.type == 'aValider' %}
                 <form action="action/sejour-validation.php?key={{ params.sejourKey }}" method="post">
                     <input type="hidden" name="page" value="{{ params.pageRetourValidation }}">
-                    <button type="submit" class="btn v_petit">Je valide&nbsp;!</button>
+                    <button type="submit" class="btn v-petit">Je valide&nbsp;!</button>
                 </form>
             {% endif %}
 
