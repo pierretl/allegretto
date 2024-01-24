@@ -41,7 +41,7 @@ $breakpoint-xl:   #{rem.convert(1600px)};
     --spacing-m: 1rem;
     --spacing-l: 2rem;
 
-    --radius-m: #{rem.convert(12px)};
+    --radius-m: #{rem.convert(16px)};
     --radius-s: calc(var(--radius-m) - (var(--spacing-m) / 2));
 
     --loader-taille: 20px;
