@@ -3,10 +3,8 @@ button,
 a {
     position: relative; //pour le loader
 
-    display: grid;
+    display: inline-grid;
     place-items: center;
-    width: max-content;
-    max-width: 100%;
 
     border: 1px solid transparent;
     background-color: transparent;
