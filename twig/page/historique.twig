@@ -117,18 +117,18 @@
                                                                     pageRetourValidation:   'historique'
                                                                 }) }}
                                                             {% else %}
-                                                                <span class="exergue" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
+                                                                <strong class="exergue" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
                                                                     Demandeur
-                                                                </span>
+                                                                </strong>
                                                             {% endif %}
                                                         {% else %}
-                                                            <span class="exergue" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
+                                                            <strong class="exergue" title="Demande du {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">
                                                                 Demandeur
-                                                            </span>
+                                                            </strong>
                                                         {% endif %}
                                                     {% else %}
-                                                        <div class="df ai-c">
-                                                            <svg width="24px" height="24px" class="fill-8">
+                                                        <div class="df ai-c ok">
+                                                            <svg width="24px" height="24px">
                                                                 <use xlink:href="#check"></use>
                                                             </svg>
                                                             <span title="le {{ famille.accord | date("d/m/Y \\à H\\hi", "Europe/Paris") }}">

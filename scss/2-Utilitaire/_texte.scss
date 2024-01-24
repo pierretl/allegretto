@@ -43,6 +43,11 @@ strong {
 .ok {     color: var(--color-body-ok)}
 .nok {    color: var(--color-body-nok)}
 
+.ok svg,
+.nok svg {
+    fill: currentColor;
+} 
+
 .liste {
     list-style-position: inside;
     list-style-type: disc;
