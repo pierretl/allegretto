@@ -99,10 +99,10 @@
                             <td>{{ item.prenom }}</td>
                             <td>{{ item.famille }}</td>
                             <td>{{ dechiffre(item.mail) }}</td>
-                            <td class="text-center">
+                            <td>
                                 {% if item.groupe != 'admin' %}
                                     <form action="action/utilisateur-suppression.php?key={{ loop.index }}" method="post">
-                                        <button type="submit" class="btn-2 btn-s">Supprimer</button>
+                                        <button type="submit">Supprimer</button>
                                     </form>
                                 {% else %}
                                     [{{ item.groupe }}]
@@ -179,9 +179,9 @@
                             <td>{{ loop.index }}</td>
                             <td>{{ item.id }}</td>
                             <td>{{ item.label }}</td>
-                            <td class="text-center">
+                            <td>
                                 <form action="action/famille-suppression.php?key={{ loop.index }}" method="post">
-                                    <button type="submit" class="btn-2 btn-s">Supprimer</button>
+                                    <button type="submit">Supprimer</button>
                                 </form>
                             </td>
                         </tr>

@@ -75,34 +75,3 @@ a {
     padding-block: calc(var(--btn-padding-inline) / 5);
     padding-inline: calc(var(--btn-padding-inline) / 2);
 }
-
-/*
-Ancienne version
-
-.btn-2 {
-    --btn-bg:               var(--btn-2-bg);
-    --btn-border:           var(--btn-2-border);
-    --btn-color:            var(--btn-2-color);
-}
-
-.btn-4 {
-    background-color: transparent;
-    border: 0 none;
-    text-decoration: underline;
-}
-
-.btn-4 {
-    color: var(--neutre-700);
-}
-
-[class*="btn-"].v_off {
-    --btn-bg:               var(--neutre-300);
-    --btn-color:            var(--neutre-700);
-}
-
-[class*="btn-"][disabled] {
-    padding-right: calc(var(--btn-padding-inline) * 2 + var(--loader-taille));
-    background-color: grey;
-    cursor: wait;
-}
-*/
