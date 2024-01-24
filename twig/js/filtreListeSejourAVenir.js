@@ -20,7 +20,7 @@ btnFiltreTous.typeFiltre = 'tous';
 
 function filtreLesSejours(evt) {
     allBtn.forEach(function(boutons) {
-        boutons.classList.add('v_off');
+        boutons.classList.add(boutons.dataset.classOff);
         boutons.setAttribute("aria-pressed", false);
     });
 
@@ -32,7 +32,7 @@ function filtreLesSejours(evt) {
                     sejour.classList.remove('hide');
                 }
             });
-            this.classList.remove('v_off');
+            this.classList.remove(this.dataset.classOff);
             this.setAttribute("aria-pressed", true);
             break;
         case 'perso':
@@ -42,12 +42,12 @@ function filtreLesSejours(evt) {
                     sejour.classList.remove('hide');
                 }
             });
-            this.classList.remove('v_off');
+            this.classList.remove(this.dataset.classOff);
             this.setAttribute("aria-pressed", true);
             break;
         default:
             listeSejours.forEach((sejour) => sejour.classList.remove('hide'));
-            this.classList.remove('v_off');
+            this.classList.remove(this.dataset.classOff);
             this.setAttribute("aria-pressed", true);
             
     }

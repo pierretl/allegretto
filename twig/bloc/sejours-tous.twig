@@ -17,8 +17,8 @@
 
 {% if sejourAVenir %}
     <div class="cadre-m bg-blanc df fd-c gap-m">
-        <div class="hide-for-medium">
-            <a href="#addSejour" class="btn-2">Ajouter un séjour</a>
+        <div class="text-center hide-for-medium">
+            <a href="#addSejour">Ajouter un séjour</a>
         </div>
 
         <h2 class="titre">Les séjours à venir</h2>
@@ -32,23 +32,26 @@
             <label class="tabs__label" for="tous">Tous</label>
         </div>
 
-        <ul class="df gap-s">
-            <li>
-                <button class="btn-2 js_filtrePerso v_off" type="button" title="Afficher les séjours de ma famille" aria-pressed="false">
-                    Mes séjours
-                </button>
-            </li>
-            <li>
-                <button class="btn-2 js_filtreAutres v_off" type="button" title="Afficher les autres séjours" aria-pressed="false">
-                    Les autres
-                </button>
-            </li>
-            <li>
-                <button class="btn-2 js_filtreTous" type="button" title="Tous affiché" aria-pressed="true">
-                    Tous
-                </button>
-            </li>
-        </ul>
+        <div class="df ai-c fw-w gap-s">
+            <p class="exergue">Filtre :</p>
+            <ul class="df gap-s">
+                <li>
+                    <button data-class-off="v-outline" class="btn v-petit js_filtreTous" type="button" title="Tous affiché" aria-pressed="true">
+                        Tous
+                    </button>
+                </li>
+                <li>
+                    <button data-class-off="v-outline" class="btn v-petit js_filtrePerso v-outline" type="button" title="Afficher les séjours de ma famille" aria-pressed="false">
+                        Mes séjours
+                    </button>
+                </li>
+                <li>
+                    <button data-class-off="v-outline" class="btn v-petit js_filtreAutres v-outline" type="button" title="Afficher les autres séjours" aria-pressed="false">
+                        Les autres
+                    </button>
+                </li>
+            </ul>
+        </div>
 
         <ul class="df fd-c gap-s js_listeAFiltre" data-famille="{{ session.utilisateur.famille }}" aria-live="polite">
             
