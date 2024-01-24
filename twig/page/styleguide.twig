@@ -9,27 +9,10 @@
 {% block content %}
 
     <main id="contenu" class="grid-main" tabindex="-1" role="main">
-        <div class="grid-main__full df fd-c cadre-m gap-m bg-neutral-000">
+        <div class="grid-main__full df fd-c cadre-m gap-m bg-blanc">
 
 
             {{ sg.titre('Couleurs', true)}}
-
-            <ul class="df fw-w gap-m">
-                {{ sg.palette('#1d63ff','--primary-400')}}
-                {{ sg.palette('#ffce32','--secondary-400')}}
-                {{ sg.palette('hsl(360,89%,41%)','--red-700')}}
-                {{ sg.palette('#6E7588','--couleur7')}}
-                {{ sg.palette('#006706','--couleur8')}}
-            </ul>
-
-            <ul class="df fw-w gap-m">
-                {{ sg.palette('#ffffff','--neutre-000')}}
-                {{ sg.palette('#f2f5f6','--neutre-100')}}
-                {{ sg.palette('#d4dde9','--neutre-300')}}
-                {{ sg.palette('#677588','--neutre-500')}}
-                {{ sg.palette('#475569','--neutre-700')}}
-                {{ sg.palette('#152342','--neutre-900')}}
-            </ul>
 
             <ul class="df fw-w gap-m">
                 {{ sg.palette('#F4F5F6','--color-gris-100')}}
@@ -66,53 +49,32 @@
 
             <div class="df fw-w gap-l">
             
-                <div>
+                <div class="cadre-m bg-blanc">
                     <p class="titre">Titre</p>
                     <p class="sous-titre">Sous Titre</p>
-                    <p>Paragraphe</p>
-                    <p class="exergue">Exergue</p>
-                    <p class="clair">Texte clair</p>
+                    <p class="exergue">Exergue, <strong>gras</strong></p>
+                    <p>Paragraphe, <strong>gras</strong></p>
+                    <p class="clair">Texte clair, <strong>gras</strong></p>
+                    <p><a href="#">Lien hypertexte</a></p>
+                    <p class="ok">Message ok</p>
+                    <p class="nok">Message nok</p>
                 </div>
-
-                <div>
-                    <h1>h1</h1>
-                    <h2>h2</h2>
-                    <h3>h3</h3>
-                    <h4>h4</h4>
-                    <h5>h5</h5>
-                    <h6>h6</h6>
-                    <p class="exergue">Exergue</p>
+            
+                <div class="cadre-m bg-gris">
+                    <p class="titre">Titre</p>
+                    <p class="sous-titre">Sous Titre</p>
+                    <p class="exergue">Exergue, <strong>gras</strong></p>
+                    <p>Paragraphe, <strong>gras</strong></p>
+                    <p class="clair">Texte clair, <strong>gras</strong></p>
+                    <p><a href="#">Lien hypertexte</a></p>
+                    <p class="ok">Message ok</p>
+                    <p class="nok">Message nok</p>
                 </div>
-
-                <div>
-                    <p class="font-400">font-400</p>
-                    <p class="font-700">font-700</p>
-                    <strong class="exergue">strong.exergue</strong>
+            
+                <div class="cadre-m bg-jaune">
+                    <p class="titre">Titre</p>
+                    <p class="sous-titre">Sous Titre</p>
                 </div>
-
-                <div class="cadre-m" style="background:#fff">
-                    <p style="color:#042C66;font-size:1.5rem;font-weight:600;">Titre</p>
-                    <p style="color:#042C66;font-size:1.2rem;font-weight:600;">Sous-titre</p>
-                    <p style="color:#083D9B;">Exergue, <span class="font-700">gras</span></p>
-                    <p style="color:#273344;">Paragraphe, <span class="font-700">gras</span></p>
-                    <p style="color:#515D72;">Clair, <span class="font-700">gras</span></p>
-                    <p style="color:#1D63FF;">Lien hypertexte</p>
-                    <p style="color:#C61717;">Message erreur</p>
-                    <p style="color:#1D820B;">Message valdiation</p>
-                </div>
-
-                <div class="cadre-m" style="background:#F4F5F6">
-                    <p style="color:#042C66;font-size:1.5rem;font-weight:600;">Titre</p>
-                    <p style="color:#042C66;font-size:1.2rem;font-weight:600;">Sous-titre</p>
-                    <p style="color:#083D9B;">Exergue, <span class="font-700">gras</span></p>
-                    <p style="color:#273344;">Paragraphe, <span class="font-700">gras</span></p>
-                    <p style="color:#515D72;">Clair, <span class="font-700">gras</span></p>
-                    <p style="color:#1D63FF;">Lien hypertexte</p>
-                    <p style="color:#C61717;">Message erreur</p>
-                    <p style="color:#1D820B;">Message valdiation</p>
-                </div>
-
-                
 
             </div>
             
@@ -150,21 +112,35 @@
             </div>
 
             
-            {{ sg.titre('Cadre')}}
+            {{ sg.titre('Cadre et fond')}}
 
             <div class="df fw-w gap-l">
                 <div class="df fd-c gap-m">
-                    <div class="cadre-m bg-neutral-100">cadre-m</div>
-                    <div class="cadre-m v_calendar bg-neutral-100">cadre-m v_calendar (smallonly)</div>
-                    <div class="cadre-s bg-neutral-100">cadre-s</div>
+                    <div class="cadre-m bg-gris">cadre-m</div>
+                    <div class="cadre-m v_calendar bg-gris">cadre-m v_calendar (smallonly)</div>
+                    <div class="cadre-s bg-gris">cadre-s</div>
                 </div>
 
                 <div class="df fd-c gap-m">
-                    <div class="cadre-m bg-neutral-000">bg-neutral-000</div>   
-                    <div class="cadre-m bg-neutral-100">bg-neutral-100</div>     
-                    <div class="cadre-m bg-secondary">bg-secondary</div>   
-                    <div class="cadre-m bg-valide">bg-valide</div>   
-                    <div class="cadre-m bg-attente">bg-attente</div>   
+                    <div class="cadre-m bg-blanc">bg-blanc</div>
+                    <div class="cadre-m bg-gris">bg-gris</div>
+                </div>
+
+                <div class="df fd-c gap-m">   
+                    <div class="cadre-m bg-bleu">
+                        <div class="cadre-s bg-blanc">bg-bleu</div>
+                    </div>
+                    <div class="cadre-m bg-jaune">
+                        <div class="cadre-s bg-blanc">bg-jaune</div>
+                    </div>
+                    <div class="cadre-m bg-ciel">
+                        <div class="cadre-s bg-blanc">bg-ciel</div>
+                    </div>
+                </div>
+
+                <div class="df fd-c gap-m">   
+                    <div class="cadre-m bg-valide">bg-valide</div>
+                    <div class="cadre-m bg-soumis">bg-soumis</div>
                 </div>
             </div>
 
@@ -172,68 +148,75 @@
 
             {{ sg.titre('Bouton et Lien')}}
 
-            <div class="df fw-w gap-l">
-                <button class="btn-1">bouton 1</button>
-                <button class="btn-2">bouton 2</button>
-                <button class="btn-3">bouton 3</button>
-                <button class="btn-4">bouton 4</button>
-            </div>
+            <p>
+                Dois être accessible sur <strong>bg-gris</strong>
+            </p>
+
+            <p>
+                <a href="#">Lien par défaut</a>
+                <button>button par défaut</button>
+            </p>
 
             <div class="df fw-w gap-l">
-                <button class="btn-1">
-                    <svg width="24px" height="24px">
-                        <use xlink:href="#oeil"></use>
-                    </svg>
+                <button class="btn">standard</button>
+                <button class="btn" disabled>
+                    standard disabled
                 </button>
-                <button class="btn-2">
-                    <svg width="24px" height="24px">
-                        <use xlink:href="#oeil"></use>
-                    </svg>
-                </button>
-                <button class="btn-3">
-                    <svg width="24px" height="24px">
-                        <use xlink:href="#oeil"></use>
-                    </svg>
-                </button>
-                <button class="btn-4">
-                    <svg width="24px" height="24px">
-                        <use xlink:href="#oeil"></use>
-                    </svg>
+                <button class="btn" disabled>
+                    standard disabled + loader
+                    <span class="loader"></span>
                 </button>
             </div>
 
             <div class="df fw-w gap-l">
-                <button class="btn-1 v_petit">bouton 1</button>
-                <button class="btn-2 v_petit">bouton 2</button>
-                <button class="btn-3 v_petit">bouton 3</button>
-                <button class="btn-4 v_petit">bouton 4</button>
+                <button class="btn">
+                    <svg width="24px" height="24px">
+                        <use xlink:href="#oeil"></use>
+                    </svg>
+                </button>
+                <button class="btn" disabled>
+                    <svg width="24px" height="24px">
+                        <use xlink:href="#oeil"></use>
+                    </svg>
+                </button>
+                <button class="btn" disabled>
+                    <svg width="24px" height="24px">
+                        <use xlink:href="#oeil"></use>
+                    </svg>
+                    <span class="loader"></span>
+                </button>
             </div>
 
             <div class="df fw-w gap-l">
-                <button class="btn-1 v_off">bouton 1</button>
-                <button class="btn-2 v_off">bouton 2</button>
-                <button class="btn-3 v_off">bouton 3</button>
-                <button class="btn-4 v_off">bouton 4</button>
+                <button class="btn v-outline">outline</button>
+                <button class="btn v-outline" disabled>
+                    outline disabled
+                </button>
+                <button class="btn v-outline" disabled>
+                    outline disabled + loader
+                    <span class="loader"></span>
+                </button>
             </div>
 
             <div class="df fw-w gap-l">
-                <button class="btn-1" disabled>
-                    bouton 1
-                    <span class="loader"></span>
+                <button class="btn v-outline">
+                    <svg width="24px" height="24px">
+                        <use xlink:href="#oeil"></use>
+                    </svg>
                 </button>
-                <button class="btn-2" disabled>
-                    bouton 2
-                    <span class="loader"></span>
+                <button class="btn v-outline" disabled>
+                    <svg width="24px" height="24px">
+                        <use xlink:href="#oeil"></use>
+                    </svg>
                 </button>
-                <button class="btn-3" disabled>
-                    bouton 3
-                    <span class="loader"></span>
-                </button>
-                <button class="btn-4" disabled>
-                    bouton 4
+                <button class="btn v-outline" disabled>
+                    <svg width="24px" height="24px">
+                        <use xlink:href="#oeil"></use>
+                    </svg>
                     <span class="loader"></span>
                 </button>
             </div>
+
 
             
 
@@ -265,9 +248,9 @@
                     type:           'select'
                 }) }}
 
-                <button type="submit" class="btn-1 mt-m">Button submit</button>
+                <button type="submit" class="btn mt-m">Button submit</button>
 
-                <button type="submit" class="btn-1 mt-m" disabled>
+                <button type="submit" class="btn mt-m" disabled>
                     Button load
                     <span class="loader"></span>
                 </button>

@@ -1,6 +1,6 @@
 {% import 'macro.twig' as macro %}
 
-<header class="nav bg-neutral-000" role="banner">
+<header class="nav bg-blanc" role="banner">
     <nav role="navigation">
         <ul class="grid-nav js-nav">
 
@@ -25,7 +25,7 @@
             {% endif %}
 
             <li class="grid-nav__menu js-burger-menu hide-for-small-only">
-                <ul class="df gap-l">
+                <ul class="df fw-w gapx-l">
                     {% if session.utilisateur.mail %}
                         <li>
                             {{ macro.headerNav('dashboard',pageActive('dashboard'), 'Accueil') }}

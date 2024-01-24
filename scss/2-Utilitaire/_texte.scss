@@ -1,24 +1,18 @@
 :focus-visible {
     outline-offset: #{rem.convert(2px)};
-    outline-color: var(--primary-400);
+    outline-color: var(--color-body-exergue);
     outline-width: var(--outline-width);
     border-radius: 0;
 }
 
 body {
     font-family: system-ui, sans-serif;
-    background-color: var(--neutre-100);
-    color: var(--neutre-700);
+    background-color: var(--color-body-bg);
+    color: var(--color-body);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 .exergue {
-    color: var(--neutre-900);
+    color: var(--color-body-exergue);
 }
 
 ol,
@@ -26,24 +20,25 @@ ul {
     list-style: none;
 }
 
-.titre {
-    @include titre
-}
-
+.titre,
 .sous-titre {
-    font-size: 1rem;
-    font-weight: 600;
+    color: var(--color-body-titre);
+    font-weight: var(--text-gras);
+    line-height: 1.1;
 }
 
-.clair {
-    color: var(--neutre-500);
-}
+.titre {        font-size: 1.5rem}
+.sous-titre {   font-size: 1.1rem}
 
 .font-400 {
     font-weight: 400;
 }
 
 .font-700,
-strong.exergue {
-    font-weight: 600;
+strong {
+    font-weight: var(--text-gras);
 }
+
+.clair {  color: var(--color-body-light)}
+.ok {     color: var(--color-body-ok)}
+.nok {    color: var(--color-body-nok)}

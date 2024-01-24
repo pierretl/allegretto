@@ -1,8 +1,14 @@
-.bg-neutral-000 {   background-color: var(--neutre-000)}
-.bg-neutral-100 {   background-color: var(--neutre-100)}
+.bg-blanc {      background-color: var(--color-body-bg)}
+.bg-gris {       background-color: var(--color-body-bg-dark)}
 
-.bg-primary {       background-color: var(--primary-400)}
-.bg-secondary {     background-color: var(--secondary-400)}
+.bg-bleu {       background-color: var(--color-bleu-500)}
+.bg-jaune {      background-color: var(--color-jaune-500)}
+.bg-ciel {       background-color: var(--color-bleu-100)}
 
-.bg-valide {        background-color: var(--couleur8); color:var(--neutre-000)}
-.bg-attente {       background-color: var(--couleur7); color:var(--neutre-000)}
+.bg-valide {     background-color: var(--color-valide); color:var(--color-sejour)}
+.bg-soumis {     background-color: var(--color-soumis); color:var(--color-sejour)}
+
+//surcharge
+.bg-jaune {
+    --color-body-titre: var(--color-bleu-900);
+}

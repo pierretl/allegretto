@@ -1,6 +1,7 @@
 .loader {
     position: absolute;
     right: var(--btn-padding-inline);
+    transform: translateY(-50%);
 
     display: inline-block;
     width:  var(--loader-taille);

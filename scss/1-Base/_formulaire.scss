@@ -1,11 +1,11 @@
 label {
     margin-bottom: .4rem;
-    color: var(--neutre-900);
-    font-weight: 600;
+    color: var(--color-body);
+    font-weight: var(--text-gras);
 }
 
 .label-description {
-    color: var(--neutre-700);
+    color: var(--color-body-light);
     font-weight: 400;
 }
 
@@ -20,7 +20,7 @@ select {
     border-radius: var(--radius-s);
     
     font-size: 1rem; 
-    color: var(--neutre-700);
+    color: var(--form-color);
 }
 
 select {
@@ -37,19 +37,17 @@ select {
     border-bottom-right-radius: 0;
 }
 
-.input-group .btn-1 {
-    @include bouton--claire;
-
+.input-group button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-left-width: 0;
 }
 
 .input-group--erreur {
-    --form-border: var(--red-700);
+    --form-border: var(--color-body-nok);
 }
 .label-erreur {
-    color: var(--red-700);
+    color: var(--color-body-nok);
     font-weight: 400;
 }
 

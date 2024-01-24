@@ -10,7 +10,7 @@
     <main id="contenu" class="grid-main" tabindex="-1" role="main">
 
         <div class="grid-main__full">
-            <div class="cadre-m bg-neutral-000">
+            <div class="cadre-m bg-blanc">
                 <p>
                     <a href="{{ getenv('APP_URL') }}index.php?p=dashboard" class="btn-4">Retour au Dashboard</a>
                 </p>
@@ -18,10 +18,10 @@
         </div>
 
         <div class="grid-main__full">
-            <div class="cadre-m bg-neutral-000">
+            <div class="cadre-m bg-blanc">
                 {% if session.utilisateur.groupe == 'admin' %}
                     <div class="df ai-c jc-sb gap-m">
-                        <h2 class="titre">Les séjours <span class="cadre-s bg-attente">en attente</span> ({{ sejoursAttente|length}})</h2>
+                        <h2 class="titre">Les séjours <span class="cadre-s bg-soumis">en attente</span> ({{ sejoursAttente|length}})</h2>
                         <div>
                             <span class="exergue">Dernier rappel : {{ dernierRappel.0.date }}</span><br>
                             {% if get.rappel != "ok" %}
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 {% else %}
-                    <h2 class="titre">Les séjours <span class="cadre-s bg-attente">en attente</span> ({{ sejoursAttente|length}})</h2>               
+                    <h2 class="titre">Les séjours <span class="cadre-s bg-soumis">en attente</span> ({{ sejoursAttente|length}})</h2>               
                 {% endif %}
 
                 <div class="scroll">
@@ -148,7 +148,7 @@
                                                         {% if famille.id == session.utilisateur.famille %}
                                                             <form action="action/sejour-validation.php?key={{ sejourKey }}" method="post">
                                                                 <input type="hidden" name="page" value="historique">
-                                                                <button type="submit" class="btn-1 v_petit">Je valide&nbsp;!</button>
+                                                                <button type="submit" class="btn v_petit">Je valide&nbsp;!</button>
                                                             </form>  
                                                         {% else %}
                                                             <span>En&nbsp;attente...</span>
@@ -185,7 +185,7 @@
         </div>
 
         <div class="grid-main__full">
-            <div class="cadre-m bg-neutral-000">
+            <div class="cadre-m bg-blanc">
                 <h2 class="titre">Les séjours <span class="cadre-s bg-valide">validés</span> ({{ sejoursValide|length}})</h2>
                 <div class="scroll">
                     <table class="tableau">

@@ -21,11 +21,11 @@
 }
 
 @mixin navItem {
-    background-color: var(--btn-1-bg);
-    color: var(--btn-1-color);
-    font-weight: var(--btn-1-weight);
+    background-color: transparent; //bouton mobile
     border-bottom-width: #{rem.convert(2px)};
     border-bottom-style: solid;
+    color: var(--color-gris-900);
+    letter-spacing: #{rem.convert(1px)};
 }
 
 .nav__link {
@@ -41,7 +41,7 @@ button.nav__link {
 }
 
 .nav__link:not(button):hover {
-    border-color: var(--neutre-300);
+    border-bottom-color: var(--color-bleu-300);
 }
 
 .nav__link.v-rotation {
@@ -50,7 +50,7 @@ button.nav__link {
 
 
 .nav__link__icon {
-    fill: var(--neutre-900);
+    fill: var(--color-bleu-500);
 
     @include breakpoint('medium') {
         display: none;
@@ -65,5 +65,5 @@ button.nav__link {
 
 .nav__active {
     @include navItem;
-    border-color: var(--primary-400);
+    border-color: var(--color-bleu-500);
 }

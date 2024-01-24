@@ -78,4 +78,8 @@
 
 .grid-nav__menu {
     grid-column: menu;
+
+    @include breakpoint('medium') {
+        padding-inline: var(--spacing-l);
+    }
 }

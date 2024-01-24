@@ -14,7 +14,7 @@
 #}
 <main id="contenu" class="grid-main" tabindex="-1" role="main">
 
-    <div class="grid-main__tiers1 cadre-m bg-neutral-000">
+    <div class="grid-main__tiers1 cadre-m bg-blanc">
         <form action="action/utilisateur-ajout.php" method="post" class="mb-2">
             <fieldset class="df fd-c gap-m">
                 <legend>
@@ -72,16 +72,16 @@
                     selectOptions:  selectOptionFamille
                 }) }}
 
-                <button type="submit" class="btn-1">Ajouter</button>
+                <button type="submit" class="btn">Ajouter</button>
 
             </fieldset>
         </form>
     </div>
 
-    <div class="grid-main__tiers2 cadre-m bg-neutral-100 df fd-c gap-m">
+    <div class="grid-main__tiers2 cadre-m bg-gris df fd-c gap-m">
         <h2 class="titre">Les utilisateurs ({{ utilisateurs|length}})</h2>
         <div class="scroll">
-            <table class="tableau bg-neutral-000">
+            <table class="tableau bg-blanc">
                 <caption></caption>
                 <thead>
                     <tr>
@@ -117,7 +117,7 @@
 
 
 
-    <div class="grid-main__tiers1 cadre-m bg-neutral-000">
+    <div class="grid-main__tiers1 cadre-m bg-blanc">
         <form action="action/famille-ajout.php" method="post" class="mb-2">
             <fieldset class="df fd-c gap-m">
                 <legend>
@@ -152,16 +152,16 @@
                     inputErreur:    erreurLabel
                 }) }}
 
-                <button type="submit" class="btn-1">Ajouter</button>
+                <button type="submit" class="btn">Ajouter</button>
 
             </fieldset>
         
         </form>
     </div>
 
-    <div class="grid-main__tiers2 cadre-m bg-neutral-100">
+    <div class="grid-main__tiers2 cadre-m bg-gris">
         <div class="scroll">
-            <table class="tableau bg-neutral-000">
+            <table class="tableau bg-blanc">
                 <caption>
                     <h2 class="titre">Les familles ({{ familles|length}})</h2>
                 </caption>

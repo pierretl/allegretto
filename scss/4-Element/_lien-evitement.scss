@@ -1,9 +1,6 @@
 .lien-evitement {
     position: absolute;
     left: -99999rem;
-    background-color: var(--btn-1-bg);
-    color: var(--btn-1-color);
-    font-weight: var(--btn-1-weight);
     padding: #{rem.convert(10px)};
     outline-offset: 0;
     margin: calc(var(--outline-width) * 2);

@@ -5,8 +5,8 @@
 }
 
 ::selection {
-    background: var(--selection-bg);
-    color:      var(--selection-color);
+    background: var(--color-bleu-500);
+    color:      var(--color-blanc);
 }
 
 * {
@@ -44,6 +44,10 @@ h6 {
 p {
     max-width: 75ch;
     text-wrap: pretty;
+}
+
+button:hover { 
+    cursor: pointer
 }
 
 @media (prefers-reduced-motion: no-preference) {

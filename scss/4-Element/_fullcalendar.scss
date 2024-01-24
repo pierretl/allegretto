@@ -4,10 +4,14 @@
         flex-grow: 1;
     }
 
+    .fc a {
+        color: inherit;
+        text-decoration: none;
+    }
+
     // bouton
     .fc .fc-button-primary {
-        @include bouton;
-        @include bouton--claire;
+        // WIP
     }
 
     // année précédente, title, année suivante
@@ -50,12 +54,31 @@
 
     //numéro de la semaine
     .fc .fc-daygrid-week-number {
-        background-color: var(--neutre-100);
-        color: var(--neutre-700);
+        background-color: var(--color-body-bg-dark);
+        color: var(--color-body-exergue);
         font-size: .8rem;
+        font-weight: var(--text-gras);
 
         @include breakpoint(smallOnly) {
             display: none;
         }
+    }
+
+    //cellule
+    .fc-theme-standard td,
+    .fc-theme-standard th,
+    .fc-theme-standard .fc-scrollgrid
+    {
+        border-color: var(--color-body-border);
+    }
+
+    //event
+    .fc-h-event {
+        border-color: transparent;
+    }
+    .fc-h-event .fc-event-main {
+        padding-inline: 0.1rem;
+        color: var(--color-sejour);
+        font-weight: var(--text-gras);
     }
 }

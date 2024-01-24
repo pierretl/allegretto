@@ -49,7 +49,7 @@
                         {% if erreur %} class="v_erreur"{% endif %}
                         {% if params.inputErreur %} class="v_erreur"{% endif %}
                         value="{{ params.valeur }}">
-                    <button type="button" class="btn-1 df ai-c" onclick="voirMotDePasse(this)" aria-label="Voir" password-visible="false">
+                    <button type="button" class="btn v-outline df ai-c" onclick="voirMotDePasse(this)" aria-label="Voir" password-visible="false">
                         <svg width="24px" height="24px">
                             <use xlink:href="#oeil"></use>
                         </svg>
@@ -133,7 +133,7 @@
 
 # Boitier de commande Climatisation
 {% macro boitierCommandeClim(exergue, commentaire) %}
-<div class="test cadre-s gap-s bg-neutral-100 df ai-c">
+<div class="test cadre-s gap-s bg-gris df ai-c">
     <svg width="150px" height="150px" style="{{exergue}}">
         <use xlink:href="#boitier"></use>
     </svg>
@@ -154,7 +154,7 @@
             class="cadre-m df fd-c gap-m">
         <input type="hidden" name="page" value="{{ params.pageRetourValidation }}">
         <h3 class="sous-titre">Etes-vous sûr de vouloir continuer ?</h3>
-        <p class="cadre-s bg-secondary">
+        <p class="cadre-s bg-jaune">
             Du
             <strong class="exergue">{{ params.dateStart | date("d/m/Y") }}</strong>
             au
@@ -168,7 +168,7 @@
             <button class="btn-2" type="button" onclick="fermeModal({{ params.sejourKey }})">
                 Annuler
             </button>
-            <button class="btn-1" type="submit">
+            <button class="btn" type="submit">
                 Supprimer ce séjour
             </button>
         </div>
@@ -185,9 +185,9 @@
 
 
     {% if params.type == 'aValider' %}
-        {% set classBgColor = 'bg-neutral-000' %}
+        {% set classBgColor = 'bg-blanc' %}
     {% else %}
-        {% set classBgColor = 'bg-neutral-100' %}
+        {% set classBgColor = 'bg-gris' %}
     {% endif %}
 
     <li class="cadre-s gap-s ~ {{ classBgColor }} ~ df fd-cX fw-w"
@@ -233,7 +233,7 @@
             {% if params.type == 'aValider' %}
                 <form action="action/sejour-validation.php?key={{ params.sejourKey }}" method="post">
                     <input type="hidden" name="page" value="{{ params.pageRetourValidation }}">
-                    <button type="submit" class="btn-1 v_petit">Je valide&nbsp;!</button>
+                    <button type="submit" class="btn v_petit">Je valide&nbsp;!</button>
                 </form>
             {% endif %}
 

@@ -1,22 +1,84 @@
-button:hover {
-    cursor: pointer;
+// Par défaut
+button, 
+a {
+    position: relative; //pour le loader
+
+    display: grid;
+    place-items: center;
+    width: max-content;
+    max-width: 100%;
+
+    border: 1px solid transparent;
+    background-color: transparent;
+    color: var(--color-bleu-600); //accessible sur bg-gris
+    text-decoration: underline;
+    text-align: start;
+
+    svg {   fill: currentColor}
+
+    &:hover,
+    &:focus-visible { 
+        color: var(--color-bleu-800)
+    }
+
 }
 
-[class*="btn-"] {
-    position: relative;//pour le loader
+// Principal
+.btn {
+    min-height: var(--btn-min-height);
+    padding-inline: var(--btn-padding-inline);
+
+    border-radius: var(--radius-s);
+    border-color: var(--btn-border);
+    text-decoration: none;
+
+    background-color: var(--btn-bg);
+    color: var(--btn-color);
+
+    &:hover,
+    &:focus-visible { 
+        background-color: var(--btn-bg-hover);
+        color: var(--btn-color);
+    }
 }
 
-.btn-1 {
-    @include bouton;
+// Disabled
+.btn[disabled] {
+    background-color: var(--color-body-border);
+    cursor: not-allowed;
 }
 
-.btn-1 svg {
-    fill:  var(--btn-color);
+// Disabled + loader
+.btn[disabled]:has(.loader) {
+    padding-right: calc(var(--btn-padding-inline) * 2 + var(--loader-taille));
+    cursor: wait;
 }
+
+// pour aller dans un input-group
+.btn.v-outline {
+    --btn-border:   var(--form-border);
+    --btn-bg:       var(--form-bg);
+    color:          var(--form-color);
+
+    &:hover:not([disabled]),
+    &:focus-visible:not([disabled]) { 
+        border-color:   var(--btn-bg-hover);
+        color:          var(--color-blanc);
+    }
+
+    &[disabled] {
+        color: var(--color-blanc);
+    }
+
+}
+
+/*
+Ancienne version
 
 .btn-2 {
-    @include bouton--claire;
-    @include bouton;
+    --btn-bg:               var(--btn-2-bg);
+    --btn-border:           var(--btn-2-border);
+    --btn-color:            var(--btn-2-color);
 }
 
 .btn-3,
@@ -52,3 +114,4 @@ button:hover {
     background-color: grey;
     cursor: wait;
 }
+*/
