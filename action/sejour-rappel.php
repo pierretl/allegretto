@@ -97,7 +97,7 @@ if( !mail($destinataire, $sujet, $bodyEmail, implode("\r\n", $enTete)) ) {
     $rappelReturn = "ko";
 
     //Redirige sur la page
-    header("location:../index.php?p=sejour&rappel=".$rappelReturn);
+    header("location:../index.php?p=dashboard&rappel=".$rappelReturn);
     exit;
 }
 
@@ -109,4 +109,4 @@ $data[0]["date"] = $dateLast;
 updateJason($jsonDernierRappel, $data);
 
 //Redirige sur la page
-header("location:../index.php?p=sejour&rappel=".$rappelReturn);
+header("location:../index.php?p=dashboard&rappel=".$rappelReturn);

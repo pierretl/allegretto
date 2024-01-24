@@ -26,7 +26,7 @@ if (isset($_GET['p'])) {
 } else {
     //si on est deja connecter
     if ( isset( $_SESSION['utilisateur']['prenom']) ) {
-        header("location:index.php?p=sejour");
+        header("location:index.php?p=dashboard");
     }
 }
 

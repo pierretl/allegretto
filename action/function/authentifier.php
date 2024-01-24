@@ -63,7 +63,7 @@ function authentifier($pageGroupe = null) {
 
         // et que le groupe en session ne correspond pas au groupe demandé
         if ( $_SESSION['utilisateur']['groupe'] != $pageGroupe ){
-            header("location:index.php?p=sejour");
+            header("location:index.php?p=dashboard");
             exit;
         }
 
