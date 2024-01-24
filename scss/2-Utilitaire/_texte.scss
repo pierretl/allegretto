@@ -42,3 +42,8 @@ strong {
 .clair {  color: var(--color-body-light)}
 .ok {     color: var(--color-body-ok)}
 .nok {    color: var(--color-body-nok)}
+
+.liste {
+    list-style-position: inside;
+    list-style-type: disc;
+}

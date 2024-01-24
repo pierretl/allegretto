@@ -75,7 +75,7 @@
                                             {% for toutesLesFamilles in familles %}
                                                 {% set key = loop.index - 1 %}
                                                 {% if key == familleKey %}
-                                                    <li class="exergue">- {{toutesLesFamilles.label}}<li>
+                                                    <li>{{toutesLesFamilles.label}}</li>
                                                 {% endif %}
                                             {% endfor %}  
                                         {% endif %}
