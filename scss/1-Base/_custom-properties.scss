@@ -25,11 +25,11 @@ $breakpoint-xl:   #{rem.convert(1600px)};
     --color-bleu-800: #042C66;//titre
     --color-bleu-900: #00133D;//titre fond jaune
 
-    --color-jaune-500:#FFCB24;//logo
     --color-jaune-300:#EFEB5D;//sejour soumis
+    --color-jaune-500:#FFCB24;//logo
 
+    --color-vert-300: #62D483;//sejour valide
     --color-vert-500: #1D820B;//ok
-    --color-vert-300: #2eaa52;//sejour valide
 
     --color-rouge-500:#C61717;//nok
 
@@ -81,28 +81,5 @@ $breakpoint-xl:   #{rem.convert(1600px)};
     --btn-bg:               var(--color-bleu-500);
     --btn-bg-hover:         var(--color-bleu-600);
     --btn-color:            var(--color-blanc);
-
-
-    /*
-    --primary-400:#1d63ff;
-    --secondary-400:#ffce32;
-    --red-700: hsl(360,89%,41%);
-
-    --neutre-900: #152342;
-    --neutre-700: #475569;
-    --neutre-500: #677588;
-    --neutre-300: #d4dde9;
-    --neutre-100: #f2f5f6;
-    --neutre-000: #ffffff;
-
-    --nav-border: var(--neutre-300);
-
-    --btn-2-bg:     var(--neutre-000);
-    --btn-2-color:  var(--primary-400);
-    --btn-2-border: var(--form-border);
-
-    */
-
-    
 
 }
