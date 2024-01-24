@@ -11,13 +11,13 @@
             <br>
             On dirait que vous êtes perdu, il n'y a rien ici...
         </p>
-        <p>
-            <a class="btn-2" href="index.php?p=connexion">Page de Connexion</a>
-        </p>
         {% if session.utilisateur.mail %}
-            <p>
-                <a class="btn" href="index.php?p=dashboard">Dashboard</a>
-            </p>
+            {% set href = 'index.php?p=dashboard' %}
+        {% else %}
+            {% set href = 'index.php?p=connexion' %}
         {% endif %}
+        <p>
+            <a href="{{ href }}">Retournez à l’accueil</a>
+        </p>
     </div>
 {% endblock %}
