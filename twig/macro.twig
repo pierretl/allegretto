@@ -228,7 +228,7 @@
             {% endif %} 
         </div>
         <div class="df fd-c ai-e jc-sb fg-1 gap-s">
-            <button class="btn-3" onclick="showInCalendar('{{ params.dateStart }}')">Voir dans le calendrier</button>
+            <button onclick="showInCalendar('{{ params.dateStart }}')">Voir dans le calendrier</button>
 
             {% if params.type == 'aValider' %}
                 <form action="action/sejour-validation.php?key={{ params.sejourKey }}" method="post">

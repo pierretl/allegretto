@@ -66,7 +66,7 @@
                                     <tr>
                                         <td>
                                             {% if (strLength(item.title) > 20) %}
-                                                <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3">
+                                                <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false">
                                                     {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
                                                     <span class="expanded mt-0 mb-0">
                                                         {{ subString(item.title, 20) }}
@@ -77,7 +77,7 @@
                                             {% endif %}
 
                                             {% if (item.commentaire) %}
-                                                <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3">
+                                                <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false">
                                                     <svg width="20px" height="20px" class="expanded" style="margin-left:.2rem">
                                                         <use xlink:href="#fermer"></use>
                                                     </svg>
@@ -220,7 +220,7 @@
                                         {% endif %}
 
                                         {% if (item.commentaire) %}
-                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="btn-3">
+                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false">
                                                 <svg width="20px" height="20px" class="fill-3 expanded" style="margin-left:.2rem">
                                                     <use xlink:href="#fermer"></use>
                                                 </svg>
