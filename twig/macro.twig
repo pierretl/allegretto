@@ -145,7 +145,7 @@
 # Supprime un séjour
 # Params : sejourKey, dateStart, departReel, titre, commentaire
 {% macro supprimerSejour(params) %}
-<button class="btn-2 v-petit" type="button" onclick="suppressionSejour({{ params.sejourKey }})">
+<button type="button" onclick="suppressionSejour({{ params.sejourKey }})">
     Supprimer
 </button>
 <dialog id="suppressionSejour-{{ params.sejourKey }}" class="dialog">
@@ -165,7 +165,7 @@
             {% endif %}
         </p>
         <div class="df jc-sb">
-            <button class="btn-2" type="button" onclick="fermeModal({{ params.sejourKey }})">
+            <button class="btn v-outline" type="button" onclick="fermeModal({{ params.sejourKey }})">
                 Annuler
             </button>
             <button class="btn" type="submit">
@@ -228,7 +228,13 @@
             {% endif %} 
         </div>
         <div class="df fd-c ai-e jc-sb fg-1 gap-s">
-            <button onclick="showInCalendar('{{ params.dateStart }}')">Voir dans le calendrier</button>
+            <button onclick="showInCalendar('{{ params.dateStart }}')"
+                    class="btn v-outline v-petit" 
+                    title="Voir dans le calendrier">
+                <svg width="24px" height="24px">
+                    <use xlink:href="#calendrier"></use>
+                </svg>
+            </button>
 
             {% if params.type == 'aValider' %}
                 <form action="action/sejour-validation.php?key={{ params.sejourKey }}" method="post">
