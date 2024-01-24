@@ -53,6 +53,10 @@ strong {
     list-style-type: disc;
 }
 
+table caption {
+    text-align: left;
+}
+
 thead {
     color: var(--color-body-exergue);
     font-weight: var(--text-gras);
