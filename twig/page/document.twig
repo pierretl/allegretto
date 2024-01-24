@@ -14,51 +14,53 @@
 
                 <summary><h2 class="dib titre">Zéphirette</h2> <em>Climatisation</em></summary>
 
-                <div class="df fd-c gap-m">  
+                <div class="df fd-c gap-l">  
                     <br><br> 
-                    <div>
+                    <div class="df fd-c gap-s">
                         <h3 class="sous-titre">Notice</h3>
                         <div  class="cadre-s bg-gris">
                             <p>Dans le placard aux papiers et jeux</p>
                         </div>  
                     </div>
 
-                    <div>
+                    <div class="df fd-c gap-s">
                         <h3 class="sous-titre">Emplacement des boitier de commande</h3> 
-                        <ul class="cadre-s bg-gris">
-                            <li><strong class="exergue">- Sejour&nbsp;:</strong> Au dessus des interrupteurs</li>
-                            <li><strong class="exergue">- Dortoir&nbsp;:</strong> Entre les deux portes du placard-penderie</li>
-                        </ul>
+                        <div class="cadre-s bg-gris">
+                            <ul class="liste">
+                                <li><strong>Sejour&nbsp;:</strong> Au dessus des interrupteurs</li>
+                                <li><strong>Dortoir&nbsp;:</strong> Entre les deux portes du placard-penderie</li>
+                            </ul>
+                        </div>
                     </div>    
 
-                    <div>
+                    <div class="df fd-c gap-s">
                         <h3 class="sous-titre">Attention au dortoir</h3>
                         <div class="cadre-s bg-jaune df ai-c fw-w gap-s">
                             <p class="fg-1">
-                            <span class="exergue">
-                                Ouvrir et bloquer en position ouverte les portes du coffre jardin<br>
-                                dans lequel se trouve le moteur et la prise d’air
-                            </span><br><br>
-                                En attendant qu’on mette un grillage à la place des portes !
+                                <span>
+                                    Ouvrir et bloquer en position ouverte les portes du coffre jardin<br>
+                                    dans lequel se trouve le moteur et la prise d’air
+                                </span><br><br>
+                                <strong>En attendant qu’on mette un grillage à la place des portes !</strong>
                             </p>
                             <img src="style/img/coffre-jardin.jpg" alt="">
                         </div>
                     </div>
 
-                    <div>
+                    <div class="df fd-c gap-s">
                         <h3 class="sous-titre">Boitier de commande</h3>
-                        <div class="df fw-w gap-s">   
+                        <div class="df fw-w gap-l">   
                             {{ macro.boitierCommandeClim('--consigne:red', 'Température de  consigne') }}
                             {{ macro.boitierCommandeClim('--temperature:red', 'Changement de température') }}
                             {{ macro.boitierCommandeClim('--interupteur:red', 'Intérupteur marche/arrêt') }}
 
                             {% set fonctionCommentaire %}
-                                <p class="exergue">Selecteur de fonction&nbsp;:</p>
-                                <ul>
-                                    <li>- Chauffage</li>
-                                    <li>- Climatisation</li>
-                                    <li>- Ventilation</li>
-                                    <li>- Déshumidifier l’air</li>
+                                <p class="font-700">Selecteur de fonction&nbsp;:</p>
+                                <ul class="liste">
+                                    <li>Chauffage</li>
+                                    <li>Climatisation</li>
+                                    <li>Ventilation</li>
+                                    <li>Déshumidifier l’air</li>
                                 </ul>
                             {% endset %}
                             {{ macro.boitierCommandeClim('--fonction:red', fonctionCommentaire) }}
