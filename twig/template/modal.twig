@@ -7,7 +7,7 @@
 <div class="app-modal__content cadre-m bg-blanc df fd-c gap-l">
 
     <div class="df fd-c ai-c">
-        <img src="style/img/logo.svg" alt="" loading="lazy" class="login-logo">
+        <img src="{{ getenv('APP_URL') }}style/img/logo.svg" alt="" loading="lazy" class="login-logo">
         {% if block("titleH1") is defined %}
             <h1 class="titre">{{ block('titleH1') }}</h1>
         {% endif %}
