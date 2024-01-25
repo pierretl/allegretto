@@ -178,7 +178,7 @@
 
 
 # Cadre d'un séjour
-# Params : type, titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation, parUtilisateur, pourFamille, btnSupprimer, listeFamilleNonAccord
+# Params : type, titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation, parUtilisateur, pourFamille, btnSupprimer, listeFamilleNonAccord, session
 {% macro cadreSejour(params) %}
 
     {% import _self as autreMacro %}
@@ -204,11 +204,6 @@
         </div>
         
         <div class="df fd-c gap-s">
-            {% if params.parUtilisateur %}
-                <p class="clair">
-                    Par <span>{{ params.parUtilisateur }}</span>
-                </p>
-            {% endif %}
             <div>
                 {% if (params.dateStart == params.departReel) %}
                     <p class="exergue">
@@ -222,15 +217,28 @@
                         <strong>{{ params.departReel | date("d/m/Y") }}</strong>
                     </p>
                 {% endif %}
-                {% if params.titre != params.parUtilisateur %}
-                    <p>{{ params.titre }}</p>
-                {% endif %}
-                {% if params.commentaire %}
-                    <p class="clair">
-                        {{ params.commentaire }}
+                {% if params.parUtilisateur %}
+                    <p>
+                        {% if params.session.utilisateur.prenom == params.parUtilisateur %}
+                            Par vous
+                        {% else %}
+                            Par {{ params.parUtilisateur }}
+                        {% endif %}
                     </p>
                 {% endif %}
             </div>
+            {% if (params.titre != params.parUtilisateur) or params.commentaire %}
+                <div>
+                    {% if params.titre != params.parUtilisateur %}
+                        <p>{{ params.titre }}</p>
+                    {% endif %}
+                    {% if params.commentaire %}
+                        <p class="clair">
+                            {{ params.commentaire }}
+                        </p>
+                    {% endif %}
+                </div>
+            {% endif %}
             {% if params.listeFamilleNonAccord|trim != '' %}
                 <div>
                     <p>En attente d'accord de :</p>
@@ -240,7 +248,7 @@
                 </div>
             {% endif %} 
         </div>
-        <div class="df fd-c ai-e jc-e fg-1 gap-s">
+        <div class="df fd-c ai-e fg-1 gap-s">
 
             {% if params.type == 'aValider' %}
                 <form action="action/sejour-validation.php?key={{ params.sejourKey }}" method="post">
