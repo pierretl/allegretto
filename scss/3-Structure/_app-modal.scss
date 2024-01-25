@@ -1,3 +1,5 @@
+$app-modal_max-width: 70ch;
+
 .app-modal {
     display: flex;
     justify-content: center;
@@ -6,5 +8,14 @@
 
 .app-modal__content {
     width: 100%;
-    max-width: 70ch;
+    max-width: $app-modal_max-width;
+    padding-block: 2rem 3rem;
+}
+
+.app-modal__content.cadre-m {
+    border-radius: var(--radius-m);
+
+    @media screen and (max-width: #{$app-modal_max-width}) {
+        border-radius:0;
+    }
 }

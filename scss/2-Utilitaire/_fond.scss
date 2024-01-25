@@ -11,4 +11,31 @@
 //surcharge
 .bg-jaune {
     --color-body-titre: var(--color-bleu-900);
+} 
+
+//habillage
+@include breakpoint('smallOnly') {
+    .bg-wavy {
+        --color-principal: var(--color-blanc);
+        --color-secondaire: var(--color-gris-100);
+
+        background-color: var(--color-principal);
+        opacity: 1;
+        background-image:  
+            repeating-radial-gradient( circle at 0 0, transparent 0, var(--color-principal) 10px ), 
+            repeating-linear-gradient( var(--color-secondaire), var(--color-secondaire) );
+    }
+}
+/*
+.bg-bleu.bg-wavy {
+    --color-principal: var(--color-bleu-500);
+    --color-secondaire: rgb(17 83 201 / 20%);
+}
+*/
+@include breakpoint('medium') {
+    .bg-abstrait {
+        background-image: url(img/abstrait-bleu.jpg);
+        background-size: cover;
+        background-position: center;
+    }
 }
