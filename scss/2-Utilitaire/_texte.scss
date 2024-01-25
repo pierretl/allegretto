@@ -53,19 +53,9 @@ strong {
     list-style-type: disc;
 }
 
-table caption {
-    text-align: left;
-}
-
-thead {
-    color: var(--color-body-exergue);
-    font-weight: var(--text-gras);
-}
-
-tbody td {
-    border-top: 1px solid var(--color-body-border);
-}
-
-tbody tr:first-child td {
-    border-top: 2px solid var(--color-body-exergue);
+code {
+    padding: calc(var(--spacing-s) / 2);
+    background-color: var(--color-gris-900);
+    color: var(--color-gris-100);
+    font-family: 'Courier New', Courier, monospace, sans-serif
 }

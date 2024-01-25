@@ -14,6 +14,37 @@
 #}
 <main id="contenu" class="grid-main" tabindex="-1" role="main">
 
+    <div class="grid-main__full cadre-m bg-jaune">
+        <div class="cadre-s bg-blanc">
+            <div class="scroll">
+                <table class="tableau">
+                    <caption>
+                        <h2 class="titre">Traitement à faire sur les datas</h2>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Fichier</th>
+                            <th scope="col">Valeur actuel</th>
+                            <th scope="col">A remplacer par</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>sejour.json</td>
+                            <td><code>"backgroundColor":"var(--couleur7)"</code></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>sejour.json</td>
+                            <td><code>"backgroundColor":"var(--couleur8)"</code></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     <div class="grid-main__tiers1 cadre-m bg-blanc">
         <form action="action/utilisateur-ajout.php" method="post" class="mb-2">
             <fieldset class="df fd-c gap-m">
@@ -86,11 +117,11 @@
                 </caption>
                 <thead>
                     <tr>
-                        <td>#</td>
-                        <td>Prénom</td>
-                        <td>Famille</td>
-                        <td>Mail</td>
-                        <td>Supprimer</td>
+                        <th scope="col">ID</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Famille</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -168,10 +199,10 @@
                 </caption>
                 <thead>
                     <tr>
-                        <td>#</td>
-                        <td>Code</td>
-                        <td>Label</td>
-                        <td>Supprimer</td>
+                        <th scope="col">ID</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Label</th>
+                        <th scope="col">Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>

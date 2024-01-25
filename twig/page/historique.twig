@@ -45,16 +45,16 @@
                         <caption></caption>
                         <thead>
                             <tr>
-                                <td>Séjour</td>
+                               <th scope="col">Séjour</th>
                                 {% for famille in sejours.0.validation %}
-                                    <td>
+                                    <th scope="col">
                                         {{ getLabelFamille(famille.id) }}
-                                    </td>
+                                    </th>
                                 {% endfor %}
                                 {% if session.utilisateur.groupe == 'admin' %}
-                                    <td>
+                                    <th scope="col">
                                         Admin
-                                    </td>
+                                    </th>
                                 {% endif %}
                             </tr>
                         </thead>
@@ -192,14 +192,14 @@
                         <caption></caption>
                         <thead>
                             <tr>
-                                <td>Label & commentaire</td>
-                                <td>Arrivée</td>
-                                <td>Départ</td>
-                                <td>Séjour validé<br>avant l'ajout de</td>
+                                <th scope="col">Label & commentaire</th>
+                                <th scope="col">Arrivée</th>
+                                <th scope="col">Départ</th>
+                                <th scope="col">Séjour validé<br>avant l'ajout de</th>
                                 {% if session.utilisateur.groupe == 'admin' %}
-                                    <td>
+                                    <th scope="col">
                                         Supprimer
-                                    </td>
+                                    </th>
                                 {% endif %}
                             </tr>
                         </thead>
