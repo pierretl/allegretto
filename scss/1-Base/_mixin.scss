@@ -25,3 +25,18 @@
     }
 
 }
+
+@mixin btn() {
+    min-height: var(--btn-min-height);
+    padding-inline: var(--btn-padding-inline);
+
+    border-radius: var(--radius-s);
+    border-color: var(--btn-border);
+    text-decoration: none;
+}
+
+@mixin btn--petit {
+    --btn-min-height: auto;
+    padding-block: calc(var(--btn-padding-inline) / 5);
+    padding-inline: calc(var(--btn-padding-inline) / 2);
+}

@@ -81,4 +81,11 @@ $breakpoint-xl:   #{rem.convert(1600px)};
     --btn-bg-hover:         var(--color-bleu-600);
     --btn-color:            var(--color-blanc);
 
+    --btn-outline-border:         var(--form-border);
+    --btn-outline-bg:             var(--form-bg);
+    --btn-outline-color:          var(--form-color);
+    --btn-outline-hover-border:   var(--btn-bg-hover);
+    --btn-outline-hover-bg:       var(--btn-bg-hover);
+    --btn-outline-hover-color:    var(--btn-color);
+
 }

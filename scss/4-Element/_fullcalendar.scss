@@ -11,7 +11,21 @@
 
     // bouton
     .fc .fc-button-primary {
-        // WIP
+        @include btn;
+        @include btn--petit;
+        border-color: var(--btn-outline-border);
+        background-color: var(--btn-outline-bg);
+        color: var(--btn-outline-color);
+        box-shadow: none !important;
+        
+        &:hover:not([disabled]),
+        &:focus-visible:not([disabled]),
+        &:active
+        { 
+            border-color:     var(--btn-outline-hover-border);
+            background-color: var(--btn-outline-hover-bg);
+            color:            var(--btn-outline-hover-color);
+        }
     }
 
     // année précédente, title, année suivante
@@ -41,6 +55,10 @@
         border-bottom-left-radius: 0;
     }
 
+
+    .fc .fc-toolbar.fc-header-toolbar {
+        margin-bottom: var(--spacing-m);
+    }
     //toolbar mobile
     @include breakpoint(smallOnly) {
         .fc .fc-toolbar.fc-header-toolbar {

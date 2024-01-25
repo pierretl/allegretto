@@ -23,12 +23,7 @@ a {
 
 // Principal
 .btn {
-    min-height: var(--btn-min-height);
-    padding-inline: var(--btn-padding-inline);
-
-    border-radius: var(--radius-s);
-    border-color: var(--btn-border);
-    text-decoration: none;
+    @include btn;
 
     background-color: var(--btn-bg);
     color: var(--btn-color);
@@ -54,14 +49,14 @@ a {
 
 // pour aller dans un input-group
 .btn.v-outline {
-    --btn-border:   var(--form-border);
-    --btn-bg:       var(--form-bg);
-    color:          var(--form-color);
+    --btn-border:   var(--btn-outline-border);
+    --btn-bg:       var(--btn-outline-bg);
+    color:          var(--btn-outline-color);
 
     &:hover:not([disabled]),
     &:focus-visible:not([disabled]) { 
-        border-color:   var(--btn-bg-hover);
-        color:          var(--color-blanc);
+        border-color:   var(--btn-outline-hover-border);
+        color:          var(--btn-outline-hover-color);
     }
 
     &[disabled] {
@@ -71,7 +66,5 @@ a {
 
 // petit bouton
 .btn.v-petit {
-    --btn-min-height: auto;
-    padding-block: calc(var(--btn-padding-inline) / 5);
-    padding-inline: calc(var(--btn-padding-inline) / 2);
+    @include btn--petit;
 }
