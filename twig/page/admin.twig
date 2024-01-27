@@ -16,7 +16,24 @@
         </div>
     </div>
 
-    <div class="grid-main__full cadre-m bg-jaune">
+    <div class="grid-main__full cadre-m bg-jaune df fd-c gap-m">
+        <div class="cadre-s bg-blanc df fd-c gap-m">
+            <h2 class="titre">To do list</h2>
+            <ul class="liste">
+                <li>Page historique, repasse sur les datas utilisé</li>
+                <li>Refondre le système de sélection de séjour de la "key" à "dataAjout" ? (ajout,suppresion,validation)</li>
+                <li>
+                    Ordonnée par dates de début de séjours<br>
+                    {# exemple de code
+                    {% for item in sejours|sort((a, b) => a.start|date("U") > b.start|date("U")) %}
+                    #}
+                    Dépends de la refondre du système de sélection de séjour de la "key" à "dataAjout" ?
+                </li>
+                <li>Page dashboard : faire une liste dès séjour en PHP  au lieu de faire ça dans twig avec des boucles de partout</li>
+                <li>Page Accueil quand plus aucun séjour "à venir" ni "à valider" (la colonne est vide !)</li>
+                <li>Afficher en permanence le lien vers l'historique</li>
+            </ul>
+        </div>
         <div class="cadre-s bg-blanc">
             <div class="scroll">
                 <table class="tableau">
