@@ -13,7 +13,7 @@
             <div class="scroll">
                 <table class="tableau">
                     <caption>
-                        <h2 class="titre">Traitement à faire sur les datas</h2>
+                        <h2 class="titre">Traitement à faire en Prod</h2>
                     </caption>
                     <thead>
                         <tr>
@@ -26,12 +26,23 @@
                         <tr>
                             <td>sejour.json</td>
                             <td><code>"backgroundColor":"var(--couleur7)"</code></td>
-                            <td></td>
+                            <td><code>"etat":"soumis","backgroundColor":"var(--fc-event-soumis)"</code></td>
                         </tr>
                         <tr>
                             <td>sejour.json</td>
                             <td><code>"backgroundColor":"var(--couleur8)"</code></td>
-                            <td></td>
+                            <td><code>"etat":"valide","backgroundColor":"var(--fc-event-valide)"</code></td>
+                        </tr>
+                        <tr>
+                            <td>.env</td>
+                            <td>
+<pre><code>CALENDRIER_COLOR-ATTENTE=var(--couleur7)
+CALENDRIER_COLOR-VALIDE=var(--couleur8)</code></pre></td>
+                            <td>
+<pre><code>CODE_SEJOUR_SOUMIS=soumis
+CODE_SEJOUR_VALIDE=valide
+CALENDRIER_BGCOLOR-SOUMIS=var(--fc-event-soumis)
+CALENDRIER_BGCOLOR-VALIDE=var(--fc-event-valide)</code></pre></td>
                         </tr>
                     </tbody>
                 </table>

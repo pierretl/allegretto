@@ -64,8 +64,8 @@ $breakpoint-xl:   #{rem.convert(1600px)};
     --color-valide:         var(--color-vert-300);//fond
     --color-sejour:         var(--color-gris-900);//texte
 
-    --couleur7: var(--color-soumis); //a renommer dans les datas
-    --couleur8: var(--color-valide); //a renommer dans les datas
+    --fc-event-soumis:      var(--color-soumis);//pour la coloration de l'event dans le calendrier
+    --fc-event-valide:      var(--color-valide);//pour la coloration de l'event dans le calendrier
 
     --form-min-height:          var(--btn-min-height);
     --form-min-height--small:   1.87rem;

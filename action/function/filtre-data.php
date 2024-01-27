@@ -5,7 +5,7 @@ function sejoursValide($data) {
     $sejoursValide = [];
 
     for ($i=0; $i < count($data); $i++) {
-        if ($data[$i]['backgroundColor'] == getenv('CALENDRIER_COLOR-VALIDE')  ) {
+        if ($data[$i]['etat'] == getenv('CODE_SEJOUR_VALIDE')  ) {
             array_push($sejoursValide, $data[$i]); 
         }
     }
@@ -20,7 +20,7 @@ function sejoursAttente($data) {
     $sejoursAttente = [];
 
     for ($i=0; $i < count($data); $i++) {
-        if ($data[$i]['backgroundColor'] == getenv('CALENDRIER_COLOR-ATTENTE')  ) {
+        if ($data[$i]['etat'] == getenv('CODE_SEJOUR_SOUMIS')  ) {
             array_push($sejoursAttente, $data[$i]); 
         }
     }

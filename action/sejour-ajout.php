@@ -34,7 +34,8 @@ if (getenv('APP_ENV') === 'prod') {
 $twig->addExtension(new ExtentionPerso());
 
 //datas
-$couleurEnAttenteValidation = getenv('CALENDRIER_COLOR-ATTENTE');
+$codeSejourSoumis = getenv('CODE_SEJOUR_SOUMIS');
+$couleurEnAttenteValidation = getenv('CALENDRIER_BGCOLOR-SOUMIS');
 $jsonFamille = "../".getenv('DATA_FAMILLE');
 $jsonSejour = "../".getenv('DATA_SEJOUR');
 $jsonUtilisateur = "../".getenv('DATA_UTILISATEUR');
@@ -131,6 +132,7 @@ if (
     $data[$lengthData]["pourFamille"] = $familleUtilisateur;
     $data[$lengthData]["parUtilisateur"] = $utilisateur;
     $data[$lengthData]["mailDemandeur"] = $mailUtilisateur;
+    $data[$lengthData]["etat"] = $codeSejourSoumis;
     $data[$lengthData]["backgroundColor"] = $couleurEnAttenteValidation;
     $data[$lengthData]["validation"] = $validations;
 

@@ -62,7 +62,7 @@
                             {% for item in sejours %}
                                 {% set sejourKey = loop.index %}
 
-                                {% if item.backgroundColor != getenv('CALENDRIER_COLOR-VALIDE') %}
+                                {% if item.etat != getenv('CODE_SEJOUR_VALIDE') %}
                                     <tr>
                                         <td>
                                             {% if (strLength(item.title) > 20) %}
@@ -139,7 +139,7 @@
                                                     
                                                 {% else %}
 
-                                                    {% if item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE') %}
+                                                    {% if item.etat == getenv('CODE_SEJOUR_VALIDE') %}
 
                                                         <p>Séjour validé avant l'ajout de la famille</p>
                                                         
@@ -237,7 +237,7 @@
                                     <td>{{ item.departReel | date("d/m/Y") }}</td>
                                     <td>
                                         {% for famille in item.validation %}
-                                            {% if (famille.accord == '') and (item.backgroundColor == getenv('CALENDRIER_COLOR-VALIDE')) %}
+                                            {% if (famille.accord == '') and (item.etat == getenv('CODE_SEJOUR_VALIDE')) %}
                                             {{famille.accord}}
                                                 {{getLabelFamille(famille.id)}}
                                             {% endif %}
