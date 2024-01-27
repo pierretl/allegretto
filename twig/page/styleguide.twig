@@ -12,6 +12,17 @@
         <div class="grid-main__full df fd-c cadre-m gap-m bg-blanc">
 
 
+            {{ sg.titre('Debug .twig', true)}}
+
+            <code><pre>
+{&#35; affiche un json en mode debug lisible
+    &#123;&#37; if utilisateurs is defined &#37;&#125;
+        &#60;pre&#62;&#123;&#123; utilisateurs|json_encode&#40;constant&#40;'JSON_PRETTY_PRINT'&#41;&#41; &#125;&#125;&#60;/pre&#62;
+    &#123;&#37; endif &#37;&#125;
+#} </pre></code>
+
+
+
             {{ sg.titre('Couleurs', true)}}
 
             <ul class="df fw-w gap-m">
