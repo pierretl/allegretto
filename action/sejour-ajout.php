@@ -41,7 +41,7 @@ $jsonSejour = "../".getenv('DATA_SEJOUR');
 $jsonUtilisateur = "../".getenv('DATA_UTILISATEUR');
 
 //recupère les valeurs saisis
-$pageRedirection = isset($_POST['page']) ? $_POST['page'] : 'sejour';
+$pageRedirection = isset($_POST['page']) ? $_POST['page'] : 'dashboard';
 $label = $_POST['label'];
 $arrivee = $_POST['arrivee'];
 $depart = $_POST['depart'];

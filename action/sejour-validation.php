@@ -14,7 +14,7 @@ include 'function/json-manipulation.php';
 $jsonSejour = "../".getenv('DATA_SEJOUR');
 
 //recupère les valeurs nécessaire
-$pageRedirection = isset($_POST['page']) ? $_POST['page'] : 'sejour';
+$pageRedirection = isset($_POST['page']) ? $_POST['page'] : 'dashboard';
 $key = $_GET['key'] - 1; // -1 car la loop de twig commence à 1
 $famille = $_SESSION['utilisateur']['famille'];
 
