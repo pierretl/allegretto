@@ -13,22 +13,25 @@ include 'function/dev.php';
 $jsonSejour = "../".getenv('DATA_SEJOUR');
 
 //page de redirection
-$pageRedirection = isset($_POST['page']) ? $_POST['page'] : 'sejour';
+$pageRedirection = isset($_POST['page']) ? $_POST['page'] : 'dashboard';
 
-//recupère la key du séjour a supprimer
-$sejourKey = $_GET['key'] - 1; // -1 car la loop de twig commence à 1
+//recupère la date d'ajout du séjour a supprimer
+$sejourDataAjout = urldecode($_GET['dataAjout']);
 
-//liste des utilisateurs
+//liste des séjours
 $data = getDataJson($jsonSejour);
 
-// supprime le séjour
-unset($data[$sejourKey]);
-
-// re-index le json
-$dataReIndex = array_values($data);
+//créer une nouvelle liste sans l'entrée correspondant à $sejourDataAjout
+//donc supprime le séjour
+$dataUpdate = [];
+for ($i=0; $i < count($data); $i++) {
+    if ($data[$i]['dataAjout'] != $sejourDataAjout  ) {
+        array_push($dataUpdate, $data[$i]); 
+    }
+}
 
 //met a jour le json
-updateJason($jsonSejour, $dataReIndex);
+updateJason($jsonSejour, $dataUpdate);
 
 //redirige sur la page
 header("location:../index.php?p=".$pageRedirection);

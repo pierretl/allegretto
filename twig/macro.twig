@@ -143,13 +143,14 @@
 
 
 # Supprime un séjour
-# Params : sejourKey, dateStart, departReel, titre, commentaire
+# Params : dataAjout, dateStart, departReel, titre, commentaire
 {% macro supprimerSejour(params) %}
-<button class="btn v-outline v-petit" type="button" onclick="suppressionSejour({{ params.sejourKey }})">
+{% set idDialog %}{{ params.dataAjout | replace({'-':'',' ':'',':':''}) }}{% endset %}
+<button class="btn v-outline v-petit" type="button" onclick="suppressionSejour({{ idDialog  }})">
     Supprimer
 </button>
-<dialog id="suppressionSejour-{{ params.sejourKey }}" class="dialog">
-    <form action="action/sejour-suppression.php?key={{ params.sejourKey }}" 
+<dialog id="suppressionSejour-{{ idDialog }}" class="dialog">
+    <form action="action/sejour-suppression.php?dataAjout={{ params.dataAjout | url_encode  }}" 
             method="post"
             class="cadre-m df fd-c gap-m">
         <input type="hidden" name="page" value="{{ params.pageRetourValidation }}">
@@ -165,7 +166,7 @@
             {% endif %}
         </p>
         <div class="df jc-sb">
-            <button class="btn v-outline" type="button" onclick="fermeModal({{ params.sejourKey }})">
+            <button class="btn v-outline" type="button" onclick="fermeModal({{ idDialog  }})">
                 Annuler
             </button>
             <button class="btn" type="submit">
@@ -178,7 +179,7 @@
 
 
 # Cadre d'un séjour
-# Params : type, titre, dateStart, departReel, commentaire, sejourKey, pageRetourValidation, parUtilisateur, pourFamille, btnSupprimer, listeFamilleNonAccord, session
+# Params : type, titre, dateStart, departReel, commentaire, sejourKey, dataAjout, pageRetourValidation, parUtilisateur, pourFamille, btnSupprimer, listeFamilleNonAccord, session
 {% macro cadreSejour(params) %}
 
     {% import _self as autreMacro %}
@@ -259,9 +260,9 @@
 
             {% if params.btnSupprimer %}
                 {{ autreMacro.supprimerSejour({
-                    sejourKey:              params.sejourKey,
+                    dataAjout:              params.dataAjout,
                     titre:                  params.title,
-                    dateStart:              params.start,
+                    dateStart:              params.dateStart,
                     departReel:             params.departReel,
                     commentaire:            params.commentaire,
                     parUtilisateur:         params.parUtilisateur,

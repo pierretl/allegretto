@@ -107,7 +107,7 @@
 
                                                             {% if "now" | date('U') < item.start | date('U') %}
                                                                 {{ macro.supprimerSejour({
-                                                                    sejourKey:              sejourKey,
+                                                                    dataAjout:              item.dataAjout,
                                                                     titre:                  item.title,
                                                                     dateStart:              item.start,
                                                                     departReel:             item.departReel,
@@ -164,7 +164,7 @@
                                         {% if session.utilisateur.groupe == 'admin' %}
                                             <td>
                                                 {{ macro.supprimerSejour({
-                                                    sejourKey:              sejourKey,
+                                                    dataAjout:              item.dataAjout,
                                                     titre:                  item.title,
                                                     dateStart:              item.start,
                                                     departReel:             item.departReel,
@@ -247,7 +247,7 @@
                                 {% if session.utilisateur.groupe == 'admin' %}
                                     <td>
                                         {{ macro.supprimerSejour({
-                                            sejourKey:              sejourKey,
+                                            dataAjout:              item.dataAjout,
                                             titre:                  item.title,
                                             dateStart:              item.start,
                                             departReel:             item.departReel,
