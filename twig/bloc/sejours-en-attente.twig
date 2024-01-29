@@ -1,49 +1,23 @@
 {% import 'macro.twig' as macro %}
 
-
-
-{% set demandeEnAttente = false %}
-
-{% for item in sejours %}
-    {% for famille in item.validation %}
-        {% if famille.id == session.utilisateur.famille and famille.accord == '' %}
-            {% if item.departReel|date("U") > "now"|date("U") %}
-                {% set demandeEnAttente = true %}
-            {% endif %}
-        {% endif %}
-    {% endfor %}
-{% endfor %}
-
-
-
-
-{% if demandeEnAttente %}
+{% if sejoursAttenteDeFamille %}
     <div class="cadre-m bg-jaune df fd-c gap-m">
         <h2 class="titre">En attente...</h2>
 
         <ul class="df fd-c gap-s">
-            {% for item in sejours %}
-                {% set sejourKey = loop.index %}
+            {% for item in sejoursAttenteDeFamille %}
 
-                {% for famille in item.validation %}
-                    {% if famille.id == session.utilisateur.famille and famille.accord == '' %}
-                         {% if item.departReel|date("U") > "now"|date("U") %}
-
-                            {{ macro.cadreSejour({
-                                type:                   'aValider',
-                                pageRetourValidation:   'dashboard',
-                                sejourKey:              sejourKey,
-                                dataAjout:              item.dataAjout,
-                                titre:                  item.title,
-                                dateStart:              item.start,
-                                departReel:             item.departReel,
-                                commentaire:            item.commentaire,
-                                parUtilisateur:         item.parUtilisateur,
-                            }) }}
-
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
+                {{ macro.cadreSejour({
+                    type:                   'aValider',
+                    pageRetourValidation:   'dashboard',
+                    sejourKey:              sejourKey,
+                    dataAjout:              item.dataAjout,
+                    titre:                  item.title,
+                    dateStart:              item.start,
+                    departReel:             item.departReel,
+                    commentaire:            item.commentaire,
+                    parUtilisateur:         item.parUtilisateur,
+                }) }}
 
             {% endfor %}
         </ul>
