@@ -107,6 +107,7 @@ switch ($page) {
             'sejoursAttente' => sejoursAttente(getDataJson(getenv('DATA_SEJOUR'))),
             'dernierRappel' => getDataJson(getenv('DATA_RAPPEL')),
             'sejoursAttenteDeFamille' => sejoursAttenteDeFamille(getDataJson(getenv('DATA_SEJOUR')), $_SESSION),
+            'sejoursAVenirValideParFamille' => sejoursAVenirValideParFamille(getDataJson(getenv('DATA_SEJOUR')), $_SESSION),
         ]);
         break;
 

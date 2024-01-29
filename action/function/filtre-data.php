@@ -51,3 +51,26 @@ function sejoursAttenteDeFamille($data, $session) {
     return $sejoursAValide;
 
 }
+
+
+
+function sejoursAVenirValideParFamille($data, $session) {
+
+    $famille = $_SESSION['utilisateur']['famille'];
+    $Sejours = $data;
+    $sejoursAVenir = [];
+
+    foreach ($Sejours as $keySejours => $dataSejourSoumis){
+        foreach ($Sejours[$keySejours]['validation'] as $keyValidation => $dataValidation){
+            if (
+                $Sejours[$keySejours]['validation'][$keyValidation]['id'] == $famille && 
+                $Sejours[$keySejours]['validation'][$keyValidation]['accord'] != '' &&
+                $Sejours[$keySejours]['departReel'] > date('Y-m-d')
+                ) {
+                array_push($sejoursAVenir, $Sejours[$keySejours]); 
+            }
+        }
+    }
+
+    return $sejoursAVenir;
+}

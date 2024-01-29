@@ -54,53 +54,45 @@
         </div>
 
         <ul class="df fd-c gap-s js_listeAFiltre" data-famille="{{ session.utilisateur.famille }}" aria-live="polite">
-            
-            {% for item in sejours %}
-                    {% set sejourKey = loop.index %}
 
+            {% for item in sejoursAVenirValideParFamille %}
+
+                {% if session.utilisateur.famille == item.pourFamille %}
+                    {% set btnSupprimer = true %}
+                {% else %}
+                    {% set btnSupprimer = false %}
+                {% endif %}
+
+                {% set listeFamilleNonAccord %}
                     {% for famille in item.validation %}
-                        {% if famille.id == session.utilisateur.famille and famille.accord != '' %}
-                            {% if item.departReel|date("U") > "now"|date("U") %}
-
-                                {% if session.utilisateur.famille == item.pourFamille %}
-                                    {% set btnSupprimer = true %}
-                                {% else %}
-                                    {% set btnSupprimer = false %}
+                        {% set familleKey = loop.index - 1 %}
+                        {% if famille.accord == '' %}
+                            {% for toutesLesFamilles in familles %}
+                                {% set key = loop.index - 1 %}
+                                {% if key == familleKey %}
+                                    <li>{{toutesLesFamilles.label}}</li>
                                 {% endif %}
-
-                                {% set listeFamilleNonAccord %}
-                                    {% for famille in item.validation %}
-                                        {% set familleKey = loop.index - 1 %}
-                                        {% if famille.accord == '' %}
-                                            {% for toutesLesFamilles in familles %}
-                                                {% set key = loop.index - 1 %}
-                                                {% if key == familleKey %}
-                                                    <li>{{toutesLesFamilles.label}}</li>
-                                                {% endif %}
-                                            {% endfor %}  
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endset %}
-
-                                {{ macro.cadreSejour({
-                                    sejourKey:              sejourKey,
-                                    dataAjout:              item.dataAjout,
-                                    titre:                  item.title,
-                                    dateStart:              item.start,
-                                    departReel:             item.departReel,
-                                    commentaire:            item.commentaire,
-                                    parUtilisateur:         item.parUtilisateur,
-                                    pourFamille:            item.pourFamille,
-                                    btnSupprimer:           btnSupprimer,
-                                    listeFamilleNonAccord:  listeFamilleNonAccord,
-                                    session:                session,
-                                }) }}
-
-                            {% endif %}
+                            {% endfor %}  
                         {% endif %}
                     {% endfor %}
+                {% endset %}
+
+                {{ macro.cadreSejour({
+                    sejourKey:              sejourKey,
+                    dataAjout:              item.dataAjout,
+                    titre:                  item.title,
+                    dateStart:              item.start,
+                    departReel:             item.departReel,
+                    commentaire:            item.commentaire,
+                    parUtilisateur:         item.parUtilisateur,
+                    pourFamille:            item.pourFamille,
+                    btnSupprimer:           btnSupprimer,
+                    listeFamilleNonAccord:  listeFamilleNonAccord,
+                    session:                session,
+                }) }}
 
             {% endfor %}
+            
         </ul>
 
         <p class="text-center">
