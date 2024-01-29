@@ -22,4 +22,9 @@
             {% endfor %}
         </ul>
     </div>
+
+    {% if not sejoursAVenirValideParFamille %}
+        {{ include('bloc/lien-historique.twig') }}
+    {% endif %}
+
 {% endif %}

@@ -32,9 +32,12 @@
     {% else %}
 
         <main id="contenu" class="grid-main" tabindex="-1" role="main">
-            <div class="grid-main__tiers1">
+            <div class="grid-main__tiers1 df fd-c gap-m">
                 <div class="cadre-m bg-blanc">
                     {{ include('bloc/ajout-sejour.twig') }}
+                </div>
+                <div class="cadre-m bg-blanc">
+                    {{ include('bloc/lien-historique.twig') }}
                 </div>
             </div>
             <div class="grid-main__tiers2 cadre-m v_calendar bg-blanc">
