@@ -5,7 +5,7 @@
         <h2 class="titre">En attente...</h2>
 
         <ul class="df fd-c gap-s">
-            {% for item in sejoursAttenteDeFamille %}
+            {% for item in sejoursAttenteDeFamille | sort((a, b) => a.start|date("U") > b.start|date("U"))  %}
 
                 {{ macro.cadreSejour({
                     type:                   'aValider',

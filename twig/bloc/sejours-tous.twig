@@ -55,7 +55,7 @@
 
         <ul class="df fd-c gap-s js_listeAFiltre" data-famille="{{ session.utilisateur.famille }}" aria-live="polite">
 
-            {% for item in sejoursAVenirValideParFamille %}
+            {% for item in sejoursAVenirValideParFamille |sort((a, b) => a.start|date("U") > b.start|date("U")) %}
 
                 {% if session.utilisateur.famille == item.pourFamille %}
                     {% set btnSupprimer = true %}

@@ -21,14 +21,8 @@
             <h2 class="titre">To do list</h2>
             <ul class="liste">
                 <li>Changer le lien du mail pour valider  (casser avec la refonte "key" à "dataAjout" )</li>
-                <li>Page historique, repasse sur les datas utilisé</li>
-                <li>
-                    Ordonnée par dates de début de séjours<br>
-                    {# exemple de code
-                    {% for item in sejours|sort((a, b) => a.start|date("U") > b.start|date("U")) %}
-                    #}
-                    Dépends de la refondre du système de sélection de séjour de la "key" à "dataAjout" ?
-                </li>
+                <li>Page historique, repasse sur les datas utilisé, Ordonnée par date (voir dashboard)</li>
+                <li>Page dashboard, repasse des datas envoyer à la vue</li>
             </ul>
         </div>
         <div class="cadre-s bg-blanc">
