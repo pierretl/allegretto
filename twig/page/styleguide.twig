@@ -12,19 +12,22 @@
         <div class="grid-main__full df fd-c cadre-m gap-m bg-blanc">
 
 
-            {{ sg.titre('Debug .php', true)}}
+            {{ sg.titre('Debug', true)}}
 
-            <code><pre>debug($data);</pre></code>
+            <div class="df gap-m">
+                <strong>.php</strong>
+                <code><pre>debug($data);</pre></code>
+            </div>
 
-
-            {{ sg.titre('Debug .twig', true)}}
-
-            <code><pre>
+            <div class="df gap-m">
+                <strong>.twig</strong>
+                <code><pre>
 {&#35; affiche un json en mode debug lisible
     &#123;&#37; if utilisateurs is defined &#37;&#125;
         &#60;pre&#62;&#123;&#123; utilisateurs|json_encode&#40;constant&#40;'JSON_PRETTY_PRINT'&#41;&#41; &#125;&#125;&#60;/pre&#62;
     &#123;&#37; endif &#37;&#125;
 #} </pre></code>
+            </div>
 
 
 
