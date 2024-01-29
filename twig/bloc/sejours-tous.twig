@@ -65,14 +65,12 @@
 
                 {% set listeFamilleNonAccord %}
                     {% for famille in item.validation %}
-                        {% set familleKey = loop.index - 1 %}
                         {% if famille.accord == '' %}
                             {% for toutesLesFamilles in familles %}
-                                {% set key = loop.index - 1 %}
-                                {% if key == familleKey %}
+                                {% if famille.id == toutesLesFamilles.id %}
                                     <li>{{toutesLesFamilles.label}}</li>
                                 {% endif %}
-                            {% endfor %}  
+                            {% endfor %}
                         {% endif %}
                     {% endfor %}
                 {% endset %}
@@ -92,7 +90,7 @@
                 }) }}
 
             {% endfor %}
-            
+
         </ul>
 
         <p class="text-center">
