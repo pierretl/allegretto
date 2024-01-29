@@ -54,13 +54,24 @@ function sejoursAttenteDeFamille($data, $session) {
 
 
 
-function sejoursAVenirValideParFamille($data, $session) {
+function sejoursAVenirValideParFamille($data, $dataFamilles, $session) {
 
     $famille = $_SESSION['utilisateur']['famille'];
     $Sejours = $data;
     $sejoursAVenir = [];
 
     foreach ($Sejours as $keySejours => $dataSejourSoumis){
+
+        //Ajoute le label de la famille au donnnée de validation
+        for ($i=0; $i < count($Sejours[$keySejours]['validation']); $i++) {
+            foreach ($dataFamilles as $keyDataFamilles => $dataFamille){
+                if($Sejours[$keySejours]['validation'][$i]['id'] == $dataFamille['id']) {
+                    $Sejours[$keySejours]['validation'][$i]['label'] = $dataFamille['label'];
+                }
+            }
+        }
+
+        //Fitre les séjours par
         foreach ($Sejours[$keySejours]['validation'] as $keyValidation => $dataValidation){
             if (
                 $Sejours[$keySejours]['validation'][$keyValidation]['id'] == $famille && 

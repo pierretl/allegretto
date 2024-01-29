@@ -66,11 +66,7 @@
                 {% set listeFamilleNonAccord %}
                     {% for famille in item.validation %}
                         {% if famille.accord == '' %}
-                            {% for toutesLesFamilles in familles %}
-                                {% if famille.id == toutesLesFamilles.id %}
-                                    <li>{{toutesLesFamilles.label}}</li>
-                                {% endif %}
-                            {% endfor %}
+                            <li>{{famille.label}}</li>
                         {% endif %}
                     {% endfor %}
                 {% endset %}
