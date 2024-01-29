@@ -11,20 +11,38 @@
 
 {% block content %}
 
-    <main id="contenu" class="grid-main" tabindex="-1" role="main">
-        <div class="grid-main__task df fd-c gap-m">
-            {{ include('bloc/sejours-en-attente.twig') }}
-            {{ include('bloc/sejours-tous.twig') }}
-        </div>
-        <div class="grid-main__calendar cadre-m v_calendar bg-blanc">
-            {{ include('bloc/calendrier.twig') }}
-        </div>
-        <div class="grid-main__form">
-            <div class="cadre-m bg-blanc">
-                {{ include('bloc/ajout-sejour.twig') }}
+    {% if sejoursAttenteDeFamille or sejoursAVenirValideParFamille %}
+
+        <main id="contenu" class="grid-main" tabindex="-1" role="main">
+            <div class="grid-main__task df fd-c gap-m">
+                {{ include('bloc/sejours-en-attente.twig') }}
+                {{ include('bloc/sejours-tous.twig') }}
             </div>
-        </div>
-    </main>
+            <div class="grid-main__calendar cadre-m v_calendar bg-blanc">
+                {{ include('bloc/calendrier.twig') }}
+            </div>
+            <div class="grid-main__form">
+                <div class="cadre-m bg-blanc">
+                    {{ include('bloc/ajout-sejour.twig') }}
+                </div>
+            </div>
+        </main>
+
+
+    {% else %}
+
+        <main id="contenu" class="grid-main" tabindex="-1" role="main">
+            <div class="grid-main__tiers1">
+                <div class="cadre-m bg-blanc">
+                    {{ include('bloc/ajout-sejour.twig') }}
+                </div>
+            </div>
+            <div class="grid-main__tiers2 cadre-m v_calendar bg-blanc">
+                {{ include('bloc/calendrier.twig') }}
+            </div>
+        </main>
+
+    {% endif %}
 
     <script>
         function showInCalendar(dateDebut) {
