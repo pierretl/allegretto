@@ -68,7 +68,8 @@ switch ($page) {
             'get' => $_GET,
             'utilisateurs' => getDataJson(getenv('DATA_UTILISATEUR')),
             'familles' => getDataJson(getenv('DATA_FAMILLE')),
-            'selectOptionFamille' => selectOptionFamille()
+            'selectOptionFamille' => selectOptionFamille(),
+            'dernierRappel' => getDataJson(getenv('DATA_RAPPEL')),
         ]);
         break;
 
@@ -122,12 +123,9 @@ switch ($page) {
             'session' => $_SESSION,
             'post' => $_POST,
             'get' => $_GET,
-            'dataCalendrier' => getenv('DATA_SEJOUR'),
-            'familles' => getDataJson(getenv('DATA_FAMILLE')),
             'sejours' => getDataJson(getenv('DATA_SEJOUR')),
             'sejoursValide' => sejoursValide(getDataJson(getenv('DATA_SEJOUR'))),
             'sejoursAttente' => sejoursAttente(getDataJson(getenv('DATA_SEJOUR'))),
-            'dernierRappel' => getDataJson(getenv('DATA_RAPPEL')),
         ]);
         break;
 

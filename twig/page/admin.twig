@@ -9,10 +9,24 @@
 <main id="contenu" class="grid-main" tabindex="-1" role="main">
 
     <div class="grid-main__full">
-        <div class="cadre-m bg-blanc">
+        <div class="cadre-m bg-blanc df fw-w ai-c jc-sb gap-l">
             <p>
                 <a href="{{ getenv('APP_URL') }}index.php?p=historique">Tableau complet des séjours</a>
             </p>
+            <div class="df fw-w ai-c gap-m">
+                <p>Dernier rappel : <strong> {{ dernierRappel.0.date }}</strong></p>
+                {% if get.rappel != "ok" %}
+                    <form action="action/sejour-rappel.php" method="post">
+                        <input type="hidden" name="page" value="admin">
+                        <button class="btn v-petit" type="submit">Envoyer un mail de rappel</button>
+                    </form>
+                {% endif %}
+                {% if get.rappel == "ko" %}
+                    <p class="label-erreur">
+                        L'envoi de l'email n'a pas abouti
+                    </span>
+                {% endif %}
+            </div>
         </div>
     </div>
 
@@ -21,8 +35,7 @@
             <h2 class="titre">To do list</h2>
             <ul class="liste">
                 <li>Changer le lien du mail pour valider  (casser avec la refonte "key" à "dataAjout" )</li>
-                <li>Page historique, repasse sur les datas utilisé, Ordonnée par date (voir dashboard)</li>
-                <li>Page dashboard, repasse des datas envoyer à la vue</li>
+                <li>Page historique : ordonnée par date (voir dashboard), repasse sur les infos affiché</li>
             </ul>
         </div>
         <div class="cadre-s bg-blanc">

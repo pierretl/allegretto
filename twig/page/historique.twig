@@ -19,30 +19,12 @@
 
         <div class="grid-main__full">
             <div class="cadre-m bg-blanc">
-                {% if session.utilisateur.groupe == 'admin' %}
-                    <div class="df ai-c jc-sb gap-m">
-                        <h2 class="titre">Les séjours <span class="cadre-s bg-soumis">en attente</span> ({{ sejoursAttente|length}})</h2>
-                        <div>
-                            <span class="exergue">Dernier rappel : {{ dernierRappel.0.date }}</span><br>
-                            {% if get.rappel != "ok" %}
-                                <form action="action/sejour-rappel.php" method="post">
-                                    <button class="btn v-petit" type="submit">Envoyer un mail de rappel</button>
-                                </form>
-                            {% endif %}
-                            {% if get.rappel == "ko" %}
-                                <span class="label-erreur">
-                                    L'envoi de l'email n'a pas abouti
-                                </span>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% else %}
-                    <h2 class="titre">Les séjours <span class="cadre-s bg-soumis">en attente</span> ({{ sejoursAttente|length}})</h2>               
-                {% endif %}
 
                 <div class="scroll">
                     <table class="tableau">
-                        <caption></caption>
+                        <caption>
+                            <h2 class="titre">Les séjours <span class="bg-soumis">en attente</span> ({{ sejoursAttente|length}})</h2>
+                        </caption>
                         <thead>
                             <tr>
                                <th scope="col">Séjour</th>
@@ -186,10 +168,11 @@
 
         <div class="grid-main__full">
             <div class="cadre-m bg-blanc">
-                <h2 class="titre">Les séjours <span class="cadre-s bg-valide">validés</span> ({{ sejoursValide|length}})</h2>
                 <div class="scroll">
                     <table class="tableau">
-                        <caption></caption>
+                        <caption>
+                            <h2 class="titre">Les séjours <span class="bg-valide">validés</span> ({{ sejoursValide|length}})</h2>
+                        </caption>
                         <thead>
                             <tr>
                                 <th scope="col">Label & commentaire</th>

@@ -35,6 +35,9 @@ if (getenv('APP_ENV') === 'prod') {
 // Ajout des functions et filtres personnalisé
 $twig->addExtension(new ExtentionPerso());
 
+//page de redirection
+$pageRedirection = isset($_POST['page']) ? $_POST['page'] : 'dashboard';
+
 //datas
 $jsonUtilisateur = "../".getenv('DATA_UTILISATEUR');
 $jsonSejour = "../".getenv('DATA_SEJOUR');
@@ -97,7 +100,7 @@ if( !mail($destinataire, $sujet, $bodyEmail, implode("\r\n", $enTete)) ) {
     $rappelReturn = "ko";
 
     //Redirige sur la page
-    header("location:../index.php?p=dashboard&rappel=".$rappelReturn);
+    header("location:../index.php?p=".$pageRedirection."&rappel=".$rappelReturn);
     exit;
 }
 
@@ -109,4 +112,4 @@ $data[0]["date"] = $dateLast;
 updateJason($jsonDernierRappel, $data);
 
 //Redirige sur la page
-header("location:../index.php?p=dashboard&rappel=".$rappelReturn);
+header("location:../index.php?p=".$pageRedirection."&rappel=".$rappelReturn);
