@@ -100,12 +100,6 @@ switch ($page) {
             'session' => $_SESSION,
             'post' => $_POST,
             'get' => $_GET,
-            'dataCalendrier' => getenv('DATA_SEJOUR'),
-            'familles' => getDataJson(getenv('DATA_FAMILLE')),
-            'sejours' => getDataJson(getenv('DATA_SEJOUR')),
-            'sejoursValide' => sejoursValide(getDataJson(getenv('DATA_SEJOUR'))),
-            'sejoursAttente' => sejoursAttente(getDataJson(getenv('DATA_SEJOUR'))),
-            'dernierRappel' => getDataJson(getenv('DATA_RAPPEL')),
             'sejoursAttenteDeFamille' => sejoursAttenteDeFamille(getDataJson(getenv('DATA_SEJOUR')), $_SESSION),
             'sejoursAVenirValideParFamille' => sejoursAVenirValideParFamille(
                 getDataJson(getenv('DATA_SEJOUR')), 
