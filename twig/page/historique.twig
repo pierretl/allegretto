@@ -45,7 +45,11 @@
                                 {% set sejourKey = loop.index %}
 
                                 {% if item.etat != getenv('CODE_SEJOUR_VALIDE') %}
-                                    <tr>
+                                    {% set sejourPasser = "" %}
+                                    {% if ( item.departReel | date("Y-m-d") < "now" | date("Y-m-d") ) %}
+                                        {% set sejourPasser = "bg-gris" %}
+                                    {% endif %}
+                                    <tr class="{{sejourPasser}}">
                                         <td>
                                             <p class="exergue">
                                                 {% if (item.start == item.departReel) %}
@@ -190,7 +194,11 @@
                         </thead>
                         <tbody>
                             {% for item in sejoursValide | sort((a, b) => a.start|date("Y-m-d H:i:s") > b.start|date("Y-m-d H:i:s"))  %}
-                                <tr>
+                                {% set sejourPasser = "" %}
+                                {% if ( item.departReel | date("Y-m-d") < "now" | date("Y-m-d") ) %}
+                                    {% set sejourPasser = "bg-gris" %}
+                                {% endif %}
+                                <tr class="{{sejourPasser}}">
                                     <td>
                                         {% if (strLength(item.title) > 20) %}
                                             <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="df">
