@@ -41,12 +41,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for item in sejours %}
+                            {% for item in sejours  | sort((a, b) => a.start|date("Y-m-d H:i:s") > b.start|date("Y-m-d H:i:s"))  %}
                                 {% set sejourKey = loop.index %}
 
                                 {% if item.etat != getenv('CODE_SEJOUR_VALIDE') %}
                                     <tr>
                                         <td>
+                                            <p class="exergue">
+                                                {% if (item.start == item.departReel) %}
+                                                    La journée du <strong>{{ item.start | date("d/m/Y") }}</strong>
+                                                {% else %}
+                                                    <strong>
+                                                        {{ item.start | date("d/m/Y") }}&nbsp;&#10140;&nbsp;{{ item.departReel | date("d/m/Y") }}
+                                                    </strong>
+                                                {% endif %}
+                                            </p>
+
                                             {% if (strLength(item.title) > 20) %}
                                                 <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false">
                                                     {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
@@ -71,14 +81,6 @@
                                                     <br>{{ item.commentaire }}
                                                 </span>
                                             {% endif %}
-
-                                            <span class="text-7">
-                                                {% if (item.start == item.departReel) %}
-                                                    <br>La journée du {{ item.start | date("d/m/Y") }}
-                                                {% else %}
-                                                    <br>{{ item.start | date("d/m/Y") }}&nbsp;&#10140;&nbsp;{{ item.departReel | date("d/m/Y") }}
-                                                {% endif %}
-                                            </span>
                                         </td>
                                         {% for famille in item.validation %}
                                             <td>
@@ -128,10 +130,10 @@
                                                     {% else %}
 
                                                         {% if famille.id == session.utilisateur.famille %}
-                                                            <form action="action/sejour-validation.php?key={{ sejourKey }}" method="post">
-                                                                <input type="hidden" name="page" value="historique">
-                                                                <button type="submit" class="btn v-petit">Je valide&nbsp;!</button>
-                                                            </form>  
+                                                            {{ macro.valideSejour({
+                                                                dataAjout:              item.dataAjout,
+                                                                pageRetourValidation:   'historique'
+                                                            }) }}  
                                                         {% else %}
                                                             <span>En&nbsp;attente...</span>
                                                         {% endif %}
@@ -175,10 +177,10 @@
                         </caption>
                         <thead>
                             <tr>
-                                <th scope="col">Label & commentaire</th>
+                                <th scope="col">Label</th>
+                                <th scope="col">Commentaire</th>
                                 <th scope="col">Arrivée</th>
                                 <th scope="col">Départ</th>
-                                <th scope="col">Séjour validé<br>avant l'ajout de</th>
                                 {% if session.utilisateur.groupe == 'admin' %}
                                     <th scope="col">
                                         Supprimer
@@ -187,45 +189,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for item in sejoursValide %}
-                                {% set sejourKey = loop.index %}
+                            {% for item in sejoursValide | sort((a, b) => a.start|date("Y-m-d H:i:s") > b.start|date("Y-m-d H:i:s"))  %}
                                 <tr>
                                     <td>
                                         {% if (strLength(item.title) > 20) %}
-                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="">
+                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false" class="df">
                                                 {{ subString(item.title, 0, 20) }}<span class="expanded-reverse">...</span>
-                                                <span class="expanded mt-0 mb-0">
+                                                <span class="expanded">
                                                     {{ subString(item.title, 20) }}
                                                 </span>
                                             </button>
                                         {% else %}
                                             {{ item.title }}
                                         {% endif %}
-
-                                        {% if (item.commentaire) %}
-                                            <button type="button" onclick="afficheLaSuite(this)" aria-expanded="false">
-                                                <svg width="20px" height="20px" class="fill-3 expanded" style="margin-left:.2rem">
-                                                    <use xlink:href="#fermer"></use>
-                                                </svg>
-                                                <svg width="20px" height="20px" class="fill-3 expanded-reverse" style="margin-left:.2rem">
-                                                    <use xlink:href="#bulle"></use>
-                                                </svg>
-                                            </button>
-                                            <span class="expanded-sibling">
-                                                <br>{{ item.commentaire }}
-                                            </span>
-                                        {% endif %}
                                     </td>
+                                    <td>{{ item.commentaire }}</td>
                                     <td>{{ item.start | date("d/m/Y") }}</td>
                                     <td>{{ item.departReel | date("d/m/Y") }}</td>
-                                    <td>
-                                        {% for famille in item.validation %}
-                                            {% if (famille.accord == '') and (item.etat == getenv('CODE_SEJOUR_VALIDE')) %}
-                                            {{famille.accord}}
-                                                {{getLabelFamille(famille.id)}}
-                                            {% endif %}
-                                        {% endfor %}
-                                    </td>
                                     
                                 {% if session.utilisateur.groupe == 'admin' %}
                                     <td>

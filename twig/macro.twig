@@ -142,6 +142,16 @@
 {% endmacro %}
 
 
+# Valide un séjour
+# Params : dataAjout, pageRetourValidation
+{% macro valideSejour(params) %}
+<form action="action/sejour-validation.php?dataAjout={{ params.dataAjout | url_encode  }}" method="post">
+    <input type="hidden" name="page" value="{{ params.pageRetourValidation }}">
+    <button type="submit" class="btn v-petit">Je valide&nbsp;!</button>
+</form>
+{% endmacro %}
+
+
 # Supprime un séjour
 # Params : dataAjout, dateStart, departReel, titre, commentaire
 {% macro supprimerSejour(params) %}
@@ -252,10 +262,10 @@
         <div class="df fd-c ai-e fg-1 gap-s">
 
             {% if params.type == 'aValider' %}
-                <form action="action/sejour-validation.php?dataAjout={{ params.dataAjout | url_encode  }}" method="post">
-                    <input type="hidden" name="page" value="{{ params.pageRetourValidation }}">
-                    <button type="submit" class="btn v-petit">Je valide&nbsp;!</button>
-                </form>
+                {{ autreMacro.valideSejour({
+                    dataAjout:              params.dataAjout,
+                    pageRetourValidation:   'dashboard'
+                }) }}
             {% endif %}
 
             {% if params.btnSupprimer %}
