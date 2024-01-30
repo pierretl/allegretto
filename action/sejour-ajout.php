@@ -123,8 +123,9 @@ if (
 
     //Remplis les donnée du nouveau sejour
     $lengthData = count($data); // compte a partir de 1
+    $dateAjout = date("Y-m-d H:i:s");
     $data[$lengthData]["title"] = $label;
-    $data[$lengthData]["dataAjout"] = date("Y-m-d H:i:s");
+    $data[$lengthData]["dataAjout"] = $dateAjout;
     $data[$lengthData]["start"] = securite_saisi($arrivee);
     $data[$lengthData]["end"] = securite_saisi($endDate);
     $data[$lengthData]["departReel"] = securite_saisi($depart);
@@ -164,7 +165,7 @@ if (
         'arrivee' => $arrivee,
         'depart' => $depart,
         'commentaire' => $commentaire,
-        'keySejour' => $lengthData
+        'dataAjout' => $dateAjout
     ]);
 
     //retire les commentaires HTML

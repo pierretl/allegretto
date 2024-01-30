@@ -4,16 +4,11 @@ function validation_sejour_via_email() {
 
     if(
         isset($_SESSION['utilisateur']['mail']) &&
-        isset($_GET['valideSejour'])
+        isset($_GET['valideLeSejour'])
     ){
-        $keySejour = $_GET['valideSejour'];
-
-        if (is_numeric($keySejour)) {
-
-            header("location:action/sejour-validation.php?key=".$keySejour);
-            exit;
-        }
-        
+        $dataAjout = $_GET['valideLeSejour'];
+        header("location:action/sejour-validation.php?dataAjout=".$dataAjout);
+        exit;
     }
 
 }
