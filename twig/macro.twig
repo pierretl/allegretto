@@ -110,7 +110,7 @@
 
 # bouton icon/text du menu
 {% macro itemIconText(icon, label) %}
-    <svg width="25px" height="25px" class="nav__link__icon">
+    <svg width="25px" height="25px" class="nav__link__icon" aria-hidden="true" focusable="false">
         <use xlink:href="#{{ icon }}"></use>
     </svg>
     <span class="nav__link__text">{{ label }}</span>
