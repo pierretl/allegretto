@@ -79,7 +79,17 @@
 .grid-nav__menu {
     grid-column: menu;
 
+    @include breakpoint('smallOnly') {
+        padding-block: var(--spacing-l);
+    }
+
     @include breakpoint('medium') {
         padding-inline: var(--spacing-l);
+    }
+}
+
+.grid-nav__menu ul {
+    @include breakpoint('smallOnly') {
+        gap: var(--spacing-m);
     }
 }

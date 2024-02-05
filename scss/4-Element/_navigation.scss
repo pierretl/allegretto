@@ -2,7 +2,7 @@
     padding-inline: var(--spacing-m);
 
     @include breakpoint('smallOnly') {
-        border-bottom: 1px solid var(--nav-border);
+        background-color: var(--color-bleu-500);
     }
 
     @include breakpoint('medium') {
@@ -21,6 +21,12 @@
 }
 
 @mixin navItem {
+
+    @include breakpoint('smallOnly') {
+        color: var(--color-gris-100);
+        font-size: 1.4rem;
+    }
+
     background-color: transparent; //bouton mobile
     border-bottom-width: #{rem.convert(2px)};
     border-bottom-style: solid;
@@ -41,6 +47,11 @@ button.nav__link {
 }
 
 .nav__link:not(button):hover {
+
+    @include breakpoint('smallOnly') {
+        color: var(--color-blanc);
+    }
+
     border-bottom-color: var(--color-bleu-300);
 }
 
@@ -50,7 +61,7 @@ button.nav__link {
 
 
 .nav__link__icon {
-    fill: var(--color-bleu-500);
+    fill: var(--color-blanc);
 
     @include breakpoint('medium') {
         display: none;
@@ -65,5 +76,12 @@ button.nav__link {
 
 .nav__active {
     @include navItem;
+
+    
+
+    @include breakpoint('smallOnly') {
+        border-color: var(--color-blanc);
+    }
+
     border-color: var(--color-bleu-500);
 }
