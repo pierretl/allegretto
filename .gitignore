@@ -5,3 +5,4 @@ composer.lock
 tmp
 .env
 .env.prod
+/env-prod/
