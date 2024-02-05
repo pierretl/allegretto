@@ -99,4 +99,10 @@
         color: var(--color-sejour);
         font-weight: var(--text-gras);
     }
+
+    //date du jour
+    .fc .fc-daygrid-day.fc-day-today {
+        background-color: var(--color-bleu-500);
+        color: var(--color-blanc);
+    }
 }
