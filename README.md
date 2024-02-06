@@ -1,3 +1,7 @@
+<div align="center">
+    <img src="style/img/logo.svg" alt="Allegretto" width="200"/>
+</div>
+
 # Allegretto
 
 ## A propos
