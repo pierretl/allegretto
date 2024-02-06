@@ -48,6 +48,7 @@ function watch() {
         }
     });
     gulp.watch('./scss/**/*.scss', styles);
+    gulp.watch('./scss/**/*.scss', build);
     gulp.watch('./*.html').on('change', browserSync.reload);
     //gulp.watch('./js/**/*.js', scriptJs);
 }
@@ -62,6 +63,8 @@ function build(){
         .pipe(prefix('last 2 versions'))
     // Minifier
         .pipe(minify())
+    // Renome
+    .pipe(rename({suffix: '.min'}))
     // Emplacement du fichier .css généré
         .pipe(gulp.dest('./style/'));
 }

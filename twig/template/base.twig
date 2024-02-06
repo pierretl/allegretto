@@ -17,7 +17,11 @@
     <meta property="og:url" content="{{ getenv('APP_URL') }}">
     <meta property="og:image" content="{{ getenv('APP_URL') }}style/favicon/og-image.png">
     <meta property="og:description" content="Projet de calendrier décentralisé pour la gestion d'une résidence familiale">
+{% if getenv('APP_ENV') == 'dev' %}
     <link rel="stylesheet" href="{{ getenv('APP_URL') }}style/style.css" />
+{% else %}
+    <link rel="stylesheet" href="{{ getenv('APP_URL') }}style/style.min.css" />
+{% endif %}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ getenv('APP_URL') }}style/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ getenv('APP_URL') }}style/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ getenv('APP_URL') }}style/favicon/favicon-16x16.png">
