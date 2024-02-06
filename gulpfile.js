@@ -49,7 +49,7 @@ function watch() {
     });
     gulp.watch('./scss/**/*.scss', styles);
     gulp.watch('./*.html').on('change', browserSync.reload);
-    gulp.watch('./js/**/*.js', scriptJs);
+    //gulp.watch('./js/**/*.js', scriptJs);
 }
 
 // Compilation pour la prod
