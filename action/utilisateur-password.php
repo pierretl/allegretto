@@ -108,7 +108,7 @@ if (
         exit;
     }
 
-    header("location:../index.php?p=reset-password&l=".$mailChiffre.$erreur1.$erreur2);
+    header("location:../index.php?p=first-login&l=".$mailChiffre.$erreur1.$erreur2);
     exit;
     
 }

@@ -51,7 +51,7 @@ if (
     // Si le mot de passe est celui par défaut, on demande le changement
     if ( password_verify($_POST['mail'], $logins[$mailChiffre]['motDePasse']) == 1 ){
         session_destroy();
-        header("location:../index.php?p=reset-password&l=".$logins[$mailChiffre]['mail']);
+        header("location:../index.php?p=first-login&l=".$logins[$mailChiffre]['mail']);
         exit;
     }
 

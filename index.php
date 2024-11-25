@@ -81,6 +81,20 @@ switch ($page) {
         ]);
         break;
 
+    case 'first-login':
+        echo $twig->render('page/first-login.twig', [
+            'post' => $_POST,
+            'get' => $_GET
+        ]);
+        break;
+
+    case 'reset-password-email':
+        echo $twig->render('page/reset-password-email.twig', [
+            'post' => $_POST,
+            'get' => $_GET
+        ]);
+        break;
+
     case 'reset-password':
         echo $twig->render('page/reset-password.twig', [
             'post' => $_POST,

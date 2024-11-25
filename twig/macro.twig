@@ -64,6 +64,12 @@
 
             {% endif %}
 
+            {% if params.motDePasseOublie == true %}
+                <div class="text-left">
+                    <a href="index.php?p=reset-password-email&mail={{ params.mail }}">Mot de passe oublié ?</a>
+                </div>
+            {% endif %}
+
         {% endif %}
         
         {% if params.erreur %}

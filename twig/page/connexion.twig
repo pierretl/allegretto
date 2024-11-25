@@ -8,6 +8,13 @@
 
 {% block content %}
 
+    {% if get.resetmdp %}
+        <p class="cadre-m bg-gris ok">
+            Votre mot de passe a été modifié avec succès.<br>
+            Connectez-vous avec votre nouveau mot de passe.
+        </p>
+    {% endif %}
+
     <form action="action/connexion.php" method="post" class="df fd-c gap-m">
 
         {% if get.erreur %}
@@ -23,12 +30,14 @@
         }) }}
 
         {{ macro.formElement({
-            id:             'motdepasse',
-            label:          'Mot de passe',
-            type:           'password',
-            voirMotDePasse: true,
-            valeur:         get.mail,
-            inputErreur:    get.erreur
+            id:                 'motdepasse',
+            label:              'Mot de passe',
+            type:               'password',
+            voirMotDePasse:     true,
+            valeur:             get.mail,
+            inputErreur:        get.erreur,
+            motDePasseOublie:   true,
+            mail:               get.mail
         }) }}
 
         <button name="Submit" type="submit" class="btn mt-m">Connexion</button>
