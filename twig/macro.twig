@@ -256,7 +256,7 @@
                     {% endif %}
                 </div>
             {% endif %}
-            {% if params.listeFamilleNonAccord|trim != '' and params.pourFamille ==  params.session.utilisateur.famille %}
+            {% if params.listeFamilleNonAccord|default('')|trim != '' and params.pourFamille == params.session.utilisateur.famille %}
                 <div>
                     <p>En attente d'accord de :</p>
                     <ul class="liste exergue">
