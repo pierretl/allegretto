@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
+ini_set('display_errors', '0');
+
 require 'vendor/autoload.php';
 require 'twig/ExtentionPerso.php';
 
@@ -25,7 +28,7 @@ if (isset($_GET['p'])) {
     $page = $_GET['p'];
 } else {
     //si on est deja connecter
-    if ( isset( $_SESSION['utilisateur']['prenom']) ) {
+    if (isset($_SESSION['utilisateur']['prenom'])) {
         header("location:index.php?p=dashboard");
     }
 }
@@ -111,13 +114,13 @@ switch ($page) {
 
     case 'dashboard':
         authentifier();
-        echo $twig->render('page/dashboard.twig' , [
+        echo $twig->render('page/dashboard.twig', [
             'session' => $_SESSION,
             'post' => $_POST,
             'get' => $_GET,
             'sejoursAttenteDeFamille' => sejoursAttenteDeFamille(getDataJson(getenv('DATA_SEJOUR')), $_SESSION),
             'sejoursAVenirValideParFamille' => sejoursAVenirValideParFamille(
-                getDataJson(getenv('DATA_SEJOUR')), 
+                getDataJson(getenv('DATA_SEJOUR')),
                 getDataJson(getenv('DATA_FAMILLE')),
                 $_SESSION
             ),
@@ -145,11 +148,8 @@ switch ($page) {
 
     default:
         header('HTTP/1.0 404 Not Found');
-        echo $twig->render('page/404.twig',[
+        echo $twig->render('page/404.twig', [
             'session' => $_SESSION
         ]);
         break;
-
 }
-
-?>
