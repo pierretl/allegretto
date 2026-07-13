@@ -40,7 +40,10 @@
 
         <ul class="df fd-c gap-s js_listeAFiltre" data-famille="{{ session.utilisateur.famille }}" aria-live="polite">
 
-            {% for item in sejoursAVenirValideParFamille |sort((a, b) => a.start|date("Y-m-d H:i:s") > b.start|date("Y-m-d H:i:s")) %}
+            {% for item in sejoursAVenirValideParFamille
+                |sort((a, b) =>
+                    a.start == b.start ? 0 : (a.start < b.start ? -1 : 1)
+                ) %}
 
                 {% if session.utilisateur.famille == item.pourFamille %}
                     {% set btnSupprimer = true %}

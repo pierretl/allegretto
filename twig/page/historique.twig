@@ -41,7 +41,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for item in sejours  | sort((a, b) => a.start|date("Y-m-d H:i:s") > b.start|date("Y-m-d H:i:s"))  %}
+                            {% for item in sejours|sort((a, b) => a.start|date("U") == b.start|date("U") ? 0 : (a.start|date("U") < b.start|date("U") ? -1 : 1)) %}
                                 {% set sejourKey = loop.index %}
 
                                 {% if item.etat != getenv('CODE_SEJOUR_VALIDE') %}
@@ -193,7 +193,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for item in sejoursValide | sort((a, b) => a.start|date("Y-m-d H:i:s") > b.start|date("Y-m-d H:i:s"))  %}
+                            {% for item in sejoursValide|sort((a, b) => a.start|date("U") == b.start|date("U") ? 0 : (a.start|date("U") < b.start|date("U") ? -1 : 1)) %}
                                 {% set sejourPasser = "" %}
                                 {% if ( item.departReel | date("Y-m-d") < "now" | date("Y-m-d") ) %}
                                     {% set sejourPasser = "bg-gris" %}

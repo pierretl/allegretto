@@ -5,7 +5,13 @@
         <h2 class="titre">En attente...</h2>
 
         <ul class="df fd-c gap-s">
-            {% for item in sejoursAttenteDeFamille | sort((a, b) => a.start|date("Y-m-d H:i:s") > b.start|date("Y-m-d H:i:s"))  %}
+            {% for item in sejoursAttenteDeFamille
+                |sort((a, b) =>
+                    a.start|date("Y-m-d H:i:s") == b.start|date("Y-m-d H:i:s")
+                        ? 0
+                        : (a.start|date("Y-m-d H:i:s") < b.start|date("Y-m-d H:i:s") ? -1 : 1)
+                )
+            %}
 
                 {{ macro.cadreSejour({
                     type:                   'aValider',
